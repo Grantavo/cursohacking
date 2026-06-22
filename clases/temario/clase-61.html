@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>61. Argumentos posicionales en Bash | IntroducciÃ³n a Linux</title>
+    <title>61. Argumentos posicionales en Bash | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,43 +138,43 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 61</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Argumentos posicionales en Bash</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 5:00 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 5:00 · Sección 2: Temario</div>
 
-      <p>Los argumentos posicionales permiten pasar datos a un script de Bash desde la lÃ­nea de comandos. Son fundamentales para crear scripts flexibles y reutilizables.</p>
+      <p>Los argumentos posicionales permiten pasar datos a un script de Bash desde la línea de comandos. Son fundamentales para crear scripts flexibles y reutilizables.</p>
 
       <h2>Variables posicionales</h2>
-      <p>Bash asigna automÃ¡ticamente los argumentos a variables especiales:</p>
+      <p>Bash asigna automáticamente los argumentos a variables especiales:</p>
       <table>
         <thead>
-          <tr><th>Variable</th><th>DescripciÃ³n</th><th>Ejemplo (<code>./script.sh a b c</code>)</th></tr>
+          <tr><th>Variable</th><th>Descripción</th><th>Ejemplo (<code>./script.sh a b c</code>)</th></tr>
         </thead>
         <tbody>
           <tr><td><code>$0</code></td><td>Nombre del script</td><td><code>script.sh</code></td></tr>
           <tr><td><code>$1</code></td><td>Primer argumento</td><td><code>a</code></td></tr>
           <tr><td><code>$2</code></td><td>Segundo argumento</td><td><code>b</code></td></tr>
-          <tr><td><code>$#</code></td><td>NÃºmero de argumentos</td><td><code>3</code></td></tr>
+          <tr><td><code>$#</code></td><td>Número de argumentos</td><td><code>3</code></td></tr>
           <tr><td><code>$@</code></td><td>Todos los argumentos (array)</td><td><code>a b c</code></td></tr>
           <tr><td><code>$*</code></td><td>Todos los argumentos (string)</td><td><code>a b c</code></td></tr>
         </tbody>
@@ -185,7 +185,7 @@
 echo "Nombre del script: $0"
 echo "Primer argumento: $1"
 echo "Segundo argumento: $2"
-echo "NÃºmero de argumentos: $#"
+echo "Número de argumentos: $#"
 echo "Todos los argumentos: $@"
 
 # Uso: ./mostrar-info.sh hola mundo
@@ -193,7 +193,7 @@ echo "Todos los argumentos: $@"
 # Nombre del script: ./mostrar-info.sh
 # Primer argumento: hola
 # Segundo argumento: mundo
-# NÃºmero de argumentos: 2
+# Número de argumentos: 2
 # Todos los argumentos: hola mundo</code></pre>
 
       <h2>El comando <code>shift</code></h2>
@@ -205,7 +205,7 @@ while [ $# -gt 0 ]; do
   shift
 done</code></pre>
 
-      <h2>ValidaciÃ³n de parÃ¡metros</h2>
+      <h2>Validación de parámetros</h2>
       <p>Siempre valida que se hayan pasado los argumentos necesarios:</p>
       <pre><code>#!/bin/bash
 if [ $# -lt 2 ]; then
@@ -222,24 +222,24 @@ if [ ! -f "$ARCHIVO" ]; then
 fi</code></pre>
 
       <h2>Procesar opciones con <code>getopts</code></h2>
-      <p>Para scripts mÃ¡s sofisticados, <code>getopts</code> permite manejar banderas (<code>-v</code>, <code>-o archivo</code>, etc.):</p>
+      <p>Para scripts más sofisticados, <code>getopts</code> permite manejar banderas (<code>-v</code>, <code>-o archivo</code>, etc.):</p>
       <pre><code>#!/bin/bash
 while getopts "vo:h" opt; do
   case $opt in
     v) VERBOSE=true ;;
     o) OUTPUT="$OPTARG" ;;
     h) echo "Uso: $0 [-v] [-o archivo]"; exit 0 ;;
-    *) echo "OpciÃ³n invÃ¡lida"; exit 1 ;;
+    *) echo "Opción inválida"; exit 1 ;;
   esac
 done</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ“–</strong> En getopts, los dos puntos despuÃ©s de una letra (<code>o:</code>) indican que esa opciÃ³n requiere un argumento. La variable <code>$OPTARG</code> contiene el valor del argumento.
+        <strong>📖</strong> En getopts, los dos puntos después de una letra (<code>o:</code>) indican que esa opción requiere un argumento. La variable <code>$OPTARG</code> contiene el valor del argumento.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-60.html">â† Anterior: Operando con proyectos de Github [5-5]</a>
-        <a href="clase-62.html">Siguiente: Cuestionario de conceptos y comandos en Linux â†’</a>
+        <a href="clase-60.html">← Anterior: Operando con proyectos de Github [5-5]</a>
+        <a href="clase-62.html">Siguiente: Cuestionario de conceptos y comandos en Linux →</a>
       </div>
     </div>
 
@@ -247,11 +247,11 @@ done</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

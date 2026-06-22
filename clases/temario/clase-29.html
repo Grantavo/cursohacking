@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>29. Lectura de archivos especiales [1-2] | IntroducciÃ³n a Linux</title>
+    <title>29. Lectura de archivos especiales [1-2] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,41 +37,41 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 29</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Lectura de archivos especiales [1-2]</h1>
-      <div style="color: var(--text-2); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 5:47 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-2); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 5:47 · Sección 2: Temario</div>
 
       <p>
-        Linux expone informaciÃ³n del kernel y del hardware a travÃ©s de sistemas de archivos virtuales como <code>/proc</code> y <code>/sys</code>. Estos no son archivos reales en el disco duro; son interfaces que el kernel crea en memoria para que puedas consultar â€”y en algunos casos modificarâ€” el estado del sistema en tiempo real. En ciberseguridad, leer estos archivos te da informaciÃ³n valiosa sobre el sistema objetivo.
+        Linux expone información del kernel y del hardware a través de sistemas de archivos virtuales como <code>/proc</code> y <code>/sys</code>. Estos no son archivos reales en el disco duro; son interfaces que el kernel crea en memoria para que puedas consultar —y en algunos casos modificar— el estado del sistema en tiempo real. En ciberseguridad, leer estos archivos te da información valiosa sobre el sistema objetivo.
       </p>
 
       <h2>/proc: el sistema de archivos de procesos</h2>
-      <p>Cada proceso en ejecuciÃ³n tiene un directorio en <code>/proc</code> con su PID como nombre. Dentro encuentras informaciÃ³n detallada:</p>
+      <p>Cada proceso en ejecución tiene un directorio en <code>/proc</code> con su PID como nombre. Dentro encuentras información detallada:</p>
 
-      <pre><code># InformaciÃ³n del procesador
+      <pre><code># Información del procesador
 cat /proc/cpuinfo
 
 # Memoria RAM
 cat /proc/meminfo
 
-# VersiÃ³n del kernel y sistema operativo
+# Versión del kernel y sistema operativo
 cat /proc/version
 
 # Tiempo de actividad del sistema (uptime)
@@ -84,7 +84,7 @@ cat /proc/mounts
 cat /proc/partitions</code></pre>
 
       <h3>Explorar /proc/net/</h3>
-      <p>Dentro de <code>/proc/net/</code> puedes ver informaciÃ³n de red en tiempo real sin necesidad de herramientas externas:</p>
+      <p>Dentro de <code>/proc/net/</code> puedes ver información de red en tiempo real sin necesidad de herramientas externas:</p>
 
       <pre><code># Conexiones TCP activas (IPv4)
 cat /proc/net/tcp
@@ -92,20 +92,20 @@ cat /proc/net/tcp
 # Conexiones TCP activas (IPv6)
 cat /proc/net/tcp6
 
-# EstadÃ­sticas de red
+# Estadísticas de red
 cat /proc/net/netstat
 
-# Tabla ARP (mapeo IP â†” MAC)
+# Tabla ARP (mapeo IP ↔ MAC)
 cat /proc/net/arp
 
 # Interfaces de red
 cat /proc/net/dev</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ Tip:</strong> En <code>/proc/net/tcp</code>, las direcciones IP y puertos estÃ¡n en hexadecimal. Por ejemplo, <code>0100007F:0016</code> es <code>127.0.0.1:22</code>. Aprende a leerlo o usa <code>ss -tulanp</code> que lo muestra ya formateado.
+        <strong>💡 Tip:</strong> En <code>/proc/net/tcp</code>, las direcciones IP y puertos están en hexadecimal. Por ejemplo, <code>0100007F:0016</code> es <code>127.0.0.1:22</code>. Aprende a leerlo o usa <code>ss -tulanp</code> que lo muestra ya formateado.
       </div>
 
-      <h3>MÃ¡s archivos Ãºtiles en /proc</h3>
+      <h3>Más archivos útiles en /proc</h3>
       <pre><code># Argumentos del kernel al arrancar
 cat /proc/cmdline
 
@@ -121,11 +121,11 @@ cat /proc/pci
 # Interrupciones
 cat /proc/interrupts
 
-# InformaciÃ³n del sistema de archivos
+# Información del sistema de archivos
 cat /proc/filesystems</code></pre>
 
-      <h3>/sys: informaciÃ³n de dispositivos y drivers</h3>
-      <p><code>/sys</code> expone informaciÃ³n estructurada del kernel sobre dispositivos, controladores y buses:</p>
+      <h3>/sys: información de dispositivos y drivers</h3>
+      <p><code>/sys</code> expone información estructurada del kernel sobre dispositivos, controladores y buses:</p>
 
       <pre><code># Dispositivos de bloque (discos)
 ls /sys/block/
@@ -133,30 +133,30 @@ ls /sys/block/
 # Dispositivos USB conectados
 ls /sys/bus/usb/devices/
 
-# InformaciÃ³n de la clase de red
+# Información de la clase de red
 ls /sys/class/net/
 cat /sys/class/net/eth0/address   # MAC address</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ Cuidado:</strong> Algunos archivos en <code>/proc</code> y <code>/sys</code> son de solo lectura, pero otros permiten escritura. Por ejemplo, <code>/proc/sys/net/ipv4/ip_forward</code> controla el forwarding de paquetes. Escribir valores incorrectos puede desestabilizar el sistema. Siempre lee primero con <code>cat</code> antes de modificar.
+        <strong>⚠️ Cuidado:</strong> Algunos archivos en <code>/proc</code> y <code>/sys</code> son de solo lectura, pero otros permiten escritura. Por ejemplo, <code>/proc/sys/net/ipv4/ip_forward</code> controla el forwarding de paquetes. Escribir valores incorrectos puede desestabilizar el sistema. Siempre lee primero con <code>cat</code> antes de modificar.
       </div>
 
-      <p>Leer <code>/proc</code> y <code>/sys</code> te da una visiÃ³n profunda del sistema sin necesidad de instalar herramientas adicionales. En un pentest, estos archivos son una mina de oro para enumerar el sistema objetivo.</p>
+      <p>Leer <code>/proc</code> y <code>/sys</code> te da una visión profunda del sistema sin necesidad de instalar herramientas adicionales. En un pentest, estos archivos son una mina de oro para enumerar el sistema objetivo.</p>
 
       <div class="lesson-nav">
-        <a href="clase-28.html">â† Anterior: Conexiones SSH</a>
-        <a href="clase-30.html">Siguiente: Lectura de archivos especiales [2-2] â†’</a>
+        <a href="clase-28.html">← Anterior: Conexiones SSH</a>
+        <a href="clase-30.html">Siguiente: Lectura de archivos especiales [2-2] →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

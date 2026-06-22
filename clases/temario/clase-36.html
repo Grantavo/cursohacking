@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>36. MÃ©todo de filtrado de datos [2-2] | IntroducciÃ³n a Linux</title>
+    <title>36. Método de filtrado de datos [2-2] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,33 +138,33 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 36</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">MÃ©todo de filtrado de datos [2-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:12 Â· SecciÃ³n 2: Temario</div>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Método de filtrado de datos [2-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:12 · Sección 2: Temario</div>
 
       <p>En esta segunda parte del filtrado de datos profundizamos en expresiones regulares avanzadas con <code>grep</code> y <code>sed</code>, y exploramos funcionalidades potentes de <code>awk</code> como los bloques <code>BEGIN</code> y <code>END</code> y las variables internas.</p>
 
       <h2>Expresiones regulares avanzadas en grep</h2>
-      <p>Grep soporta tres modos de regex: bÃ¡sica (<code>-G</code>), extendida (<code>-E</code>) y perl (<code>-P</code>). Para patrones complejos siempre usaremos <code>-E</code> o <code>-P</code>.</p>
+      <p>Grep soporta tres modos de regex: básica (<code>-G</code>), extendida (<code>-E</code>) y perl (<code>-P</code>). Para patrones complejos siempre usaremos <code>-E</code> o <code>-P</code>.</p>
 
-      <pre><code># AgrupaciÃ³n con \(\) y referencia posterior \1
+      <pre><code># Agrupación con \(\) y referencia posterior \1
 grep -E '(\w+)\s+\1' archivo.txt    # Palabras repetidas consecutivas
 
 # Rangos y cuantificadores
@@ -174,25 +174,25 @@ grep -E '^[A-Z].{3,10}[0-9]$' archivo.txt
 grep -P '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' archivo.txt</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ§  Cuantificadores:</strong> <code>*</code> (cero o mÃ¡s), <code>+</code> (uno o mÃ¡s), <code>?</code> (cero o uno), <code>{n,m}</code> (entre n y m). Con <code>-P</code> tambiÃ©n tenemos <code>*?</code> (lazy) y <code>++</code> (possessive).
+        <strong>🧠 Cuantificadores:</strong> <code>*</code> (cero o más), <code>+</code> (uno o más), <code>?</code> (cero o uno), <code>{n,m}</code> (entre n y m). Con <code>-P</code> también tenemos <code>*?</code> (lazy) y <code>++</code> (possessive).
       </div>
 
       <h2>Sed con expresiones regulares</h2>
-      <p>Sed es el editor de flujo por excelencia. Su sintaxis bÃ¡sica es <code>sed 'rango/patron/accion'</code>. Las sustituciones con <code>\1</code> permiten reordenar campos.</p>
+      <p>Sed es el editor de flujo por excelencia. Su sintaxis básica es <code>sed 'rango/patron/accion'</code>. Las sustituciones con <code>\1</code> permiten reordenar campos.</p>
 
-      <pre><code># SustituciÃ³n con grupos capturados
+      <pre><code># Sustitución con grupos capturados
 echo "John;Doe;35" | sed -E 's/(\w+);(\w+);(\w+)/Apellido: \2, Nombre: \1, Edad: \3/'
 
-# Eliminar lÃ­neas que coinciden con un patrÃ³n
+# Eliminar líneas que coinciden con un patrón
 sed -E '/^#|^$/d' config.conf
 
-# Imprimir sÃ³lo lÃ­neas 10 a 20
+# Imprimir sólo líneas 10 a 20
 sed -n '10,20p' archivo.log</code></pre>
 
       <h2>Awk avanzado: BEGIN, END, NR, NF</h2>
-      <p>Awk es un lenguaje de procesamiento de texto completo. Los bloques <code>BEGIN</code> se ejecutan antes de leer el archivo y <code>END</code> al final. <code>NR</code> es el nÃºmero de registro (lÃ­nea) actual y <code>NF</code> el nÃºmero de campos.</p>
+      <p>Awk es un lenguaje de procesamiento de texto completo. Los bloques <code>BEGIN</code> se ejecutan antes de leer el archivo y <code>END</code> al final. <code>NR</code> es el número de registro (línea) actual y <code>NF</code> el número de campos.</p>
 
-      <pre><code># Mostrar nÃºmero de lÃ­nea y campos por lÃ­nea
+      <pre><code># Mostrar número de línea y campos por línea
 awk '{ print NR ": " NF " campos -> " $0 }' archivo.txt
 
 # BEGIN y END para cabecera y resumen
@@ -200,27 +200,27 @@ awk 'BEGIN { print "=== REPORTE ===" }
      { suma += $1 }
      END { print "Total:", suma, "| Promedio:", suma/NR }' datos.txt
 
-# Filtrar por condiciÃ³n con variables internas
+# Filtrar por condición con variables internas
 awk '$3 > 1000 { print $1, $2, $3 }' ventas.txt</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ Dato clave:</strong> Awk interpreta automÃ¡ticamente los espacios/tabulaciones como separadores de campos. Puedes cambiarlo con <code>-F','</code> para CSV o <code>-F':'</code> para <code>/etc/passwd</code>.
+        <strong>⚠️ Dato clave:</strong> Awk interpreta automáticamente los espacios/tabulaciones como separadores de campos. Puedes cambiarlo con <code>-F','</code> para CSV o <code>-F':'</code> para <code>/etc/passwd</code>.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-35.html">â† Anterior: MÃ©todo de filtrado de datos [1-2]</a>
-        <a href="clase-37.html">Siguiente: InterpretaciÃ³n de archivos binarios â†’</a>
+        <a href="clase-35.html">← Anterior: Método de filtrado de datos [1-2]</a>
+        <a href="clase-37.html">Siguiente: Interpretación de archivos binarios →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

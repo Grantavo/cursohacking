@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>63. IntroducciÃ³n al Proyecto 1 â€” Buscador de mÃ¡quinas HTB | IntroducciÃ³n a Linux</title>
+    <title>63. Introducción al Proyecto 1 — Buscador de máquinas HTB | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,54 +37,54 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 63</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">IntroducciÃ³n al Proyecto 1 â€” Buscador de mÃ¡quinas HTB</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">SecciÃ³n 6: Scripting en Bash â€” Principiante a Avanzado</div>
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Introducción al Proyecto 1 — Buscador de máquinas HTB</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Sección 6: Scripting en Bash — Principiante a Avanzado</div>
 
       <p>
-        Bienvenido al primer proyecto prÃ¡ctico de la secciÃ³n de scripting. Vamos a construir un <strong>buscador de mÃ¡quinas de HackTheBox</strong> completamente funcional usando Bash. Este proyecto integra todo lo que hemos aprendido: variables, funciones, arrays, bucles, y aÃ±ade conceptos nuevos como peticiones HTTP con <code>curl</code> y procesamiento JSON con <code>jq</code>.
+        Bienvenido al primer proyecto práctico de la sección de scripting. Vamos a construir un <strong>buscador de máquinas de HackTheBox</strong> completamente funcional usando Bash. Este proyecto integra todo lo que hemos aprendido: variables, funciones, arrays, bucles, y añade conceptos nuevos como peticiones HTTP con <code>curl</code> y procesamiento JSON con <code>jq</code>.
       </p>
 
-      <h2>Â¿QuÃ© vamos a construir?</h2>
+      <h2>¿Qué vamos a construir?</h2>
       <p>Un script de terminal que:</p>
       <ul>
-        <li>Se conecte a la API pÃºblica de HackTheBox</li>
-        <li>Busque mÃ¡quinas por nombre, IP, sistema operativo o dificultad</li>
+        <li>Se conecte a la API pública de HackTheBox</li>
+        <li>Busque máquinas por nombre, IP, sistema operativo o dificultad</li>
         <li>Muestre los resultados en una tabla formateada con colores</li>
-        <li>Permita paginaciÃ³n, cachÃ© y modo interactivo</li>
+        <li>Permita paginación, caché y modo interactivo</li>
       </ul>
 
       <h2>Requisitos</h2>
       <div class="highlight">
-        <strong>ðŸ“¦ Paquetes necesarios:</strong>
+        <strong>📦 Paquetes necesarios:</strong>
         <ul style="margin-top: 0.4rem;">
-          <li><code>curl</code> â€” para hacer peticiones HTTP a la API</li>
-          <li><code>jq</code> â€” para procesar JSON desde la terminal</li>
-          <li><code>tput</code> â€” para colores y formato en la terminal</li>
+          <li><code>curl</code> — para hacer peticiones HTTP a la API</li>
+          <li><code>jq</code> — para procesar JSON desde la terminal</li>
+          <li><code>tput</code> — para colores y formato en la terminal</li>
         </ul>
       </div>
 
-      <p>Verifica que estÃ¡n instalados:</p>
+      <p>Verifica que están instalados:</p>
       <pre><code>which curl jq tput
 # Si falta alguno:
 sudo apt install -y curl jq</code></pre>
@@ -97,43 +97,43 @@ sudo apt install -y curl jq</code></pre>
   -H "Authorization: Bearer TU_TOKEN"</code></pre>
 
       <h3>jq</h3>
-      <p>Procesador JSON de lÃ­nea de comandos. Permite filtrar y transformar JSON:</p>
+      <p>Procesador JSON de línea de comandos. Permite filtrar y transformar JSON:</p>
       <pre><code>curl -s "https://api.example.com/data" | jq '.results[] | {name: .name, os: .os}'</code></pre>
 
       <h3>API de HackTheBox</h3>
-      <p>HTB expone una API REST que devuelve informaciÃ³n de mÃ¡quinas en formato JSON. NecesitarÃ¡s un token de API desde tu panel de usuario.</p>
+      <p>HTB expone una API REST que devuelve información de máquinas en formato JSON. Necesitarás un token de API desde tu panel de usuario.</p>
 
       <div class="warning">
-        <strong>âš ï¸ Importante:</strong> No compartas tu token de API. Lo manejaremos mediante una variable de entorno <code>HTB_TOKEN</code> para no hardcodearlo.
+        <strong>⚠️ Importante:</strong> No compartas tu token de API. Lo manejaremos mediante una variable de entorno <code>HTB_TOKEN</code> para no hardcodearlo.
       </div>
 
       <h2>Estructura del script</h2>
       <p>Planificamos el script en estas secciones:</p>
       <pre><code>#!/bin/bash
-# === CONFIGURACIÃ“N ===
+# === CONFIGURACIÓN ===
 # === FUNCIONES ===
-# === ANÃLISIS DE ARGUMENTOS ===
-# === LÃ“GICA PRINCIPAL ===
+# === ANÁLISIS DE ARGUMENTOS ===
+# === LÓGICA PRINCIPAL ===
 # === SALIDA ===</code></pre>
 
       <h2>Vista previa</h2>
-      <p>AsÃ­ se verÃ¡ el resultado final:</p>
+      <p>Así se verá el resultado final:</p>
       <pre><code>$ ./htb_search.sh --os linux --difficulty easy
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚              ðŸ´â€â˜ ï¸ HTB Machine Finder               â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ Nombre   â”‚   IP     â”‚   OS     â”‚ Dificultad      â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ Bank     â”‚ 10.10.10.29 â”‚ Linux â”‚ Easy (verde)    â”‚
-â”‚ Bible    â”‚ 10.10.10.31 â”‚ Linux â”‚ Easy (verde)    â”‚
-â”‚ ...      â”‚          â”‚          â”‚                 â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜</code></pre>
+┌──────────────────────────────────────────────────┐
+│              🏴‍☠️ HTB Machine Finder               │
+├──────────┬──────────┬──────────┬─────────────────┤
+│ Nombre   │   IP     │   OS     │ Dificultad      │
+├──────────┼──────────┼──────────┼─────────────────┤
+│ Bank     │ 10.10.10.29 │ Linux │ Easy (verde)    │
+│ Bible    │ 10.10.10.31 │ Linux │ Easy (verde)    │
+│ ...      │          │          │                 │
+└──────────┴──────────┴──────────┴─────────────────┘</code></pre>
 
-      <p>En las prÃ³ximas clases (64-69) construiremos cada pieza paso a paso. Â¡Manos a la obra!</p>
+      <p>En las próximas clases (64-69) construiremos cada pieza paso a paso. ¡Manos a la obra!</p>
 
       <div class="lesson-nav">
-        <a href="../temario/clase-62.html">â† Anterior</a>
-        <a href="clase-64.html">Siguiente: Scripting en Bash [1-6] â†’</a>
+        <a href="../temario/clase-62.html">← Anterior</a>
+        <a href="clase-64.html">Siguiente: Scripting en Bash [1-6] →</a>
       </div>
     </div>
 
@@ -141,11 +141,11 @@ sudo apt install -y curl jq</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

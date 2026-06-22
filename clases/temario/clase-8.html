@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. Descriptores de archivo | IntroducciÃ³n a Linux</title>
+    <title>8. Descriptores de archivo | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,37 +138,37 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 8</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Descriptores de archivo</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 6:58 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 6:58 · Sección 2: Temario</div>
 
       <p>
-        Los descriptores de archivo (file descriptors) son nÃºmeros que el sistema operativo asigna para representar archivos abiertos. Son la base de cÃ³mo Linux maneja la E/S.
+        Los descriptores de archivo (file descriptors) son números que el sistema operativo asigna para representar archivos abiertos. Son la base de cómo Linux maneja la E/S.
       </p>
 
-      <h2>Â¿QuÃ© es un descriptor de archivo?</h2>
+      <h2>¿Qué es un descriptor de archivo?</h2>
       <p>
-        Cada proceso tiene una tabla de descriptores. Los tres primeros estÃ¡n predefinidos: <strong>0 (stdin)</strong>, <strong>1 (stdout)</strong> y <strong>2 (stderr)</strong>. Cuando abres un archivo, el sistema le asigna el siguiente nÃºmero disponible (3, 4, 5...).
+        Cada proceso tiene una tabla de descriptores. Los tres primeros están predefinidos: <strong>0 (stdin)</strong>, <strong>1 (stdout)</strong> y <strong>2 (stderr)</strong>. Cuando abres un archivo, el sistema le asigna el siguiente número disponible (3, 4, 5...).
       </p>
 
       <h2>Inspeccionar descriptores: <code>/proc/PID/fd</code></h2>
@@ -177,12 +177,12 @@
 ls -la /proc/1/fd            # Muestra los descriptores del proceso init (PID 1)</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡</strong> <code>$$</code> es una variable especial que contiene el PID del shell actual. VerÃ¡s enlaces simbÃ³licos como <code>0 â†’ /dev/pts/0</code>, <code>1 â†’ /dev/pts/0</code>, etc.
+        <strong>💡</strong> <code>$$</code> es una variable especial que contiene el PID del shell actual. Verás enlaces simbólicos como <code>0 → /dev/pts/0</code>, <code>1 → /dev/pts/0</code>, etc.
       </div>
 
       <h2>Redirigir con descriptores personalizados</h2>
 
-      <p>Con <code>exec</code> puedes abrir archivos y asignarles descriptores especÃ­ficos:</p>
+      <p>Con <code>exec</code> puedes abrir archivos y asignarles descriptores específicos:</p>
       <pre><code>exec 3> salida.txt           # Abre salida.txt con descriptor 3 para escritura
 echo "Hola" >&3              # Escribe usando el descriptor 3
 exec 3>&-                    # Cierra el descriptor 3</code></pre>
@@ -195,28 +195,28 @@ exec 4>&-                    # Cierra el descriptor 4</code></pre>
       <p>Duplicar descriptores:</p>
       <pre><code>exec 5>&1                    # Duplica stdout en el descriptor 5
 echo "visible"               # Se ve normal
-echo "invisible" >&5         # TambiÃ©n se ve (va a stdout a travÃ©s del 5)</code></pre>
+echo "invisible" >&5         # También se ve (va a stdout a través del 5)</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸</strong> Los descriptores personalizados existen solo mientras dura el proceso que los creÃ³. Al cerrar la terminal, se liberan automÃ¡ticamente.
+        <strong>⚠️</strong> Los descriptores personalizados existen solo mientras dura el proceso que los creó. Al cerrar la terminal, se liberan automáticamente.
       </div>
 
-      <h2>AplicaciÃ³n prÃ¡ctica: logging</h2>
-      <p>Un patrÃ³n comÃºn es redirigir toda la salida del script a un archivo de log:</p>
+      <h2>Aplicación práctica: logging</h2>
+      <p>Un patrón común es redirigir toda la salida del script a un archivo de log:</p>
       <pre><code>#!/bin/bash
 exec > log.txt 2>&1          # Todo stdout y stderr va a log.txt
 echo "Iniciando proceso..."
 ls /etc
 echo "Proceso completado"</code></pre>
 
-      <h2>LÃ­mite de descriptores</h2>
-      <p>Cada proceso tiene un lÃ­mite de archivos abiertos. Se consulta con:</p>
-      <pre><code>ulimit -n                    # Muestra el lÃ­mite (normalmente 1024)
-ulimit -n 2048               # Aumenta el lÃ­mite (solo root puede subirlo arbitrariamente)</code></pre>
+      <h2>Límite de descriptores</h2>
+      <p>Cada proceso tiene un límite de archivos abiertos. Se consulta con:</p>
+      <pre><code>ulimit -n                    # Muestra el límite (normalmente 1024)
+ulimit -n 2048               # Aumenta el límite (solo root puede subirlo arbitrariamente)</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-7.html">â† Anterior: Control de flujo stderr-stdout</a>
-        <a href="clase-9.html">Siguiente: Cuestionario de control de flujo â†’</a>
+        <a href="clase-7.html">← Anterior: Control de flujo stderr-stdout</a>
+        <a href="clase-9.html">Siguiente: Cuestionario de control de flujo →</a>
       </div>
     </div>
 
@@ -224,11 +224,11 @@ ulimit -n 2048               # Aumenta el lÃ­mite (solo root puede subirlo arb
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

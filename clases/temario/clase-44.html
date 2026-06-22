@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>44. Creando nuestros propios escÃ¡neres en Bash | IntroducciÃ³n a Linux</title>
+    <title>44. Creando nuestros propios escáneres en Bash | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,43 +138,43 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 44</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Creando nuestros propios escÃ¡neres en Bash</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 21:29 Â· SecciÃ³n 2: Temario</div>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Creando nuestros propios escáneres en Bash</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 21:29 · Sección 2: Temario</div>
 
-      <p>En esta clase construimos un escÃ¡ner de puertos en Bash puro usando el pseudo-sistema de archivos <code>/dev/tcp</code>. Es una tÃ©cnica que funciona en cualquier sistema con Bash y no requiere herramientas externas como nmap o netcat.</p>
+      <p>En esta clase construimos un escáner de puertos en Bash puro usando el pseudo-sistema de archivos <code>/dev/tcp</code>. Es una técnica que funciona en cualquier sistema con Bash y no requiere herramientas externas como nmap o netcat.</p>
 
       <h2>El pseudo-fichero /dev/tcp</h2>
-      <p>Bash permite abrir conexiones TCP a travÃ©s de <code>/dev/tcp/IP/PORT</code>. Si la conexiÃ³n tiene Ã©xito, el puerto estÃ¡ abierto.</p>
+      <p>Bash permite abrir conexiones TCP a través de <code>/dev/tcp/IP/PORT</code>. Si la conexión tiene éxito, el puerto está abierto.</p>
 
-      <pre><code># Probar un puerto especÃ­fico
+      <pre><code># Probar un puerto específico
 bash -c "echo > /dev/tcp/192.168.1.1/80" 2>/dev/null && echo "Puerto 80 abierto" || echo "Puerto 80 cerrado"
 
 # Con timeout para evitar esperas largas
 timeout 1 bash -c "echo > /dev/tcp/192.168.1.1/22" 2>/dev/null && echo "Abierto" || echo "Cerrado"</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ§  Â¿CÃ³mo funciona?</strong> Bash interpreta <code>/dev/tcp/host/puerto</code> como una redirecciÃ³n especial. Si la conexiÃ³n TCP se establece, la redirecciÃ³n tiene Ã©xito. No requiere permisos especiales ni netcat. No funciona en shells como <code>sh</code> o <code>dash</code>; necesita Bash compilado con <code>--enable-net-redirections</code>.
+        <strong>🧠 ¿Cómo funciona?</strong> Bash interpreta <code>/dev/tcp/host/puerto</code> como una redirección especial. Si la conexión TCP se establece, la redirección tiene éxito. No requiere permisos especiales ni netcat. No funciona en shells como <code>sh</code> o <code>dash</code>; necesita Bash compilado con <code>--enable-net-redirections</code>.
       </div>
 
-      <h2>EscÃ¡ner con bucle for</h2>
+      <h2>Escáner con bucle for</h2>
       <p>Iteramos sobre un rango de puertos con un bucle <code>for</code> y probamos cada uno:</p>
 
       <pre><code>#!/bin/bash
@@ -185,8 +185,8 @@ for port in {1..1024}; do
 done
 echo "Escaneo completado."</code></pre>
 
-      <h2>Mejoras: colores y paralelizaciÃ³n</h2>
-      <p>El escÃ¡ner secuencial es lento. Podemos paralelizar con <code>&</code> (background) y aÃ±adir colores para mejor legibilidad:</p>
+      <h2>Mejoras: colores y paralelización</h2>
+      <p>El escáner secuencial es lento. Podemos paralelizar con <code>&</code> (background) y añadir colores para mejor legibilidad:</p>
 
       <pre><code>#!/bin/bash
 ip="$1"
@@ -207,7 +207,7 @@ wait
 echo -e "${verde}[+] Escaneo completado.${reset}"</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ Control de procesos:</strong> Lanzar todos los puertos en paralelo (5000 procesos) puede saturar el sistema. Es mejor usar un control de concurrencia con <code>jobs</code> y <code>wait</code> limitando a, por ejemplo, 100 procesos simultÃ¡neos:
+        <strong>⚠️ Control de procesos:</strong> Lanzar todos los puertos en paralelo (5000 procesos) puede saturar el sistema. Es mejor usar un control de concurrencia con <code>jobs</code> y <code>wait</code> limitando a, por ejemplo, 100 procesos simultáneos:
         <pre><code>max_jobs=100
 for port in {1..5000}; do
   ( ... ) &
@@ -217,22 +217,22 @@ for port in {1..5000}; do
 done</code></pre>
       </div>
 
-      <p>El proyecto completo incluye detecciÃ³n de servicios (banner grabbing), exportaciÃ³n a CSV, y modo sigiloso con retardos aleatorios. Disponible en el repositorio del curso.</p>
+      <p>El proyecto completo incluye detección de servicios (banner grabbing), exportación a CSV, y modo sigiloso con retardos aleatorios. Disponible en el repositorio del curso.</p>
 
       <div class="lesson-nav">
-        <a href="clase-43.html">â† Anterior: Uso de conexiones encriptadas</a>
-        <a href="clase-45.html">Siguiente: DetecciÃ³n de diferencias entre archivos â†’</a>
+        <a href="clase-43.html">← Anterior: Uso de conexiones encriptadas</a>
+        <a href="clase-45.html">Siguiente: Detección de diferencias entre archivos →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

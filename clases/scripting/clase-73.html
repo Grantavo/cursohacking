@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>73. Scripting en Bash [3-15] (GRATIS) | IntroducciÃ³n a Linux</title>
+    <title>73. Scripting en Bash [3-15] (GRATIS) | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,32 +37,32 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 73</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <span class="course-tag">🐧 Bash · Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [3-15] (GRATIS)</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 17:09 Â· Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 17:09 · Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Implementamos la lÃ³gica completa de apuestas: pleno (1 nÃºmero), docena, mitad, color y par/impar. Cada tipo tiene su propio cÃ¡lculo de pagos segÃºn las reglas de la ruleta europea.
+        Implementamos la lógica completa de apuestas: pleno (1 número), docena, mitad, color y par/impar. Cada tipo tiene su propio cálculo de pagos según las reglas de la ruleta europea.
       </p>
 
       <h2>Tipos de apuesta</h2>
@@ -75,13 +75,13 @@ PAGOS[color]=1
 PAGOS[par_impar]=1
 
 declare -A DESCRIPCIONES
-DESCRIPCIONES[pleno]="Un nÃºmero especÃ­fico (35:1)"
+DESCRIPCIONES[pleno]="Un número específico (35:1)"
 DESCRIPCIONES[docena]="1-12, 13-24, 25-36 (2:1)"
 DESCRIPCIONES[mitad]="1-18 (baja) o 19-36 (alta) (1:1)"
 DESCRIPCIONES[color]="Rojo o negro (1:1)"
 DESCRIPCIONES[par_impar]="Par o impar (1:1)"</code></pre>
 
-      <h2>LÃ³gica de apuesta: pleno</h2>
+      <h2>Lógica de apuesta: pleno</h2>
       <pre><code>apostar_pleno() {
   local numero_apostado=$1
   local cantidad=$2
@@ -95,7 +95,7 @@ DESCRIPCIONES[par_impar]="Par o impar (1:1)"</code></pre>
   fi
 }</code></pre>
 
-      <h2>LÃ³gica de apuesta: docena</h2>
+      <h2>Lógica de apuesta: docena</h2>
       <pre><code>apostar_docena() {
   local docena=$1    # 1, 2 o 3
   local cantidad=$2
@@ -117,7 +117,7 @@ DESCRIPCIONES[par_impar]="Par o impar (1:1)"</code></pre>
   fi
 }</code></pre>
 
-      <h2>LÃ³gica de apuesta: mitad (baja/alta)</h2>
+      <h2>Lógica de apuesta: mitad (baja/alta)</h2>
       <pre><code>apostar_mitad() {
   local eleccion=$1    # "baja" (1-18) o "alta" (19-36)
   local cantidad=$2
@@ -137,7 +137,7 @@ DESCRIPCIONES[par_impar]="Par o impar (1:1)"</code></pre>
   fi
 }</code></pre>
 
-      <h2>LÃ³gica de apuesta: color</h2>
+      <h2>Lógica de apuesta: color</h2>
       <pre><code>apostar_color() {
   local color_elegido=$1  # "rojo" o "negro"
   local cantidad=$2
@@ -157,7 +157,7 @@ DESCRIPCIONES[par_impar]="Par o impar (1:1)"</code></pre>
   fi
 }</code></pre>
 
-      <h2>LÃ³gica de apuesta: par/impar</h2>
+      <h2>Lógica de apuesta: par/impar</h2>
       <pre><code>apostar_par_impar() {
   local eleccion=$1    # "par" o "impar"
   local cantidad=$2
@@ -177,7 +177,7 @@ DESCRIPCIONES[par_impar]="Par o impar (1:1)"</code></pre>
   fi
 }</code></pre>
 
-      <h2>FunciÃ³n unificada de apuesta</h2>
+      <h2>Función unificada de apuesta</h2>
       <pre><code>procesar_apuesta() {
   local tipo=$1
   local eleccion=$2
@@ -195,14 +195,14 @@ DESCRIPCIONES[par_impar]="Par o impar (1:1)"</code></pre>
 }</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ“Š CÃ¡lculo de pagos:</strong> En la ruleta europea, la ventaja de la casa es del 2.7% (el 0 verde). Esto significa que estadÃ­sticamente, por cada $100 apostados, recuperarÃ¡s ~$97.30. Â¡La casa siempre gana a largo plazo!
+        <strong>📊 Cálculo de pagos:</strong> En la ruleta europea, la ventaja de la casa es del 2.7% (el 0 verde). Esto significa que estadísticamente, por cada $100 apostados, recuperarás ~$97.30. ¡La casa siempre gana a largo plazo!
       </div>
 
-      <p>Con la lÃ³gica de apuestas implementada, en la siguiente clase crearemos el bucle principal del juego con un menÃº interactivo.</p>
+      <p>Con la lógica de apuestas implementada, en la siguiente clase crearemos el bucle principal del juego con un menú interactivo.</p>
 
       <div class="lesson-nav">
-        <a href="clase-72.html">â† Anterior: Scripting en Bash [2-15]</a>
-        <a href="clase-74.html">Siguiente: Scripting en Bash [4-15] â†’</a>
+        <a href="clase-72.html">← Anterior: Scripting en Bash [2-15]</a>
+        <a href="clase-74.html">Siguiente: Scripting en Bash [4-15] →</a>
       </div>
     </div>
 
@@ -210,11 +210,11 @@ DESCRIPCIONES[par_impar]="Par o impar (1:1)"</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

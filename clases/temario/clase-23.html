@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>23. Uso y manejo con Tmux | IntroducciÃ³n a Linux</title>
+    <title>23. Uso y manejo con Tmux | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,90 +138,90 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 23</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso y manejo con Tmux</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 16:17 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 16:17 · Sección 2: Temario</div>
 
       <p>
-        Tmux (Terminal Multiplexer) te permite dividir tu terminal en mÃºltiples paneles, crear ventanas y mantener sesiones activas aunque cierres la terminal. Es una herramienta indispensable para cualquier profesional de ciberseguridad: puedes dejar un escaneo de nmap corriendo en un panel, mientras editas un script en otro, y todo persistirÃ¡ aunque pierdas la conexiÃ³n SSH.
+        Tmux (Terminal Multiplexer) te permite dividir tu terminal en múltiples paneles, crear ventanas y mantener sesiones activas aunque cierres la terminal. Es una herramienta indispensable para cualquier profesional de ciberseguridad: puedes dejar un escaneo de nmap corriendo en un panel, mientras editas un script en otro, y todo persistirá aunque pierdas la conexión SSH.
       </p>
 
-      <h2>Conceptos bÃ¡sicos: sesiones, ventanas y paneles</h2>
+      <h2>Conceptos básicos: sesiones, ventanas y paneles</h2>
 
-      <p>Tmux tiene tres niveles de organizaciÃ³n:</p>
+      <p>Tmux tiene tres niveles de organización:</p>
       <ul>
-        <li><strong>SesiÃ³n:</strong> Contenedor principal. Puedes tener varias sesiones para distintos proyectos.</li>
-        <li><strong>Ventana:</strong> Dentro de una sesiÃ³n, cada ventana es como una pestaÃ±a.</li>
-        <li><strong>Panel:</strong> Cada ventana puede dividirse en mÃºltiples paneles.</li>
+        <li><strong>Sesión:</strong> Contenedor principal. Puedes tener varias sesiones para distintos proyectos.</li>
+        <li><strong>Ventana:</strong> Dentro de una sesión, cada ventana es como una pestaña.</li>
+        <li><strong>Panel:</strong> Cada ventana puede dividirse en múltiples paneles.</li>
       </ul>
 
       <h3>Crear y gestionar sesiones</h3>
 
-      <pre><code># Crear una nueva sesiÃ³n con nombre
+      <pre><code># Crear una nueva sesión con nombre
 tmux new -s mi-sesion
 
 # Listar sesiones activas
 tmux ls
 
-# Adjuntarse a una sesiÃ³n existente
+# Adjuntarse a una sesión existente
 tmux attach -t mi-sesion
 
-# Matar una sesiÃ³n
+# Matar una sesión
 tmux kill-session -t mi-sesion</code></pre>
 
       <h3>Comandos con el prefijo (Ctrl+B)</h3>
 
-      <p>El prefijo por defecto es <code>Ctrl+B</code>. DespuÃ©s de pulsarlo, el siguiente comando se interpreta como una orden para Tmux:</p>
+      <p>El prefijo por defecto es <code>Ctrl+B</code>. Después de pulsarlo, el siguiente comando se interpreta como una orden para Tmux:</p>
 
       <table>
-        <tr><th>CombinaciÃ³n</th><th>AcciÃ³n</th></tr>
+        <tr><th>Combinación</th><th>Acción</th></tr>
         <tr><td><code>Ctrl+B %</code></td><td>Dividir panel verticalmente</td></tr>
         <tr><td><code>Ctrl+B "</code></td><td>Dividir panel horizontalmente</td></tr>
         <tr><td><code>Ctrl+B c</code></td><td>Crear nueva ventana</td></tr>
         <tr><td><code>Ctrl+B n</code></td><td>Ir a la siguiente ventana</td></tr>
         <tr><td><code>Ctrl+B p</code></td><td>Ir a la ventana anterior</td></tr>
         <tr><td><code>Ctrl+B ,</code></td><td>Renombrar la ventana actual</td></tr>
-        <tr><td><code>Ctrl+B d</code></td><td>Desconectarse de la sesiÃ³n (detach)</td></tr>
+        <tr><td><code>Ctrl+B d</code></td><td>Desconectarse de la sesión (detach)</td></tr>
         <tr><td><code>Ctrl+B flechas</code></td><td>Navegar entre paneles</td></tr>
         <tr><td><code>Ctrl+B x</code></td><td>Cerrar el panel actual</td></tr>
       </table>
 
-      <h3>PersonalizaciÃ³n con .tmux.conf</h3>
+      <h3>Personalización con .tmux.conf</h3>
 
-      <p>Crea el archivo <code>~/.tmux.conf</code> para cambiar el comportamiento por defecto. AquÃ­ tienes una configuraciÃ³n recomendada:</p>
+      <p>Crea el archivo <code>~/.tmux.conf</code> para cambiar el comportamiento por defecto. Aquí tienes una configuración recomendada:</p>
 
-      <pre><code># ~/.tmux.conf â€” ConfiguraciÃ³n personalizada
+      <pre><code># ~/.tmux.conf — Configuración personalizada
 
 # Cambiar el prefijo a Ctrl+A (como screen)
 set -g prefix C-a
 unbind C-b
 bind C-a send-prefix
 
-# Dividir paneles mÃ¡s intuitivo
+# Dividir paneles más intuitivo
 bind | split-window -h
 bind - split-window -v
 
-# NavegaciÃ³n con Alt + flechas
+# Navegación con Alt + flechas
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
@@ -230,41 +230,41 @@ bind -n M-Down select-pane -D
 # Mouse habilitado
 set -g mouse on
 
-# LÃ­nea de estado con colores
+# Línea de estado con colores
 set -g status-bg black
 set -g status-fg white
 set -g status-left '#[bg=green] #S '
 set -g status-right '#[bg=red] %H:%M '</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ Tip para hacking:</strong> Usa sesiones de Tmux con nombre para cada fase de un pentest: <code>tmux new -s reconnaissance</code>, <code>tmux new -s exploitation</code>, <code>tmux new -s post-exploitation</code>. AsÃ­ mantienes todo organizado y puedes retomarlo al dÃ­a siguiente.
+        <strong>💡 Tip para hacking:</strong> Usa sesiones de Tmux con nombre para cada fase de un pentest: <code>tmux new -s reconnaissance</code>, <code>tmux new -s exploitation</code>, <code>tmux new -s post-exploitation</code>. Así mantienes todo organizado y puedes retomarlo al día siguiente.
       </div>
 
       <h3>Tmux en hacking: mantener sesiones activas</h3>
 
-      <p>Imagina que estÃ¡s haciendo fuerza bruta con Hydra desde una mÃ¡quina remota por SSH. Sin Tmux, si tu conexiÃ³n se cae, el proceso muere. Con Tmux:</p>
+      <p>Imagina que estás haciendo fuerza bruta con Hydra desde una máquina remota por SSH. Sin Tmux, si tu conexión se cae, el proceso muere. Con Tmux:</p>
 
-      <pre><code># Conectarse por SSH y crear una sesiÃ³n
+      <pre><code># Conectarse por SSH y crear una sesión
 ssh usuario@victima
 tmux new -s brute-force
 
-# Iniciar el ataque (tardarÃ¡ horas)
+# Iniciar el ataque (tardará horas)
 hydra -l admin -P rockyou.txt ssh://192.168.1.1
 
 # Pulsar Ctrl+B d para desconectarte
-# Â¡El proceso sigue corriendo!
-# Vuelve despuÃ©s, reconÃ©ctate por SSH y adjunta:
+# ¡El proceso sigue corriendo!
+# Vuelve después, reconéctate por SSH y adjunta:
 tmux attach -t brute-force</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ Importante:</strong> Tmux no es mÃ¡gico. Si reinicias la mÃ¡quina remota, las sesiones se pierden. Tmux mantiene las sesiones mientras el sistema siga encendido, incluso si pierdes la conexiÃ³n de red o cierras tu terminal local.
+        <strong>⚠️ Importante:</strong> Tmux no es mágico. Si reinicias la máquina remota, las sesiones se pierden. Tmux mantiene las sesiones mientras el sistema siga encendido, incluso si pierdes la conexión de red o cierras tu terminal local.
       </div>
 
-      <p>Una vez que empieces a usar Tmux, te preguntarÃ¡s cÃ³mo trabajabas sin Ã©l. Es una de esas herramientas que parecen complejas al principio, pero que en una semana se vuelven parte de tu flujo natural.</p>
+      <p>Una vez que empieces a usar Tmux, te preguntarás cómo trabajabas sin él. Es una de esas herramientas que parecen complejas al principio, pero que en una semana se vuelven parte de tu flujo natural.</p>
 
       <div class="lesson-nav">
-        <a href="clase-22.html">â† Anterior: ActualizaciÃ³n y Upgradeo del sistema</a>
-        <a href="clase-24.html">Siguiente: BÃºsquedas a nivel de sistema â†’</a>
+        <a href="clase-22.html">← Anterior: Actualización y Upgradeo del sistema</a>
+        <a href="clase-24.html">Siguiente: Búsquedas a nivel de sistema →</a>
       </div>
     </div>
 
@@ -272,11 +272,11 @@ tmux attach -t brute-force</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

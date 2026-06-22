@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>59. Operando con proyectos de Github [4-5] | IntroducciÃ³n a Linux</title>
+    <title>59. Operando con proyectos de Github [4-5] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,31 +138,31 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 59</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Operando con proyectos de Github [4-5]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:02 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:02 · Sección 2: Temario</div>
 
-      <p>Los tags y releases son mecanismos para marcar puntos especÃ­ficos en la historia del repositorio, normalmente para versiones estables del software.</p>
+      <p>Los tags y releases son mecanismos para marcar puntos específicos en la historia del repositorio, normalmente para versiones estables del software.</p>
 
       <h2>Tags en Git</h2>
       <p>Un tag es una referencia a un commit concreto. Se usa para marcar versiones (v1.0, v2.3.1, etc.):</p>
@@ -170,57 +170,57 @@
 git tag v1.0.0
 
 # Crear un tag anotado (con mensaje, autor, fecha)
-git tag -a v1.0.0 -m "VersiÃ³n estable 1.0.0"
+git tag -a v1.0.0 -m "Versión estable 1.0.0"
 
-# Crear un tag en un commit especÃ­fico
-git tag -a v1.0.0 &lt;commit-hash&gt; -m "VersiÃ³n 1.0.0"
+# Crear un tag en un commit específico
+git tag -a v1.0.0 &lt;commit-hash&gt; -m "Versión 1.0.0"
 
 # Listar todos los tags
 git tag
-git tag -l "v2.*"  # Filtrar por patrÃ³n
+git tag -l "v2.*"  # Filtrar por patrón
 
-# Mostrar informaciÃ³n de un tag
+# Mostrar información de un tag
 git show v1.0.0</code></pre>
 
       <h2>Subir tags a GitHub</h2>
-      <p>Los tags no se suben automÃ¡ticamente con <code>git push</code>. Hay que hacerlo explÃ­citamente:</p>
-      <pre><code># Subir un tag especÃ­fico
+      <p>Los tags no se suben automáticamente con <code>git push</code>. Hay que hacerlo explícitamente:</p>
+      <pre><code># Subir un tag específico
 git push origin v1.0.0
 
-# Subir todos los tags locales que no estÃ¡n en el remoto
+# Subir todos los tags locales que no están en el remoto
 git push origin --tags</code></pre>
 
-      <p><code>git describe</code> genera un nombre descriptivo del commit actual basado en el tag mÃ¡s cercano:</p>
+      <p><code>git describe</code> genera un nombre descriptivo del commit actual basado en el tag más cercano:</p>
       <pre><code>git describe
 # v1.0.0-5-g3a4b5c6
-# Significa: sobre v1.0.0, 5 commits despuÃ©s, hash g3a4b5c6</code></pre>
+# Significa: sobre v1.0.0, 5 commits después, hash g3a4b5c6</code></pre>
 
       <h2>Releases en GitHub</h2>
-      <p>En la interfaz web de GitHub, los tags se convierten en Releases donde puedes adjuntar binarios, notas de versiÃ³n y changelogs. Se accede desde la pestaÃ±a <strong>Releases</strong> del repositorio.</p>
+      <p>En la interfaz web de GitHub, los tags se convierten en Releases donde puedes adjuntar binarios, notas de versión y changelogs. Se accede desde la pestaña <strong>Releases</strong> del repositorio.</p>
 
-      <h2>Buenas prÃ¡cticas en repositorios</h2>
+      <h2>Buenas prácticas en repositorios</h2>
       <p>Un repositorio bien mantenido incluye ciertos archivos fundamentales:</p>
 
       <table>
         <thead>
-          <tr><th>Archivo</th><th>PropÃ³sito</th></tr>
+          <tr><th>Archivo</th><th>Propósito</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>README.md</code></td><td>DescripciÃ³n del proyecto, cÃ³mo instalarlo, usarlo y ejemplos</td></tr>
+          <tr><td><code>README.md</code></td><td>Descripción del proyecto, cómo instalarlo, usarlo y ejemplos</td></tr>
           <tr><td><code>LICENSE</code></td><td>Licencia bajo la que se distribuye el software (MIT, GPL, Apache, etc.)</td></tr>
-          <tr><td><code>CONTRIBUTING.md</code></td><td>GuÃ­a para contribuir: estÃ¡ndares de cÃ³digo, cÃ³mo hacer PRs, tests</td></tr>
-          <tr><td><code>CHANGELOG.md</code></td><td>Registro de cambios por versiÃ³n</td></tr>
+          <tr><td><code>CONTRIBUTING.md</code></td><td>Guía para contribuir: estándares de código, cómo hacer PRs, tests</td></tr>
+          <tr><td><code>CHANGELOG.md</code></td><td>Registro de cambios por versión</td></tr>
           <tr><td><code>.gitignore</code></td><td>Archivos que Git debe ignorar (binarios, dependencias, .env)</td></tr>
         </tbody>
       </table>
 
       <div class="highlight">
-        <strong>ðŸ“–</strong> El archivo <code>README.md</code> es lo primero que ve cualquiera que visita tu repositorio. Incluye instrucciones claras de instalaciÃ³n, ejemplos de uso, y enlaces a documentaciÃ³n adicional.
+        <strong>📖</strong> El archivo <code>README.md</code> es lo primero que ve cualquiera que visita tu repositorio. Incluye instrucciones claras de instalación, ejemplos de uso, y enlaces a documentación adicional.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-58.html">â† Anterior: Operando con proyectos de Github [3-5]</a>
-        <a href="clase-60.html">Siguiente: Operando con proyectos de Github [5-5] â†’</a>
+        <a href="clase-58.html">← Anterior: Operando con proyectos de Github [3-5]</a>
+        <a href="clase-60.html">Siguiente: Operando con proyectos de Github [5-5] →</a>
       </div>
     </div>
 
@@ -228,11 +228,11 @@ git push origin --tags</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

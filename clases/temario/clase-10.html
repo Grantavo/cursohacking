@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>10. Lectura e interpretaciÃ³n de permisos [1-2] | IntroducciÃ³n a Linux</title>
+    <title>10. Lectura e interpretación de permisos [1-2] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,98 +138,98 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 10</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Lectura e interpretaciÃ³n de permisos [1-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 9:52 Â· SecciÃ³n 2: Temario</div>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Lectura e interpretación de permisos [1-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 9:52 · Sección 2: Temario</div>
 
       <p>
-        Los permisos en Linux son el mecanismo fundamental de seguridad. Controlan quiÃ©n puede leer, escribir o ejecutar cada archivo y directorio del sistema.
+        Los permisos en Linux son el mecanismo fundamental de seguridad. Controlan quién puede leer, escribir o ejecutar cada archivo y directorio del sistema.
       </p>
 
-      <h2>Los tres permisos bÃ¡sicos: rwx</h2>
+      <h2>Los tres permisos básicos: rwx</h2>
 
       <table>
-        <tr><th>SÃ­mbolo</th><th>Significado</th><th>NÃºmero</th></tr>
+        <tr><th>Símbolo</th><th>Significado</th><th>Número</th></tr>
         <tr><td>r</td><td>Read (lectura)</td><td>4</td></tr>
         <tr><td>w</td><td>Write (escritura)</td><td>2</td></tr>
-        <tr><td>x</td><td>Execute (ejecuciÃ³n)</td><td>1</td></tr>
+        <tr><td>x</td><td>Execute (ejecución)</td><td>1</td></tr>
         <tr><td>-</td><td>Sin permiso</td><td>0</td></tr>
       </table>
 
-      <h2>Las tres categorÃ­as</h2>
+      <h2>Las tres categorías</h2>
       <p>Cada archivo tiene permisos para tres grupos:</p>
       <ul>
-        <li><strong>Usuario (u)</strong> â€” el dueÃ±o del archivo</li>
-        <li><strong>Grupo (g)</strong> â€” los miembros del grupo al que pertenece</li>
-        <li><strong>Otros (o)</strong> â€” el resto de usuarios</li>
+        <li><strong>Usuario (u)</strong> — el dueño del archivo</li>
+        <li><strong>Grupo (g)</strong> — los miembros del grupo al que pertenece</li>
+        <li><strong>Otros (o)</strong> — el resto de usuarios</li>
       </ul>
 
       <h2>Interpretar <code>ls -l</code></h2>
 
-      <p>La salida de <code>ls -l</code> muestra los permisos asÃ­:</p>
+      <p>La salida de <code>ls -l</code> muestra los permisos así:</p>
       <pre><code>$ ls -l /etc/passwd
 -rw-r--r-- 1 root root 1234 May 10 12:00 /etc/passwd
 
 Desglose:  -  r w -  r - -  r - -
-           â”‚  â”‚ â”‚ â”‚  â”‚ â”‚ â”‚  â”‚ â”‚ â”‚
-           â”‚  â”‚ â”‚ â”‚  â”‚ â”‚ â”‚  â”‚ â”‚ â””â”€â”€ otros: lectura
-           â”‚  â”‚ â”‚ â”‚  â”‚ â”‚ â”‚  â””â”€â”€â”€â”€ otros: sin escritura
-           â”‚  â”‚ â”‚ â”‚  â”‚ â”‚ â””â”€â”€â”€â”€â”€â”€â”€ otros: sin ejecuciÃ³n
-           â”‚  â”‚ â”‚ â”‚  â”‚ â””â”€â”€â”€â”€â”€â”€â”€â”€â”€ grupo: lectura
-           â”‚  â”‚ â”‚ â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ grupo: sin escritura
-           â”‚  â”‚ â”‚ â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ grupo: sin ejecuciÃ³n
-           â”‚  â”‚ â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ dueÃ±o: escritura
-           â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ dueÃ±o: lectura
-           â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ tipo: - (archivo normal)</code></pre>
+           │  │ │ │  │ │ │  │ │ │
+           │  │ │ │  │ │ │  │ │ └── otros: lectura
+           │  │ │ │  │ │ │  └──── otros: sin escritura
+           │  │ │ │  │ │ └─────── otros: sin ejecución
+           │  │ │ │  │ └───────── grupo: lectura
+           │  │ │ │  └─────────── grupo: sin escritura
+           │  │ │ └────────────── grupo: sin ejecución
+           │  │ └──────────────── dueño: escritura
+           │  └────────────────── dueño: lectura
+           └───────────────────── tipo: - (archivo normal)</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ” Ejemplos de interpretaciÃ³n:</strong>
+        <strong>🔍 Ejemplos de interpretación:</strong>
         <ul style="margin-top: 0.4rem;">
-          <li><code>-rwxr-xr--</code> â†’ Archivo normal, dueÃ±o puede rwx, grupo puede rx, otros solo r</li>
-          <li><code>-rw-------</code> â†’ Solo el dueÃ±o puede leer y escribir</li>
-          <li><code>-rwxr-xr-x</code> â†’ Todos pueden ejecutar, solo el dueÃ±o escribe</li>
-          <li><code>drwxr-xr-x</code> â†’ Directorio (la d indica que es un directorio)</li>
+          <li><code>-rwxr-xr--</code> → Archivo normal, dueño puede rwx, grupo puede rx, otros solo r</li>
+          <li><code>-rw-------</code> → Solo el dueño puede leer y escribir</li>
+          <li><code>-rwxr-xr-x</code> → Todos pueden ejecutar, solo el dueño escribe</li>
+          <li><code>drwxr-xr-x</code> → Directorio (la d indica que es un directorio)</li>
         </ul>
       </div>
 
       <h2>Permisos en directorios</h2>
-      <p>En directorios, los permisos tienen significados especÃ­ficos:</p>
+      <p>En directorios, los permisos tienen significados específicos:</p>
       <ul>
-        <li><strong>r</strong> â€” listar el contenido (ls)</li>
-        <li><strong>w</strong> â€” crear o eliminar archivos dentro</li>
-        <li><strong>x</strong> â€” acceder al directorio (cd) y atravesarlo</li>
+        <li><strong>r</strong> — listar el contenido (ls)</li>
+        <li><strong>w</strong> — crear o eliminar archivos dentro</li>
+        <li><strong>x</strong> — acceder al directorio (cd) y atravesarlo</li>
       </ul>
 
       <div class="warning">
-        <strong>âš ï¸</strong> Sin permiso x en un directorio, no puedes acceder a Ã©l aunque tengas r. Necesitas ambos: <code>r-x</code> para entrar y listar.
+        <strong>⚠️</strong> Sin permiso x en un directorio, no puedes acceder a él aunque tengas r. Necesitas ambos: <code>r-x</code> para entrar y listar.
       </div>
 
-      <h2>Ejercicio prÃ¡ctico</h2>
+      <h2>Ejercicio práctico</h2>
       <pre><code># Crea un archivo y examina sus permisos
 touch prueba.txt
 ls -l prueba.txt
 
-# CÃ¡mbialos y observa
+# Cámbialos y observa
 chmod u+x prueba.txt
 ls -l prueba.txt
 
@@ -238,8 +238,8 @@ mkdir test_dir
 ls -ld test_dir</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-9.html">â† Anterior: Cuestionario de control de flujo</a>
-        <a href="clase-11.html">Siguiente: Lectura de permisos [2-2] â†’</a>
+        <a href="clase-9.html">← Anterior: Cuestionario de control de flujo</a>
+        <a href="clase-11.html">Siguiente: Lectura de permisos [2-2] →</a>
       </div>
     </div>
 
@@ -247,11 +247,11 @@ ls -ld test_dir</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

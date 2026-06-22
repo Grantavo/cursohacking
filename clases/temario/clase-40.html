@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>40. Creamos un descompresor recursivo automÃ¡tico de archivos en Bash | IntroducciÃ³n a Linux</title>
+    <title>40. Creamos un descompresor recursivo automático de archivos en Bash | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,31 +138,31 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 40</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Creamos un descompresor recursivo automÃ¡tico de archivos en Bash</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 23:58 Â· SecciÃ³n 2: Temario</div>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Creamos un descompresor recursivo automático de archivos en Bash</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 23:58 · Sección 2: Temario</div>
 
-      <p>En esta clase construimos un script en Bash que detecta automÃ¡ticamente el formato de compresiÃ³n de un archivo y lo descomprime, aplicÃ¡ndose recursivamente sobre cualquier resultado extraÃ­do. Es una herramienta muy Ãºtil en CTFs y anÃ¡lisis de malware donde los archivos vienen anidados en mÃºltiples capas.</p>
+      <p>En esta clase construimos un script en Bash que detecta automáticamente el formato de compresión de un archivo y lo descomprime, aplicándose recursivamente sobre cualquier resultado extraído. Es una herramienta muy útil en CTFs y análisis de malware donde los archivos vienen anidados en múltiples capas.</p>
 
-      <h2>DetecciÃ³n del tipo de archivo con file</h2>
-      <p>El comando <code>file</code> examina la cabecera mÃ¡gica de un archivo para determinar su tipo real, independientemente de la extensiÃ³n.</p>
+      <h2>Detección del tipo de archivo con file</h2>
+      <p>El comando <code>file</code> examina la cabecera mágica de un archivo para determinar su tipo real, independientemente de la extensión.</p>
 
       <pre><code># Detectar tipo de archivo
 file datos.bin
@@ -173,11 +173,11 @@ file --mime-type -b archivo.zip
 # Salida: application/zip</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ“– Â¿CÃ³mo funciona file?</strong> Lee los primeros bytes (magic numbers) del archivo. Por ejemplo, un ZIP empieza con <code>PK\x03\x04</code>, un gzip con <code>\x1f\x8b</code>, un bzip2 con <code>BZh</code>. Esto permite identificar el formato aunque la extensiÃ³n sea incorrecta.
+        <strong>📖 ¿Cómo funciona file?</strong> Lee los primeros bytes (magic numbers) del archivo. Por ejemplo, un ZIP empieza con <code>PK\x03\x04</code>, un gzip con <code>\x1f\x8b</code>, un bzip2 con <code>BZh</code>. Esto permite identificar el formato aunque la extensión sea incorrecta.
       </div>
 
       <h2>Estructura del script: case/esac</h2>
-      <p>Usamos <code>case</code> para seleccionar el comando de descompresiÃ³n segÃºn el tipo MIME detectado.</p>
+      <p>Usamos <code>case</code> para seleccionar el comando de descompresión según el tipo MIME detectado.</p>
 
       <pre><code>#!/bin/bash
 
@@ -211,7 +211,7 @@ descomprimir() {
 }</code></pre>
 
       <h2>Bucle recursivo con while</h2>
-      <p>El corazÃ³n del script: mientras haya archivos comprimidos, los descomprime y procesa los resultados.</p>
+      <p>El corazón del script: mientras haya archivos comprimidos, los descomprime y procesa los resultados.</p>
 
       <pre><code>#!/bin/bash
 
@@ -232,31 +232,31 @@ procesar_archivos() {
         echo "[+] Descomprimiendo: $comprimido"
         (cd "$(dirname "$comprimido")" && descomprimir "$(basename "$comprimido")")
     done
-    echo "[*] No hay mÃ¡s archivos comprimidos."
+    echo "[*] No hay más archivos comprimidos."
 }
 
 procesar_archivos</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ PrecauciÃ³n:</strong> Un descompresor recursivo puede ser peligroso si el archivo es un <strong>zip bomb</strong> â€” un archivo diseÃ±ado para expandirse enormemente. Siempre usa <code>unzip -l</code> para inspeccionar el contenido antes de extraer archivos sospechosos.
+        <strong>⚠️ Precaución:</strong> Un descompresor recursivo puede ser peligroso si el archivo es un <strong>zip bomb</strong> — un archivo diseñado para expandirse enormemente. Siempre usa <code>unzip -l</code> para inspeccionar el contenido antes de extraer archivos sospechosos.
       </div>
 
-      <p>El script completo incluye ademÃ¡s manejo de errores, colores para la salida, soporte para 7z y rar, y opciÃ³n de lÃ­mite de profundidad recursiva. Puedes descargarlo desde el repositorio del curso.</p>
+      <p>El script completo incluye además manejo de errores, colores para la salida, soporte para 7z y rar, y opción de límite de profundidad recursiva. Puedes descargarlo desde el repositorio del curso.</p>
 
       <div class="lesson-nav">
-        <a href="clase-39.html">â† Anterior: Cifrado CÃ©sar y uso de tr</a>
-        <a href="clase-41.html">Siguiente: Manejo de pares de claves y conexiones SSH â†’</a>
+        <a href="clase-39.html">← Anterior: Cifrado César y uso de tr</a>
+        <a href="clase-41.html">Siguiente: Manejo de pares de claves y conexiones SSH →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

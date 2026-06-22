@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>37. InterpretaciÃ³n de archivos binarios | IntroducciÃ³n a Linux</title>
+    <title>37. Interpretación de archivos binarios | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,31 +138,31 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 37</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">InterpretaciÃ³n de archivos binarios</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:31 Â· SecciÃ³n 2: Temario</div>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Interpretación de archivos binarios</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:31 · Sección 2: Temario</div>
 
-      <p>No todo en Linux son archivos de texto. Los binarios (ejecutables, imÃ¡genes, archivos comprimidos) requieren herramientas especiales para ser interpretados. Saber leer binarios es esencial en hacking para analizar malware, protocolos o datos cifrados.</p>
+      <p>No todo en Linux son archivos de texto. Los binarios (ejecutables, imágenes, archivos comprimidos) requieren herramientas especiales para ser interpretados. Saber leer binarios es esencial en hacking para analizar malware, protocolos o datos cifrados.</p>
 
       <h2>xxd: Hexadecimal y binario</h2>
-      <p><code>xxd</code> convierte binario a hexadecimal y viceversa. Es parte de <code>vim-common</code> y estÃ¡ disponible en casi cualquier sistema.</p>
+      <p><code>xxd</code> convierte binario a hexadecimal y viceversa. Es parte de <code>vim-common</code> y está disponible en casi cualquier sistema.</p>
 
       <pre><code># Ver un binario en hexadecimal + ASCII
 xxd archivo.bin
@@ -177,13 +177,13 @@ xxd -l 64 archivo.bin
 echo "7f454c46" | xxd -r -p > salida.bin</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ“– InterpretaciÃ³n de la salida:</strong> <code>xxd</code> muestra tres columnas: direcciÃ³n hexadecimal (offset), bytes en hex (8 pares por defecto) y la representaciÃ³n ASCII. Los puntos <code>.</code> indican bytes no imprimibles.
+        <strong>📖 Interpretación de la salida:</strong> <code>xxd</code> muestra tres columnas: dirección hexadecimal (offset), bytes en hex (8 pares por defecto) y la representación ASCII. Los puntos <code>.</code> indican bytes no imprimibles.
       </div>
 
       <h2>hexdump y od</h2>
-      <p><code>hexdump</code> (o <code>hd</code>) y <code>od</code> (octal dump) son alternativas. <code>od</code> es mÃ¡s antiguo pero muy flexible con sus opciones de formato.</p>
+      <p><code>hexdump</code> (o <code>hd</code>) y <code>od</code> (octal dump) son alternativas. <code>od</code> es más antiguo pero muy flexible con sus opciones de formato.</p>
 
-      <pre><code># hexdump (formato clÃ¡sico)
+      <pre><code># hexdump (formato clásico)
 hexdump -C archivo.bin
 
 # od en diferentes formatos
@@ -192,12 +192,12 @@ od -A x -t c -v archivo.bin     # Como caracteres
 od -A x -t o2 -v archivo.bin    # Octal</code></pre>
 
       <h2>Aplicaciones en hacking</h2>
-      <p>En ciberseguridad, interpretar binarios es Ãºtil para:</p>
+      <p>En ciberseguridad, interpretar binarios es útil para:</p>
       <ul>
-        <li><strong>AnÃ¡lisis de malware:</strong> Buscar cadenas sospechosas en ejecutables</li>
+        <li><strong>Análisis de malware:</strong> Buscar cadenas sospechosas en ejecutables</li>
         <li><strong>Forense:</strong> Recuperar datos de cabeceras de archivos</li>
         <li><strong>Exploit development:</strong> Inspeccionar offsets en binarios</li>
-        <li><strong>Protocolos:</strong> Depurar trÃ¡fico de red crudo</li>
+        <li><strong>Protocolos:</strong> Depurar tráfico de red crudo</li>
       </ul>
 
       <pre><code># Buscar cadenas legibles en un binario
@@ -206,27 +206,27 @@ strings archivo.bin | grep -i 'password\|secret\|key'
 # Ver la cabecera ELF (Magic number 0x7f 'ELF')
 xxd -l 16 /bin/ls
 
-# Extraer bytes especÃ­ficos con dd y xxd
+# Extraer bytes específicos con dd y xxd
 dd if=archivo.bin bs=1 skip=100 count=20 2>/dev/null | xxd</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ PrecauciÃ³n:</strong> Al volcar binarios en la terminal, usa <code>xxd</code> o <code>hexdump</code> en lugar de <code>cat</code>. Hacer <code>cat</code> de un binario puede corromper la terminal si el contenido incluye secuencias de escape.
+        <strong>⚠️ Precaución:</strong> Al volcar binarios en la terminal, usa <code>xxd</code> o <code>hexdump</code> en lugar de <code>cat</code>. Hacer <code>cat</code> de un binario puede corromper la terminal si el contenido incluye secuencias de escape.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-36.html">â† Anterior: MÃ©todo de filtrado de datos [2-2]</a>
-        <a href="clase-38.html">Siguiente: CodificaciÃ³n y decodificaciÃ³n en base64 â†’</a>
+        <a href="clase-36.html">← Anterior: Método de filtrado de datos [2-2]</a>
+        <a href="clase-38.html">Siguiente: Codificación y decodificación en base64 →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>13. AsignaciÃ³n de permisos [2-2] | IntroducciÃ³n a Linux</title>
+    <title>13. Asignación de permisos [2-2] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,32 +138,32 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 13</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">AsignaciÃ³n de permisos [2-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 6:31 Â· SecciÃ³n 2: Temario</div>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Asignación de permisos [2-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 6:31 · Sección 2: Temario</div>
 
       <p>
-        El modo octal es la forma mÃ¡s compacta y precisa de asignar permisos. Cada dÃ­gito representa los permisos de una categorÃ­a usando valores numÃ©ricos.
+        El modo octal es la forma más compacta y precisa de asignar permisos. Cada dígito representa los permisos de una categoría usando valores numéricos.
       </p>
 
       <h2>Valores de los permisos</h2>
@@ -176,42 +176,42 @@
         <tr><td>- (ninguno)</td><td>0</td></tr>
       </table>
 
-      <p>Los valores se suman para cada categorÃ­a (dueÃ±o, grupo, otros).</p>
+      <p>Los valores se suman para cada categoría (dueño, grupo, otros).</p>
 
-      <h2>Combinaciones mÃ¡s comunes</h2>
+      <h2>Combinaciones más comunes</h2>
 
       <table>
-        <tr><th>Octal</th><th>SimbÃ³lico</th><th>DescripciÃ³n</th></tr>
+        <tr><th>Octal</th><th>Simbólico</th><th>Descripción</th></tr>
         <tr><td>777</td><td>rwxrwxrwx</td><td>Todos pueden hacer todo (inseguro)</td></tr>
-        <tr><td>755</td><td>rwxr-xr-x</td><td>DueÃ±o escribe, resto lee/ejecuta (tÃ­pico de scripts)</td></tr>
-        <tr><td>700</td><td>rwx------</td><td>Solo el dueÃ±o accede</td></tr>
-        <tr><td>644</td><td>rw-r--r--</td><td>DueÃ±o escribe, resto solo lee (tÃ­pico de archivos)</td></tr>
-        <tr><td>600</td><td>rw-------</td><td>Solo dueÃ±o lee/escribe (archivos sensibles)</td></tr>
+        <tr><td>755</td><td>rwxr-xr-x</td><td>Dueño escribe, resto lee/ejecuta (típico de scripts)</td></tr>
+        <tr><td>700</td><td>rwx------</td><td>Solo el dueño accede</td></tr>
+        <tr><td>644</td><td>rw-r--r--</td><td>Dueño escribe, resto solo lee (típico de archivos)</td></tr>
+        <tr><td>600</td><td>rw-------</td><td>Solo dueño lee/escribe (archivos sensibles)</td></tr>
         <tr><td>555</td><td>r-xr-xr-x</td><td>Todos leen/ejecutan, nadie escribe</td></tr>
-        <tr><td>400</td><td>r--------</td><td>Solo dueÃ±o lee</td></tr>
+        <tr><td>400</td><td>r--------</td><td>Solo dueño lee</td></tr>
       </table>
 
-      <h2>CÃ³mo calcular permisos en octal</h2>
+      <h2>Cómo calcular permisos en octal</h2>
 
-      <p>Para cada categorÃ­a suma los valores deseados:</p>
-      <pre><code># Si quieres: dueÃ±o rwx, grupo r-x, otros r-x
-dueÃ±o:  r+w+x = 4+2+1 = 7
+      <p>Para cada categoría suma los valores deseados:</p>
+      <pre><code># Si quieres: dueño rwx, grupo r-x, otros r-x
+dueño:  r+w+x = 4+2+1 = 7
 grupo:  r+_+x = 4+0+1 = 5
 otros:  r+_+x = 4+0+1 = 5
 Resultado: chmod 755 script.sh</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ§® CÃ¡lculo rÃ¡pido:</strong>
+        <strong>🧮 Cálculo rápido:</strong>
         <ul style="margin-top: 0.4rem;">
           <li><code>7</code> = rwx (todos los permisos)</li>
           <li><code>6</code> = rw- (leer y escribir)</li>
           <li><code>5</code> = r-x (leer y ejecutar)</li>
           <li><code>4</code> = r-- (solo lectura)</li>
-          <li><code>0</code> = --- (ningÃºn permiso)</li>
+          <li><code>0</code> = --- (ningún permiso)</li>
         </ul>
       </div>
 
-      <h2>Ejercicios prÃ¡cticos</h2>
+      <h2>Ejercicios prácticos</h2>
 
       <pre><code># Ejercicio 1: Script ejecutable (755)
 chmod 755 script.sh
@@ -225,25 +225,25 @@ ls -l id_rsa      # -rw-------
 chmod 775 /home/compartido
 ls -ld /home/compartido  # drwxrwxr-x
 
-# Ejercicio 4: Archivo pÃºblico de solo lectura (444)
+# Ejercicio 4: Archivo público de solo lectura (444)
 chmod 444 readme.txt
 ls -l readme.txt  # -r--r--r--</code></pre>
 
       <div class="step">
-        <span class="step-num">PrÃ¡ctica</span>
-        <strong>Traduce de simbÃ³lico a octal</strong>
-        <pre><code>rwxr-xr--  =  7 5 4  â†’  chmod 754
-rwx------  =  7 0 0  â†’  chmod 700
-rw-rw-r--  =  6 6 4  â†’  chmod 664</code></pre>
+        <span class="step-num">Práctica</span>
+        <strong>Traduce de simbólico a octal</strong>
+        <pre><code>rwxr-xr--  =  7 5 4  →  chmod 754
+rwx------  =  7 0 0  →  chmod 700
+rw-rw-r--  =  6 6 4  →  chmod 664</code></pre>
       </div>
 
       <div class="warning">
-        <strong>âš ï¸</strong> Nunca pongas permisos 777 en producciÃ³n. Es una mala prÃ¡ctica de seguridad. Si necesitas que varios usuarios accedan a algo, usa grupos y permisos 755 o 750.
+        <strong>⚠️</strong> Nunca pongas permisos 777 en producción. Es una mala práctica de seguridad. Si necesitas que varios usuarios accedan a algo, usa grupos y permisos 755 o 750.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-12.html">â† Anterior: AsignaciÃ³n de permisos [1-2]</a>
-        <a href="clase-14.html">Siguiente: NotaciÃ³n octal de permisos â†’</a>
+        <a href="clase-12.html">← Anterior: Asignación de permisos [1-2]</a>
+        <a href="clase-14.html">Siguiente: Notación octal de permisos →</a>
       </div>
     </div>
 
@@ -251,11 +251,11 @@ rw-rw-r--  =  6 6 4  â†’  chmod 664</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

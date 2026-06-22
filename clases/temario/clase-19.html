@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>19. Privilegios especiales - Capabilities | IntroducciÃ³n a Linux</title>
+    <title>19. Privilegios especiales - Capabilities | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,49 +138,49 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 19</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Privilegios especiales - Capabilities</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 5:00 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 5:00 · Sección 2: Temario</div>
 
       <p>
-        Las Linux Capabilities son una alternativa mÃ¡s granular y segura al SUID. En lugar de dar todos los privilegios de root, puedes otorgar capacidades especÃ­ficas a un binario o proceso.
+        Las Linux Capabilities son una alternativa más granular y segura al SUID. En lugar de dar todos los privilegios de root, puedes otorgar capacidades específicas a un binario o proceso.
       </p>
 
-      <h2>Â¿Por quÃ© Capabilities?</h2>
+      <h2>¿Por qué Capabilities?</h2>
       <p>
-        SUID otorga privilegios completos de root, lo que es peligroso. Si un binario con SUID root tiene una vulnerabilidad, el atacante obtiene control total. Las capabilities dividen los privilegios de root en unidades atÃ³micas: un binario solo tiene los permisos mÃ­nimos necesarios para funcionar.
+        SUID otorga privilegios completos de root, lo que es peligroso. Si un binario con SUID root tiene una vulnerabilidad, el atacante obtiene control total. Las capabilities dividen los privilegios de root en unidades atómicas: un binario solo tiene los permisos mínimos necesarios para funcionar.
       </p>
 
       <h2>Capabilities comunes</h2>
 
       <table>
-        <tr><th>Capability</th><th>DescripciÃ³n</th></tr>
+        <tr><th>Capability</th><th>Descripción</th></tr>
         <tr><td>CAP_NET_RAW</td><td>Permite crear sockets RAW (necesario para ping, nmap)</td></tr>
         <tr><td>CAP_NET_ADMIN</td><td>Permite configurar la red (interfaces, firewall)</td></tr>
         <tr><td>CAP_SYS_ADMIN</td><td>Permite operaciones administrativas (montar, swapon, etc.)</td></tr>
         <tr><td>CAP_DAC_OVERRIDE</td><td>Permite saltarse las comprobaciones de permisos rwx</td></tr>
         <tr><td>CAP_SETUID</td><td>Permite cambiar el UID del proceso (como su, sudo)</td></tr>
-        <tr><td>CAP_KILL</td><td>Permite enviar seÃ±ales a cualquier proceso</td></tr>
+        <tr><td>CAP_KILL</td><td>Permite enviar señales a cualquier proceso</td></tr>
       </table>
 
       <h2>Comandos: <code>getcap</code> y <code>setcap</code></h2>
@@ -199,29 +199,29 @@ sudo setcap cap_net_raw+ep /usr/bin/mi_programa
 sudo setcap -r /usr/bin/mi_programa
 
 # El sufijo +ep significa:
-#   e = Effective (la capability estÃ¡ activa)
+#   e = Effective (la capability está activa)
 #   p = Permitted (el binario puede usar esta capability)</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡</strong> En sistemas modernos, <code>/usr/bin/ping</code> ya no usa SUID sino capabilities. Verifica: <code>ls -l /usr/bin/ping</code> (no tiene s) y <code>getcap /usr/bin/ping</code> (tiene cap_net_raw+ep).
+        <strong>💡</strong> En sistemas modernos, <code>/usr/bin/ping</code> ya no usa SUID sino capabilities. Verifica: <code>ls -l /usr/bin/ping</code> (no tiene s) y <code>getcap /usr/bin/ping</code> (tiene cap_net_raw+ep).
       </div>
 
       <h2>SUID vs Capabilities</h2>
 
       <table>
-        <tr><th>CaracterÃ­stica</th><th>SUID</th><th>Capabilities</th></tr>
+        <tr><th>Característica</th><th>SUID</th><th>Capabilities</th></tr>
         <tr><td>Privilegios</td><td>Root completo</td><td>Solo los necesarios</td></tr>
-        <tr><td>Seguridad</td><td>Baja (todo o nada)</td><td>Alta (mÃ­nimo privilegio)</td></tr>
-        <tr><td>GestiÃ³n</td><td>chmod u+s</td><td>setcap</td></tr>
+        <tr><td>Seguridad</td><td>Baja (todo o nada)</td><td>Alta (mínimo privilegio)</td></tr>
+        <tr><td>Gestión</td><td>chmod u+s</td><td>setcap</td></tr>
         <tr><td>Visibilidad</td><td>ls -l (letra s)</td><td>getcap</td></tr>
         <tr><td>Contenedores</td><td>No recomendado</td><td>Ideal (Docker usa capabilities)</td></tr>
       </table>
 
       <div class="warning">
-        <strong>âš ï¸</strong> No todas las capabilities son seguras. <code>CAP_SYS_ADMIN</code> es prÃ¡cticamente equivalente a root. Siempre asigna la capability mÃ¡s especÃ­fica posible.
+        <strong>⚠️</strong> No todas las capabilities son seguras. <code>CAP_SYS_ADMIN</code> es prácticamente equivalente a root. Siempre asigna la capability más específica posible.
       </div>
 
-      <h2>Ejercicio prÃ¡ctico</h2>
+      <h2>Ejercicio práctico</h2>
       <pre><code># Inspeccionar ping en tu sistema
 ls -l /usr/bin/ping
 getcap /usr/bin/ping
@@ -234,7 +234,7 @@ sudo setcap cap_net_raw+ep ./mi_ping
 getcap ./mi_ping</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-18.html">â† Anterior: Cuestionario de permisos</a>
+        <a href="clase-18.html">← Anterior: Cuestionario de permisos</a>
         <span></span>
       </div>
     </div>
@@ -243,11 +243,11 @@ getcap ./mi_ping</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

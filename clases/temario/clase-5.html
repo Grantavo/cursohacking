@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Comandos bÃ¡sicos de Linux [1-2] | IntroducciÃ³n a Linux</title>
+    <title>5. Comandos básicos de Linux [1-2] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,42 +138,42 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 5</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Comandos bÃ¡sicos de Linux [1-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 10:46 Â· SecciÃ³n 2: Temario</div>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Comandos básicos de Linux [1-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 10:46 · Sección 2: Temario</div>
 
       <p>
-        En esta clase aprenderÃ¡s los comandos esenciales para moverte y manipular archivos en Linux. Dominar estos comandos es el primer paso para sentirte cÃ³modo en la terminal.
+        En esta clase aprenderás los comandos esenciales para moverte y manipular archivos en Linux. Dominar estos comandos es el primer paso para sentirte cómodo en la terminal.
       </p>
 
       <h2>Estructura de sintaxis</h2>
       <p>Todo comando en Linux sigue esta estructura general:</p>
       <pre><code>comando [opciones] [argumentos]</code></pre>
       <p>
-        Las <strong>opciones</strong> modifican el comportamiento del comando (suelen ir precedidas de <code>-</code> o <code>--</code>), y los <strong>argumentos</strong> son los objetivos sobre los que actÃºa (archivos, directorios, etc.).
+        Las <strong>opciones</strong> modifican el comportamiento del comando (suelen ir precedidas de <code>-</code> o <code>--</code>), y los <strong>argumentos</strong> son los objetivos sobre los que actúa (archivos, directorios, etc.).
       </p>
 
-      <h2>NavegaciÃ³n: <code>pwd</code>, <code>ls</code>, <code>cd</code></h2>
+      <h2>Navegación: <code>pwd</code>, <code>ls</code>, <code>cd</code></h2>
 
       <p><code>pwd</code> (print working directory) muestra la ruta absoluta del directorio actual:</p>
       <pre><code>pwd
@@ -181,9 +181,9 @@
 
       <p><code>ls</code> lista el contenido de un directorio:</p>
       <pre><code>ls          # Listado simple
-ls -l       # Listado detallado (permisos, dueÃ±o, tamaÃ±o, fecha)
+ls -l       # Listado detallado (permisos, dueño, tamaño, fecha)
 ls -la      # Listado detallado incluyendo archivos ocultos
-ls -lh      # TamaÃ±os en formato legible (KB, MB)</code></pre>
+ls -lh      # Tamaños en formato legible (KB, MB)</code></pre>
 
       <p><code>cd</code> cambia de directorio:</p>
       <pre><code>cd /tmp            # Ir a /tmp
@@ -192,26 +192,26 @@ cd ..              # Subir un nivel
 cd -               # Volver al directorio anterior</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ Tip:</strong> Usa la tecla <code>Tab</code> para autocompletar rutas y nombres de archivos. Si hay mÃºltiples coincidencias, pulsa Tab dos veces para verlas.
+        <strong>💡 Tip:</strong> Usa la tecla <code>Tab</code> para autocompletar rutas y nombres de archivos. Si hay múltiples coincidencias, pulsa Tab dos veces para verlas.
       </div>
 
-      <h2>CreaciÃ³n de archivos y directorios</h2>
+      <h2>Creación de archivos y directorios</h2>
 
-      <p><code>mkdir</code> crea directorios. <code>touch</code> crea archivos vacÃ­os o actualiza su fecha de modificaciÃ³n:</p>
+      <p><code>mkdir</code> crea directorios. <code>touch</code> crea archivos vacíos o actualiza su fecha de modificación:</p>
       <pre><code>mkdir proyectos                    # Crea un directorio
 mkdir -p proyectos/web/css         # Crea toda la estructura de subdirectorios
-touch notas.txt                    # Crea un archivo vacÃ­o
+touch notas.txt                    # Crea un archivo vacío
 touch -t 202401011200 notas.txt    # Cambia la fecha a 1 Ene 2024 12:00</code></pre>
 
-      <h2>EliminaciÃ³n: <code>rm</code> y <code>rmdir</code></h2>
+      <h2>Eliminación: <code>rm</code> y <code>rmdir</code></h2>
 
       <pre><code>rm archivo.txt                     # Elimina un archivo
 rm -r directorio/                  # Elimina un directorio y su contenido
-rm -rf directorio/                 # Elimina sin pedir confirmaciÃ³n (Â¡cuidado!)
-rmdir directorio_vacio/            # Solo elimina directorios vacÃ­os</code></pre>
+rm -rf directorio/                 # Elimina sin pedir confirmación (¡cuidado!)
+rmdir directorio_vacio/            # Solo elimina directorios vacíos</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ PrecauciÃ³n:</strong> <code>rm -rf</code> no pide confirmaciÃ³n. Un <code>rm -rf /</code> borrarÃ­a todo el sistema. Siempre revisa antes de ejecutar.
+        <strong>⚠️ Precaución:</strong> <code>rm -rf</code> no pide confirmación. Un <code>rm -rf /</code> borraría todo el sistema. Siempre revisa antes de ejecutar.
       </div>
 
       <h2>Copiar y mover: <code>cp</code> y <code>mv</code></h2>
@@ -221,26 +221,26 @@ cp -r carpeta/ backup/             # Copia un directorio recursivamente
 mv viejo.txt nuevo.txt             # Renombra un archivo
 mv archivo.txt ~/Documentos/       # Mueve un archivo a otro directorio</code></pre>
 
-      <h2>VisualizaciÃ³n: <code>cat</code>, <code>echo</code></h2>
+      <h2>Visualización: <code>cat</code>, <code>echo</code></h2>
 
       <pre><code>cat archivo.txt                    # Muestra el contenido completo
-cat -n archivo.txt                 # Muestra con nÃºmeros de lÃ­nea
+cat -n archivo.txt                 # Muestra con números de línea
 echo "Hola mundo"                  # Imprime texto en la terminal
 echo "texto" > archivo.txt         # Escribe "texto" en archivo (sobrescribe)
-echo "mÃ¡s texto" >> archivo.txt    # AÃ±ade "mÃ¡s texto" al final</code></pre>
+echo "más texto" >> archivo.txt    # Añade "más texto" al final</code></pre>
 
       <h2>Ayuda integrada: <code>man</code></h2>
 
       <p>El manual es tu mejor amigo. Cualquier comando se puede consultar con:</p>
       <pre><code>man ls           # Muestra el manual de ls
-man -k permisos  # Busca pÃ¡ginas que contengan "permisos"
-man 5 crontab    # Muestra la secciÃ³n 5 del manual (formatos)</code></pre>
+man -k permisos  # Busca páginas que contengan "permisos"
+man 5 crontab    # Muestra la sección 5 del manual (formatos)</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ“–</strong> Dentro de <code>man</code> navega con las flechas, busca con <code>/</code> y sal con <code>q</code>. Las pÃ¡ginas estÃ¡n organizadas en secciones: 1=comandos, 2=llamadas al sistema, 3=liberÃ­as, 5=formatos, 8=administraciÃ³n.
+        <strong>📖</strong> Dentro de <code>man</code> navega con las flechas, busca con <code>/</code> y sal con <code>q</code>. Las páginas están organizadas en secciones: 1=comandos, 2=llamadas al sistema, 3=liberías, 5=formatos, 8=administración.
       </div>
 
-      <h2>Ejercicio prÃ¡ctico</h2>
+      <h2>Ejercicio práctico</h2>
       <p>Crea esta estructura de directorios y archivos en tu terminal:</p>
       <pre><code>mkdir -p ~/practica/{documentos,scripts,backup}
 cd ~/practica
@@ -251,8 +251,8 @@ cp scripts/hola.sh backup/
 ls -laR</code></pre>
 
       <div class="lesson-nav">
-        <a href="../introduccion/clase-4.html">â† Anterior: InstalaciÃ³n del sistema operativo</a>
-        <a href="clase-6.html">Siguiente: Comandos bÃ¡sicos [2-2] â†’</a>
+        <a href="../introduccion/clase-4.html">← Anterior: Instalación del sistema operativo</a>
+        <a href="clase-6.html">Siguiente: Comandos básicos [2-2] →</a>
       </div>
     </div>
 
@@ -260,11 +260,11 @@ ls -laR</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

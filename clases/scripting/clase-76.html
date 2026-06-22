@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>76. Scripting en Bash [6-15] | IntroducciÃ³n a Linux</title>
+    <title>76. Scripting en Bash [6-15] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,32 +37,32 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 76</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <span class="course-tag">🐧 Bash · Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [6-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 15:24 Â· Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 15:24 · Proyecto 2: Ruleta de casino</div>
 
       <p>
-        AÃ±adimos persistencia al juego: guardar la partida en un archivo, cargarla al iniciar, usar formato JSON con <code>jq</code> y mantener el saldo y las estadÃ­sticas entre sesiones.
+        Añadimos persistencia al juego: guardar la partida en un archivo, cargarla al iniciar, usar formato JSON con <code>jq</code> y mantener el saldo y las estadísticas entre sesiones.
       </p>
 
       <h2>Guardar partida</h2>
@@ -73,7 +73,7 @@ GUARDAR_FILE="${GUARDAR_DIR}/save.json"
 guardar_partida() {
   mkdir -p "$GUARDAR_DIR"
 
-  # Construir JSON manualmente (o con jq si estÃ¡ disponible)
+  # Construir JSON manualmente (o con jq si está disponible)
   local json="{"
 
   json+="\"nombre\": \"${NOMBRE}\","
@@ -106,7 +106,7 @@ guardar_partida() {
 }</code></pre>
 
       <h2>Cargar partida guardada</h2>
-      <p>Usamos <code>jq</code> para parsear el JSON si estÃ¡ disponible:</p>
+      <p>Usamos <code>jq</code> para parsear el JSON si está disponible:</p>
       <pre><code>cargar_partida() {
   if [[ ! -f "$GUARDAR_FILE" ]]; then
     print_info "No hay partida guardada"
@@ -135,7 +135,7 @@ guardar_partida() {
       HISTORIAL+=("${num}:${color}:${paridad}:${apuesta}:${ganancia}:${resultado}")
     done <<< "$(jq -c '.historial[]' "$GUARDAR_FILE")"
   else
-    # Fallback: leer lÃ­nea por lÃ­nea (formato simple)
+    # Fallback: leer línea por línea (formato simple)
     cargar_partida_simple
   fi
 
@@ -143,7 +143,7 @@ guardar_partida() {
 }</code></pre>
 
       <h2>Formato JSON con jq</h2>
-      <p>Si <code>jq</code> estÃ¡ instalado, tambiÃ©n podemos usarlo para construir el JSON de forma mÃ¡s limpia:</p>
+      <p>Si <code>jq</code> está instalado, también podemos usarlo para construir el JSON de forma más limpia:</p>
       <pre><code>guardar_partida_jq() {
   mkdir -p "$GUARDAR_DIR"
 
@@ -179,15 +179,15 @@ guardar_partida() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ jq -n para construir JSON desde cero:</strong> La opciÃ³n <code>-n</code> (null input) permite crear objetos JSON sin necesidad de pipear datos de entrada. Combinado con <code>--arg</code> y <code>--argjson</code> es muy potente.
+        <strong>💡 jq -n para construir JSON desde cero:</strong> La opción <code>-n</code> (null input) permite crear objetos JSON sin necesidad de pipear datos de entrada. Combinado con <code>--arg</code> y <code>--argjson</code> es muy potente.
       </div>
 
-      <h2>Persistencia de saldo y estadÃ­sticas</h2>
+      <h2>Persistencia de saldo y estadísticas</h2>
       <p>Integramos la carga al inicio del juego:</p>
       <pre><code>iniciar_juego() {
   # Preguntar si cargar partida
   if [[ -f "$GUARDAR_FILE" ]]; then
-    read -r -p "Â¿Cargar partida guardada? (s/N): " respuesta
+    read -r -p "¿Cargar partida guardada? (s/N): " respuesta
     if [[ "${respuesta,,}" == "s" ]]; then
       cargar_partida && return 0
     fi
@@ -207,14 +207,14 @@ guardar_partida() {
 }</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ jq como dependencia:</strong> El script funciona sin jq usando fallbacks. Pero para una experiencia completa, recomendamos instalarlo: <code>sudo apt install jq</code>.
+        <strong>⚠️ jq como dependencia:</strong> El script funciona sin jq usando fallbacks. Pero para una experiencia completa, recomendamos instalarlo: <code>sudo apt install jq</code>.
       </div>
 
-      <p>La partida ya es persistente. En la siguiente clase aÃ±adiremos un modo trampa para pruebas y demostraciones.</p>
+      <p>La partida ya es persistente. En la siguiente clase añadiremos un modo trampa para pruebas y demostraciones.</p>
 
       <div class="lesson-nav">
-        <a href="clase-75.html">â† Anterior: Scripting en Bash [5-15]</a>
-        <a href="clase-77.html">Siguiente: Scripting en Bash [7-15] â†’</a>
+        <a href="clase-75.html">← Anterior: Scripting en Bash [5-15]</a>
+        <a href="clase-77.html">Siguiente: Scripting en Bash [7-15] →</a>
       </div>
     </div>
 
@@ -222,11 +222,11 @@ guardar_partida() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

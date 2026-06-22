@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>28. Conexiones SSH | IntroducciÃ³n a Linux</title>
+    <title>28. Conexiones SSH | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,78 +37,78 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 28</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Conexiones SSH</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 6:25 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 6:25 · Sección 2: Temario</div>
 
       <p>
-        SSH (Secure Shell) es el protocolo estÃ¡ndar para conectarse de forma segura a sistemas remotos. Como profesional de ciberseguridad, lo usarÃ¡s a diario: para gestionar servidores, acceder a mÃ¡quinas en un laboratorio de pentesting o, durante un engagement real, conectarte a sistemas comprometidos de forma controlada.
+        SSH (Secure Shell) es el protocolo estándar para conectarse de forma segura a sistemas remotos. Como profesional de ciberseguridad, lo usarás a diario: para gestionar servidores, acceder a máquinas en un laboratorio de pentesting o, durante un engagement real, conectarte a sistemas comprometidos de forma controlada.
       </p>
 
-      <h2>ConexiÃ³n bÃ¡sica</h2>
+      <h2>Conexión básica</h2>
       <p>La sintaxis fundamental de SSH es muy simple:</p>
       <pre><code>ssh usuario@192.168.1.100
 
 # Si el servicio SSH corre en un puerto diferente (ej: 2222)
 ssh usuario@192.168.1.100 -p 2222
 
-# Conectarse con un usuario y hostname especÃ­ficos
+# Conectarse con un usuario y hostname específicos
 ssh -l root 10.10.10.10</code></pre>
 
-      <p>La primera vez que te conectes a un servidor, SSH te mostrarÃ¡ la huella digital del servidor y te preguntarÃ¡ si confÃ­as en ella. Escribe <code>yes</code> para agregarla a <code>~/.ssh/known_hosts</code>.</p>
+      <p>La primera vez que te conectes a un servidor, SSH te mostrará la huella digital del servidor y te preguntará si confías en ella. Escribe <code>yes</code> para agregarla a <code>~/.ssh/known_hosts</code>.</p>
 
-      <h3>AutenticaciÃ³n con contraseÃ±a</h3>
-      <p>Por defecto, SSH te pedirÃ¡ la contraseÃ±a del usuario remoto. Es el mÃ©todo mÃ¡s simple, pero tambiÃ©n el menos seguro para entornos de producciÃ³n (sujeto a ataques de fuerza bruta).</p>
+      <h3>Autenticación con contraseña</h3>
+      <p>Por defecto, SSH te pedirá la contraseña del usuario remoto. Es el método más simple, pero también el menos seguro para entornos de producción (sujeto a ataques de fuerza bruta).</p>
 
       <pre><code>ssh usuario@192.168.1.100
-# Te pedirÃ¡: usuario@192.168.1.100's password:
-# (escribe la contraseÃ±a y pulsa Enter)</code></pre>
+# Te pedirá: usuario@192.168.1.100's password:
+# (escribe la contraseña y pulsa Enter)</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ Seguridad:</strong> Nunca uses contraseÃ±as dÃ©biles en SSH expuesto a Internet. Los bots escanean constantemente el puerto 22 probando combinaciones comunes. Usa autenticaciÃ³n por clave pÃºblica.
+        <strong>⚠️ Seguridad:</strong> Nunca uses contraseñas débiles en SSH expuesto a Internet. Los bots escanean constantemente el puerto 22 probando combinaciones comunes. Usa autenticación por clave pública.
       </div>
 
-      <h3>AutenticaciÃ³n con clave pÃºblica (ssh-keygen)</h3>
-      <p>Genera un par de claves (pÃºblica y privada) en tu mÃ¡quina local. La clave privada nunca se comparte; la pÃºblica se copia al servidor:</p>
+      <h3>Autenticación con clave pública (ssh-keygen)</h3>
+      <p>Genera un par de claves (pública y privada) en tu máquina local. La clave privada nunca se comparte; la pública se copia al servidor:</p>
 
       <pre><code># Generar claves (por defecto RSA 3072 bits)
 ssh-keygen -t rsa -b 4096 -C "tu-email@ejemplo.com"
 
-# TambiÃ©n puedes usar Ed25519 (mÃ¡s moderna y rÃ¡pida)
+# También puedes usar Ed25519 (más moderna y rápida)
 ssh-keygen -t ed25519 -C "tu-email@ejemplo.com"
 
 # Esto crea dos archivos:
-# ~/.ssh/id_ed25519       â†’ clave PRIVADA (nunca compartir)
-# ~/.ssh/id_ed25519.pub   â†’ clave PÃšBLICA  (compartir)</code></pre>
+# ~/.ssh/id_ed25519       → clave PRIVADA (nunca compartir)
+# ~/.ssh/id_ed25519.pub   → clave PÚBLICA  (compartir)</code></pre>
 
-      <p>Para copiar la clave pÃºblica al servidor remoto:</p>
-      <pre><code># MÃ©todo fÃ¡cil con ssh-copy-id
+      <p>Para copiar la clave pública al servidor remoto:</p>
+      <pre><code># Método fácil con ssh-copy-id
 ssh-copy-id usuario@192.168.1.100
 
-# MÃ©todo manual (si no tienes ssh-copy-id)
+# Método manual (si no tienes ssh-copy-id)
 cat ~/.ssh/id_ed25519.pub | ssh usuario@192.168.1.100 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"</code></pre>
 
-      <p>A partir de este momento, al conectarte SSH usarÃ¡ tu clave privada automÃ¡ticamente y no te pedirÃ¡ contraseÃ±a.</p>
+      <p>A partir de este momento, al conectarte SSH usará tu clave privada automáticamente y no te pedirá contraseña.</p>
 
       <h3>Archivo ~/.ssh/config: atajos para conexiones frecuentes</h3>
-      <p>Si te conectas a muchos servidores, editar el archivo <code>~/.ssh/config</code> te ahorrarÃ¡ escribir la IP y el usuario cada vez:</p>
+      <p>Si te conectas a muchos servidores, editar el archivo <code>~/.ssh/config</code> te ahorrará escribir la IP y el usuario cada vez:</p>
 
       <pre><code># ~/.ssh/config
 
@@ -133,25 +133,25 @@ Host *
 ssh servidor-prod</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ Tip de hacking:</strong> Durante un pentest, cuando encuentres credenciales SSH, copia la clave privada a tu mÃ¡quina, asÃ­gnale permisos <code>600</code> y conÃ©ctate: <code>chmod 600 clave_privada && ssh -i clave_privada usuario@host</code>. Las claves privadas deben tener permisos restrictivos o SSH las rechazarÃ¡.
+        <strong>💡 Tip de hacking:</strong> Durante un pentest, cuando encuentres credenciales SSH, copia la clave privada a tu máquina, asígnale permisos <code>600</code> y conéctate: <code>chmod 600 clave_privada && ssh -i clave_privada usuario@host</code>. Las claves privadas deben tener permisos restrictivos o SSH las rechazará.
       </div>
 
-      <p>SSH es mucho mÃ¡s que una shell remota. Con SSH puedes hacer tÃºneles (forwarding de puertos), montar sistemas de archivos remotos con <code>sshfs</code>, transferir archivos con <code>scp</code> y <code>rsync</code>, e incluso usarlo como proxy SOCKS dinÃ¡mico.</p>
+      <p>SSH es mucho más que una shell remota. Con SSH puedes hacer túneles (forwarding de puertos), montar sistemas de archivos remotos con <code>sshfs</code>, transferir archivos con <code>scp</code> y <code>rsync</code>, e incluso usarlo como proxy SOCKS dinámico.</p>
 
       <div class="lesson-nav">
-        <a href="clase-27.html">â† Anterior: Uso del editor Vim</a>
-        <a href="clase-29.html">Siguiente: Lectura de archivos especiales [1-2] â†’</a>
+        <a href="clase-27.html">← Anterior: Uso del editor Vim</a>
+        <a href="clase-29.html">Siguiente: Lectura de archivos especiales [1-2] →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

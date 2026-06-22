@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>80. Scripting en Bash [10-15] | IntroducciÃ³n a Linux</title>
+    <title>80. Scripting en Bash [10-15] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,36 +37,36 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 80</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <span class="course-tag">🐧 Bash · Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [10-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 22:43 Â· Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 22:43 · Proyecto 2: Ruleta de casino</div>
 
       <p>
-        AÃ±adimos sonidos con el altavoz del sistema (beep), notificaciones visuales, un modo silencioso (<code>-s</code>) y la capacidad de personalizar colores.
+        Añadimos sonidos con el altavoz del sistema (beep), notificaciones visuales, un modo silencioso (<code>-s</code>) y la capacidad de personalizar colores.
       </p>
 
       <h2>Sonidos con beep</h2>
-      <p>Usamos el <code>bell</code> de la terminal y <code>speaker-test</code> para efectos de sonido bÃ¡sicos:</p>
+      <p>Usamos el <code>bell</code> de la terminal y <code>speaker-test</code> para efectos de sonido básicos:</p>
       <pre><code>SONIDO_ACTIVADO=true
 
 beep() {
@@ -102,7 +102,7 @@ sonido_giro() {
   if [[ "$SONIDO_ACTIVADO" == false ]]; then
     return
   fi
-  # Sonido de clic rÃ¡pido simulado
+  # Sonido de clic rápido simulado
   for (( i = 0; i < 10; i++ )); do
     beep
     sleep 0.05
@@ -110,7 +110,7 @@ sonido_giro() {
 }</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ speaker-test:</strong> Requiere el mÃ³dulo de sonido del sistema. En entornos sin altavoz o en SSH, no producirÃ¡ sonido. Ãšsalo solo en tu mÃ¡quina local con escritorio.
+        <strong>⚠️ speaker-test:</strong> Requiere el módulo de sonido del sistema. En entornos sin altavoz o en SSH, no producirá sonido. Úsalo solo en tu máquina local con escritorio.
       </div>
 
       <h2>Notificaciones visuales</h2>
@@ -120,11 +120,11 @@ sonido_giro() {
 
   case $tipo in
     exito)
-      echo "${VERDE}${BOLD}[âœ“]${RESET} ${VERDE}${mensaje}${RESET}"
+      echo "${VERDE}${BOLD}[✓]${RESET} ${VERDE}${mensaje}${RESET}"
       sonido_ganar
       ;;
     error)
-      echo "${ROJO}${BOLD}[âœ—]${RESET} ${ROJO}${mensaje}${RESET}"
+      echo "${ROJO}${BOLD}[✗]${RESET} ${ROJO}${mensaje}${RESET}"
       sonido_perder
       ;;
     info)
@@ -132,7 +132,7 @@ sonido_giro() {
       beep
       ;;
     warning)
-      echo "${AMARILLO}${BOLD}[âš ]${RESET} ${AMARILLO}${mensaje}${RESET}"
+      echo "${AMARILLO}${BOLD}[⚠]${RESET} ${AMARILLO}${mensaje}${RESET}"
       beep
       ;;
   esac
@@ -143,16 +143,16 @@ notificacion_ganancia() {
   local tipo=$2
 
   if [[ "$cantidad" -gt 1000 ]]; then
-    notificar "ðŸ”¥ Â¡GANANCIA Ã‰PICA! +\$${cantidad}" "exito"
+    notificar "🔥 ¡GANANCIA ÉPICA! +\$${cantidad}" "exito"
   elif [[ "$cantidad" -gt 500 ]]; then
-    notificar "â­ Â¡Gran ganada! +\$${cantidad}" "exito"
+    notificar "⭐ ¡Gran ganada! +\$${cantidad}" "exito"
   elif [[ "$cantidad" -gt 0 ]]; then
-    notificar "âœ“ Ganaste +\$${cantidad}" "exito"
+    notificar "✓ Ganaste +\$${cantidad}" "exito"
   fi
 }</code></pre>
 
       <h2>Modo silencioso (-s)</h2>
-      <p>OpciÃ³n para desactivar todos los sonidos:</p>
+      <p>Opción para desactivar todos los sonidos:</p>
       <pre><code># En el procesamiento de argumentos
 SILENT_MODE=false
 
@@ -170,8 +170,8 @@ if [[ "$SILENT_MODE" == true ]]; then
 fi</code></pre>
 
       <h2>Colores personalizables</h2>
-      <p>Permitimos al usuario definir sus propios colores mediante variables de entorno o archivo de configuraciÃ³n:</p>
-      <pre><code># ConfiguraciÃ³n de colores personalizables
+      <p>Permitimos al usuario definir sus propios colores mediante variables de entorno o archivo de configuración:</p>
+      <pre><code># Configuración de colores personalizables
 COLOR_PRINCIPAL="${COLOR_PRINCIPAL:-$AMARILLO}"
 COLOR_SALDO="${COLOR_SALDO:-$VERDE}"
 COLOR_ALERTA="${COLOR_ALERTA:-$ROJO}"
@@ -193,7 +193,7 @@ cargar_configuracion_colores() {
 # COLOR_ALERTA=$(tput setaf 1)      # Rojo</code></pre>
 
       <h2>Uso de tput para temas</h2>
-      <p>TambiÃ©n podemos ofrecer temas predefinidos:</p>
+      <p>También podemos ofrecer temas predefinidos:</p>
       <pre><code>aplicar_tema() {
   local tema=$1
 
@@ -223,14 +223,14 @@ cargar_configuracion_colores() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ tput vs cÃ³digos ANSI:</strong> <code>tput</code> es mÃ¡s portable que escribir cÃ³digos ANSI directamente (<code>\e[31m</code>). Funciona en cualquier terminal que soporte terminfo.
+        <strong>💡 tput vs códigos ANSI:</strong> <code>tput</code> es más portable que escribir códigos ANSI directamente (<code>\e[31m</code>). Funciona en cualquier terminal que soporte terminfo.
       </div>
 
-      <p>El juego ahora tiene sonido, notificaciones y colores personalizables. En la siguiente clase aÃ±adiremos modo multijugador local.</p>
+      <p>El juego ahora tiene sonido, notificaciones y colores personalizables. En la siguiente clase añadiremos modo multijugador local.</p>
 
       <div class="lesson-nav">
-        <a href="clase-79.html">â† Anterior: Scripting en Bash [9-15]</a>
-        <a href="clase-81.html">Siguiente: Scripting en Bash [11-15] â†’</a>
+        <a href="clase-79.html">← Anterior: Scripting en Bash [9-15]</a>
+        <a href="clase-81.html">Siguiente: Scripting en Bash [11-15] →</a>
       </div>
     </div>
 
@@ -238,11 +238,11 @@ cargar_configuracion_colores() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

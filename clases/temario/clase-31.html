@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>31. Directorios y archivos ocultos | IntroducciÃ³n a Linux</title>
+    <title>31. Directorios y archivos ocultos | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,75 +37,75 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 31</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Directorios y archivos ocultos</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 3:47 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:47 · Sección 2: Temario</div>
 
       <p>
-        En Linux, un archivo o directorio se considera "oculto" simplemente porque su nombre empieza con un punto (<code>.</code>). No es una caracterÃ­stica de seguridad, sino una conveniencia para mantener ordenado el directorio personal. Sin embargo, en ciberseguridad, los archivos ocultos son cruciales: allÃ­ se esconden configuraciones sensibles, claves SSH y, a veces, malware.
+        En Linux, un archivo o directorio se considera "oculto" simplemente porque su nombre empieza con un punto (<code>.</code>). No es una característica de seguridad, sino una conveniencia para mantener ordenado el directorio personal. Sin embargo, en ciberseguridad, los archivos ocultos son cruciales: allí se esconden configuraciones sensibles, claves SSH y, a veces, malware.
       </p>
 
-      <h2>Â¿QuÃ© son los archivos ocultos?</h2>
+      <h2>¿Qué son los archivos ocultos?</h2>
       <p>Archivos como <code>.bashrc</code>, <code>.gitconfig</code> o <code>.ssh</code> son ocultos. El comando <code>ls</code> sin opciones no los muestra. Para verlos:</p>
 
-      <pre><code># ls normal â€” no muestra archivos ocultos
+      <pre><code># ls normal — no muestra archivos ocultos
 ls ~/
 
-# ls -a â€” muestra TODOS los archivos, incluidos ocultos
+# ls -a — muestra TODOS los archivos, incluidos ocultos
 ls -a ~/
 
-# ls -A â€” como -a pero omite . y ..
+# ls -A — como -a pero omite . y ..
 ls -A ~/
 
-# TambiÃ©n puedes listar solo los ocultos
+# También puedes listar solo los ocultos
 ls -d ~/.* 2>/dev/null</code></pre>
 
-      <h3>Archivos de configuraciÃ³n ocultos importantes en ~</h3>
-      <p>Cada programa de terminal suele guardar su configuraciÃ³n en un archivo oculto en tu home:</p>
+      <h3>Archivos de configuración ocultos importantes en ~</h3>
+      <p>Cada programa de terminal suele guardar su configuración en un archivo oculto en tu home:</p>
 
       <table>
         <tr><th>Archivo</th><th>Programa</th></tr>
-        <tr><td><code>~/.bashrc</code></td><td>ConfiguraciÃ³n de Bash</td></tr>
-        <tr><td><code>~/.zshrc</code></td><td>ConfiguraciÃ³n de Zsh</td></tr>
-        <tr><td><code>~/.vimrc</code></td><td>ConfiguraciÃ³n de Vim</td></tr>
-        <tr><td><code>~/.tmux.conf</code></td><td>ConfiguraciÃ³n de Tmux</td></tr>
-        <tr><td><code>~/.gitconfig</code></td><td>ConfiguraciÃ³n global de Git</td></tr>
-        <tr><td><code>~/.ssh/</code></td><td>Claves SSH y configuraciÃ³n</td></tr>
-        <tr><td><code>~/.config/</code></td><td>Directorio estÃ¡ndar para configs de muchas apps modernas</td></tr>
+        <tr><td><code>~/.bashrc</code></td><td>Configuración de Bash</td></tr>
+        <tr><td><code>~/.zshrc</code></td><td>Configuración de Zsh</td></tr>
+        <tr><td><code>~/.vimrc</code></td><td>Configuración de Vim</td></tr>
+        <tr><td><code>~/.tmux.conf</code></td><td>Configuración de Tmux</td></tr>
+        <tr><td><code>~/.gitconfig</code></td><td>Configuración global de Git</td></tr>
+        <tr><td><code>~/.ssh/</code></td><td>Claves SSH y configuración</td></tr>
+        <tr><td><code>~/.config/</code></td><td>Directorio estándar para configs de muchas apps modernas</td></tr>
       </table>
 
       <h3>El directorio .ssh</h3>
-      <p><code>~/.ssh/</code> merece menciÃ³n especial por su importancia en seguridad:</p>
+      <p><code>~/.ssh/</code> merece mención especial por su importancia en seguridad:</p>
 
-      <pre><code># Estructura tÃ­pica de ~/.ssh/
+      <pre><code># Estructura típica de ~/.ssh/
 ls -la ~/.ssh/
 
 # Archivos comunes:
-# id_rsa / id_ed25519       â†’ claves privadas (NUNCA compartir)
-# id_rsa.pub               â†’ clave pÃºblica
-# authorized_keys           â†’ claves pÃºblicas permitidas para conectarse
-# known_hosts               â†’ huellas de servidores conocidos
-# config                    â†’ atajos de conexiÃ³n</code></pre>
+# id_rsa / id_ed25519       → claves privadas (NUNCA compartir)
+# id_rsa.pub               → clave pública
+# authorized_keys           → claves públicas permitidas para conectarse
+# known_hosts               → huellas de servidores conocidos
+# config                    → atajos de conexión</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ En un pentest:</strong> Si encuentras un archivo <code>id_rsa</code> (clave privada SSH) en un sistema comprometido, puedes usarlo para conectarte a otros sistemas. Es uno de los hallazgos mÃ¡s valiosos durante la escalada de privilegios y movimiento lateral.
+        <strong>⚠️ En un pentest:</strong> Si encuentras un archivo <code>id_rsa</code> (clave privada SSH) en un sistema comprometido, puedes usarlo para conectarte a otros sistemas. Es uno de los hallazgos más valiosos durante la escalada de privilegios y movimiento lateral.
       </div>
 
       <h3>Crear archivos y directorios ocultos</h3>
@@ -113,7 +113,7 @@ ls -la ~/.ssh/
 
       <pre><code># Crear un archivo oculto
 touch .secreto.txt
-echo "informaciÃ³n sensible" > .secreto.txt
+echo "información sensible" > .secreto.txt
 
 # Crear un directorio oculto
 mkdir .mi_directorio_oculto
@@ -125,26 +125,26 @@ mv configuracion.txt .configuracion.txt
 ls -la</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ Dato curioso:</strong> Los directorios <code>.</code> (directorio actual) y <code>..</code> (directorio padre) tambiÃ©n son archivos ocultos. Siempre existen en cualquier directorio de Linux. Por eso <code>ls -a</code> siempre muestra al menos estos dos.
+        <strong>💡 Dato curioso:</strong> Los directorios <code>.</code> (directorio actual) y <code>..</code> (directorio padre) también son archivos ocultos. Siempre existen en cualquier directorio de Linux. Por eso <code>ls -a</code> siempre muestra al menos estos dos.
       </div>
 
-      <h3>Â¿Por quÃ© se usan archivos ocultos?</h3>
-      <p>La razÃ³n es mantener el directorio home limpio visualmente. Imagina que cada programa dejara su archivo de configuraciÃ³n visible: tendrÃ­as decenas de archivos saturando tu <code>ls</code>. Al usar el punto, esos archivos quedan fuera de la vista diaria pero accesibles cuando los necesitas. En ciberseguridad, los atacantes a menudo esconden herramientas y scripts en directorios con nombre de punto (ej: <code>.cache/</code>, <code>.dbus/</code>) para pasar desapercibidos.</p>
+      <h3>¿Por qué se usan archivos ocultos?</h3>
+      <p>La razón es mantener el directorio home limpio visualmente. Imagina que cada programa dejara su archivo de configuración visible: tendrías decenas de archivos saturando tu <code>ls</code>. Al usar el punto, esos archivos quedan fuera de la vista diaria pero accesibles cuando los necesitas. En ciberseguridad, los atacantes a menudo esconden herramientas y scripts en directorios con nombre de punto (ej: <code>.cache/</code>, <code>.dbus/</code>) para pasar desapercibidos.</p>
 
       <div class="lesson-nav">
-        <a href="clase-30.html">â† Anterior: Lectura de archivos especiales [2-2]</a>
-        <a href="clase-32.html">Siguiente: DetecciÃ³n del tipo y formato de archivos â†’</a>
+        <a href="clase-30.html">← Anterior: Lectura de archivos especiales [2-2]</a>
+        <a href="clase-32.html">Siguiente: Detección del tipo y formato de archivos →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

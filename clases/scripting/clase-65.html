@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>65. Scripting en Bash [2-6] | IntroducciÃ³n a Linux</title>
+    <title>65. Scripting en Bash [2-6] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,44 +37,44 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 65</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <span class="course-tag">🐧 Bash · Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [2-6]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 28:39 Â· Proyecto 1: Buscador HTB</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 28:39 · Proyecto 1: Buscador HTB</div>
 
       <p>
-        AÃ±adimos funciones auxiliares esenciales: <code>print_table</code> para formatear resultados, <code>print_error</code> para mensajes de error, validaciÃ³n de entrada, conexiÃ³n a la API de HTB con <code>curl</code> y procesamiento JSON con <code>jq</code>.
+        Añadimos funciones auxiliares esenciales: <code>print_table</code> para formatear resultados, <code>print_error</code> para mensajes de error, validación de entrada, conexión a la API de HTB con <code>curl</code> y procesamiento JSON con <code>jq</code>.
       </p>
 
-      <h2>FunciÃ³n print_error</h2>
+      <h2>Función print_error</h2>
       <p>Mensajes de error estandarizados con color rojo:</p>
       <pre><code>print_error() {
   local msg="$1"
-  echo "${RED}${BOLD}[âœ—] Error:${RESET} ${RED}$msg${RESET}" >&2
+  echo "${RED}${BOLD}[✗] Error:${RESET} ${RED}$msg${RESET}" >&2
 }
 
 print_success() {
   local msg="$1"
-  echo "${GREEN}${BOLD}[âœ“]${RESET} ${GREEN}$msg${RESET}"
+  echo "${GREEN}${BOLD}[✓]${RESET} ${GREEN}$msg${RESET}"
 }
 
 print_info() {
@@ -82,13 +82,13 @@ print_info() {
   echo "${BLUE}${BOLD}[i]${RESET} ${BLUE}$msg${RESET}"
 }</code></pre>
 
-      <h2>FunciÃ³n print_table</h2>
+      <h2>Función print_table</h2>
       <p>Formatea resultados en una tabla con columnas alineadas usando <code>printf</code>:</p>
       <pre><code>print_table() {
-  local sep="â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”"
+  local sep="┌──────────────────────────────────────────────────────┐"
   echo "$sep"
-  printf "â”‚ %-20s â”‚ %-15s â”‚ %-10s â”‚\n" "Nombre" "IP" "OS"
-  echo "â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤"
+  printf "│ %-20s │ %-15s │ %-10s │\n" "Nombre" "IP" "OS"
+  echo "├──────────────────────────────────────────────────────┤"
 }
 
 print_table_row() {
@@ -100,11 +100,11 @@ print_table_row() {
     hard)   color="$RED" ;;
     insane) color="$MAGENTA" ;;
   esac
-  printf "â”‚ %-20s â”‚ %-15s â”‚ ${color}%-10s${RESET} â”‚\n" "$name" "$ip" "$os"
+  printf "│ %-20s │ %-15s │ ${color}%-10s${RESET} │\n" "$name" "$ip" "$os"
 }</code></pre>
 
-      <h2>ConexiÃ³n a la API de HTB</h2>
-      <p>Hacemos la peticiÃ³n con curl y procesamos la respuesta con jq:</p>
+      <h2>Conexión a la API de HTB</h2>
+      <p>Hacemos la petición con curl y procesamos la respuesta con jq:</p>
       <pre><code>fetch_machines() {
   local url="${API_URL}/list"
   local response
@@ -128,7 +128,7 @@ print_table_row() {
   echo "$response"
 }</code></pre>
 
-      <h2>ValidaciÃ³n y procesamiento con jq</h2>
+      <h2>Validación y procesamiento con jq</h2>
       <p>Extraemos los campos relevantes del JSON:</p>
       <pre><code>parse_machines() {
   local json="$1"
@@ -143,11 +143,11 @@ print_table_row() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ jq -c vs jq:</strong> La opciÃ³n <code>-c</code> (compact) imprime cada objeto JSON en una sola lÃ­nea, lo que facilita iterar con <code>while read</code>. Sin <code>-c</code>, jq formatea con saltos de lÃ­nea y sangrÃ­a.
+        <strong>💡 jq -c vs jq:</strong> La opción <code>-c</code> (compact) imprime cada objeto JSON en una sola línea, lo que facilita iterar con <code>while read</code>. Sin <code>-c</code>, jq formatea con saltos de línea y sangría.
       </div>
 
       <h2>Flujo completo</h2>
-      <p>Combinamos fetch y parse en la funciÃ³n principal:</p>
+      <p>Combinamos fetch y parse en la función principal:</p>
       <pre><code>main() {
   print_banner
 
@@ -159,14 +159,14 @@ print_table_row() {
 
   local count
   count=$(wc -l < /tmp/htb_results.txt)
-  print_success "Se encontraron ${count} mÃ¡quinas"
+  print_success "Se encontraron ${count} máquinas"
 }</code></pre>
 
-      <p>En la siguiente clase implementaremos la lÃ³gica de bÃºsqueda con filtros.</p>
+      <p>En la siguiente clase implementaremos la lógica de búsqueda con filtros.</p>
 
       <div class="lesson-nav">
-        <a href="clase-64.html">â† Anterior: Scripting en Bash [1-6]</a>
-        <a href="clase-66.html">Siguiente: Scripting en Bash [3-6] â†’</a>
+        <a href="clase-64.html">← Anterior: Scripting en Bash [1-6]</a>
+        <a href="clase-66.html">Siguiente: Scripting en Bash [3-6] →</a>
       </div>
     </div>
 
@@ -174,11 +174,11 @@ print_table_row() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

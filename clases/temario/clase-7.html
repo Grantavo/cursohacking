@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7. Control del flujo stderr-stdout, operadores y procesos en segundo plano | IntroducciÃ³n a Linux</title>
+    <title>7. Control del flujo stderr-stdout, operadores y procesos en segundo plano | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,74 +138,74 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 7</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Control del flujo stderr-stdout, operadores y procesos en segundo plano</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 11:03 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 11:03 · Sección 2: Temario</div>
 
       <p>
-        En Linux todo son archivos, y los flujos de entrada/salida no son la excepciÃ³n. Entender cÃ³mo controlar stdout, stderr y los operadores te darÃ¡ un control total sobre la terminal.
+        En Linux todo son archivos, y los flujos de entrada/salida no son la excepción. Entender cómo controlar stdout, stderr y los operadores te dará un control total sobre la terminal.
       </p>
 
-      <h2>Los tres flujos estÃ¡ndar</h2>
+      <h2>Los tres flujos estándar</h2>
 
       <table>
-        <tr><th>Descriptor</th><th>Nombre</th><th>PropÃ³sito</th></tr>
-        <tr><td>0</td><td>stdin</td><td>Entrada estÃ¡ndar (teclado)</td></tr>
-        <tr><td>1</td><td>stdout</td><td>Salida estÃ¡ndar (pantalla)</td></tr>
+        <tr><th>Descriptor</th><th>Nombre</th><th>Propósito</th></tr>
+        <tr><td>0</td><td>stdin</td><td>Entrada estándar (teclado)</td></tr>
+        <tr><td>1</td><td>stdout</td><td>Salida estándar (pantalla)</td></tr>
         <tr><td>2</td><td>stderr</td><td>Salida de error (pantalla)</td></tr>
       </table>
 
-      <h2>RedirecciÃ³n de errores</h2>
+      <h2>Redirección de errores</h2>
 
       <pre><code>comando 2> error.log          # Redirige solo los errores a un archivo
-comando > salida.log 2>&1     # Redirige stdout y stderr al mismo archivo (forma clÃ¡sica)
+comando > salida.log 2>&1     # Redirige stdout y stderr al mismo archivo (forma clásica)
 comando &> salida.log         # Redirige stdout y stderr (forma abreviada, Bash 4+)
 comando 2> /dev/null          # Descarta los errores</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡</strong> El orden importa: <code>2>&1</code> debe ir despuÃ©s de <code>&gt; archivo</code> para que ambos flujos vayan al archivo.
+        <strong>💡</strong> El orden importa: <code>2>&1</code> debe ir después de <code>&gt; archivo</code> para que ambos flujos vayan al archivo.
       </div>
 
       <h2>Operadores de control</h2>
 
-      <p><code>&&</code> â€” ejecuta el segundo comando solo si el primero tuvo Ã©xito:</p>
+      <p><code>&&</code> — ejecuta el segundo comando solo si el primero tuvo éxito:</p>
       <pre><code>mkdir nuevo && cd nuevo       # Si mkdir falla, no ejecuta cd</code></pre>
 
-      <p><code>||</code> â€” ejecuta el segundo comando solo si el primero fallÃ³:</p>
-      <pre><code>ping -c1 google.com || echo "No hay conexiÃ³n"</code></pre>
+      <p><code>||</code> — ejecuta el segundo comando solo si el primero falló:</p>
+      <pre><code>ping -c1 google.com || echo "No hay conexión"</code></pre>
 
-      <p><code>;</code> â€” ejecuta comandos de forma secuencial, sin importar el resultado:</p>
+      <p><code>;</code> — ejecuta comandos de forma secuencial, sin importar el resultado:</p>
       <pre><code>echo "uno"; echo "dos"; echo "tres"</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸</strong> No confundas <code>&&</code> con <code>&amp;</code>. Un solo <code>&amp;</code> al final envÃ­a el proceso a segundo plano.
+        <strong>⚠️</strong> No confundas <code>&&</code> con <code>&amp;</code>. Un solo <code>&amp;</code> al final envía el proceso a segundo plano.
       </div>
 
       <h2>Procesos en segundo plano</h2>
 
       <p>El operador <code>&amp;</code> al final de un comando lo ejecuta en background:</p>
       <pre><code>sleep 30 &                    # El comando se ejecuta en segundo plano
-[1] 12345                     # El shell muestra el nÃºmero de job y el PID</code></pre>
+[1] 12345                     # El shell muestra el número de job y el PID</code></pre>
 
       <p>Comandos para gestionar procesos en segundo plano:</p>
       <pre><code>jobs                          # Lista los trabajos en segundo plano
@@ -214,25 +214,25 @@ bg %1                         # Reanuda el job 1 en segundo plano (tras Ctrl+Z)
 Ctrl+Z                        # Detiene (pausa) el proceso actual</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ”§ Ejemplo tÃ­pico:</strong> Abres un editor <code>nano archivo.txt</code>, pulsas <code>Ctrl+Z</code> para pausarlo, ejecutas otros comandos, y luego <code>fg</code> para volver al editor.
+        <strong>🔧 Ejemplo típico:</strong> Abres un editor <code>nano archivo.txt</code>, pulsas <code>Ctrl+Z</code> para pausarlo, ejecutas otros comandos, y luego <code>fg</code> para volver al editor.
       </div>
 
-      <h2>Ejercicio prÃ¡ctico</h2>
+      <h2>Ejercicio práctico</h2>
       <pre><code># Lanza un ping en segundo plano
 ping google.com > ping.log 2>&1 &
 jobs
 tail -f ping.log &
 
-# Simula un error y captÃºralo
+# Simula un error y captúralo
 ls /directorio_inexistente 2> error.txt
 cat error.txt
 
 # Encadena comandos con operadores
-ping -c1 8.8.8.8 && echo "Internet OK" || echo "Sin conexiÃ³n"</code></pre>
+ping -c1 8.8.8.8 && echo "Internet OK" || echo "Sin conexión"</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-6.html">â† Anterior: Comandos bÃ¡sicos [2-2]</a>
-        <a href="clase-8.html">Siguiente: Descriptores de archivo â†’</a>
+        <a href="clase-6.html">← Anterior: Comandos básicos [2-2]</a>
+        <a href="clase-8.html">Siguiente: Descriptores de archivo →</a>
       </div>
     </div>
 
@@ -240,11 +240,11 @@ ping -c1 8.8.8.8 && echo "Internet OK" || echo "Sin conexiÃ³n"</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

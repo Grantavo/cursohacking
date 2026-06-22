@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>60. Operando con proyectos de Github [5-5] | IntroducciÃ³n a Linux</title>
+    <title>60. Operando con proyectos de Github [5-5] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,34 +138,34 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 60</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Operando con proyectos de Github [5-5]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 4:01 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 4:01 · Sección 2: Temario</div>
 
       <p>GitHub Actions es la plataforma de CI/CD integrada en GitHub. Permite automatizar pruebas, despliegues y cualquier flujo de trabajo directamente desde el repositorio.</p>
 
       <h2>Concepto de CI/CD</h2>
-      <p><strong>CI</strong> (Continuous Integration) ejecuta pruebas automÃ¡ticamente cada vez que haces push o un PR. <strong>CD</strong> (Continuous Deployment) despliega el cÃ³digo a producciÃ³n si las pruebas pasan.</p>
+      <p><strong>CI</strong> (Continuous Integration) ejecuta pruebas automáticamente cada vez que haces push o un PR. <strong>CD</strong> (Continuous Deployment) despliega el código a producción si las pruebas pasan.</p>
 
       <h2>Estructura de un workflow</h2>
       <p>Los workflows se definen en archivos YAML dentro del directorio <code>.github/workflows/</code>:</p>
@@ -199,7 +199,7 @@ jobs:
     - name: Ejecutar tests
       run: pytest</code></pre>
 
-      <h2>Workflow de deploy bÃ¡sico</h2>
+      <h2>Workflow de deploy básico</h2>
       <p>Un pipeline que despliega a un servidor cuando se hace push a main:</p>
       <pre><code># .github/workflows/deploy.yml
 name: Deploy
@@ -223,11 +223,11 @@ jobs:
         rsync -avz --delete ./ usuario@servidor:/var/www/app</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡</strong> Los secretos (contraseÃ±as, claves SSH) se configuran en GitHub: Settings â†’ Secrets and variables â†’ Actions. Nunca los escribas directamente en el YAML.
+        <strong>💡</strong> Los secretos (contraseñas, claves SSH) se configuran en GitHub: Settings → Secrets and variables → Actions. Nunca los escribas directamente en el YAML.
       </div>
 
       <h2>Triggers comunes</h2>
-      <p>Los workflows se pueden activar por mÃºltiples eventos:</p>
+      <p>Los workflows se pueden activar por múltiples eventos:</p>
       <pre><code>on:
   push:                 # Cada vez que se hace push
   pull_request:         # Cada vez que se abre/modifica un PR
@@ -236,8 +236,8 @@ jobs:
   workflow_dispatch:    # Manualmente desde la UI de GitHub</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-59.html">â† Anterior: Operando con proyectos de Github [4-5]</a>
-        <a href="clase-61.html">Siguiente: Argumentos posicionales en Bash â†’</a>
+        <a href="clase-59.html">← Anterior: Operando con proyectos de Github [4-5]</a>
+        <a href="clase-61.html">Siguiente: Argumentos posicionales en Bash →</a>
       </div>
     </div>
 
@@ -245,11 +245,11 @@ jobs:
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

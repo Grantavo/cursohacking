@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>39. Cifrado CÃ©sar y uso de tr para la traducciÃ³n de caracteres | IntroducciÃ³n a Linux</title>
+    <title>39. Cifrado César y uso de tr para la traducción de caracteres | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,65 +138,65 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 39</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Cifrado CÃ©sar y uso de tr para la traducciÃ³n de caracteres</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 4:42 Â· SecciÃ³n 2: Temario</div>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Cifrado César y uso de tr para la traducción de caracteres</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 4:42 · Sección 2: Temario</div>
 
-      <p>El cifrado CÃ©sar es uno de los mÃ©todos criptogrÃ¡ficos mÃ¡s antiguos: desplaza cada letra del alfabeto un nÃºmero fijo de posiciones. En Linux, el comando <code>tr</code> (translate) es la herramienta ideal para implementarlo.</p>
+      <p>El cifrado César es uno de los métodos criptográficos más antiguos: desplaza cada letra del alfabeto un número fijo de posiciones. En Linux, el comando <code>tr</code> (translate) es la herramienta ideal para implementarlo.</p>
 
       <h2>El comando tr</h2>
-      <p><code>tr</code> sustituye, elimina o comprime caracteres de la entrada estÃ¡ndar. Su sintaxis es <code>tr 'conjunto_origen' 'conjunto_destino'</code>.</p>
+      <p><code>tr</code> sustituye, elimina o comprime caracteres de la entrada estándar. Su sintaxis es <code>tr 'conjunto_origen' 'conjunto_destino'</code>.</p>
 
-      <pre><code># Convertir minÃºsculas a mayÃºsculas
+      <pre><code># Convertir minúsculas a mayúsculas
 echo "hola mundo" | tr 'a-z' 'A-Z'
 
-# Cifrado CÃ©sar con desplazamiento +3
+# Cifrado César con desplazamiento +3
 echo "hola" | tr 'a-z' 'd-za-c'
 
 # Descifrar (desplazamiento -3)
 echo "krod" | tr 'a-z' 'x-za-w'
 
-# ROT13 (desplazamiento +13, simÃ©trico)
+# ROT13 (desplazamiento +13, simétrico)
 echo "Hola Mundo" | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ§  ROT13:</strong> Es un CÃ©sar con desplazamiento 13. Como el alfabeto tiene 26 letras, aplicar ROT13 dos veces devuelve el texto original. Es el cifrado CÃ©sar mÃ¡s usado en entornos UNIX (por ejemplo, para ocultar spoilers en Usenet).
+        <strong>🧠 ROT13:</strong> Es un César con desplazamiento 13. Como el alfabeto tiene 26 letras, aplicar ROT13 dos veces devuelve el texto original. Es el cifrado César más usado en entornos UNIX (por ejemplo, para ocultar spoilers en Usenet).
       </div>
 
       <h2>Operaciones avanzadas con tr</h2>
-      <p>AdemÃ¡s de sustituciÃ³n, <code>tr</code> permite eliminar y comprimir caracteres con las opciones <code>-d</code> y <code>-s</code>.</p>
+      <p>Además de sustitución, <code>tr</code> permite eliminar y comprimir caracteres con las opciones <code>-d</code> y <code>-s</code>.</p>
 
-      <pre><code># Eliminar caracteres especÃ­ficos
+      <pre><code># Eliminar caracteres específicos
 echo "Hola, mundo!!!" | tr -d '!,'
 
-# Comprimir espacios mÃºltiples
+# Comprimir espacios múltiples
 echo "Hola     mundo" | tr -s ' '
 
-# Eliminar dÃ­gitos
+# Eliminar dígitos
 echo "Clave: 12345" | tr -d '0-9'
 
-# Combinar: pasar a mayÃºsculas y eliminar puntuaciÃ³n
+# Combinar: pasar a mayúsculas y eliminar puntuación
 echo "Hola, mundo!" | tr 'a-z' 'A-Z' | tr -d '[:punct:]'</code></pre>
 
-      <h2>Fuerza bruta de CÃ©sar con bash</h2>
-      <p>Podemos automatizar la fuerza bruta de un cifrado CÃ©sar usando un bucle <code>for</code> y <code>tr</code>:</p>
+      <h2>Fuerza bruta de César con bash</h2>
+      <p>Podemos automatizar la fuerza bruta de un cifrado César usando un bucle <code>for</code> y <code>tr</code>:</p>
 
       <pre><code>#!/bin/bash
 texto_cifrado="krod"
@@ -205,23 +205,23 @@ for i in {1..25}; do
 done</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ Nota de seguridad:</strong> El cifrado CÃ©sar no proporciona seguridad real. Se rompe en segundos con anÃ¡lisis de frecuencias. Sin embargo, es excelente para aprender conceptos de criptografÃ­a, pipes y manipulaciÃ³n de texto en la terminal.
+        <strong>⚠️ Nota de seguridad:</strong> El cifrado César no proporciona seguridad real. Se rompe en segundos con análisis de frecuencias. Sin embargo, es excelente para aprender conceptos de criptografía, pipes y manipulación de texto en la terminal.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-38.html">â† Anterior: CodificaciÃ³n y decodificaciÃ³n en base64</a>
-        <a href="clase-40.html">Siguiente: Creamos un descompresor recursivo automÃ¡tico â†’</a>
+        <a href="clase-38.html">← Anterior: Codificación y decodificación en base64</a>
+        <a href="clase-40.html">Siguiente: Creamos un descompresor recursivo automático →</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

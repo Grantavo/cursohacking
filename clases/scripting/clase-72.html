@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>72. Scripting en Bash [2-15] | IntroducciÃ³n a Linux</title>
+    <title>72. Scripting en Bash [2-15] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,44 +37,44 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 72</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <span class="course-tag">🐧 Bash · Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [2-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 12:33 Â· Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 12:33 · Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Implementamos el corazÃ³n de la ruleta: generaciÃ³n de nÃºmeros aleatorios con <code>$RANDOM</code>, determinaciÃ³n del color (rojo/negro/verde) y paridad. TambiÃ©n exploramos las funciones matemÃ¡ticas disponibles en Bash.
+        Implementamos el corazón de la ruleta: generación de números aleatorios con <code>$RANDOM</code>, determinación del color (rojo/negro/verde) y paridad. También exploramos las funciones matemáticas disponibles en Bash.
       </p>
 
-      <h2>Generar nÃºmero aleatorio con $RANDOM</h2>
+      <h2>Generar número aleatorio con $RANDOM</h2>
       <p><code>$RANDOM</code> genera un entero pseudo-aleatorio entre 0 y 32767. Para la ruleta necesitamos 0-36:</p>
       <pre><code>generar_numero() {
-  # $RANDOM % 37 produce un nÃºmero entre 0 y 36
+  # $RANDOM % 37 produce un número entre 0 y 36
   local numero=$(( RANDOM % 37 ))
   echo "$numero"
 }</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ $RANDOM no es criptogrÃ¡ficamente seguro:</strong> Para un juego real de casino necesitarÃ­as <code>/dev/urandom</code> o <code>shuf</code>. Para este proyecto educativo, $RANDOM es suficiente.
+        <strong>⚠️ $RANDOM no es criptográficamente seguro:</strong> Para un juego real de casino necesitarías <code>/dev/urandom</code> o <code>shuf</code>. Para este proyecto educativo, $RANDOM es suficiente.
       </div>
 
       <h2>Alternativa con /dev/urandom</h2>
@@ -85,13 +85,13 @@
   echo $(( numero % 37 ))
 }
 
-# Usando shuf (mÃ¡s portable)
+# Usando shuf (más portable)
 generar_numero_shuf() {
   shuf -i 0-36 -n 1
 }</code></pre>
 
       <h2>Determinar color de la ruleta</h2>
-      <p>Los nÃºmeros rojos y negros siguen un patrÃ³n especÃ­fico:</p>
+      <p>Los números rojos y negros siguen un patrón específico:</p>
       <pre><code>NUMEROS_ROJOS=(1 3 5 7 9 12 14 16 18 19 21 23 25 27 30 32 34 36)
 
 determinar_color() {
@@ -128,16 +128,16 @@ determinar_color() {
   fi
 }</code></pre>
 
-      <h2>Funciones matemÃ¡ticas en Bash</h2>
-      <p>Bash soporta aritmÃ©tica entera con <code>$((...))</code>. Para la ruleta necesitamos operaciones bÃ¡sicas:</p>
-      <pre><code># AritmÃ©tica bÃ¡sica
+      <h2>Funciones matemáticas en Bash</h2>
+      <p>Bash soporta aritmética entera con <code>$((...))</code>. Para la ruleta necesitamos operaciones básicas:</p>
+      <pre><code># Aritmética básica
 suma=$(( a + b ))
 resta=$(( a - b ))
 multiplicacion=$(( a * b ))
-division=$(( a / b ))     # DivisiÃ³n entera
+division=$(( a / b ))     # División entera
 modulo=$(( a % b ))       # Resto
 
-# Operadores de comparaciÃ³n
+# Operadores de comparación
 if (( saldo >= apuesta )); then
   echo "Puedes apostar"
 fi
@@ -147,10 +147,10 @@ fi
 (( total_jugadas++ ))</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ $RANDOM y seed:</strong> Bash siembra <code>$RANDOM</code> con el PID y la hora actual. Si quieres resultados reproducibles para depuraciÃ³n, puedes asignar <code>RANDOM=42</code> antes de generar.
+        <strong>💡 $RANDOM y seed:</strong> Bash siembra <code>$RANDOM</code> con el PID y la hora actual. Si quieres resultados reproducibles para depuración, puedes asignar <code>RANDOM=42</code> antes de generar.
       </div>
 
-      <h2>FunciÃ³n unificada de giro</h2>
+      <h2>Función unificada de giro</h2>
       <pre><code>girar_ruleta() {
   local numero
   numero=$(generar_numero)
@@ -167,11 +167,11 @@ fi
   echo "$numero|$color|$paridad"
 }</code></pre>
 
-      <p>La ruleta ya puede generar nÃºmeros y determinar propiedades. En la siguiente clase implementaremos la lÃ³gica de apuestas.</p>
+      <p>La ruleta ya puede generar números y determinar propiedades. En la siguiente clase implementaremos la lógica de apuestas.</p>
 
       <div class="lesson-nav">
-        <a href="clase-71.html">â† Anterior: Scripting en Bash [1-15]</a>
-        <a href="clase-73.html">Siguiente: Scripting en Bash [3-15] â†’</a>
+        <a href="clase-71.html">← Anterior: Scripting en Bash [1-15]</a>
+        <a href="clase-73.html">Siguiente: Scripting en Bash [3-15] →</a>
       </div>
     </div>
 
@@ -179,11 +179,11 @@ fi
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>24. BÃºsquedas a nivel de sistema | IntroducciÃ³n a Linux</title>
+    <title>24. Búsquedas a nivel de sistema | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,32 +138,32 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 24</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">BÃºsquedas a nivel de sistema</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 11:03 Â· SecciÃ³n 2: Temario</div>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Búsquedas a nivel de sistema</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 11:03 · Sección 2: Temario</div>
 
       <p>
-        Encontrar archivos en Linux es una tarea diaria. Ya sea para localizar configuraciones, scripts maliciosos, logs antiguos o binarios especÃ­ficos, saber usar <code>find</code>, <code>locate</code>, <code>which</code> y <code>whereis</code> te harÃ¡ infinitamente mÃ¡s productivo. Cada comando tiene su propÃ³sito y sus ventajas.
+        Encontrar archivos en Linux es una tarea diaria. Ya sea para localizar configuraciones, scripts maliciosos, logs antiguos o binarios específicos, saber usar <code>find</code>, <code>locate</code>, <code>which</code> y <code>whereis</code> te hará infinitamente más productivo. Cada comando tiene su propósito y sus ventajas.
       </p>
 
       <h2>find: el buscador definitivo</h2>
@@ -179,19 +179,19 @@ find /var -type d -name "log" 2>/dev/null
 # Buscar archivos mayores de 100MB
 find / -type f -size +100M 2>/dev/null
 
-# Buscar archivos modificados en los Ãºltimos 7 dÃ­as
+# Buscar archivos modificados en los últimos 7 días
 find /home -type f -mtime -7 2>/dev/null
 
 # Buscar archivos con permisos 777 (inseguros)
 find / -type f -perm 777 2>/dev/null</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ Â¿Por quÃ© 2>/dev/null?</strong> find intenta acceder a directorios sin permisos y muestra errores. Redirigir stderr a /dev/null oculta esos mensajes y solo ves resultados Ãºtiles.
+        <strong>💡 ¿Por qué 2>/dev/null?</strong> find intenta acceder a directorios sin permisos y muestra errores. Redirigir stderr a /dev/null oculta esos mensajes y solo ves resultados útiles.
       </div>
 
       <h3>Ejecutar comandos con find y -exec</h3>
 
-      <p>La opciÃ³n <code>-exec</code> ejecuta un comando sobre cada archivo encontrado. El <code>{}</code> se reemplaza por el nombre del archivo y <code>\;</code> marca el final del comando:</p>
+      <p>La opción <code>-exec</code> ejecuta un comando sobre cada archivo encontrado. El <code>{}</code> se reemplaza por el nombre del archivo y <code>\;</code> marca el final del comando:</p>
 
       <pre><code># Encontrar archivos .conf y mostrar su contenido
 find /etc -name "*.conf" -exec cat {} \;
@@ -202,17 +202,17 @@ find /tmp -type f -atime +30 -exec rm {} \;
 # Buscar y cambiar permisos
 find /var/www -type f -exec chmod 644 {} \;</code></pre>
 
-      <h3>locate: la alternativa rÃ¡pida</h3>
+      <h3>locate: la alternativa rápida</h3>
 
-      <p><code>locate</code> busca en una base de datos preconstruida, por lo que es instantÃ¡neo. La base de datos se actualiza con <code>updatedb</code>:</p>
+      <p><code>locate</code> busca en una base de datos preconstruida, por lo que es instantáneo. La base de datos se actualiza con <code>updatedb</code>:</p>
 
-      <pre><code># Buscar instantÃ¡neamente
+      <pre><code># Buscar instantáneamente
 locate shadow
 locate ".conf"
-locate -i "README"   # -i ignora mayÃºsculas/minÃºsculas</code></pre>
+locate -i "README"   # -i ignora mayúsculas/minúsculas</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ LimitaciÃ³n de locate:</strong> Si acabas de crear un archivo, locate no lo encontrarÃ¡ hasta que se ejecute <code>updatedb</code> (normalmente cada noche). Para archivos reciÃ©n creados, usa <code>find</code>.
+        <strong>⚠️ Limitación de locate:</strong> Si acabas de crear un archivo, locate no lo encontrará hasta que se ejecute <code>updatedb</code> (normalmente cada noche). Para archivos recién creados, usa <code>find</code>.
       </div>
 
       <h3>which, whereis y type</h3>
@@ -223,41 +223,41 @@ locate -i "README"   # -i ignora mayÃºsculas/minÃºsculas</code></pre>
 which nmap
 which python3
 
-# whereis: busca el binario, las fuentes y las pÃ¡ginas man
+# whereis: busca el binario, las fuentes y las páginas man
 whereis ls
 whereis ssh
 
-# type: indica cÃ³mo se interpretarÃ­a un comando
+# type: indica cómo se interpretaría un comando
 type ls
 type cd
 type ll</code></pre>
 
-      <p><code>type</code> es especialmente Ãºtil para saber si un comando es un alias, una funciÃ³n, un builtin del shell o un ejecutable externo.</p>
+      <p><code>type</code> es especialmente útil para saber si un comando es un alias, una función, un builtin del shell o un ejecutable externo.</p>
 
       <h3>Ejemplos complejos con find</h3>
 
-      <p>Combinando criterios puedes hacer bÃºsquedas muy precisas. AquÃ­ algunos escenarios reales:</p>
+      <p>Combinando criterios puedes hacer búsquedas muy precisas. Aquí algunos escenarios reales:</p>
 
       <pre><code># Archivos con setuid (riesgo de seguridad)
 find / -type f -perm -4000 2>/dev/null
 
-# Archivos de un usuario especÃ­fico
+# Archivos de un usuario específico
 find /home -type f -user nobody
 
-# Archivos vacÃ­os en /etc
+# Archivos vacíos en /etc
 find /etc -type f -empty
 
-# Buscar por combinaciÃ³n de criterios (nombre Y tamaÃ±o)
+# Buscar por combinación de criterios (nombre Y tamaño)
 find / -type f -name "*.log" -size +10M 2>/dev/null
 
 # Buscar sockets de red abiertos como archivos
 find / -type s 2>/dev/null</code></pre>
 
-      <p>Saber buscar archivos es una habilidad que usarÃ¡s cientos de veces. En ciberseguridad, encontrar archivos con permisos incorrectos, scripts sospechosos o configuraciones expuestas puede ser la diferencia entre detectar un ataque o pasar por alto una brecha.</p>
+      <p>Saber buscar archivos es una habilidad que usarás cientos de veces. En ciberseguridad, encontrar archivos con permisos incorrectos, scripts sospechosos o configuraciones expuestas puede ser la diferencia entre detectar un ataque o pasar por alto una brecha.</p>
 
       <div class="lesson-nav">
-        <a href="clase-23.html">â† Anterior: Uso y manejo con Tmux</a>
-        <a href="clase-25.html">Siguiente: CreaciÃ³n de scripts en Bash â†’</a>
+        <a href="clase-23.html">← Anterior: Uso y manejo con Tmux</a>
+        <a href="clase-25.html">Siguiente: Creación de scripts en Bash →</a>
       </div>
     </div>
 
@@ -265,11 +265,11 @@ find / -type s 2>/dev/null</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

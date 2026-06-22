@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>83. Scripting en Bash [13-15] | IntroducciÃ³n a Linux</title>
+    <title>83. Scripting en Bash [13-15] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,59 +37,59 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 83</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <span class="course-tag">🐧 Bash · Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [13-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 30:52 Â· Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 30:52 · Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Refactorizamos todo el cÃ³digo del proyecto: dividimos el script monolÃ­tico en funciones modulares, creamos archivos separados con <code>source</code> y aplicamos buenas prÃ¡cticas de cÃ³digo limpio.
+        Refactorizamos todo el código del proyecto: dividimos el script monolítico en funciones modulares, creamos archivos separados con <code>source</code> y aplicamos buenas prácticas de código limpio.
       </p>
 
       <h2>Estructura modular del proyecto</h2>
       <pre><code># ~/roulette/
-# â”œâ”€â”€ roulette.sh          # Entry point
-# â”œâ”€â”€ lib/
-# â”‚   â”œâ”€â”€ config.sh        # Variables globales y configuraciÃ³n
-# â”‚   â”œâ”€â”€ colors.sh        # Colores y temas
-# â”‚   â”œâ”€â”€ roulette_core.sh # LÃ³gica de la ruleta (nÃºmeros, colores)
-# â”‚   â”œâ”€â”€ bets.sh          # Tipos de apuesta y pagos
-# â”‚   â”œâ”€â”€ players.sh       # GestiÃ³n de jugadores y multijugador
-# â”‚   â”œâ”€â”€ stats.sh         # Historial y estadÃ­sticas
-# â”‚   â”œâ”€â”€ save.sh          # Persistencia (guardar/cargar)
-# â”‚   â”œâ”€â”€ strategies.sh    # Estrategias de apuesta
-# â”‚   â”œâ”€â”€ ui.sh            # Interfaz, animaciones, tablero
-# â”‚   â”œâ”€â”€ sound.sh         # Sonidos y notificaciones
-# â”‚   â”œâ”€â”€ achievements.sh  # Logros y niveles
-# â”‚   â””â”€â”€ debug.sh         # Modo trampa y depuraciÃ³n</code></pre>
+# ├── roulette.sh          # Entry point
+# ├── lib/
+# │   ├── config.sh        # Variables globales y configuración
+# │   ├── colors.sh        # Colores y temas
+# │   ├── roulette_core.sh # Lógica de la ruleta (números, colores)
+# │   ├── bets.sh          # Tipos de apuesta y pagos
+# │   ├── players.sh       # Gestión de jugadores y multijugador
+# │   ├── stats.sh         # Historial y estadísticas
+# │   ├── save.sh          # Persistencia (guardar/cargar)
+# │   ├── strategies.sh    # Estrategias de apuesta
+# │   ├── ui.sh            # Interfaz, animaciones, tablero
+# │   ├── sound.sh         # Sonidos y notificaciones
+# │   ├── achievements.sh  # Logros y niveles
+# │   └── debug.sh         # Modo trampa y depuración</code></pre>
 
       <p>Archivo principal <code>roulette.sh</code>:</p>
       <pre><code>#!/bin/bash
 # roulette.sh - Ruleta de casino en Bash
-# VersiÃ³n: 2.0 (modular)
+# Versión: 2.0 (modular)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Cargar mÃ³dulos en orden de dependencia
+# Cargar módulos en orden de dependencia
 source "${SCRIPT_DIR}/lib/config.sh"
 source "${SCRIPT_DIR}/lib/colors.sh"
 source "${SCRIPT_DIR}/lib/roulette_core.sh"
@@ -117,15 +117,15 @@ main() {
 
 main "$@"</code></pre>
 
-      <h2>CÃ³digo limpio y comentado</h2>
-      <p>Ejemplo de funciÃ³n bien documentada:</p>
+      <h2>Código limpio y comentado</h2>
+      <p>Ejemplo de función bien documentada:</p>
       <pre><code># === roulette_core.sh ===
 
 # generar_numero()
-# Genera un nÃºmero aleatorio entre 0 y 36.
-# Usa $RANDOM por defecto, o /dev/urandom si estÃ¡ disponible.
+# Genera un número aleatorio entre 0 y 36.
+# Usa $RANDOM por defecto, o /dev/urandom si está disponible.
 # Argumentos: ninguno
-# Retorna: nÃºmero entre 0 y 36 (stdout)
+# Retorna: número entre 0 y 36 (stdout)
 generar_numero() {
   if [[ -r /dev/urandom ]]; then
     local byte
@@ -137,9 +137,9 @@ generar_numero() {
 }
 
 # determinar_color(numero)
-# Determina el color de un nÃºmero de la ruleta europea.
+# Determina el color de un número de la ruleta europea.
 # Argumentos:
-#   $1 - NÃºmero (0-36)
+#   $1 - Número (0-36)
 # Retorna: "rojo", "negro" o "verde" (stdout)
 determinar_color() {
   local -r num=$1
@@ -177,7 +177,7 @@ procesar_apuesta_refactor() {
       fi
       ;;
     color|mitad|par_impar)
-      # Delegar a funciones especÃ­ficas
+      # Delegar a funciones específicas
       ganancia=$(procesar_apuesta_simple "$tipo" "$eleccion" "$cantidad" "$resultado")
       ;;
   esac
@@ -187,31 +187,31 @@ procesar_apuesta_refactor() {
 
       <h2>Principios aplicados</h2>
       <pre><code># 1. DRY (Don't Repeat Yourself)
-# Antes: cÃ³digo duplicado en cada tipo de apuesta
-# DespuÃ©s: funciÃ³n genÃ©rica con parÃ¡metros
+# Antes: código duplicado en cada tipo de apuesta
+# Después: función genérica con parámetros
 
 # 2. SRP (Single Responsibility Principle)
 # Cada archivo tiene UNA responsabilidad clara
 # ui.sh -> solo interfaz
-# bets.sh -> solo lÃ³gica de apuestas
+# bets.sh -> solo lógica de apuestas
 
 # 3. KISS (Keep It Simple, Stupid)
-# Funciones pequeÃ±as (< 20 lÃ­neas)
-# Nombres descriptivos en inglÃ©s o espaÃ±ol consistente
+# Funciones pequeñas (< 20 líneas)
+# Nombres descriptivos en inglés o español consistente
 
-# 4. SeparaciÃ³n de configuraciÃ³n y lÃ³gica
+# 4. Separación de configuración y lógica
 # config.sh contiene solo variables
-# El resto del cÃ³digo solo las referencia</code></pre>
+# El resto del código solo las referencia</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ“ RefactorizaciÃ³n:</strong> Dividir el cÃ³digo en mÃ³dulos no solo lo hace mÃ¡s mantenible, sino que permite trabajar en equipo (cada persona en un archivo) y reutilizar funciones en otros proyectos.
+        <strong>📐 Refactorización:</strong> Dividir el código en módulos no solo lo hace más mantenible, sino que permite trabajar en equipo (cada persona en un archivo) y reutilizar funciones en otros proyectos.
       </div>
 
-      <p>El cÃ³digo refactorizado es mÃ¡s limpio y profesional. En la siguiente clase veremos pruebas y depuraciÃ³n.</p>
+      <p>El código refactorizado es más limpio y profesional. En la siguiente clase veremos pruebas y depuración.</p>
 
       <div class="lesson-nav">
-        <a href="clase-82.html">â† Anterior: Scripting en Bash [12-15]</a>
-        <a href="clase-84.html">Siguiente: Scripting en Bash [14-15] â†’</a>
+        <a href="clase-82.html">← Anterior: Scripting en Bash [12-15]</a>
+        <a href="clase-84.html">Siguiente: Scripting en Bash [14-15] →</a>
       </div>
     </div>
 
@@ -219,11 +219,11 @@ procesar_apuesta_refactor() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

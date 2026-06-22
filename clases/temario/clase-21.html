@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>21. Uso de bashrc y zshrc | IntroducciÃ³n a Linux</title>
+    <title>21. Uso de bashrc y zshrc | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,62 +138,62 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 21</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso de bashrc y zshrc</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 8:06 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 8:06 · Sección 2: Temario</div>
 
       <p>
-        Cada vez que abres una terminal, tu shell (bash, zsh, fish, etc.) lee archivos de configuraciÃ³n que definen variables de entorno, alias, funciones y la apariencia del prompt. El archivo mÃ¡s importante es <code>.bashrc</code> (para Bash) o <code>.zshrc</code> (para Zsh). Personalizar estos archivos es el primer paso para construir un entorno de trabajo eficiente.
+        Cada vez que abres una terminal, tu shell (bash, zsh, fish, etc.) lee archivos de configuración que definen variables de entorno, alias, funciones y la apariencia del prompt. El archivo más importante es <code>.bashrc</code> (para Bash) o <code>.zshrc</code> (para Zsh). Personalizar estos archivos es el primer paso para construir un entorno de trabajo eficiente.
       </p>
 
-      <h2>Â¿QuÃ© archivos de configuraciÃ³n existen?</h2>
+      <h2>¿Qué archivos de configuración existen?</h2>
 
       <table>
-        <tr><th>Archivo</th><th>CuÃ¡ndo se ejecuta</th></tr>
+        <tr><th>Archivo</th><th>Cuándo se ejecuta</th></tr>
         <tr><td><code>~/.bashrc</code></td><td>En cada nueva terminal interactiva (no login)</td></tr>
-        <tr><td><code>~/.bash_profile</code></td><td>Al iniciar sesiÃ³n (login shell)</td></tr>
+        <tr><td><code>~/.bash_profile</code></td><td>Al iniciar sesión (login shell)</td></tr>
         <tr><td><code>~/.profile</code></td><td>Alternativa a .bash_profile si no existe</td></tr>
-        <tr><td><code>~/.bash_logout</code></td><td>Al cerrar la sesiÃ³n</td></tr>
+        <tr><td><code>~/.bash_logout</code></td><td>Al cerrar la sesión</td></tr>
         <tr><td><code>~/.zshrc</code></td><td>En cada nueva terminal interactiva en Zsh</td></tr>
       </table>
 
-      <h3>Variables de entorno: PATH, PS1 y mÃ¡s</h3>
+      <h3>Variables de entorno: PATH, PS1 y más</h3>
 
-      <p>Las variables de entorno controlan el comportamiento del shell. Las mÃ¡s importantes:</p>
+      <p>Las variables de entorno controlan el comportamiento del shell. Las más importantes:</p>
 
       <pre><code>echo $PATH          # Directorios donde el shell busca ejecutables
 echo $PS1           # Formato del prompt
 echo $HOME          # Ruta del directorio personal
-echo $SHELL         # QuÃ© shell estÃ¡s usando</code></pre>
+echo $SHELL         # Qué shell estás usando</code></pre>
 
-      <p>Para aÃ±adir un directorio al PATH de forma permanente, edita tu <code>~/.bashrc</code>:</p>
+      <p>Para añadir un directorio al PATH de forma permanente, edita tu <code>~/.bashrc</code>:</p>
 
-      <pre><code># AÃ±adir ~/.local/bin al PATH
+      <pre><code># Añadir ~/.local/bin al PATH
 export PATH="$HOME/.local/bin:$PATH"</code></pre>
 
-      <h3>Alias: atajos que te ahorrarÃ¡n horas</h3>
+      <h3>Alias: atajos que te ahorrarán horas</h3>
 
-      <p>Un alias es un atajo para comandos largos. AquÃ­ tienes algunos esenciales para hacking:</p>
+      <p>Un alias es un atajo para comandos largos. Aquí tienes algunos esenciales para hacking:</p>
 
       <pre><code># En ~/.bashrc
 alias ll='ls -la'
@@ -206,26 +206,26 @@ alias g='grep -i'
 alias ports='netstat -tulanp'</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ Pro tip:</strong> Crea un alias <code>alias ip='curl -s ifconfig.me'</code> para conocer tu IP pÃºblica al instante. O <code>alias scan='nmap -sV -sC'</code> para escaneos rÃ¡pidos con nmap.
+        <strong>💡 Pro tip:</strong> Crea un alias <code>alias ip='curl -s ifconfig.me'</code> para conocer tu IP pública al instante. O <code>alias scan='nmap -sV -sC'</code> para escaneos rápidos con nmap.
       </div>
 
       <h3>Personalizar el prompt (PS1)</h3>
 
-      <p>El prompt puede mostrar informaciÃ³n Ãºtil: usuario, mÃ¡quina, directorio actual, hora, etc.</p>
+      <p>El prompt puede mostrar información útil: usuario, máquina, directorio actual, hora, etc.</p>
 
-      <pre><code># Prompt bÃ¡sico con colores
+      <pre><code># Prompt básico con colores
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
-# Prompt con fecha, hora y estado del Ãºltimo comando
+# Prompt con fecha, hora y estado del último comando
 PS1='[\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;34m\]\h\[\033[00m\] \t] \w\n\$ '
 
-# ExplicaciÃ³n: \u = usuario, \h = hostname, \w = ruta completa, \t = hora</code></pre>
+# Explicación: \u = usuario, \h = hostname, \w = ruta completa, \t = hora</code></pre>
 
       <h3>Ejemplo de .bashrc completo</h3>
 
-      <p>Este es un punto de partida sÃ³lido que puedes copiar directamente a tu mÃ¡quina:</p>
+      <p>Este es un punto de partida sólido que puedes copiar directamente a tu máquina:</p>
 
-      <pre><code># ~/.bashrc â€” ConfiguraciÃ³n personalizada
+      <pre><code># ~/.bashrc — Configuración personalizada
 
 # --- Variables de entorno ---
 export EDITOR=vim
@@ -262,14 +262,14 @@ extract() {
 export HISTCONTROL=ignoredups:erasedups</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ AtenciÃ³n:</strong> Si editas <code>.bashrc</code> y algo sale mal (el prompt se rompe o no puedes escribir), puedes arreglarlo ejecutando <code>/bin/bash --norc</code> para iniciar Bash sin configuraciones, o editar el archivo directamente con <code>vim ~/.bashrc</code> desde una terminal sin carga.
+        <strong>⚠️ Atención:</strong> Si editas <code>.bashrc</code> y algo sale mal (el prompt se rompe o no puedes escribir), puedes arreglarlo ejecutando <code>/bin/bash --norc</code> para iniciar Bash sin configuraciones, o editar el archivo directamente con <code>vim ~/.bashrc</code> desde una terminal sin carga.
       </div>
 
-      <p>DespuÃ©s de modificar <code>.bashrc</code>, aplica los cambios con <code>source ~/.bashrc</code> o abre una nueva terminal. Cada usuario en el sistema tiene su propio <code>.bashrc</code> en su <code>$HOME</code>, lo que permite personalizaciones individuales.</p>
+      <p>Después de modificar <code>.bashrc</code>, aplica los cambios con <code>source ~/.bashrc</code> o abre una nueva terminal. Cada usuario en el sistema tiene su propio <code>.bashrc</code> en su <code>$HOME</code>, lo que permite personalizaciones individuales.</p>
 
       <div class="lesson-nav">
-        <a href="clase-20.html">â† Anterior: Estructura de directorios del sistema</a>
-        <a href="clase-22.html">Siguiente: ActualizaciÃ³n y Upgradeo del sistema â†’</a>
+        <a href="clase-20.html">← Anterior: Estructura de directorios del sistema</a>
+        <a href="clase-22.html">Siguiente: Actualización y Upgradeo del sistema →</a>
       </div>
     </div>
 
@@ -277,11 +277,11 @@ export HISTCONTROL=ignoredups:erasedups</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

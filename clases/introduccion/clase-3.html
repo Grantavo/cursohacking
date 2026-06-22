@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Preparando Ubuntu para el curso | IntroducciÃ³n a Linux</title>
+    <title>3. Preparando Ubuntu para el curso | Introducción a Linux</title>
     <link
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -124,47 +124,47 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 3</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ubuntu Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ubuntu · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Preparando Ubuntu para el <em>curso</em></h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: â€” Â· SecciÃ³n 1: IntroducciÃ³n</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: — · Sección 1: Introducción</div>
 
       <p>
-        Ya tienes Ubuntu instalado y sabemos por quÃ© es una gran elecciÃ³n. Ahora vamos a prepararlo con todo lo necesario para el curso. Sigue estos pasos en tu terminal y tendrÃ¡s un entorno listo para aprender.
+        Ya tienes Ubuntu instalado y sabemos por qué es una gran elección. Ahora vamos a prepararlo con todo lo necesario para el curso. Sigue estos pasos en tu terminal y tendrás un entorno listo para aprender.
       </p>
 
       <h2>1. Actualizar el sistema</h2>
-      <p>Lo primero es asegurarte de que tu Ubuntu estÃ¡ al dÃ­a. Abre una terminal y ejecuta:</p>
+      <p>Lo primero es asegurarte de que tu Ubuntu está al día. Abre una terminal y ejecuta:</p>
       <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
-      <p><code>apt update</code> refresca la lista de paquetes disponibles y <code>apt upgrade</code> instala las actualizaciones. Dependiendo de cuÃ¡ndo actualizases por Ãºltima vez, puede tardar unos minutos.</p>
+      <p><code>apt update</code> refresca la lista de paquetes disponibles y <code>apt upgrade</code> instala las actualizaciones. Dependiendo de cuándo actualizases por última vez, puede tardar unos minutos.</p>
 
       <h2>2. Habilitar repositorios Universe y Multiverse</h2>
       <p>Ubuntu incluye varios repositorios. Los que nos interesan son:</p>
       <ul>
-        <li><strong>Main</strong> â€” paquetes oficiales mantenidos por Canonical (ya activo).</li>
-        <li><strong>Universe</strong> â€” paquetes mantenidos por la comunidad (muchas herramientas Ãºtiles).</li>
-        <li><strong>Multiverse</strong> â€” paquetes con licencias no libres (cÃ³decs, drivers, etc.).</li>
+        <li><strong>Main</strong> — paquetes oficiales mantenidos por Canonical (ya activo).</li>
+        <li><strong>Universe</strong> — paquetes mantenidos por la comunidad (muchas herramientas útiles).</li>
+        <li><strong>Multiverse</strong> — paquetes con licencias no libres (códecs, drivers, etc.).</li>
       </ul>
-      <p>ActÃ­valos con:</p>
+      <p>Actívalos con:</p>
       <pre><code>sudo add-apt-repository universe
 sudo add-apt-repository multiverse
 sudo apt update</code></pre>
@@ -174,19 +174,19 @@ sudo apt update</code></pre>
       <pre><code>sudo apt install -y curl wget git vim netcat-openbsd nmap openssh-server tmux htop tree</code></pre>
       <p>Te explico cada una:</p>
       <ul>
-        <li><strong>curl / wget</strong> â€” descargar archivos y hacer peticiones web desde terminal.</li>
-        <li><strong>git</strong> â€” control de versiones y clonar repositorios.</li>
-        <li><strong>vim</strong> â€” editor de texto potente para la terminal.</li>
-        <li><strong>netcat-openbsd</strong> â€” conexiones TCP/UDP, escaneo de puertos, transferencia de archivos.</li>
-        <li><strong>nmap</strong> â€” escaneo de redes y puertos.</li>
-        <li><strong>openssh-server</strong> â€” servidor SSH para conexiones remotas.</li>
-        <li><strong>tmux</strong> â€” multiplexor de terminal (varias sesiones en una ventana).</li>
-        <li><strong>htop</strong> â€” monitor de procesos interactivo y mÃ¡s visual que top.</li>
-        <li><strong>tree</strong> â€” muestra la estructura de directorios en Ã¡rbol.</li>
+        <li><strong>curl / wget</strong> — descargar archivos y hacer peticiones web desde terminal.</li>
+        <li><strong>git</strong> — control de versiones y clonar repositorios.</li>
+        <li><strong>vim</strong> — editor de texto potente para la terminal.</li>
+        <li><strong>netcat-openbsd</strong> — conexiones TCP/UDP, escaneo de puertos, transferencia de archivos.</li>
+        <li><strong>nmap</strong> — escaneo de redes y puertos.</li>
+        <li><strong>openssh-server</strong> — servidor SSH para conexiones remotas.</li>
+        <li><strong>tmux</strong> — multiplexor de terminal (varias sesiones en una ventana).</li>
+        <li><strong>htop</strong> — monitor de procesos interactivo y más visual que top.</li>
+        <li><strong>tree</strong> — muestra la estructura de directorios en árbol.</li>
       </ul>
 
       <div class="highlight">
-        <strong>ðŸ“¦ MÃ¡s adelante</strong> instalaremos otras herramientas segÃºn las necesitemos (como hydra, john, metasploit, etc.). Por ahora con estas es suficiente para empezar.
+        <strong>📦 Más adelante</strong> instalaremos otras herramientas según las necesitemos (como hydra, john, metasploit, etc.). Por ahora con estas es suficiente para empezar.
       </div>
 
       <h2>4. Configurar el firewall (opcional)</h2>
@@ -200,27 +200,27 @@ sudo ufw status</code></pre>
       <pre><code>mkdir -p ~/cursos/linux/{scripts,proyectos,notas,recursos}</code></pre>
       <p>Esto crea una estructura como:</p>
       <pre><code>~/cursos/linux/
-â”œâ”€â”€ scripts/     â†’ AquÃ­ irÃ¡n tus scripts en Bash
-â”œâ”€â”€ proyectos/   â†’ Proyectos del curso
-â”œâ”€â”€ notas/       â†’ Tus apuntes y resÃºmenes
-â””â”€â”€ recursos/    â†’ Archivos de apoyo</code></pre>
+├── scripts/     → Aquí irán tus scripts en Bash
+├── proyectos/   → Proyectos del curso
+├── notas/       → Tus apuntes y resúmenes
+└── recursos/    → Archivos de apoyo</code></pre>
 
       <h2>6. Hacer una copia de seguridad</h2>
       <p>Antes de empezar a hacer cambios en el sistema, es recomendable tener un respaldo por si algo sale mal:</p>
       <ul>
-        <li><strong>Timeshift</strong> â€” herramienta similar a los snapshots de VirtualBox pero para tu sistema real. InstÃ¡lala con <code>sudo apt install timeshift</code> y crea un snapshot inicial.</li>
-        <li>Si no quieres instalar nada adicional, al menos asegÃºrate de tener tus archivos importantes respaldados.</li>
+        <li><strong>Timeshift</strong> — herramienta similar a los snapshots de VirtualBox pero para tu sistema real. Instálala con <code>sudo apt install timeshift</code> y crea un snapshot inicial.</li>
+        <li>Si no quieres instalar nada adicional, al menos asegúrate de tener tus archivos importantes respaldados.</li>
       </ul>
 
       <div class="warning">
-        <strong>âš ï¸ Nota importante:</strong> Con 4 GB de RAM tienes suficiente para todo el curso. Ubuntu con GNOME consume ~1-1.5 GB en reposo, y las herramientas que usaremos son ligeras. Si notas el sistema lento, puedes cerrar navegadores y otras aplicaciones mientras practicas.
+        <strong>⚠️ Nota importante:</strong> Con 4 GB de RAM tienes suficiente para todo el curso. Ubuntu con GNOME consume ~1-1.5 GB en reposo, y las herramientas que usaremos son ligeras. Si notas el sistema lento, puedes cerrar navegadores y otras aplicaciones mientras practicas.
       </div>
 
       <p>Con todo esto listo, ya tenemos Ubuntu preparado. En la siguiente clase daremos los primeros pasos en el entorno.</p>
 
       <div class="lesson-nav">
-        <a href="clase-2.html">â† Anterior: Ubuntu como sistema para el curso</a>
-        <a href="clase-4.html">Siguiente: Primeros pasos en Ubuntu â†’</a>
+        <a href="clase-2.html">← Anterior: Ubuntu como sistema para el curso</a>
+        <a href="clase-4.html">Siguiente: Primeros pasos en Ubuntu →</a>
       </div>
     </div>
 
@@ -228,11 +228,11 @@ sudo ufw status</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

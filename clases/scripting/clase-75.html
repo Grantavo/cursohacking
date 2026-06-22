@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>75. Scripting en Bash [5-15] | IntroducciÃ³n a Linux</title>
+    <title>75. Scripting en Bash [5-15] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,32 +37,32 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 75</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <span class="course-tag">🐧 Bash · Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [5-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 31:24 Â· Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 31:24 · Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Implementamos el historial de jugadas usando arrays, estadÃ­sticas como nÃºmeros mÃ¡s frecuentes y racha de colores, y mostramos toda esta informaciÃ³n al jugador.
+        Implementamos el historial de jugadas usando arrays, estadísticas como números más frecuentes y racha de colores, y mostramos toda esta información al jugador.
       </p>
 
       <h2>Arrays para guardar resultados</h2>
@@ -95,7 +95,7 @@ registrar_jugada() {
   [[ "$SALDO" -gt "$MAX_SALDO" ]] && MAX_SALDO=$SALDO
 }</code></pre>
 
-      <h2>EstadÃ­sticas: nÃºmeros mÃ¡s frecuentes</h2>
+      <h2>Estadísticas: números más frecuentes</h2>
       <p>Usamos un array asociativo para contar frecuencias:</p>
       <pre><code>numeros_mas_frecuentes() {
   declare -A frecuencias
@@ -107,15 +107,15 @@ registrar_jugada() {
   done
 
   # Ordenar por frecuencia (usando sort externo)
-  echo "NÃºmeros mÃ¡s frecuentes:"
+  echo "Números más frecuentes:"
   for num in "${!frecuencias[@]}"; do
     echo "$num:${frecuencias[$num]}"
   done | sort -t: -k2 -rn | head -5 | while IFS=: read -r num freq; do
-    printf "  NÃºmero %2d: %d veces\n" "$num" "$freq"
+    printf "  Número %2d: %d veces\n" "$num" "$freq"
   done
 }</code></pre>
 
-      <h2>EstadÃ­sticas: racha de colores</h2>
+      <h2>Estadísticas: racha de colores</h2>
       <pre><code>racha_actual() {
   local color_objetivo=$1
   local racha=0
@@ -153,20 +153,20 @@ mayor_racha() {
 }</code></pre>
 
       <h2>Mostrar historial</h2>
-      <p>Visualizamos las Ãºltimas jugadas en una tabla:</p>
+      <p>Visualizamos las últimas jugadas en una tabla:</p>
       <pre><code>mostrar_historial() {
-  echo "${BOLD}Ãšltimas jugadas:${RESET}"
+  echo "${BOLD}Últimas jugadas:${RESET}"
   echo
 
   local start=0
-  local limit=20  # Mostrar Ãºltimas 20
+  local limit=20  # Mostrar últimas 20
   local total=${#HISTORIAL[@]}
 
   if [[ "$total" -gt "$limit" ]]; then
     start=$(( total - limit ))
   fi
 
-  printf "%-4s %-6s %-8s %-8s %-10s\n" "#" "NÃºm" "Color" "Apuesta" "Resultado"
+  printf "%-4s %-6s %-8s %-8s %-10s\n" "#" "Núm" "Color" "Apuesta" "Resultado"
   echo "----------------------------------------"
 
   for (( i = start; i < total; i++ )); do
@@ -181,25 +181,25 @@ mayor_racha() {
 
     local result_display
     if [[ "$resultado" == "ganada" ]]; then
-      result_display="${VERDE}âœ“ +\$$ganancia${RESET}"
+      result_display="${VERDE}✓ +\$$ganancia${RESET}"
     else
-      result_display="${ROJO}âœ— -\$$apuesta${RESET}"
+      result_display="${ROJO}✗ -\$$apuesta${RESET}"
     fi
 
     printf "%-4d %-6s %b %-8s %b\n" "$((i+1))" "$num" "$color_display" "\$$apuesta" "$result_display"
   done
 }</code></pre>
 
-      <h2>Panel de estadÃ­sticas completo</h2>
+      <h2>Panel de estadísticas completo</h2>
       <pre><code>mostrar_estadisticas() {
   clear
-  echo "${BOLD}${AZUL}â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
-  echo "${BOLD}         ðŸ“Š ESTADÃSTICAS${RESET}"
-  echo "${BOLD}${AZUL}â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
+  echo "${BOLD}${AZUL}═══════════════════════════════════${RESET}"
+  echo "${BOLD}         📊 ESTADÍSTICAS${RESET}"
+  echo "${BOLD}${AZUL}═══════════════════════════════════${RESET}"
   echo
 
   if [[ "$TOTAL_JUGADAS" -eq 0 ]]; then
-    echo "AÃºn no hay jugadas registradas."
+    echo "Aún no hay jugadas registradas."
     return
   fi
 
@@ -215,7 +215,7 @@ mayor_racha() {
   echo "Perdidas:           ${ROJO}$TOTAL_PERDIDAS${RESET}"
   echo "Winrate:            ${AMARILLO}${winrate}%${RESET}"
   echo "Saldo actual:       ${VERDE}\$${SALDO}${RESET}"
-  echo "Saldo mÃ¡ximo:       ${VERDE}\$${MAX_SALDO}${RESET}"
+  echo "Saldo máximo:       ${VERDE}\$${MAX_SALDO}${RESET}"
   echo "Racha rojo actual:  ${ROJO}$racha_rojo${RESET}"
   echo "Racha negro actual: ${BLANCO}$racha_negro${RESET}"
   echo
@@ -227,14 +227,14 @@ mayor_racha() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ’¡ bc para decimales:</strong> Bash solo soporta aritmÃ©tica entera. Para el winrate (porcentaje con decimales) usamos <code>bc</code>, una calculadora de precisiÃ³n arbitraria.
+        <strong>💡 bc para decimales:</strong> Bash solo soporta aritmética entera. Para el winrate (porcentaje con decimales) usamos <code>bc</code>, una calculadora de precisión arbitraria.
       </div>
 
-      <p>Las estadÃ­sticas dan feedback valioso al jugador. En la siguiente clase implementaremos la persistencia con archivos.</p>
+      <p>Las estadísticas dan feedback valioso al jugador. En la siguiente clase implementaremos la persistencia con archivos.</p>
 
       <div class="lesson-nav">
-        <a href="clase-74.html">â† Anterior: Scripting en Bash [4-15]</a>
-        <a href="clase-76.html">Siguiente: Scripting en Bash [6-15] â†’</a>
+        <a href="clase-74.html">← Anterior: Scripting en Bash [4-15]</a>
+        <a href="clase-76.html">Siguiente: Scripting en Bash [6-15] →</a>
       </div>
     </div>
 
@@ -242,11 +242,11 @@ mayor_racha() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

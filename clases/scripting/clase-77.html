@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>77. Scripting en Bash [7-15] | IntroducciÃ³n a Linux</title>
+    <title>77. Scripting en Bash [7-15] | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -37,44 +37,44 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 77</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <span class="course-tag">🐧 Bash · Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [7-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 24:36 Â· Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 24:36 · Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Implementamos un modo trampa para demostraciones y pruebas: predecir nÃºmeros (simulado), cambiar el saldo, y banderas de depuraciÃ³n para controlar el comportamiento del juego.
+        Implementamos un modo trampa para demostraciones y pruebas: predecir números (simulado), cambiar el saldo, y banderas de depuración para controlar el comportamiento del juego.
       </p>
 
-      <h2>Modo trampa: predecir nÃºmeros</h2>
-      <p>Simulamos "predicciÃ³n" del prÃ³ximo nÃºmero (en realidad es solo el generador normal):</p>
+      <h2>Modo trampa: predecir números</h2>
+      <p>Simulamos "predicción" del próximo número (en realidad es solo el generador normal):</p>
       <pre><code>MODO_TRAMPA=false
 
 activar_modo_trampa() {
   MODO_TRAMPA=true
-  echo "${MAGENTA}${BOLD}âš ï¸ MODO TRAMPA ACTIVADO${RESET}"
-  echo "â€¢ Puedes predecir nÃºmeros (simulado)"
-  echo "â€¢ Puedes cambiar el saldo"
-  echo "â€¢ Las estadÃ­sticas no cuentan para logros"
+  echo "${MAGENTA}${BOLD}⚠️ MODO TRAMPA ACTIVADO${RESET}"
+  echo "• Puedes predecir números (simulado)"
+  echo "• Puedes cambiar el saldo"
+  echo "• Las estadísticas no cuentan para logros"
   sleep 1
 }
 
@@ -84,13 +84,13 @@ predecir_numero() {
     return 1
   fi
 
-  # SimulaciÃ³n: mostraremos los prÃ³ximos 3 nÃºmeros
-  echo "${MAGENTA}PredicciÃ³n de prÃ³xima jugada:${RESET}"
+  # Simulación: mostraremos los próximos 3 números
+  echo "${MAGENTA}Predicción de próxima jugada:${RESET}"
   for (( i = 1; i <= 3; i++ )); do
     local num color
     num=$(( RANDOM % 37 ))
     color=$(determinar_color "$num")
-    printf "  %d. %s %d (%s)\n" "$i" "$([ "$color" = "rojo" ] && echo "$ROJO" || ([ "$color" = "verde" ] && echo "$VERDE") || echo "$BLANCO")â—${RESET}" "$num" "$color"
+    printf "  %d. %s %d (%s)\n" "$i" "$([ "$color" = "rojo" ] && echo "$ROJO" || ([ "$color" = "verde" ] && echo "$VERDE") || echo "$BLANCO")●${RESET}" "$num" "$color"
   done
 }</code></pre>
 
@@ -105,7 +105,7 @@ predecir_numero() {
   read -r -p "Nuevo saldo: " nuevo_saldo
 
   if ! [[ "$nuevo_saldo" =~ ^[0-9]+$ ]] || [[ "$nuevo_saldo" -le 0 ]]; then
-    print_error "Saldo invÃ¡lido"
+    print_error "Saldo inválido"
     return
   fi
 
@@ -121,8 +121,8 @@ predecir_numero() {
   [[ "$SALDO" -gt "$MAX_SALDO" ]] && MAX_SALDO=$SALDO
 }</code></pre>
 
-      <h2>Forzar resultado especÃ­fico</h2>
-      <p>Para probar casos borde, forzamos un nÃºmero concreto:</p>
+      <h2>Forzar resultado específico</h2>
+      <p>Para probar casos borde, forzamos un número concreto:</p>
       <pre><code>FORZAR_RESULTADO=-1
 
 forzar_numero() {
@@ -131,7 +131,7 @@ forzar_numero() {
     return
   fi
 
-  read -r -p "NÃºmero a forzar (0-36, -1 para desactivar): " num
+  read -r -p "Número a forzar (0-36, -1 para desactivar): " num
 
   if [[ "$num" -eq -1 ]]; then
     FORZAR_RESULTADO=-1
@@ -140,12 +140,12 @@ forzar_numero() {
   fi
 
   if ! [[ "$num" =~ ^[0-9]+$ ]] || [[ "$num" -lt 0 ]] || [[ "$num" -gt 36 ]]; then
-    print_error "NÃºmero invÃ¡lido (0-36)"
+    print_error "Número inválido (0-36)"
     return
   fi
 
   FORZAR_RESULTADO=$num
-  echo "${MAGENTA}${BOLD}âš ï¸ PrÃ³ximo nÃºmero forzado: $num${RESET}"
+  echo "${MAGENTA}${BOLD}⚠️ Próximo número forzado: $num${RESET}"
 }
 
 # Modificar girar_ruleta para usar forzado
@@ -170,9 +170,9 @@ girar_ruleta() {
   echo "$numero|$color|$paridad"
 }</code></pre>
 
-      <h2>Banderas de depuraciÃ³n</h2>
-      <p>AÃ±adimos opciones de lÃ­nea de comandos para controlar el modo trampa:</p>
-      <pre><code># Opciones de lÃ­nea de comandos
+      <h2>Banderas de depuración</h2>
+      <p>Añadimos opciones de línea de comandos para controlar el modo trampa:</p>
+      <pre><code># Opciones de línea de comandos
 while getopts "s:t:d:h" opt; do
   case $opt in
     s) SALDO="$OPTARG" ;;
@@ -186,7 +186,7 @@ while getopts "s:t:d:h" opt; do
       echo "  -h           Mostrar ayuda"
       exit 0
       ;;
-    *) echo "OpciÃ³n invÃ¡lida"; exit 1 ;;
+    *) echo "Opción inválida"; exit 1 ;;
   esac
 done
 
@@ -194,11 +194,11 @@ if [[ "$DEBUG_MODE" == true ]]; then
   set -x  # Mostrar cada comando antes de ejecutarlo
 fi</code></pre>
 
-      <h2>MenÃº de depuraciÃ³n</h2>
+      <h2>Menú de depuración</h2>
       <pre><code>menu_debug() {
   while true; do
-    echo "${BOLD}${MAGENTA}â•â•â•â•â•â• MENÃš DEBUG â•â•â•â•â•â•${RESET}"
-    select opt in "Activar/Desactivar trampa" "Predecir nÃºmeros" "Cambiar saldo" "Forzar nÃºmero" "Ver variables" "Volver"; do
+    echo "${BOLD}${MAGENTA}══════ MENÚ DEBUG ══════${RESET}"
+    select opt in "Activar/Desactivar trampa" "Predecir números" "Cambiar saldo" "Forzar número" "Ver variables" "Volver"; do
       case $opt in
         "Activar/Desactivar trampa")
           if [[ "$MODO_TRAMPA" == true ]]; then
@@ -209,9 +209,9 @@ fi</code></pre>
           fi
           break
           ;;
-        "Predecir nÃºmeros") predecir_numero; break ;;
+        "Predecir números") predecir_numero; break ;;
         "Cambiar saldo") cambiar_saldo; break ;;
-        "Forzar nÃºmero") forzar_numero; break ;;
+        "Forzar número") forzar_numero; break ;;
         "Ver variables")
           echo "SALDO=$SALDO APUESTA=$APUESTA TRAMPA=$MODO_TRAMPA FORZADO=$FORZAR_RESULTADO"
           echo "JUGADAS=$TOTAL_JUGADAS GANADAS=$TOTAL_GANADAS PERDIDAS=$TOTAL_PERDIDAS"
@@ -224,14 +224,14 @@ fi</code></pre>
 }</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸ SÃ³lo para desarrollo:</strong> El modo trampa estÃ¡ diseÃ±ado para pruebas y demostraciones. No hagas trampa en juegos reales (o en la vida real). Ãšsalo para entender cÃ³mo funciona la lÃ³gica y probar casos borde.
+        <strong>⚠️ Sólo para desarrollo:</strong> El modo trampa está diseñado para pruebas y demostraciones. No hagas trampa en juegos reales (o en la vida real). Úsalo para entender cómo funciona la lógica y probar casos borde.
       </div>
 
       <p>El modo trampa facilita las pruebas. En la siguiente clase implementaremos estrategias de apuesta automatizadas.</p>
 
       <div class="lesson-nav">
-        <a href="clase-76.html">â† Anterior: Scripting en Bash [6-15]</a>
-        <a href="clase-78.html">Siguiente: Scripting en Bash [8-15] â†’</a>
+        <a href="clase-76.html">← Anterior: Scripting en Bash [6-15]</a>
+        <a href="clase-78.html">Siguiente: Scripting en Bash [8-15] →</a>
       </div>
     </div>
 
@@ -239,11 +239,11 @@ fi</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

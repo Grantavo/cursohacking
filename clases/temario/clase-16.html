@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>16. Control de atributos de ficheros en Linux - Chattr y Lsattr | IntroducciÃ³n a Linux</title>
+    <title>16. Control de atributos de ficheros en Linux - Chattr y Lsattr | Introducción a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -138,64 +138,64 @@
       <ul class="nav-links">
         <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">ConÃ³cenos</a></li>
+        <li><a href="#">Conócenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesiÃ³n</button>
+        <button class="btn-ghost">Iniciar sesión</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../index.html">Inicio</a><span>â€º</span>
-        <a href="../../index.html">Cursos</a><span>â€º</span>
-        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
+        <a href="../../index.html">Inicio</a><span>›</span>
+        <a href="../../index.html">Cursos</a><span>›</span>
+        <a href="../../index.html">Introducción a Linux</a><span>›</span>
         <span style="color: var(--text-2);">Clase 16</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <a href="../../index.html" class="back-link">← Volver al curso</a>
 
-      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Control de atributos de ficheros en Linux - Chattr y Lsattr</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 3:54 Â· SecciÃ³n 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:54 · Sección 2: Temario</div>
 
       <p>
-        Los permisos tradicionales (rwx) no son la Ãºnica capa de seguridad en Linux. Los atributos extendidos con <code>chattr</code> y <code>lsattr</code> permiten controlar propiedades adicionales de los archivos a nivel del sistema de archivos.
+        Los permisos tradicionales (rwx) no son la única capa de seguridad en Linux. Los atributos extendidos con <code>chattr</code> y <code>lsattr</code> permiten controlar propiedades adicionales de los archivos a nivel del sistema de archivos.
       </p>
 
       <h2>Atributos principales</h2>
 
       <table>
-        <tr><th>Atributo</th><th>Nombre</th><th>DescripciÃ³n</th></tr>
+        <tr><th>Atributo</th><th>Nombre</th><th>Descripción</th></tr>
         <tr><td>i</td><td>Immutable</td><td>El archivo no se puede modificar, eliminar, renombrar ni enlazar. Ni siquiera root puede hacerlo sin quitar primero este atributo.</td></tr>
-        <tr><td>a</td><td>Append only</td><td>Solo se puede aÃ±adir contenido al final. Ãštil para logs.</td></tr>
-        <tr><td>u</td><td>Undeletable</td><td>Se guarda una copia del archivo al eliminarlo (posible recuperaciÃ³n).</td></tr>
-        <tr><td>c</td><td>Compressed</td><td>El archivo se comprime automÃ¡ticamente en disco.</td></tr>
+        <tr><td>a</td><td>Append only</td><td>Solo se puede añadir contenido al final. Útil para logs.</td></tr>
+        <tr><td>u</td><td>Undeletable</td><td>Se guarda una copia del archivo al eliminarlo (posible recuperación).</td></tr>
+        <tr><td>c</td><td>Compressed</td><td>El archivo se comprime automáticamente en disco.</td></tr>
         <tr><td>s</td><td>Secure deletion</td><td>Se sobrescribe con ceros al eliminar (no recuperable).</td></tr>
       </table>
 
-      <h2>Comandos bÃ¡sicos</h2>
+      <h2>Comandos básicos</h2>
 
       <pre><code>lsattr archivo.txt             # Muestra los atributos de un archivo
 lsattr -R /directorio/         # Muestra atributos recursivamente
-chattr +i archivo.txt          # AÃ±ade el atributo immutable
+chattr +i archivo.txt          # Añade el atributo immutable
 chattr -i archivo.txt          # Quita el atributo immutable
-chattr +a /var/log/syslog      # AÃ±ade append-only al log</code></pre>
+chattr +a /var/log/syslog      # Añade append-only al log</code></pre>
 
       <div class="highlight">
-        <strong>ðŸ”’ ProtecciÃ³n crÃ­tica:</strong> <code>chattr +i /etc/passwd</code> evita que se modifique el archivo de usuarios, incluso si alguien obtiene acceso root. Es una medida de hardening bÃ¡sica.
+        <strong>🔒 Protección crítica:</strong> <code>chattr +i /etc/passwd</code> evita que se modifique el archivo de usuarios, incluso si alguien obtiene acceso root. Es una medida de hardening básica.
       </div>
 
-      <h2>Ejemplo prÃ¡ctico: proteger <code>/etc/passwd</code></h2>
+      <h2>Ejemplo práctico: proteger <code>/etc/passwd</code></h2>
 
       <pre><code># Ver atributos actuales
 lsattr /etc/passwd
 # ----i-------- /etc/passwd   (si ya tiene la i)
 
-# AÃ±adir inmutable
+# Añadir inmutable
 sudo chattr +i /etc/passwd
 
 # Intentar modificar
@@ -205,19 +205,19 @@ sudo useradd hacker           # Error: no se puede modificar /etc/passwd
 sudo chattr -i /etc/passwd</code></pre>
 
       <div class="warning">
-        <strong>âš ï¸</strong> El atributo <code>i</code> es tan restrictivo que ni siquiera root puede sobrescribir el archivo. Para modificarlo, debes quitar el atributo primero y luego volver a ponerlo. Ãšsalo con cuidado en archivos del sistema.
+        <strong>⚠️</strong> El atributo <code>i</code> es tan restrictivo que ni siquiera root puede sobrescribir el archivo. Para modificarlo, debes quitar el atributo primero y luego volver a ponerlo. Úsalo con cuidado en archivos del sistema.
       </div>
 
       <h2>Casos de uso</h2>
       <ul>
-        <li><strong>+i</strong> en binarios crÃ­ticos (<code>/bin/ls</code>, <code>/usr/bin/sudo</code>) para evitar modificaciones maliciosas</li>
+        <li><strong>+i</strong> en binarios críticos (<code>/bin/ls</code>, <code>/usr/bin/sudo</code>) para evitar modificaciones maliciosas</li>
         <li><strong>+a</strong> en logs (<code>/var/log/auth.log</code>) para que nadie pueda borrar el historial</li>
-        <li><strong>+i</strong> en claves SSH (<code>~/.ssh/authorized_keys</code>) para evitar que scripts maliciosos aÃ±adan claves</li>
+        <li><strong>+i</strong> en claves SSH (<code>~/.ssh/authorized_keys</code>) para evitar que scripts maliciosos añadan claves</li>
       </ul>
 
       <div class="lesson-nav">
-        <a href="clase-15.html">â† Anterior: Sticky Bit</a>
-        <a href="clase-17.html">Siguiente: SUID y SGID â†’</a>
+        <a href="clase-15.html">← Anterior: Sticky Bit</a>
+        <a href="clase-17.html">Siguiente: SUID y SGID →</a>
       </div>
     </div>
 
@@ -225,11 +225,11 @@ sudo chattr -i /etc/passwd</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">PolÃ­tica de Cookies</a>
+        <a href="#">Política de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">TÃ©rminos y Condiciones</a>
+        <a href="#">Términos y Condiciones</a>
       </div>
-      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>
