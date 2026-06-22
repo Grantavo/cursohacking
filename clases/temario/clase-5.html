@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Comandos básicos de Linux [1-2] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 5</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Comandos básicos de Linux [1-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 10:46 · Sección 2: Temario</div>
+
+      <p>
+        En esta clase aprenderás los comandos esenciales para moverte y manipular archivos en Linux. Dominar estos comandos es el primer paso para sentirte cómodo en la terminal.
+      </p>
+
+      <h2>Estructura de sintaxis</h2>
+      <p>Todo comando en Linux sigue esta estructura general:</p>
+      <pre><code>comando [opciones] [argumentos]</code></pre>
+      <p>
+        Las <strong>opciones</strong> modifican el comportamiento del comando (suelen ir precedidas de <code>-</code> o <code>--</code>), y los <strong>argumentos</strong> son los objetivos sobre los que actúa (archivos, directorios, etc.).
+      </p>
+
+      <h2>Navegación: <code>pwd</code>, <code>ls</code>, <code>cd</code></h2>
+
+      <p><code>pwd</code> (print working directory) muestra la ruta absoluta del directorio actual:</p>
+      <pre><code>pwd
+/home/usuario</code></pre>
+
+      <p><code>ls</code> lista el contenido de un directorio:</p>
+      <pre><code>ls          # Listado simple
+ls -l       # Listado detallado (permisos, dueño, tamaño, fecha)
+ls -la      # Listado detallado incluyendo archivos ocultos
+ls -lh      # Tamaños en formato legible (KB, MB)</code></pre>
+
+      <p><code>cd</code> cambia de directorio:</p>
+      <pre><code>cd /tmp            # Ir a /tmp
+cd ~               # Ir al home del usuario
+cd ..              # Subir un nivel
+cd -               # Volver al directorio anterior</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Tip:</strong> Usa la tecla <code>Tab</code> para autocompletar rutas y nombres de archivos. Si hay múltiples coincidencias, pulsa Tab dos veces para verlas.
+      </div>
+
+      <h2>Creación de archivos y directorios</h2>
+
+      <p><code>mkdir</code> crea directorios. <code>touch</code> crea archivos vacíos o actualiza su fecha de modificación:</p>
+      <pre><code>mkdir proyectos                    # Crea un directorio
+mkdir -p proyectos/web/css         # Crea toda la estructura de subdirectorios
+touch notas.txt                    # Crea un archivo vacío
+touch -t 202401011200 notas.txt    # Cambia la fecha a 1 Ene 2024 12:00</code></pre>
+
+      <h2>Eliminación: <code>rm</code> y <code>rmdir</code></h2>
+
+      <pre><code>rm archivo.txt                     # Elimina un archivo
+rm -r directorio/                  # Elimina un directorio y su contenido
+rm -rf directorio/                 # Elimina sin pedir confirmación (¡cuidado!)
+rmdir directorio_vacio/            # Solo elimina directorios vacíos</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Precaución:</strong> <code>rm -rf</code> no pide confirmación. Un <code>rm -rf /</code> borraría todo el sistema. Siempre revisa antes de ejecutar.
+      </div>
+
+      <h2>Copiar y mover: <code>cp</code> y <code>mv</code></h2>
+
+      <pre><code>cp origen.txt destino.txt          # Copia un archivo
+cp -r carpeta/ backup/             # Copia un directorio recursivamente
+mv viejo.txt nuevo.txt             # Renombra un archivo
+mv archivo.txt ~/Documentos/       # Mueve un archivo a otro directorio</code></pre>
+
+      <h2>Visualización: <code>cat</code>, <code>echo</code></h2>
+
+      <pre><code>cat archivo.txt                    # Muestra el contenido completo
+cat -n archivo.txt                 # Muestra con números de línea
+echo "Hola mundo"                  # Imprime texto en la terminal
+echo "texto" > archivo.txt         # Escribe "texto" en archivo (sobrescribe)
+echo "más texto" >> archivo.txt    # Añade "más texto" al final</code></pre>
+
+      <h2>Ayuda integrada: <code>man</code></h2>
+
+      <p>El manual es tu mejor amigo. Cualquier comando se puede consultar con:</p>
+      <pre><code>man ls           # Muestra el manual de ls
+man -k permisos  # Busca páginas que contengan "permisos"
+man 5 crontab    # Muestra la sección 5 del manual (formatos)</code></pre>
+
+      <div class="highlight">
+        <strong>📖</strong> Dentro de <code>man</code> navega con las flechas, busca con <code>/</code> y sal con <code>q</code>. Las páginas están organizadas en secciones: 1=comandos, 2=llamadas al sistema, 3=liberías, 5=formatos, 8=administración.
+      </div>
+
+      <h2>Ejercicio práctico</h2>
+      <p>Crea esta estructura de directorios y archivos en tu terminal:</p>
+      <pre><code>mkdir -p ~/practica/{documentos,scripts,backup}
+cd ~/practica
+touch notas.txt scripts/hola.sh
+echo '#!/bin/bash' > scripts/hola.sh
+echo 'echo "Hola desde la terminal"' >> scripts/hola.sh
+cp scripts/hola.sh backup/
+ls -laR</code></pre>
+
+      <div class="lesson-nav">
+        <a href="../introduccion/clase-4.html">← Anterior: Instalación del sistema operativo</a>
+        <a href="clase-6.html">Siguiente: Comandos básicos [2-2] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>64. Scripting en Bash [1-6] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 64</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [1-6]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 23:52 · Proyecto 1: Buscador HTB</div>
+
+      <p>
+        Empezamos a escribir el script del buscador de HTB. En esta clase configuraremos la base: shebang, variables de configuración, colores con <code>tput</code>, la función <code>print_banner</code> y el análisis de argumentos con <code>getopts</code>.
+      </p>
+
+      <h2>Configuración inicial</h2>
+      <p>Creamos el archivo <code>htb_search.sh</code> con el shebang y las variables de configuración:</p>
+      <pre><code>#!/bin/bash
+
+# === CONFIGURACIÓN ===
+HTB_TOKEN="${HTB_TOKEN:-}"
+API_URL="https://www.hackthebox.com/api/machines"
+CACHE_DIR="${HOME}/.cache/htb_search"
+CACHE_TTL=300  # 5 minutos
+
+# Colores con tput
+BOLD=$(tput bold)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+BLUE=$(tput setaf 4)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+RESET=$(tput sgr0)</code></pre>
+
+      <h2>Función print_banner</h2>
+      <p>Mostramos un banner ASCII al iniciar el script:</p>
+      <pre><code>print_banner() {
+  clear
+  echo "${CYAN}${BOLD}"
+  echo '  ██╗  ██╗████████╗██████╗      ███████╗██╗  ██╗'
+  echo '  ██║  ██║╚══██╔══╝██╔══██╗    ██╔════╝██║  ██║'
+  echo '  ███████║   ██║   ██████╔╝    █████╗  ███████║'
+  echo '  ██╔══██║   ██║   ██╔══██╗    ██╔══╝  ██╔══██║'
+  echo '  ██║  ██║   ██║   ██████╔╝    ███████╗██║  ██║'
+  echo '  ╚═╝  ╚═╝   ╚═╝   ╚═════╝     ╚══════╝╚═╝  ╚═╝'
+  echo "${RESET}"
+  echo "${YELLOW}   Buscador de máquinas HackTheBox${RESET}"
+  echo
+}</code></pre>
+
+      <h2>Análisis de argumentos con getopts</h2>
+      <p>Procesamos las opciones de línea de comandos:</p>
+      <pre><code># === ANÁLISIS DE ARGUMENTOS ===
+MODE="search"
+OS=""
+DIFFICULTY=""
+NAME=""
+INTERACTIVE=false
+DEBUG=false
+
+usage() {
+  echo "Uso: $0 [opciones]"
+  echo "  -n <nombre>    Buscar por nombre"
+  echo "  -o <os>        Filtrar por SO (Linux/Windows)"
+  echo "  -d <dificultad> Filtrar por dificultad (easy/medium/hard/insane)"
+  echo "  -i             Modo interactivo"
+  echo "  -D             Modo debug"
+  echo "  -h             Mostrar ayuda"
+  exit 0
+}
+
+while getopts "n:o:d:iDh" opt; do
+  case $opt in
+    n) NAME="$OPTARG" ;;
+    o) OS="$OPTARG" ;;
+    d) DIFFICULTY="$OPTARG" ;;
+    i) INTERACTIVE=true ;;
+    D) DEBUG=true ;;
+    h) usage ;;
+    *) usage ;;
+  esac
+done</code></pre>
+
+      <h2>Validación del token</h2>
+      <div class="highlight">
+        <strong>🔐 Token de API:</strong> Establece tu token como variable de entorno antes de ejecutar:<br/>
+        <code>export HTB_TOKEN="tu_token_aqui"</code><br/>
+        O créalo en un archivo <code>.env</code> y cárgalo con <code>source .env</code>.
+      </div>
+
+      <pre><code># Validar token
+if [[ -z "$HTB_TOKEN" ]]; then
+  echo "${RED}${BOLD}Error:${RESET} HTB_TOKEN no está configurado."
+  echo "Ejecuta: export HTB_TOKEN='tu_token'"
+  exit 1
+fi</code></pre>
+
+      <p>Con esto tenemos la base del script. En la siguiente clase añadiremos las funciones auxiliares y la conexión a la API.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-63.html">← Anterior: Introducción al Proyecto 1</a>
+        <a href="clase-65.html">Siguiente: Scripting en Bash [2-6] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Ubuntu como sistema para el curso | Introducción a Linux</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 2</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ubuntu · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Ubuntu como sistema para el <em>curso</em></h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: — · Sección 1: Introducción</div>
+
+      <p>
+        En la clase anterior te dimos la bienvenida. Ahora vamos a entender por qué <strong>Ubuntu</strong> es una elección fantástica para aprender Linux, especialmente cuando ya lo tienes instalado en tu equipo y no necesitas máquinas virtuales.
+      </p>
+
+      <h2>¿Por qué Ubuntu?</h2>
+      <p>
+        <strong>Ubuntu</strong> es, con diferencia, la distribución de Linux más utilizada del mundo. Está basada en Debian (como Kali y Parrot), pero está diseñada para el usuario general: escritorio, desarrollo, servidores y, por supuesto, ciberseguridad. Canonical, la empresa que mantiene Ubuntu, ofrece un soporte excelente y una comunidad enorme.
+      </p>
+      <ul>
+        <li><strong>Comunidad masiva:</strong> Cualquier duda que tengas ya ha sido respondida en foros, AskUbuntu, Reddit o StackOverflow.</li>
+        <li><strong>Documentación extensa:</strong> La wiki de Ubuntu y los tutoriales oficiales cubren absolutamente todo.</li>
+        <li><strong>APT y Snap:</strong> El gestor de paquetes <code>apt</code> es el mismo que usa Kali, por lo que todo lo que aprendas es directamente transferible.</li>
+        <li><strong>Estabilidad:</strong> Ubuntu LTS (Long Term Support) recibe actualizaciones durante 5 años o más.</li>
+      </ul>
+
+      <h2>Ubuntu vs Kali vs Parrot</h2>
+      <p>
+        Una pregunta frecuente es: "Si el curso trata de ciberseguridad, ¿no debería usar Kali Linux?" La respuesta es que los conceptos fundamentales de Linux son <strong>exactamente los mismos</strong> en todas las distribuciones basadas en Debian. La diferencia principal son las herramientas preinstaladas y la configuración por defecto.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th>Ubuntu</th>
+            <th>Kali Linux</th>
+            <th>Parrot OS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Base</strong></td>
+            <td>Debian (estable)</td>
+            <td>Debian (testing)</td>
+            <td>Debian (testing)</td>
+          </tr>
+          <tr>
+            <td><strong>Enfoque</strong></td>
+            <td>Uso general</td>
+            <td>Pentesting profesional</td>
+            <td>Pentesting + privacidad</td>
+          </tr>
+          <tr>
+            <td><strong>Herramientas preinstaladas</strong></td>
+            <td>Mínimas (las justas)</td>
+            <td>600+ herramientas</td>
+            <td>400+ herramientas</td>
+          </tr>
+          <tr>
+            <td><strong>Actualizaciones</strong></td>
+            <td>LTS cada 2 años</td>
+            <td>Rolling (continuo)</td>
+            <td>Rolling (continuo)</td>
+          </tr>
+          <tr>
+            <td><strong>Usuario por defecto</strong></td>
+            <td>Usuario estándar con sudo</td>
+            <td>Root directamente</td>
+            <td>Usuario estándar con sudo</td>
+          </tr>
+          <tr>
+            <td><strong>Ideal para</strong></td>
+            <td>Aprender Linux, desarrollo, servidores</td>
+            <td>Auditorías, CTF, pentesting</td>
+            <td>Pentesting, anonimato</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Ventajas de usar Ubuntu como sistema real</h2>
+      <p>Al trabajar directamente sobre Ubuntu (sin VM), obtienes ventajas importantes frente a la virtualización:</p>
+      <ul>
+        <li><strong>Rendimiento nativo:</strong> Aprovechas toda tu RAM (4 GB) y CPU sin pérdidas por virtualización.</li>
+        <li><strong>Sin sobrecarga:</strong> No necesitas reservar recursos para un hipervisor ni para el sistema anfitrión.</li>
+        <li><strong>Integración total:</strong> Tus archivos, configuraciones y programas están todos al alcance, sin tener que compartir carpetas entre host y VM.</li>
+        <li><strong>Experiencia real:</strong> Al trabajar en tu sistema del día a día, el aprendizaje es más auténtico y aplicable.</li>
+      </ul>
+
+      <div class="highlight">
+        <strong>⚡ ¿Y las herramientas de Kali?</strong> No te preocupes. Todas las herramientas de Kali Linux se pueden instalar en Ubuntu sin problema. A lo largo del curso instalaremos nmap, netcat, hydra y muchas más directamente con <code>apt install</code>. De hecho, en Ubuntu aprenderás a gestionar tu propio entorno, una habilidad mucho más valiosa que tenerlo todo preinstalado.
+      </div>
+
+      <h2>Conclusión</h2>
+      <p>
+        Ubuntu es una base excelente para aprender Linux. Los comandos, la estructura del sistema, los permisos, el scripting y todo lo que veremos funciona <strong>exactamente igual</strong> que en Kali o cualquier otra distro Debian. La diferencia es que tú construyes tu entorno desde cero, entendiendo cada pieza. Eso te dará una comprensión mucho más profunda que simplemente usar un sistema ya preparado.
+      </p>
+      <p>
+        En la siguiente clase prepararemos Ubuntu con todas las herramientas necesarias para el curso.
+      </p>
+
+      <div class="lesson-nav">
+        <a href="clase-1.html">← Anterior: Bienvenida</a>
+        <a href="clase-3.html">Siguiente: Preparando Ubuntu para el curso →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

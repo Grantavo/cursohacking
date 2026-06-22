@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>48. Jugando con conexiones | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 48</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Jugando con conexiones</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 4:03 · Sección 2: Temario</div>
+
+      <p>Bash tiene capacidades de red nativas a traves de los pseudo-dispositivos <code>/dev/tcp</code> y <code>/dev/udp</code>. Esto permite hacer conexiones sin necesidad de netcat, curl o wget. Es especialmente util en sistemas minimalistas o cuando estas limitado por firewalls que solo permiten ciertos binarios.</p>
+
+      <h2>/dev/tcp y /dev/udp en Bash</h2>
+      <p>Bash puede abrir sockets TCP/UDP usando la sintaxis de redireccion. Esto funciona solo en Bash compilado con soporte de red (<code>--enable-net-redirections</code>), que es el caso en la mayoria de distribuciones.</p>
+
+      <pre><code># Abrir una conexion TCP y leer el banner
+exec 3<>/dev/tcp/192.168.1.1/22
+cat <&3
+
+# Enviar datos y recibir respuesta
+exec 3<>/dev/tcp/example.com/80
+echo -e "GET / HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n" >&3
+cat <&3
+exec 3>&-</code></pre>
+
+      <div class="highlight">
+        <strong>Explicacion de exec 3&lt;&gt;/dev/tcp:</strong> <code>exec 3&lt;&gt;.../dev/tcp/IP/PORT</code> asigna el descriptor de archivo 3 (puede ser cualquier numero) para lectura y escritura sobre la conexion TCP. Luego se lee con <code>cat &lt;&&nbsp;3</code> y se escribe con <code>echo ... &gt;&amp;3</code>. Se cierra con <code>exec 3&gt;&amp;-</code>.
+      </div>
+
+      <h2>Enviar peticiones HTTP con Bash nativo</h2>
+      <p>Podemos construir un cliente HTTP minimalista completamente en Bash, sin herramientas externas.</p>
+
+      <pre><code>#!/bin/bash
+host="$1"
+ruta="${2:-/}"
+
+exec 3<>/dev/tcp/$host/80
+echo -e "GET $ruta HTTP/1.1\r\nHost: $host\r\nConnection: close\r\n\r\n" >&3
+cat <&3
+exec 3>&-</code></pre>
+
+      <h2>Download de archivos con Bash nativo</h2>
+      <p>Combinando <code>/dev/tcp</code> con redirecciones, podemos descargar archivos sin curl ni wget.</p>
+
+      <pre><code>#!/bin/bash
+# Descargar un archivo usando solo Bash
+download() {
+    local host="$1"
+    local ruta="$2"
+    local salida="$3"
+
+    exec 3<>/dev/tcp/$host/80
+    echo -e "GET $ruta HTTP/1.1\r\nHost: $host\r\nConnection: close\r\n\r\n" >&3
+
+    # Saltar cabeceras HTTP y guardar el cuerpo
+    while IFS= read -r linea; do
+        [ "$linea" = $'\r' ] && break
+    done <&3
+
+    cat <&3 > "$salida"
+    exec 3>&-
+}
+
+download "example.com" "/archivo.zip" "descarga.zip"</code></pre>
+
+      <div class="warning">
+        <strong>Limitacion importante:</strong> El pseudo-dispositivo <code>/dev/tcp</code> solo funciona en Bash, no en sh, dash ni zsh. Verifica que tu shell sea Bash con <code>echo $SHELL</code> o <code>bash --version</code>. En sistemas embedded puede no estar compilado con soporte de red.
+      </div>
+
+      <div class="lesson-nav">
+        <a href="clase-47.html">← Anterior: Abusando de privilegio SUID</a>
+        <a href="clase-49.html">Siguiente: Abusando de tareas Cron [1-3] →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Politica de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Terminos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

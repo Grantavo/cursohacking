@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>14. Notación octal de permisos | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 14</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Notación octal de permisos</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 7:21 · Sección 2: Temario</div>
+
+      <p>
+        La notación octal es la forma numérica de representar permisos en Linux. Se llama "octal" porque cada dígito puede tomar valores del 0 al 7 (8 valores posibles, base 8).
+      </p>
+
+      <h2>El sistema octal explicado paso a paso</h2>
+
+      <p>Cada permiso tiene un valor binario y su equivalente decimal:</p>
+
+      <table>
+        <tr><th>Binario</th><th>Permisos</th><th>Octal</th></tr>
+        <tr><td>000</td><td>---</td><td>0</td></tr>
+        <tr><td>001</td><td>--x</td><td>1</td></tr>
+        <tr><td>010</td><td>-w-</td><td>2</td></tr>
+        <tr><td>011</td><td>-wx</td><td>3</td></tr>
+        <tr><td>100</td><td>r--</td><td>4</td></tr>
+        <tr><td>101</td><td>r-x</td><td>5</td></tr>
+        <tr><td>110</td><td>rw-</td><td>6</td></tr>
+        <tr><td>111</td><td>rwx</td><td>7</td></tr>
+      </table>
+
+      <div class="highlight">
+        <strong>💡</strong> Piensa en cada trío de permisos como un número binario de 3 bits: r=4 (2²), w=2 (2¹), x=1 (2⁰). Activado = 1, desactivado = 0. El número octal es simplemente la suma.
+      </div>
+
+      <h2>Cálculos paso a paso</h2>
+
+      <pre><code># Queremos: rwxr--r--
+dueño: r(4)+w(2)+x(1) = 7
+grupo: r(4)+0+0       = 4
+otros: r(4)+0+0       = 4
+→ chmod 744 archivo
+
+# Queremos: rwxr-x---
+dueño: r(4)+w(2)+x(1) = 7
+grupo: r(4)+0+x(1)    = 5
+otros: 0+0+0          = 0
+→ chmod 750 archivo
+
+# Queremos: rwx------
+dueño: 4+2+1 = 7
+grupo: 0
+otros: 0
+→ chmod 700 archivo</code></pre>
+
+      <h2><code>umask</code> — Permisos por defecto</h2>
+
+      <p><code>umask</code> determina los permisos que se asignan por defecto al crear archivos y directorios. Funciona restando la máscara de los permisos base:</p>
+
+      <ul>
+        <li>Archivos base: 666 (rw-rw-rw-)</li>
+        <li>Directorios base: 777 (rwxrwxrwx)</li>
+      </ul>
+
+      <pre><code>umask                     # Muestra la máscara actual (022 típicamente)
+umask 022                 # Archivos: 666-022=644, Directorios: 777-022=755
+umask 077                 # Archivos: 666-077=600, Directorios: 777-077=700
+
+# Ejemplo práctico:
+umask 077
+touch secreto.txt
+ls -l secreto.txt         # -rw-------  (600)</code></pre>
+
+      <div class="warning">
+        <strong>⚠️</strong> <code>umask</code> afecta a la sesión actual. Para hacerlo permanente, añádelo a <code>~/.bashrc</code> o <code>~/.profile</code>.
+      </div>
+
+      <h2>Tabla de umask comunes</h2>
+
+      <table>
+        <tr><th>umask</th><th>Archivos</th><th>Directorios</th><th>Uso típico</th></tr>
+        <tr><td>022</td><td>644</td><td>755</td><td>Por defecto en la mayoría de sistemas</td></tr>
+        <tr><td>027</td><td>640</td><td>750</td><td>Grupo puede leer, otros nada</td></tr>
+        <tr><td>077</td><td>600</td><td>700</td><td>Máxima privacidad (solo dueño)</td></tr>
+        <tr><td>002</td><td>664</td><td>775</td><td>Entornos colaborativos</td></tr>
+      </table>
+
+      <h2>Ejercicio práctico</h2>
+      <pre><code># Calcula mentalmente estos permisos:
+# rwxr-xr-x  → ?
+# r--r-----  → ?
+# -wx--x--x  → ?
+
+# Verifica con chmod:
+touch test
+chmod 755 test; ls -l test
+chmod 440 test; ls -l test
+chmod 311 test; ls -l test</code></pre>
+
+      <div class="lesson-nav">
+        <a href="clase-13.html">← Anterior: Asignación de permisos [2-2]</a>
+        <a href="clase-15.html">Siguiente: Sticky Bit →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

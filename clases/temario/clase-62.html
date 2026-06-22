@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>62. Cuestionario de conceptos y comandos en Linux | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 62</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Cuestionario de conceptos y comandos en Linux</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: — · Sección 2: Temario</div>
+
+      <p>Este cuestionario final cubre todos los temas de la sección Temario. Responde cada pregunta para comprobar tu dominio de Linux.</p>
+
+      <h2>Cuestionario final</h2>
+
+      <p><strong>1. ¿Qué comando muestra el directorio actual de trabajo?</strong></p>
+      <ul>
+        <li>a) <code>ls</code></li>
+        <li>b) <code>pwd</code></li>
+        <li>c) <code>cd</code></li>
+        <li>d) <code>dir</code></li>
+      </ul>
+
+      <p><strong>2. ¿Qué permisos representa <code>755</code> en octal?</strong></p>
+      <ul>
+        <li>a) rwxr-xr-x</li>
+        <li>b) rwxrwxrwx</li>
+        <li>c) rwxr--r--</li>
+        <li>d) r-xr-xr-x</li>
+      </ul>
+
+      <p><strong>3. ¿Qué flag de <code>find</code> permite ejecutar un comando por cada archivo encontrado?</strong></p>
+      <ul>
+        <li>a) <code>-exec</code></li>
+        <li>b) <code>-ok</code></li>
+        <li>c) <code>-delete</code></li>
+        <li>d) <code>-print</code></li>
+      </ul>
+
+      <p><strong>4. ¿Qué hace el comando <code>grep -r "texto" .</code>?</strong></p>
+      <ul>
+        <li>a) Busca "texto" recursivamente en todos los archivos del directorio actual</li>
+        <li>b) Reemplaza "texto" en el directorio actual</li>
+        <li>c) Muestra las líneas que no contienen "texto"</li>
+        <li>d) Cuenta las ocurrencias de "texto"</li>
+      </ul>
+
+      <p><strong>5. ¿Qué comando de sed reemplaza la primera ocurrencia de "foo" por "bar" en cada línea?</strong></p>
+      <ul>
+        <li>a) <code>sed 's/foo/bar/'</code></li>
+        <li>b) <code>sed 's/foo/bar/g'</code></li>
+        <li>c) <code>sed 's/bar/foo/'</code></li>
+        <li>d) <code>sed 's/foo/bar/2'</code></li>
+      </ul>
+
+      <p><strong>6. En awk, ¿qué variable representa el primer campo de una línea?</strong></p>
+      <ul>
+        <li>a) <code>$0</code></li>
+        <li>b) <code>$1</code></li>
+        <li>c) <code>NR</code></li>
+        <li>d) <code>NF</code></li>
+      </ul>
+
+      <p><strong>7. ¿Qué expresión cron ejecuta un comando cada hora en punto?</strong></p>
+      <ul>
+        <li>a) <code>0 * * * *</code></li>
+        <li>b) <code>* 0 * * *</code></li>
+        <li>c) <code>0 0 * * *</code></li>
+        <li>d) <code>* * * * *</code></li>
+      </ul>
+
+      <p><strong>8. ¿Qué puerto utiliza SSH por defecto?</strong></p>
+      <ul>
+        <li>a) 22</li>
+        <li>b) 80</li>
+        <li>c) 443</li>
+        <li>d) 3306</li>
+      </ul>
+
+      <p><strong>9. ¿Qué comando de netcat escucha conexiones entrantes en el puerto 4444?</strong></p>
+      <ul>
+        <li>a) <code>nc -lvnp 4444</code></li>
+        <li>b) <code>nc 127.0.0.1 4444</code></li>
+        <li>c) <code>nc -u 4444</code></li>
+        <li>d) <code>nc -z 4444</code></li>
+      </ul>
+
+      <p><strong>10. ¿Qué comando se usa para iniciar una sesión SSH con un usuario específico?</strong></p>
+      <ul>
+        <li>a) <code>ssh usuario@ip</code></li>
+        <li>b) <code>ssh ip usuario</code></li>
+        <li>c) <code>ssh -u usuario ip</code></li>
+        <li>d) <code>ssh login usuario ip</code></li>
+      </ul>
+
+      <p><strong>11. En Git, ¿qué comando descarga un repositorio remoto por primera vez?</strong></p>
+      <ul>
+        <li>a) <code>git clone</code></li>
+        <li>b) <code>git pull</code></li>
+        <li>c) <code>git fetch</code></li>
+        <li>d) <code>git init</code></li>
+      </ul>
+
+      <p><strong>12. ¿Qué flag de <code>chmod</code> permite cambiar permisos de forma recursiva?</strong></p>
+      <ul>
+        <li>a) <code>-R</code></li>
+        <li>b) <code>-r</code></li>
+        <li>c) <code>-v</code></li>
+        <li>d) <code>-f</code></li>
+      </ul>
+
+      <p><strong>13. ¿Qué variable de Bash contiene el número de argumentos pasados a un script?</strong></p>
+      <ul>
+        <li>a) <code>$#</code></li>
+        <li>b) <code>$@</code></li>
+        <li>c) <code>$*</code></li>
+        <li>d) <code>$0</code></li>
+      </ul>
+
+      <p><strong>14. ¿Qué herramienta de fuerza bruta es más conocida para auditorías SSH?</strong></p>
+      <ul>
+        <li>a) Hydra</li>
+        <li>b) Nmap</li>
+        <li>c) Wireshark</li>
+        <li>d) John the Ripper</li>
+      </ul>
+
+      <p><strong>15. ¿Qué carácter se usa en Bash para escapar un comando dentro de otro mediante subshell?</strong></p>
+      <ul>
+        <li>a) <code>$(...)</code></li>
+        <li>b) <code>{...}</code></li>
+        <li>c) <code>[...]</code></li>
+        <li>d) <code>(...)</code></li>
+      </ul>
+
+      <p><strong>16. ¿Qué hace el comando <code>git stash pop</code>?</strong></p>
+      <ul>
+        <li>a) Recupera el último stash guardado y lo elimina de la lista</li>
+        <li>b) Elimina todos los stashes</li>
+        <li>c) Muestra la lista de stashes</li>
+        <li>d) Crea un stash nuevo</li>
+      </ul>
+
+      <div class="lesson-nav">
+        <a href="clase-61.html">← Anterior: Argumentos posicionales en Bash</a>
+        <a href="../../clases/scripting/clase-63.html">Siguiente: Ir a Scripting →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

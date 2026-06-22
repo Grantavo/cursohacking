@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>74. Scripting en Bash [4-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 74</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [4-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 18:33 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Creamos el bucle principal del juego con un menú interactivo, validación de entrada (números, rangos) y control de flujo con <code>case</code>.
+      </p>
+
+      <h2>Menú interactivo</h2>
+      <p>Usamos <code>select</code> para presentar las opciones al jugador:</p>
+      <pre><code>mostrar_menu() {
+  echo
+  echo "${BOLD}${NOMBRE} — Saldo: ${VERDE}\$${SALDO}${RESET}"
+  echo
+  select opt in "🎯 Apostar" "📊 Estadísticas" "💾 Guardar partida" "🔧 Debug" "🚪 Salir"; do
+    case $opt in
+      "🎯 Apostar")
+        realizar_apuesta
+        break
+        ;;
+      "📊 Estadísticas")
+        mostrar_estadisticas
+        break
+        ;;
+      "💾 Guardar partida")
+        guardar_partida
+        break
+        ;;
+      "🔧 Debug")
+        menu_debug
+        break
+        ;;
+      "🚪 Salir")
+        echo "${AMARILLO}¡Gracias por jugar, ${NOMBRE}!${RESET}"
+        exit 0
+        ;;
+      *)
+        echo "${ROJO}Opción inválida${RESET}"
+        ;;
+    esac
+  done
+}</code></pre>
+
+      <h2>Validación de entrada</h2>
+      <p>Verificamos que el usuario introduzca valores válidos:</p>
+      <pre><code>validar_cantidad() {
+  local cantidad=$1
+
+  # Debe ser un número
+  if ! [[ "$cantidad" =~ ^[0-9]+$ ]]; then
+    print_error "Debes introducir un número válido"
+    return 1
+  fi
+
+  # Debe ser positiva
+  if [[ "$cantidad" -le 0 ]]; then
+    print_error "La cantidad debe ser mayor que 0"
+    return 1
+  fi
+
+  # No puede exceder el saldo
+  if [[ "$cantidad" -gt "$SALDO" ]]; then
+    print_error "No tienes suficiente saldo (Saldo: \$${SALDO})"
+    return 1
+  fi
+
+  return 0
+}
+
+validar_numero_ruleta() {
+  local num=$1
+
+  if ! [[ "$num" =~ ^[0-9]+$ ]]; then
+    print_error "Debes introducir un número"
+    return 1
+  fi
+
+  if [[ "$num" -lt 0 ]] || [[ "$num" -gt 36 ]]; then
+    print_error "El número debe estar entre 0 y 36"
+    return 1
+  fi
+
+  return 0
+}</code></pre>
+
+      <h2>Flujo de apostar</h2>
+      <p>Coordinamos la entrada del usuario con la lógica de apuesta:</p>
+      <pre><code>realizar_apuesta() {
+  # 1. Elegir tipo de apuesta
+  echo "${BOLD}Tipo de apuesta:${RESET}"
+  select tipo in "Pleno" "Docena" "Mitad" "Color" "Par/Impar" "Cancelar"; do
+    case $tipo in
+      "Pleno")
+        read -r -p "Número (0-36): " NUMERO_ELEGIDO
+        validar_numero_ruleta "$NUMERO_ELEGIDO" || continue
+        TIPO_APUESTA="pleno"
+        break
+        ;;
+      "Docena")
+        select docena in "1-12" "13-24" "25-36" "Cancelar"; do
+          [[ -z "$docena" ]] && continue
+          case $docena in
+            "1-12")   ELECCION=1 ;;
+            "13-24")  ELECCION=2 ;;
+            "25-36")  ELECCION=3 ;;
+            "Cancelar") return ;;
+          esac
+          TIPO_APUESTA="docena"
+          break
+        done
+        break
+        ;;
+      "Mitad")
+        select ELECCION in "Baja (1-18)" "Alta (19-36)" "Cancelar"; do
+          [[ -z "$ELECCION" ]] && continue
+          [[ "$ELECCION" == "Cancelar" ]] && return
+          TIPO_APUESTA="mitad"
+          break
+        done
+        break
+        ;;
+      "Color")
+        select ELECCION in "Rojo" "Negro" "Cancelar"; do
+          [[ -z "$ELECCION" ]] && continue
+          [[ "$ELECCION" == "Cancelar" ]] && return
+          ELECCION=$(echo "$ELECCION" | tr '[:upper:]' '[:lower:]')
+          TIPO_APUESTA="color"
+          break
+        done
+        break
+        ;;
+      "Par/Impar")
+        select ELECCION in "Par" "Impar" "Cancelar"; do
+          [[ -z "$ELECCION" ]] && continue
+          [[ "$ELECCION" == "Cancelar" ]] && return
+          ELECCION=$(echo "$ELECCION" | tr '[:upper:]' '[:lower:]')
+          TIPO_APUESTA="par_impar"
+          break
+        done
+        break
+        ;;
+      "Cancelar") return ;;
+    esac
+    break
+  done
+
+  # 2. Cantidad a apostar
+  while true; do
+    read -r -p "Cantidad a apostar: " APUESTA
+    validar_cantidad "$APUESTA" && break
+  done
+
+  # 3. Girar ruleta y procesar
+  ejecutar_turno
+}</code></pre>
+
+      <h2>Control de flujo con case</h2>
+      <p>El esqueleto del juego usa <code>case</code> para manejar todas las acciones:</p>
+      <pre><code>ejecutar_turno() {
+  # Deducir apuesta del saldo
+  (( SALDO -= APUESTA ))
+
+  # Girar la ruleta
+  local resultado
+  resultado=$(girar_ruleta)
+  IFS='|' read -r numero color paridad <<< "$resultado"
+
+  # Calcular ganancia
+  local ganancia
+  ganancia=$(procesar_apuesta "$TIPO_APUESTA" "$ELECCION" "$APUESTA" "$numero")
+
+  if [[ "$ganancia" -gt 0 ]]; then
+    (( SALDO += ganancia ))
+    local beneficio=$(( ganancia - APUESTA ))
+    echo "${VERDE}${BOLD}¡Has ganado!${RESET} +${beneficio}"
+  else
+    echo "${ROJO}${BOLD}Has perdido${RESET} -${APUESTA}"
+  fi
+
+  # Guardar en historial
+  HISTORIAL+=("$numero:$color:$paridad:$ganancia")
+  (( TOTAL_JUGADAS++ ))
+
+  # Comprobar game over
+  if [[ "$SALDO" -le 0 ]]; then
+    game_over
+  fi
+}</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Validación defensiva:</strong> Siempre valida la entrada del usuario antes de procesarla. Nunca confíes en que el usuario introducirá datos correctos. Esto evita bugs y comportamientos inesperados.
+      </div>
+
+      <p>El juego ya tiene un ciclo completo. En la siguiente clase añadiremos el historial y las estadísticas.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-73.html">← Anterior: Scripting en Bash [3-15]</a>
+        <a href="clase-75.html">Siguiente: Scripting en Bash [5-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>82. Scripting en Bash [12-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 82</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [12-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 18:36 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Implementamos un sistema de logros y desbloqueables: el jugador gana logros al completar hitos, sube de nivel, recibe bonus por rachas y puede personalizar su perfil.
+      </p>
+
+      <h2>Sistema de logros</h2>
+      <p>Cada logro tiene un nombre, descripción y condición de desbloqueo:</p>
+      <pre><code>declare -a LOGROS_DESBLOQUEADOS=()
+
+declare -A LOGRO_NOMBRE
+LOGRO_NOMBRE[primera_apuesta]="Primera Apuesta"
+LOGRO_NOMBRE[ganar_primera]="Primera Victoria"
+LOGRO_NOMBRE[racha_3]="Racha de 3"
+LOGRO_NOMBRE[racha_5]="Racha de 5"
+LOGRO_NOMBRE[bankroll_5000]="Bankroll 5000"
+LOGRO_NOMBRE[bankroll_10000]="Bankroll 10000"
+LOGRO_NOMBRE[pleno_acertado]="Pleno Acertado"
+LOGRO_NOMBRE[bancarrota]="Bancarrota"
+LOGRO_NOMBRE[100_jugadas]="Veterano"
+
+declare -A LOGRO_DESC
+LOGRO_DESC[primera_apuesta]="Haz tu primera apuesta"
+LOGRO_DESC[ganar_primera]="Gana tu primera partida"
+LOGRO_DESC[racha_3]="Gana 3 veces seguidas"
+LOGRO_DESC[racha_5]="Gana 5 veces seguidas"
+LOGRO_DESC[bankroll_5000]="Alcanza $5000 de saldo"
+LOGRO_DESC[bankroll_10000]="Alcanza $10000 de saldo"
+LOGRO_DESC[pleno_acertado]="Acierta un número pleno"
+LOGRO_DESC[bancarrota]="Pierde todo tu saldo"
+LOGRO_DESC[100_jugadas]="Completa 100 jugadas"
+
+verificar_logros() {
+  # Primera apuesta
+  if [[ "$TOTAL_JUGADAS" -ge 1 ]] && ! [[ " ${LOGROS_DESBLOQUEADOS[*]} " =~ "primera_apuesta" ]]; then
+    desbloquear_logro "primera_apuesta"
+  fi
+
+  # Primera victoria
+  if [[ "$TOTAL_GANADAS" -ge 1 ]] && ! [[ " ${LOGROS_DESBLOQUEADOS[*]} " =~ "ganar_primera" ]]; then
+    desbloquear_logro "ganar_primera"
+  fi
+
+  # Bankroll
+  if [[ "$SALDO" -ge 5000 ]] && ! [[ " ${LOGROS_DESBLOQUEADOS[*]} " =~ "bankroll_5000" ]]; then
+    desbloquear_logro "bankroll_5000"
+  fi
+  if [[ "$SALDO" -ge 10000 ]] && ! [[ " ${LOGROS_DESBLOQUEADOS[*]} " =~ "bankroll_10000" ]]; then
+    desbloquear_logro "bankroll_10000"
+  fi
+
+  # 100 jugadas
+  if [[ "$TOTAL_JUGADAS" -ge 100 ]] && ! [[ " ${LOGROS_DESBLOQUEADOS[*]} " =~ "100_jugadas" ]]; then
+    desbloquear_logro "100_jugadas"
+  fi
+}
+
+desbloquear_logro() {
+  local logro_id=$1
+  LOGROS_DESBLOQUEADOS+=("$logro_id")
+
+  echo
+  echo "${AMARILLO}${BOLD}═══════════════════════════════${RESET}"
+  echo "${BOLD}🏆 ¡LOGO DESBLOQUEADO!${RESET}"
+  echo "${AMARILLO}${BOLD}═══════════════════════════════${RESET}"
+  echo "${BOLD}${LOGRO_NOMBRE[$logro_id]}${RESET}"
+  echo "${LOGRO_DESC[$logro_id]}"
+  sonido_ganar
+  sleep 1
+}</code></pre>
+
+      <h2>Sistema de niveles</h2>
+      <p>El nivel del jugador sube con la experiencia acumulada:</p>
+      <pre><code>NIVEL=1
+EXPERIENCIA=0
+SIGUIENTE_NIVEL=100
+
+calcular_experiencia() {
+  local ganancia=$1
+  local exp=$(( ganancia / 10 ))
+  [[ "$exp" -lt 1 ]] && exp=1
+  echo "$exp"
+}
+
+sumar_experiencia() {
+  local exp=$1
+  EXPERIENCIA=$(( EXPERIENCIA + exp ))
+
+  while [[ "$EXPERIENCIA" -ge "$SIGUIENTE_NIVEL" ]]; do
+    (( NIVEL++ ))
+    EXPERIENCIA=$(( EXPERIENCIA - SIGUIENTE_NIVEL ))
+    SIGUIENTE_NIVEL=$(( SIGUIENTE_NIVEL + 50 ))
+    echo "${AMARILLO}${BOLD}⬆ ¡Has subido al nivel ${NIVEL}!${RESET}"
+    sonido_ganar
+
+    # Bonus por subir de nivel
+    local bonus=$(( NIVEL * 50 ))
+    SALDO=$(( SALDO + bonus ))
+    echo "${VERDE}Bonus de nivel: +\$${bonus}${RESET}"
+    sleep 1
+  done
+}
+
+barra_experiencia() {
+  local porcentaje=$(( EXPERIENCIA * 100 / SIGUIENTE_NIVEL ))
+  local ancho=20
+  local lleno=$(( porcentaje * ancho / 100 ))
+
+  echo -n "Nv.${NIVEL} ["
+  for (( i = 0; i < ancho; i++ )); do
+    if [[ "$i" -lt "$lleno" ]]; then
+      echo -n "${CIAN}■${RESET}"
+    else
+      echo -n "·"
+    fi
+  done
+  echo "] ${porcentaje}%"
+}</code></pre>
+
+      <h2>Bonus por racha</h2>
+      <pre><code>CALLE_RAFA=0
+MAX_RACHA_VICTORIAS=0
+RACHA_VICTORIAS_ACTUAL=0
+
+verificar_racha() {
+  local resultado=$1
+
+  if [[ "$resultado" == "ganada" ]]; then
+    (( RACHA_VICTORIAS_ACTUAL++ ))
+    [[ "$RACHA_VICTORIAS_ACTUAL" -gt "$MAX_RACHA_VICTORIAS" ]] && MAX_RACHA_VICTORIAS=$RACHA_VICTORIAS_ACTUAL
+
+    # Bonus por racha
+    if [[ "$RACHA_VICTORIAS_ACTUAL" -eq 3 ]] && ! [[ " ${LOGROS_DESBLOQUEADOS[*]} " =~ "racha_3" ]]; then
+      desbloquear_logro "racha_3"
+      SALDO=$(( SALDO + 100 ))
+      echo "${VERDE}Bonus racha 3: +\$100${RESET}"
+    fi
+    if [[ "$RACHA_VICTORIAS_ACTUAL" -eq 5 ]] && ! [[ " ${LOGROS_DESBLOQUEADOS[*]} " =~ "racha_5" ]]; then
+      desbloquear_logro "racha_5"
+      SALDO=$(( SALDO + 300 ))
+      echo "${VERDE}Bonus racha 5: +\$300${RESET}"
+    fi
+
+    # Bonificación progresiva por racha
+    if [[ "$RACHA_VICTORIAS_ACTUAL" -gt 5 ]]; then
+      local extra=$(( RACHA_VICTORIAS_ACTUAL * 20 ))
+      SALDO=$(( SALDO + extra ))
+      echo "${CIAN}🔥 Racha de ${RACHA_VICTORIAS_ACTUAL}: +\$${extra} bonus${RESET}"
+    fi
+  else
+    RACHA_VICTORIAS_ACTUAL=0
+  fi
+}</code></pre>
+
+      <h2>Personalización del perfil</h2>
+      <pre><code>mostrar_perfil() {
+  clear
+  echo "${BOLD}${AZUL}═══════════════════════════════════${RESET}"
+  echo "${BOLD}         👤 PERFIL DE JUGADOR${RESET}"
+  echo "${BOLD}${AZUL}═══════════════════════════════════${RESET}"
+  echo
+  echo "Nombre:     ${BOLD}${NOMBRE}${RESET}"
+  echo "Nivel:      ${BOLD}${NIVEL}${RESET}"
+  barra_experiencia
+  echo "Saldo:      ${VERDE}\$${SALDO}${RESET}"
+  echo "Jugadas:    $TOTAL_JUGADAS"
+  echo "Ganadas:    ${VERDE}$TOTAL_GANADAS${RESET}"
+  echo "Perdidas:   ${ROJO}$TOTAL_PERDIDAS${RESET}"
+  echo "Max racha:  $MAX_RACHA_VICTORIAS"
+  echo
+  echo "${BOLD}🏆 Logros (${#LOGROS_DESBLOQUEADOS[@]}):${RESET}"
+  if [[ "${#LOGROS_DESBLOQUEADOS[@]}" -eq 0 ]]; then
+    echo "  Aún no tienes logros. ¡Sigue jugando!"
+  else
+    for logro_id in "${LOGROS_DESBLOQUEADOS[@]}"; do
+      echo "  ${AMARILLO}★${RESET} ${LOGRO_NOMBRE[$logro_id]}"
+    done
+  fi
+  echo
+  read -n 1 -s -r -p "Presiona cualquier tecla para continuar..."
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Gamificación:</strong> Los logros y niveles hacen el juego más adictivo al dar recompensas frecuentes. Es el mismo principio que usan los casinos reales con sus tarjetas de fidelidad.
+      </div>
+
+      <p>La gamificación motiva al jugador a seguir jugando. En la siguiente clase refactorizaremos todo el código para hacerlo modular y mantenible.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-81.html">← Anterior: Scripting en Bash [11-15]</a>
+        <a href="clase-83.html">Siguiente: Scripting en Bash [13-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>32. Detección del tipo y formato de archivos | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 32</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Detección del tipo y formato de archivos</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:49 · Sección 2: Temario</div>
+
+      <p>
+        En Linux, la extensión de un archivo (<code>.txt</code>, <code>.pdf</code>, <code>.exe</code>) no determina su tipo real. Para saber qué contiene realmente un archivo se usa el comando <code>file</code>, que analiza los bytes mágicos (magic numbers) al inicio del archivo. Esto es esencial en ciberseguridad: un atacante puede renombrar un ejecutable malicioso como <code>documento.pdf</code>, pero <code>file</code> revelará su verdadera naturaleza.
+      </p>
+
+      <h2>El comando file</h2>
+
+      <pre><code># Uso básico
+file archivo
+
+# Ejemplo con varios tipos
+file /bin/ls
+file /etc/passwd
+file imagen.png
+file documento.pdf
+
+# Ver todos los tipos MIME (más detallado)
+file -i /bin/ls
+file -i imagen.png</code></pre>
+
+      <h3>Ejemplos prácticos</h3>
+
+      <pre><code># file detecta el formato real sin importar la extensión
+mv /bin/ls /tmp/falso.txt
+file /tmp/falso.txt
+# Output: falso.txt: ELF 64-bit LSB executable, x86-64, version 1 (SYSV)
+
+# Un script de Bash sigue siendo texto aunque lo renombres
+echo "#!/bin/bash\necho hola" > script.renombrado
+file script.renombrado
+# Output: script.renombrado: Bourne-Again shell script, ASCII text executable</code></pre>
+
+      <h3>Entendiendo los magic numbers</h3>
+      <p>Los primeros bytes de un archivo identifican su formato. Puedes verlos con <code>xxd</code> u <code>od</code>:</p>
+
+      <pre><code># Ver los primeros bytes (magic number) de un archivo
+xxd -l 16 /bin/ls | head -1
+# Output: 00000000: 7f45 4c46 02...  → ELF
+
+# Comparar con un PNG
+xxd -l 16 imagen.png | head -1
+# Output: 00000000: 8950 4e47 0d0a 1a0a  → PNG</code></pre>
+
+      <table>
+        <tr><th>Formato</th><th>Magic Number (hex)</th></tr>
+        <tr><td>ELF (binario Linux)</td><td><code>7f 45 4c 46</code></td></tr>
+        <tr><td>PNG (imagen)</td><td><code>89 50 4e 47</code></td></tr>
+        <tr><td>JPEG</td><td><code>ff d8 ff e0</code></td></tr>
+        <tr><td>PDF</td><td><code>25 50 44 46</code></td></tr>
+        <tr><td>ZIP</td><td><code>50 4b 03 04</code></td></tr>
+      </table>
+
+      <div class="highlight">
+        <strong>💡 Aplicación en hacking:</strong> Durante un análisis de malware o un CTF, usa <code>file</code> para identificar rápidamente el tipo de archivos sospechosos. Un archivo que parece un .txt pero resulta ser un ELF o un ZIP puede ser la pista que necesitas.
+      </div>
+
+      <p>La base de datos de tipos que usa <code>file</code> está en <code>/usr/share/misc/magic</code> o <code>/usr/share/file/magic/</code>. Puedes consultarla para entender cómo se identifican los formatos.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-31.html">← Anterior: Directorios y archivos ocultos</a>
+        <a href="clase-33.html">Siguiente: Búsquedas precisas de archivos [1-2] →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

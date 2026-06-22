@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>46. Ejecución de comandos por SSH | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 46</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Ejecución de comandos por SSH</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:17 · Sección 2: Temario</div>
+
+      <p>Una de las capacidades más potentes de SSH es ejecutar comandos remotos sin abrir una sesión interactiva. Esto permite automatizar tareas de administración y auditoría de forma sencilla y segura.</p>
+
+      <h2>Ejecución remota directa</h2>
+      <p>Basta con pasar el comando como argumento a SSH. Se ejecuta en el servidor remoto y la salida se muestra en tu terminal local.</p>
+
+      <pre><code># Ejecutar un comando simple
+ssh usuario@192.168.1.100 "whoami"
+
+# Ejecutar múltiples comandos
+ssh usuario@192.168.1.100 "uptime && free -h && df -h"
+
+# Comando con pipes
+ssh usuario@192.168.1.100 "ps aux | grep apache | wc -l"
+
+# Redirigir salida local (el > se ejecuta LOCAL)
+ssh usuario@192.168.1.100 "cat /etc/passwd" > passwd_remoto.txt</code></pre>
+
+      <div class="highlight">
+        <strong>🧠 Comillas simples vs dobles:</strong> Con <strong>comillas dobles</strong> (<code>"</code>), las variables (<code>$HOME</code>) se expanden localmente antes de enviarse. Con <strong>comillas simples</strong> (<code>'</code>), las variables se expanden en el servidor remoto. Ejemplo: <code>ssh host "echo $HOSTNAME"</code> muestra el hostname local; <code>ssh host 'echo $HOSTNAME'</code> muestra el remoto.
+      </div>
+
+      <h2>Transferencia y ejecución de scripts</h2>
+      <p>Podemos ejecutar scripts locales en el servidor remoto sin copiarlos explícitamente, usando redirección de entrada.</p>
+
+      <pre><code># Ejecutar un script local en remoto
+ssh usuario@192.168.1.100 < mi_script.sh
+
+# Con argumentos para el script
+ssh usuario@192.168.1.100 'bash -s' < mi_script.sh --arg1 --arg2
+
+# Copiar y ejecutar en un paso
+scp mi_script.sh usuario@192.168.1.100:/tmp/ && ssh usuario@192.168.1.100 "/tmp/mi_script.sh"</code></pre>
+
+      <h2>Pseudo-terminal con -t</h2>
+      <p>A veces necesitas una pseudo-terminal (PTY) incluso para comandos individuales, por ejemplo para comandos que requieren interacción o que verifican <code>isatty()</code>.</p>
+
+      <pre><code># Forzar pseudo-terminal
+ssh -t usuario@192.168.1.100 "sudo systemctl restart nginx"
+
+# Comandos interactivos (htop, nano...)
+ssh -t usuario@192.168.1.100 "sudo htop"
+
+# Múltiples -t para forzar incluso sin TTY local
+ssh -tt usuario@192.168.1.100 "comando"
+
+# Ejecutar y mantener sesión
+ssh -t usuario@192.168.1.100 "comando; exec bash -l"</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Automatización segura:</strong> Para automatizar tareas por SSH, usa siempre <strong>claves SSH sin passphrase</strong> (o con <code>ssh-agent</code>). Nunca incrustes contraseñas en scripts. Restringe los comandos que la clave puede ejecutar desde <code>~/.ssh/authorized_keys</code> usando <code>command="..."</code> al inicio de la línea de la clave pública.
+      </div>
+
+      <div class="lesson-nav">
+        <a href="clase-45.html">← Anterior: Detección de diferencias entre archivos</a>
+        <a href="clase-47.html">Siguiente: Abusando de privilegio SUID para migrar de usuario →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

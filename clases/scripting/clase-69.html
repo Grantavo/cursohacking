@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>69. Scripting en Bash [6-6] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 69</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [6-6]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 12:36 · Proyecto 1: Buscador HTB</div>
+
+      <p>
+        Clase final del Proyecto 1. Organizamos el código en archivos separados con <code>source</code>, instalamos el script como comando del sistema y hacemos una demostración completa del buscador funcionando.
+      </p>
+
+      <h2>Organización del código en archivos separados</h2>
+      <p>Dividimos el script monolítico en módulos usando <code>source</code>:</p>
+      <pre><code># Estructura del proyecto
+# ~/htb_search/
+# ├── htb_search.sh        # Entry point
+# ├── lib/
+# │   ├── config.sh        # Variables y configuración
+# │   ├── ui.sh            # Funciones de interfaz (banner, tablas)
+# │   ├── api.sh           # Conexión a la API y caché
+# │   └── search.sh        # Lógica de búsqueda y filtros</code></pre>
+
+      <p>Archivo principal <code>htb_search.sh</code>:</p>
+      <pre><code>#!/bin/bash
+# htb_search.sh - Buscador de máquinas HackTheBox
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source "${SCRIPT_DIR}/lib/config.sh"
+source "${SCRIPT_DIR}/lib/ui.sh"
+source "${SCRIPT_DIR}/lib/api.sh"
+source "${SCRIPT_DIR}/lib/search.sh"
+
+main() {
+  print_banner
+  check_connectivity || exit 1
+
+  if [[ "$INTERACTIVE" == true ]]; then
+    interactive_mode
+  else
+    do_search
+  fi
+}
+
+main "$@"</code></pre>
+
+      <h2>Instalación como comando del sistema</h2>
+      <p>Hacemos que el script sea ejecutable desde cualquier lugar:</p>
+      <pre><code>#!/bin/bash
+# install.sh - Instala htb_search como comando del sistema
+
+INSTALL_DIR="${HOME}/.local/bin"
+PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+mkdir -p "$INSTALL_DIR"
+
+# Crear script wrapper en PATH
+cat > "${INSTALL_DIR}/htb-search" << 'EOF'
+#!/bin/bash
+exec ~/htb_search/htb_search.sh "$@"
+EOF
+
+chmod +x "${INSTALL_DIR}/htb-search"
+
+# Añadir al PATH si no está
+if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
+  echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> ~/.bashrc
+  echo "${YELLOW}Añadido $INSTALL_DIR al PATH. Recarga con: source ~/.bashrc${RESET}"
+fi
+
+print_success "htb-search instalado. Usa: htb-search -i"</code></pre>
+
+      <h2>Demostración completa</h2>
+      <p>Ejemplo de uso del script final:</p>
+      <pre><code># 1. Exportar token
+export HTB_TOKEN="tu_token_aqui"
+
+# 2. Modo interactivo
+htb-search -i
+
+# 3. Búsqueda directa
+htb-search -n "Bank"
+
+# 4. Filtros combinados
+htb-search -o Linux -d easy
+
+# 5. Ayuda
+htb-search -h</code></pre>
+
+      <div class="highlight">
+        <strong>🏁 Proyecto 1 completado:</strong> Has construido un buscador de máquinas HTB completamente funcional en Bash. Has aplicado: variables, arrays, funciones, getopts, curl, jq, caché, paginación, modo interactivo y empaquetado. Todo desde la terminal.
+      </div>
+
+      <div class="warning">
+        <strong>📌 Recuerda:</strong> No compartas tu token de API. Si subes el proyecto a GitHub, usa un archivo <code>.env</code> y añádelo a <code>.gitignore</code>.
+      </div>
+
+      <p>En la siguiente clase empezamos el <strong>Proyecto 2: Ruleta de casino en Bash</strong>. ¡A por todas!</p>
+
+      <div class="lesson-nav">
+        <a href="clase-68.html">← Anterior: Scripting en Bash [5-6]</a>
+        <a href="clase-70.html">Siguiente: Introducción al Proyecto 2 →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

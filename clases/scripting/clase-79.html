@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>79. Scripting en Bash [9-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 79</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [9-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 16:05 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Mejoramos la experiencia visual del juego: tablero de ruleta en ASCII, animaciones con <code>sleep</code> y <code>printf</code>, barras de progreso y una interfaz más pulida.
+      </p>
+
+      <h2>Tablero de ruleta en ASCII</h2>
+      <p>Dibujamos la ruleta en la terminal con colores:</p>
+      <pre><code>mostrar_tablero() {
+  local numero=$1
+  local color=$2
+
+  clear
+  echo "${BOLD}${AMARILLO}╔══════════════════════════════╗${RESET}"
+  echo "${BOLD}${AMARILLO}║       🎰 RULETA EUROPEA       ║${RESET}"
+  echo "${BOLD}${AMARILLO}╚══════════════════════════════╝${RESET}"
+  echo
+
+  # Números en formato tablero (simplificado)
+  echo "┌────┬────┬────┬────┬────┬────┐"
+  echo "│  3 │  6 │  9 │ 12 │ 15 │ 18 │"
+  echo "├────┼────┼────┼────┼────┼────┤"
+  echo "│  2 │  5 │  8 │ 11 │ 14 │ 17 │"
+  echo "├────┼────┼────┼────┼────┼────┤"
+  echo "│  1 │  4 │  7 │ 10 │ 13 │ 16 │"
+  echo "└────┴────┴────┴────┴────┴────┘"
+  echo
+
+  # Resultado destacado
+  local color_display
+  case "$color" in
+    rojo)  color_display="${ROJO}${BOLD}● ROJO${RESET}" ;;
+    negro) color_display="${BLANCO}${BOLD}● NEGRO${RESET}" ;;
+    verde) color_display="${VERDE}${BOLD}● VERDE${RESET}" ;;
+  esac
+
+  echo "${BOLD}Resultado:${RESET} ${color_display} ${BOLD}${numero}${RESET}"
+  echo
+}</code></pre>
+
+      <h2>Animación del giro</h2>
+      <p>Simulamos la bola girando con <code>printf</code> y caracteres de spinner:</p>
+      <pre><code>animar_giro() {
+  local frames=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")
+  local numeros=(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36)
+
+  echo -n "${AMARILLO}Girando... ${RESET}"
+
+  for (( i = 0; i < 30; i++ )); do
+    local frame_idx=$(( i % ${#frames[@]} ))
+    local num_idx=$(( RANDOM % 37 ))
+    printf "\r${AMARILLO}%s${RESET} %s %2d" "${frames[$frame_idx]}" "●" "${numeros[$num_idx]}"
+    sleep 0.08
+  done
+
+  # Mostrar el número final
+  printf "\r${VERDE}✓${RESET} Resultado: ${BOLD}%2d${RESET}  \n" "$1"
+  sleep 0.5
+}
+
+animar_bola() {
+  local resultado=$1
+  echo "${CIAN}La bola está rodando...${RESET}"
+  sleep 0.3
+
+  for (( i = 0; i < 5; i++ )); do
+    echo -n "◜"
+    sleep 0.1
+    echo -ne "\b\b◝"
+    sleep 0.1
+    echo -ne "\b\b◞"
+    sleep 0.1
+    echo -ne "\b\b◟"
+    sleep 0.1
+  done
+
+  echo -e "\b\b${VERDE}${BOLD} ¡${resultado}! ${RESET}"
+}</code></pre>
+
+      <h2>Barras de progreso</h2>
+      <p>Mostramos el saldo como una barra de progreso visual:</p>
+      <pre><code>barra_saldo() {
+  local saldo=$1
+  local max_saldo=$2
+  local ancho=40
+
+  # Evitar división por cero
+  [[ "$max_saldo" -eq 0 ]] && max_saldo=1
+
+  local proporcion=$(( saldo * ancho / max_saldo ))
+  [[ "$proporcion" -gt "$ancho" ]] && proporcion=$ancho
+  [[ "$proporcion" -lt 0 ]] && proporcion=0
+
+  local lleno="${VERDE}"
+  local vacio="${RESET}"
+
+  if [[ "$proporcion" -lt $(( ancho / 4 )) ]]; then
+    lleno="${ROJO}"  # Saldo bajo = rojo
+  elif [[ "$proporcion" -lt $(( ancho / 2 )) ]]; then
+    lleno="${AMARILLO}"  # Saldo medio = amarillo
+  fi
+
+  echo -n "${BOLD}Saldo:${RESET} ["
+  for (( i = 0; i < ancho; i++ )); do
+    if [[ "$i" -lt "$proporcion" ]]; then
+      echo -n "${lleno}■${RESET}"
+    else
+      echo -n "${vacio}·${RESET}"
+    fi
+  done
+  echo "] \$${saldo}/${max_saldo}"
+}</code></pre>
+
+      <h2>Integración visual</h2>
+      <p>Unificamos los elementos visuales en la función principal del turno:</p>
+      <pre><code>ejecutar_turno_visual() {
+  echo
+  barra_saldo "$SALDO" "$MAX_SALDO"
+
+  animar_giro
+  sleep 0.3
+
+  local resultado
+  resultado=$(girar_ruleta)
+  IFS='|' read -r numero color paridad <<< "$resultado"
+
+  mostrar_tablero "$numero" "$color"
+  animar_bola "$numero"
+
+  local ganancia
+  ganancia=$(procesar_apuesta "$TIPO_APUESTA" "$ELECCION" "$APUESTA" "$numero")
+
+  if [[ "$ganancia" -gt 0 ]]; then
+    local beneficio=$(( ganancia - APUESTA ))
+    (( SALDO += ganancia ))
+    echo "${VERDE}${BOLD}🎉 ¡Has ganado \$${beneficio}!${RESET}"
+  else
+    echo "${ROJO}${BOLD}😞 Has perdido \$${APUESTA}${RESET}"
+  fi
+
+  registrar_jugada "$numero" "$color" "$paridad" "$ganancia" "$APUESTA"
+
+  read -n 1 -s -r -p "Presiona cualquier tecla para continuar..."
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 printf \r para animaciones:</strong> El carriage return (<code>\r</code>) permite sobrescribir la misma línea, creando la ilusión de movimiento sin llenar la terminal de líneas nuevas.
+      </div>
+
+      <p>Las animaciones mejoran drásticamente la experiencia de usuario. En la siguiente clase añadiremos sonidos y notificaciones.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-78.html">← Anterior: Scripting en Bash [8-15]</a>
+        <a href="clase-80.html">Siguiente: Scripting en Bash [10-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

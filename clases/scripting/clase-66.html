@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>66. Scripting en Bash [3-6] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 66</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [3-6]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 19:58 · Proyecto 1: Buscador HTB</div>
+
+      <p>
+        Implementamos la lógica de búsqueda: filtrar máquinas por nombre, IP, sistema operativo y dificultad. Usaremos arrays asociativos en Bash para organizar los datos y bucles para procesar los resultados.
+      </p>
+
+      <h2>Arrays asociativos en Bash</h2>
+      <p>Los arrays asociativos (<code>declare -A</code>) permiten almacenar pares clave-valor. Son ideales para mapear dificultades o SO:</p>
+      <pre><code>declare -A DIFFICULTY_MAP
+DIFFICULTY_MAP[1]="easy"
+DIFFICULTY_MAP[2]="medium"
+DIFFICULTY_MAP[3]="hard"
+DIFFICULTY_MAP[4]="insane"
+
+declare -A DIFF_ICON
+DIFF_ICON[easy]="🟢"
+DIFF_ICON[medium]="🟡"
+DIFF_ICON[hard]="🔴"
+DIFF_ICON[insane]="🟣"</code></pre>
+
+      <h2>Filtrado por nombre</h2>
+      <p>Búsqueda con <code>grep -i</code> para coincidencia insensible a mayúsculas:</p>
+      <pre><code>filter_by_name() {
+  local results="$1"
+  local search_term="$2"
+  echo "$results" | grep -i "$search_term"
+}</code></pre>
+
+      <h2>Lógica de búsqueda completa</h2>
+      <p>Combinamos todos los filtros usando tuberías:</p>
+      <pre><code>search_machines() {
+  local json="$1"
+  local results
+
+  # Convertir JSON a líneas delimitadas
+  results=$(echo "$json" | jq -c '.results[]' 2>/dev/null)
+
+  # Aplicar filtros secuencialmente
+  if [[ -n "$NAME" ]]; then
+    results=$(echo "$results" | while read -r m; do
+      local name; name=$(echo "$m" | jq -r '.name')
+      if echo "$name" | grep -qi "$NAME"; then
+        echo "$m"
+      fi
+    done)
+  fi
+
+  if [[ -n "$OS" ]]; then
+    results=$(echo "$results" | while read -r m; do
+      local os; os=$(echo "$m" | jq -r '.os')
+      if echo "$os" | grep -qi "$OS"; then
+        echo "$m"
+      fi
+    done)
+  fi
+
+  if [[ -n "$DIFFICULTY" ]]; then
+    results=$(echo "$results" | while read -r m; do
+      local diff; diff=$(echo "$m" | jq -r '.difficulty_text')
+      if echo "$diff" | grep -qi "$DIFFICULTY"; then
+        echo "$m"
+      fi
+    done)
+  fi
+
+  echo "$results"
+}</code></pre>
+
+      <h2>Procesamiento con bucles</h2>
+      <p>Iteramos sobre los resultados filtrados y los mostramos en formato tabla:</p>
+      <pre><code>render_results() {
+  local results="$1"
+  local count=0
+
+  print_table
+
+  while read -r machine; do
+    [[ -z "$machine" ]] && continue
+
+    local name ip os diff
+    name=$(echo "$machine" | jq -r '.name')
+    ip=$(echo "$machine" | jq -r '.ip // "N/A"')
+    os=$(echo "$machine" | jq -r '.os')
+    diff=$(echo "$machine" | jq -r '.difficulty_text // "unknown"')
+
+    print_table_row "$name" "$ip" "$os" "$diff"
+    ((count++))
+  done <<< "$results"
+
+  echo "└──────────────────────────────────────────────────────┘"
+  echo "${BOLD}Total:${RESET} $count máquinas encontradas"
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Buenas prácticas:</strong> Usar tuberías (<code>|</code>) y <code>while read</code> evita cargar todo el resultado en memoria. Es eficiente incluso con cientos de máquinas.
+      </div>
+
+      <h2>Función de búsqueda unificada</h2>
+      <pre><code>do_search() {
+  local json
+  json=$(fetch_machines) || return 1
+
+  local filtered
+  filtered=$(search_machines "$json")
+
+  if [[ -z "$filtered" ]]; then
+    print_error "No se encontraron máquinas con esos criterios"
+    return 1
+  fi
+
+  render_results "$filtered"
+}</code></pre>
+
+      <p>El buscador ya puede filtrar por nombre, SO y dificultad. En la siguiente clase mejoraremos la presentación con colores y paginación.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-65.html">← Anterior: Scripting en Bash [2-6]</a>
+        <a href="clase-67.html">Siguiente: Scripting en Bash [4-6] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

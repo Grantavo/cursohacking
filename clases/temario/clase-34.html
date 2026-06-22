@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>34. Búsquedas precisas de archivos [2-2] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 34</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Búsquedas precisas de archivos [2-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 1:53 · Sección 2: Temario</div>
+
+      <p>
+        Cerramos el tema de búsquedas comparando <code>find</code> y <code>locate</code>, y viendo cómo ejecutar acciones sobre los archivos encontrados con <code>-exec</code> y <code>xargs</code>. Saber cuándo usar cada herramienta te ahorrará tiempo y recursos.
+      </p>
+
+      <h2>locate: búsqueda instantánea (pero no siempre actualizada)</h2>
+      <p><code>locate</code> busca en una base de datos preconstruida (<code>/var/lib/mlocate/mlocate.db</code>), actualizada periódicamente por <code>updatedb</code> (normalmente cada noche via cron).</p>
+
+      <pre><code># Buscar instantáneamente
+locate shadow
+locate "*.conf"
+locate -i "readme"     # ignore-case
+
+# Contar resultados
+locate -c "*.log"
+
+# Limitar número de resultados
+locate -l 10 "*.log"
+
+# Forzar actualización de la base de datos
+sudo updatedb</code></pre>
+
+      <div class="highlight">
+        <strong>💡 updatedb manual:</strong> Ejecuta <code>sudo updatedb</code> después de instalar o crear archivos si quieres que <code>locate</code> los encuentre de inmediato. En servidores de pentesting, puede ser útil actualizar la base antes de buscar.
+      </div>
+
+      <h3>find con -exec y xargs</h3>
+      <p>Cuando necesitas hacer algo con los archivos encontrados, tienes dos opciones:</p>
+
+      <pre><code># -exec: ejecuta un comando por cada archivo
+find /tmp -type f -name "*.tmp" -exec rm {} \;
+
+# xargs: pasa los archivos como argumentos a un comando (más eficiente)
+find /tmp -type f -name "*.tmp" | xargs rm -f
+
+# Diferencia clave: -exec ejecuta el comando una vez por archivo
+# mientras que xargs agrupa varios archivos en una sola ejecución</code></pre>
+
+      <h3>Ejemplos prácticos con -exec y xargs</h3>
+
+      <pre><code># Cambiar permisos recursivamente
+find /var/www -type f -exec chmod 644 {} \;
+find /var/www -type d -exec chmod 755 {} \;
+
+# Buscar y copiar archivos de log a un directorio de backup
+find /var/log -name "*.log" -mtime -1 -exec cp {} /backup/logs/ \;
+
+# Buscar archivos que contengan una palabra (combinando find + grep)
+find /etc -type f -name "*.conf" -exec grep -l "PermitRootLogin" {} \;
+
+# Usando xargs para borrar archivos antiguos
+find /tmp -type f -atime +7 -print | xargs rm -f
+
+# Buscar archivos por contenido (sin -exec)
+find /var -type f -name "*.php" -exec grep -l "password" {} \;</code></pre>
+
+      <h3>Diferencias clave entre find y locate</h3>
+      <table>
+        <tr><th>Aspecto</th><th>find</th><th>locate</th></tr>
+        <tr><td>Velocidad</td><td>Lenta (recorre el sistema)</td><td>Instantánea (base de datos)</td></tr>
+        <tr><td>Actualización</td><td>Tiempo real</td><td>Depende de updatedb</td></tr>
+        <tr><td>Filtros</td><td>Muy flexibles (nombre, tamaño, fecha, permisos...)</td><td>Solo por nombre/patrón</td></tr>
+        <tr><td>-exec/xargs</td><td>Sí, integrado</td><td>No directamente</td></tr>
+        <tr><td>Permisos</td><td>Solo ve lo que el usuario puede leer</td><td>Puede listar archivos que el usuario no puede leer si la DB es global</td></tr>
+      </table>
+
+      <div class="warning">
+        <strong>⚠️ Seguridad con locate:</strong> La base de datos de locate puede contener rutas de archivos que el usuario no debería conocer (porque no tiene permisos de lectura). Por eso, en sistemas multiusuario, la DB de locate suele actualizarse con privilegios limitados.
+      </div>
+
+      <p>En la práctica: usa <code>locate</code> para búsquedas rápidas de archivos que sabes que existen (configuraciones, binarios comunes). Usa <code>find</code> cuando necesites criterios precisos (tamaño, fecha, permisos) o cuando el archivo pueda ser muy reciente.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-33.html">← Anterior: Búsquedas precisas de archivos [1-2]</a>
+        <a href="clase-35.html">Siguiente: Métodos de filtrado de datos [1-2] →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>75. Scripting en Bash [5-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 75</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [5-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 31:24 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Implementamos el historial de jugadas usando arrays, estadísticas como números más frecuentes y racha de colores, y mostramos toda esta información al jugador.
+      </p>
+
+      <h2>Arrays para guardar resultados</h2>
+      <p>Cada jugada se guarda como un string delimitado en un array:</p>
+      <pre><code>declare -a HISTORIAL=()
+TOTAL_JUGADAS=0
+TOTAL_GANADAS=0
+TOTAL_PERDIDAS=0
+MAX_SALDO=$SALDO
+
+registrar_jugada() {
+  local numero=$1
+  local color=$2
+  local paridad=$3
+  local ganancia=$4
+  local apuesta=$5
+
+  local resultado="perdida"
+  [[ "$ganancia" -gt 0 ]] && resultado="ganada"
+
+  HISTORIAL+=("${numero}:${color}:${paridad}:${apuesta}:${ganancia}:${resultado}")
+
+  (( TOTAL_JUGADAS++ ))
+  if [[ "$ganancia" -gt 0 ]]; then
+    (( TOTAL_GANADAS++ ))
+  else
+    (( TOTAL_PERDIDAS++ ))
+  fi
+
+  [[ "$SALDO" -gt "$MAX_SALDO" ]] && MAX_SALDO=$SALDO
+}</code></pre>
+
+      <h2>Estadísticas: números más frecuentes</h2>
+      <p>Usamos un array asociativo para contar frecuencias:</p>
+      <pre><code>numeros_mas_frecuentes() {
+  declare -A frecuencias
+
+  for jugada in "${HISTORIAL[@]}"; do
+    local num
+    num=$(echo "$jugada" | cut -d: -f1)
+    (( frecuencias[$num]++ ))
+  done
+
+  # Ordenar por frecuencia (usando sort externo)
+  echo "Números más frecuentes:"
+  for num in "${!frecuencias[@]}"; do
+    echo "$num:${frecuencias[$num]}"
+  done | sort -t: -k2 -rn | head -5 | while IFS=: read -r num freq; do
+    printf "  Número %2d: %d veces\n" "$num" "$freq"
+  done
+}</code></pre>
+
+      <h2>Estadísticas: racha de colores</h2>
+      <pre><code>racha_actual() {
+  local color_objetivo=$1
+  local racha=0
+
+  for (( i = ${#HISTORIAL[@]} - 1; i >= 0; i-- )); do
+    local color
+    color=$(echo "${HISTORIAL[$i]}" | cut -d: -f2)
+    if [[ "$color" == "$color_objetivo" ]]; then
+      (( racha++ ))
+    else
+      break
+    fi
+  done
+
+  echo "$racha"
+}
+
+mayor_racha() {
+  local color_objetivo=$1
+  local max_racha=0
+  local racha_actual=0
+
+  for jugada in "${HISTORIAL[@]}"; do
+    local color
+    color=$(echo "$jugada" | cut -d: -f2)
+    if [[ "$color" == "$color_objetivo" ]]; then
+      (( racha_actual++ ))
+      [[ "$racha_actual" -gt "$max_racha" ]] && max_racha=$racha_actual
+    else
+      racha_actual=0
+    fi
+  done
+
+  echo "$max_racha"
+}</code></pre>
+
+      <h2>Mostrar historial</h2>
+      <p>Visualizamos las últimas jugadas en una tabla:</p>
+      <pre><code>mostrar_historial() {
+  echo "${BOLD}Últimas jugadas:${RESET}"
+  echo
+
+  local start=0
+  local limit=20  # Mostrar últimas 20
+  local total=${#HISTORIAL[@]}
+
+  if [[ "$total" -gt "$limit" ]]; then
+    start=$(( total - limit ))
+  fi
+
+  printf "%-4s %-6s %-8s %-8s %-10s\n" "#" "Núm" "Color" "Apuesta" "Resultado"
+  echo "----------------------------------------"
+
+  for (( i = start; i < total; i++ )); do
+    IFS=: read -r num color paridad apuesta ganancia resultado <<< "${HISTORIAL[$i]}"
+
+    local color_display
+    case "$color" in
+      rojo)  color_display="${ROJO}$color${RESET}" ;;
+      negro) color_display="${BLANCO}$color${RESET}" ;;
+      verde) color_display="${VERDE}$color${RESET}" ;;
+    esac
+
+    local result_display
+    if [[ "$resultado" == "ganada" ]]; then
+      result_display="${VERDE}✓ +\$$ganancia${RESET}"
+    else
+      result_display="${ROJO}✗ -\$$apuesta${RESET}"
+    fi
+
+    printf "%-4d %-6s %b %-8s %b\n" "$((i+1))" "$num" "$color_display" "\$$apuesta" "$result_display"
+  done
+}</code></pre>
+
+      <h2>Panel de estadísticas completo</h2>
+      <pre><code>mostrar_estadisticas() {
+  clear
+  echo "${BOLD}${AZUL}═══════════════════════════════════${RESET}"
+  echo "${BOLD}         📊 ESTADÍSTICAS${RESET}"
+  echo "${BOLD}${AZUL}═══════════════════════════════════${RESET}"
+  echo
+
+  if [[ "$TOTAL_JUGADAS" -eq 0 ]]; then
+    echo "Aún no hay jugadas registradas."
+    return
+  fi
+
+  local winrate
+  winrate=$(echo "scale=2; $TOTAL_GANADAS * 100 / $TOTAL_JUGADAS" | bc 2>/dev/null || echo "0")
+  local racha_rojo
+  racha_rojo=$(racha_actual "rojo")
+  local racha_negro
+  racha_negro=$(racha_actual "negro")
+
+  echo "Jugadas totales:    $TOTAL_JUGADAS"
+  echo "Ganadas:            ${VERDE}$TOTAL_GANADAS${RESET}"
+  echo "Perdidas:           ${ROJO}$TOTAL_PERDIDAS${RESET}"
+  echo "Winrate:            ${AMARILLO}${winrate}%${RESET}"
+  echo "Saldo actual:       ${VERDE}\$${SALDO}${RESET}"
+  echo "Saldo máximo:       ${VERDE}\$${MAX_SALDO}${RESET}"
+  echo "Racha rojo actual:  ${ROJO}$racha_rojo${RESET}"
+  echo "Racha negro actual: ${BLANCO}$racha_negro${RESET}"
+  echo
+  numeros_mas_frecuentes
+  echo
+  mostrar_historial
+
+  read -n 1 -s -r -p "Presiona cualquier tecla para continuar..."
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 bc para decimales:</strong> Bash solo soporta aritmética entera. Para el winrate (porcentaje con decimales) usamos <code>bc</code>, una calculadora de precisión arbitraria.
+      </div>
+
+      <p>Las estadísticas dan feedback valioso al jugador. En la siguiente clase implementaremos la persistencia con archivos.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-74.html">← Anterior: Scripting en Bash [4-15]</a>
+        <a href="clase-76.html">Siguiente: Scripting en Bash [6-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>16. Control de atributos de ficheros en Linux - Chattr y Lsattr | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 16</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Control de atributos de ficheros en Linux - Chattr y Lsattr</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:54 · Sección 2: Temario</div>
+
+      <p>
+        Los permisos tradicionales (rwx) no son la única capa de seguridad en Linux. Los atributos extendidos con <code>chattr</code> y <code>lsattr</code> permiten controlar propiedades adicionales de los archivos a nivel del sistema de archivos.
+      </p>
+
+      <h2>Atributos principales</h2>
+
+      <table>
+        <tr><th>Atributo</th><th>Nombre</th><th>Descripción</th></tr>
+        <tr><td>i</td><td>Immutable</td><td>El archivo no se puede modificar, eliminar, renombrar ni enlazar. Ni siquiera root puede hacerlo sin quitar primero este atributo.</td></tr>
+        <tr><td>a</td><td>Append only</td><td>Solo se puede añadir contenido al final. Útil para logs.</td></tr>
+        <tr><td>u</td><td>Undeletable</td><td>Se guarda una copia del archivo al eliminarlo (posible recuperación).</td></tr>
+        <tr><td>c</td><td>Compressed</td><td>El archivo se comprime automáticamente en disco.</td></tr>
+        <tr><td>s</td><td>Secure deletion</td><td>Se sobrescribe con ceros al eliminar (no recuperable).</td></tr>
+      </table>
+
+      <h2>Comandos básicos</h2>
+
+      <pre><code>lsattr archivo.txt             # Muestra los atributos de un archivo
+lsattr -R /directorio/         # Muestra atributos recursivamente
+chattr +i archivo.txt          # Añade el atributo immutable
+chattr -i archivo.txt          # Quita el atributo immutable
+chattr +a /var/log/syslog      # Añade append-only al log</code></pre>
+
+      <div class="highlight">
+        <strong>🔒 Protección crítica:</strong> <code>chattr +i /etc/passwd</code> evita que se modifique el archivo de usuarios, incluso si alguien obtiene acceso root. Es una medida de hardening básica.
+      </div>
+
+      <h2>Ejemplo práctico: proteger <code>/etc/passwd</code></h2>
+
+      <pre><code># Ver atributos actuales
+lsattr /etc/passwd
+# ----i-------- /etc/passwd   (si ya tiene la i)
+
+# Añadir inmutable
+sudo chattr +i /etc/passwd
+
+# Intentar modificar
+sudo useradd hacker           # Error: no se puede modificar /etc/passwd
+
+# Para deshacer
+sudo chattr -i /etc/passwd</code></pre>
+
+      <div class="warning">
+        <strong>⚠️</strong> El atributo <code>i</code> es tan restrictivo que ni siquiera root puede sobrescribir el archivo. Para modificarlo, debes quitar el atributo primero y luego volver a ponerlo. Úsalo con cuidado en archivos del sistema.
+      </div>
+
+      <h2>Casos de uso</h2>
+      <ul>
+        <li><strong>+i</strong> en binarios críticos (<code>/bin/ls</code>, <code>/usr/bin/sudo</code>) para evitar modificaciones maliciosas</li>
+        <li><strong>+a</strong> en logs (<code>/var/log/auth.log</code>) para que nadie pueda borrar el historial</li>
+        <li><strong>+i</strong> en claves SSH (<code>~/.ssh/authorized_keys</code>) para evitar que scripts maliciosos añadan claves</li>
+      </ul>
+
+      <div class="lesson-nav">
+        <a href="clase-15.html">← Anterior: Sticky Bit</a>
+        <a href="clase-17.html">Siguiente: SUID y SGID →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

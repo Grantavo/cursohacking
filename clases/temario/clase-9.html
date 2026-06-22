@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. Cuestionario de control de flujo y operadores | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 9</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Cuestionario de control de flujo y operadores</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: — · Sección 2: Temario</div>
+
+      <p>Responde las siguientes preguntas para evaluar tu comprensión de los temas de stderr, stdout, operadores y procesos en segundo plano.</p>
+
+      <h2>Cuestionario</h2>
+
+      <p><strong>1. ¿Qué número de descriptor corresponde a stderr?</strong></p>
+      <ul>
+        <li>A) 0</li>
+        <li>B) 1</li>
+        <li>C) 2</li>
+        <li>D) 3</li>
+      </ul>
+
+      <p><strong>2. ¿Qué hace el siguiente comando? <code>comando &gt; salida.log 2&gt;&amp;1</code></strong></p>
+      <ul>
+        <li>A) Redirige solo stdout a salida.log</li>
+        <li>B) Redirige solo stderr a salida.log</li>
+        <li>C) Redirige tanto stdout como stderr a salida.log</li>
+        <li>D) Redirige stdin desde salida.log</li>
+      </ul>
+
+      <p><strong>3. ¿Qué operador ejecuta el segundo comando solo si el primero falla?</strong></p>
+      <ul>
+        <li>A) &&</li>
+        <li>B) ||</li>
+        <li>C) ;</li>
+        <li>D) &</li>
+      </ul>
+
+      <p><strong>4. ¿Qué hace el operador <code>&amp;</code> al final de un comando?</strong></p>
+      <ul>
+        <li>A) Ejecuta el comando en segundo plano</li>
+        <li>B) Ejecuta el comando si el anterior falló</li>
+        <li>C) Redirige la salida a un archivo</li>
+        <li>D) Duplica el comando en paralelo</li>
+      </ul>
+
+      <p><strong>5. ¿Qué combinación de teclas detiene (pausa) el proceso en primer plano?</strong></p>
+      <ul>
+        <li>A) Ctrl+C</li>
+        <li>B) Ctrl+Z</li>
+        <li>C) Ctrl+D</li>
+        <li>D) Ctrl+X</li>
+      </ul>
+
+      <p><strong>6. ¿Qué comando muestra los trabajos en segundo plano?</strong></p>
+      <ul>
+        <li>A) ps</li>
+        <li>B) jobs</li>
+        <li>C) bg</li>
+        <li>D) tasks</li>
+      </ul>
+
+      <p><strong>7. ¿Cuál es la diferencia entre <code>&gt;</code> y <code>&gt;&gt;</code>?</strong></p>
+      <ul>
+        <li>A) No hay diferencia</li>
+        <li>B) <code>&gt;</code> sobrescribe, <code>&gt;&gt;</code> añade al final</li>
+        <li>C) <code>&gt;</code> añade, <code>&gt;&gt;</code> sobrescribe</li>
+        <li>D) <code>&gt;</code> redirige stdin, <code>&gt;&gt;</code> redirige stdout</li>
+      </ul>
+
+      <p><strong>8. ¿Qué hace <code>fg %1</code>?</strong></p>
+      <ul>
+        <li>A) Mata el job 1</li>
+        <li>B) Trae el job 1 al primer plano</li>
+        <li>C) Envía el job 1 a segundo plano</li>
+        <li>D) Muestra el PID del job 1</li>
+      </ul>
+
+      <p><strong>9. ¿Qué descriptor usarías para leer de un archivo con <code>exec</code>?</strong></p>
+      <ul>
+        <li>A) exec 3&gt; archivo</li>
+        <li>B) exec 3&lt; archivo</li>
+        <li>C) exec 3&lt;&gt; archivo</li>
+        <li>D) exec 3= archivo</li>
+      </ul>
+
+      <p><strong>10. ¿Qué hace <code>comando 2&gt; /dev/null</code>?</strong></p>
+      <ul>
+        <li>A) Muestra los errores en pantalla</li>
+        <li>B) Guarda los errores en /dev/null (los descarta)</li>
+        <li>C) Guarda stdout en /dev/null</li>
+        <li>D) Redirige /dev/null a la entrada del comando</li>
+      </ul>
+
+      <div class="lesson-nav">
+        <a href="clase-8.html">← Anterior: Descriptores de archivo</a>
+        <a href="clase-10.html">Siguiente: Lectura e interpretación de permisos [1-2] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

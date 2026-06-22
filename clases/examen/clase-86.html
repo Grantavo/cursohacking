@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>86. Examen final de tensada máxima | Introducción a Linux</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 86</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Examen final de <em>tensada máxima</em></h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: — · Sección 4: Examen Final</div>
+
+      <div class="highlight">
+        <strong>📝 Instrucciones:</strong> A continuación encontrarás 20 preguntas de opción múltiple que cubren TODO el contenido del curso. Lee cada pregunta con atención, selecciona la opción correcta y al finalizar repasa tus respuestas. ¡Mucha suerte!
+      </div>
+
+      <p><strong>1. ¿Cuál de los siguientes comandos se usa para listar archivos en un directorio?</strong></p>
+      <ul>
+        <li>A) <code>pwd</code></li>
+        <li>B) <code>ls</code></li>
+        <li>C) <code>cd</code></li>
+        <li>D) <code>mkdir</code></li>
+      </ul>
+
+      <p><strong>2. ¿Qué permiso representa el número 755 en octal?</strong></p>
+      <ul>
+        <li>A) rwxr-xr-x</li>
+        <li>B) rwxrwxrwx</li>
+        <li>C) rwxr--r--</li>
+        <li>D) r-xr-xr-x</li>
+      </ul>
+
+      <p><strong>3. ¿Qué hace el comando <code>chmod +x script.sh</code>?</strong></p>
+      <ul>
+        <li>A) Cambia el propietario del archivo</li>
+        <li>B) Añade permiso de ejecución al archivo</li>
+        <li>C) Elimina el permiso de escritura</li>
+        <li>D) Cambia el grupo del archivo</li>
+      </ul>
+
+      <p><strong>4. ¿Cuál de los siguientes operadores redirige la salida estándar a un archivo SOBREESCRIBIÉNDOLO?</strong></p>
+      <ul>
+        <li>A) <code>></code></li>
+        <li>B) <code>>></code></li>
+        <li>C) <code>2></code></li>
+        <li>D) <code><</code></li>
+      </ul>
+
+      <p><strong>5. ¿Qué hace el comando <code>grep -r "root" /etc</code>?</strong></p>
+      <ul>
+        <li>A) Busca la palabra "root" solo en archivos del directorio actual</li>
+        <li>B) Busca recursivamente la palabra "root" en todos los archivos dentro de /etc</li>
+        <li>C) Reemplaza "root" por otra palabra en /etc</li>
+        <li>D) Elimina todas las líneas que contengan "root"</li>
+      </ul>
+
+      <p><strong>6. ¿Cuál es la función del bit SUID en un archivo?</strong></p>
+      <ul>
+        <li>A) Permite que cualquier usuario pueda escribir en el archivo</li>
+        <li>B) Hace que el archivo se ejecute con los permisos del propietario</li>
+        <li>C) Impide que el archivo sea eliminado</li>
+        <li>D) Borra el archivo automáticamente al cerrarse</li>
+      </ul>
+
+      <p><strong>7. ¿Qué tubería (pipe) usarías para contar cuántos archivos hay en un directorio?</strong></p>
+      <ul>
+        <li>A) <code>ls | wc -l</code></li>
+        <li>B) <code>ls > wc -l</code></li>
+        <li>C) <code>ls && wc -l</code></li>
+        <li>D) <code>ls; wc -l</code></li>
+      </ul>
+
+      <p><strong>8. En Bash, ¿qué estructura usarías para repetir un bloque de código mientras se cumpla una condición?</strong></p>
+      <ul>
+        <li>A) <code>if</code></li>
+        <li>B) <code>for</code></li>
+        <li>C) <code>while</code></li>
+        <li>D) <code>case</code></li>
+      </ul>
+
+      <p><strong>9. ¿Cuál es el comando correcto para conectarse por SSH a un servidor con IP 192.168.1.100 y usuario admin?</strong></p>
+      <ul>
+        <li>A) <code>ssh 192.168.1.100 admin</code></li>
+        <li>B) <code>ssh admin@192.168.1.100</code></li>
+        <li>C) <code>ssh admin:192.168.1.100</code></li>
+        <li>D) <code>ssh -u admin 192.168.1.100</code></li>
+      </ul>
+
+      <p><strong>10. ¿Qué hace el comando <code>netcat -lvnp 4444</code>?</strong></p>
+      <ul>
+        <li>A) Conecta a un servidor remoto en el puerto 4444</li>
+        <li>B) Escucha conexiones entrantes en el puerto 4444</li>
+        <li>C) Escanea los puertos de una IP remota</li>
+        <li>D) Transfiere un archivo a través del puerto 4444</li>
+      </ul>
+
+      <p><strong>11. ¿Qué expresión regular usarías con grep para buscar líneas que empiecen por "error"?</strong></p>
+      <ul>
+        <li>A) <code>grep "error$" archivo</code></li>
+        <li>B) <code>grep "^error" archivo</code></li>
+        <li>C) <code>grep "error" archivo</code></li>
+        <li>D) <code>grep "error*" archivo</code></li>
+      </ul>
+
+      <p><strong>12. ¿Cuál de los siguientes comandos de sed reemplaza la primera ocurrencia de "foo" por "bar" en cada línea?</strong></p>
+      <ul>
+        <li>A) <code>sed 's/foo/bar/g' archivo</code></li>
+        <li>B) <code>sed 's/foo/bar/' archivo</code></li>
+        <li>C) <code>sed 's/foo/bar/2' archivo</code></li>
+        <li>D) <code>sed 's/foo/bar/i' archivo</code></li>
+      </ul>
+
+      <p><strong>13. ¿Qué comando de awk imprime la segunda columna de un archivo?</strong></p>
+      <ul>
+        <li>A) <code>awk '{print $1}' archivo</code></li>
+        <li>B) <code>awk '{print $2}' archivo</code></li>
+        <li>C) <code>awk '{print $0}' archivo</code></li>
+        <li>D) <code>awk '{print $NF}' archivo</code></li>
+      </ul>
+
+      <p><strong>14. ¿Qué hace <code>echo "Linux" | base64</code>?</strong></p>
+      <ul>
+        <li>A) Descodifica la cadena "Linux" de base64</li>
+        <li>B) Codifica la cadena "Linux" a base64</li>
+        <li>C) Comprime la cadena "Linux"</li>
+        <li>D) Calcula el hash MD5 de "Linux"</li>
+      </ul>
+
+      <p><strong>15. ¿Qué archivo del sistema se usa para programar tareas con cron a nivel de usuario?</strong></p>
+      <ul>
+        <li>A) <code>/etc/crontab</code></li>
+        <li>B) <code>/var/spool/cron/crontabs/</code></li>
+        <li>C) <code>/etc/cron.d/</code></li>
+        <li>D) <code>/etc/cron.hourly/</code></li>
+      </ul>
+
+      <p><strong>16. ¿Qué comando de Git se usa para enviar los commits locales al repositorio remoto?</strong></p>
+      <ul>
+        <li>A) <code>git commit</code></li>
+        <li>B) <code>git push</code></li>
+        <li>C) <code>git pull</code></li>
+        <li>D) <code>git fetch</code></li>
+      </ul>
+
+      <p><strong>17. ¿Cuál es la diferencia entre <code>git pull</code> y <code>git fetch</code>?</strong></p>
+      <ul>
+        <li>A) No hay diferencia, hacen lo mismo</li>
+        <li>B) <code>git pull</code> descarga cambios y los fusiona; <code>git fetch</code> solo descarga</li>
+        <li>C) <code>git fetch</code> descarga cambios y los fusiona; <code>git pull</code> solo descarga</li>
+        <li>D) <code>git pull</code> solo funciona en la rama main</li>
+      </ul>
+
+      <p><strong>18. ¿Qué flag de chown cambia el propietario Y el grupo de un archivo?</strong></p>
+      <ul>
+        <li>A) <code>chown usuario archivo</code></li>
+        <li>B) <code>chown usuario:grupo archivo</code></li>
+        <li>C) <code>chown :grupo archivo</code></li>
+        <li>D) <code>chown --group archivo</code></li>
+      </ul>
+
+      <p><strong>19. ¿Qué hace el Sticky Bit en un directorio como /tmp?</strong></p>
+      <ul>
+        <li>A) Solo el propietario puede eliminar sus propios archivos</li>
+        <li>B) Cualquier usuario puede eliminar cualquier archivo</li>
+        <li>C) Los archivos se comprimen automáticamente</li>
+        <li>D) El directorio no puede ser renombrado</li>
+      </ul>
+
+      <p><strong>20. ¿Qué comando se usa para buscar un archivo llamado "script.sh" desde la raíz del sistema?</strong></p>
+      <ul>
+        <li>A) <code>find / -name script.sh</code></li>
+        <li>B) <code>grep / script.sh</code></li>
+        <li>C) <code>locate script.sh</code></li>
+        <li>D) <code>search / -file script.sh</code></li>
+      </ul>
+
+      <p><strong>21. ¿Cuál de estos símbolos ejecuta el segundo comando SOLO si el primero falla?</strong></p>
+      <ul>
+        <li>A) <code>&&</code></li>
+        <li>B) <code>||</code></li>
+        <li>C) <code>;</code></li>
+        <li>D) <code>|</code></li>
+      </ul>
+
+      <p><strong>22. En el proyecto de Hack The Box, ¿qué herramienta se usa típicamente para enumerar puertos abiertos?</strong></p>
+      <ul>
+        <li>A) <code>nc</code></li>
+        <li>B) <code>nmap</code></li>
+        <li>C) <code>ping</code></li>
+        <li>D) <code>traceroute</code></li>
+      </ul>
+
+      <div class="lesson-nav">
+        <a href="../scripting/clase-85.html">← Anterior</a>
+        <a href="../despedida/clase-87.html">Siguiente →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

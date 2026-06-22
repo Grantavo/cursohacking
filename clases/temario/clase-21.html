@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21. Uso de bashrc y zshrc | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 21</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso de bashrc y zshrc</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 8:06 · Sección 2: Temario</div>
+
+      <p>
+        Cada vez que abres una terminal, tu shell (bash, zsh, fish, etc.) lee archivos de configuración que definen variables de entorno, alias, funciones y la apariencia del prompt. El archivo más importante es <code>.bashrc</code> (para Bash) o <code>.zshrc</code> (para Zsh). Personalizar estos archivos es el primer paso para construir un entorno de trabajo eficiente.
+      </p>
+
+      <h2>¿Qué archivos de configuración existen?</h2>
+
+      <table>
+        <tr><th>Archivo</th><th>Cuándo se ejecuta</th></tr>
+        <tr><td><code>~/.bashrc</code></td><td>En cada nueva terminal interactiva (no login)</td></tr>
+        <tr><td><code>~/.bash_profile</code></td><td>Al iniciar sesión (login shell)</td></tr>
+        <tr><td><code>~/.profile</code></td><td>Alternativa a .bash_profile si no existe</td></tr>
+        <tr><td><code>~/.bash_logout</code></td><td>Al cerrar la sesión</td></tr>
+        <tr><td><code>~/.zshrc</code></td><td>En cada nueva terminal interactiva en Zsh</td></tr>
+      </table>
+
+      <h3>Variables de entorno: PATH, PS1 y más</h3>
+
+      <p>Las variables de entorno controlan el comportamiento del shell. Las más importantes:</p>
+
+      <pre><code>echo $PATH          # Directorios donde el shell busca ejecutables
+echo $PS1           # Formato del prompt
+echo $HOME          # Ruta del directorio personal
+echo $SHELL         # Qué shell estás usando</code></pre>
+
+      <p>Para añadir un directorio al PATH de forma permanente, edita tu <code>~/.bashrc</code>:</p>
+
+      <pre><code># Añadir ~/.local/bin al PATH
+export PATH="$HOME/.local/bin:$PATH"</code></pre>
+
+      <h3>Alias: atajos que te ahorrarán horas</h3>
+
+      <p>Un alias es un atajo para comandos largos. Aquí tienes algunos esenciales para hacking:</p>
+
+      <pre><code># En ~/.bashrc
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias cls='clear'
+alias g='grep -i'
+alias ports='netstat -tulanp'</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Pro tip:</strong> Crea un alias <code>alias ip='curl -s ifconfig.me'</code> para conocer tu IP pública al instante. O <code>alias scan='nmap -sV -sC'</code> para escaneos rápidos con nmap.
+      </div>
+
+      <h3>Personalizar el prompt (PS1)</h3>
+
+      <p>El prompt puede mostrar información útil: usuario, máquina, directorio actual, hora, etc.</p>
+
+      <pre><code># Prompt básico con colores
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+# Prompt con fecha, hora y estado del último comando
+PS1='[\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;34m\]\h\[\033[00m\] \t] \w\n\$ '
+
+# Explicación: \u = usuario, \h = hostname, \w = ruta completa, \t = hora</code></pre>
+
+      <h3>Ejemplo de .bashrc completo</h3>
+
+      <p>Este es un punto de partida sólido que puedes copiar directamente a tu máquina:</p>
+
+      <pre><code># ~/.bashrc — Configuración personalizada
+
+# --- Variables de entorno ---
+export EDITOR=vim
+export PATH="$HOME/.local/bin:$PATH"
+
+# --- Prompt personalizado ---
+PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;33m\]$\[\e[m\] '
+
+# --- Alias ---
+alias ll='ls -la'
+alias la='ls -A'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias cls='clear'
+alias ports='ss -tulanp'
+
+# --- Funciones ---
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+extract() {
+    if [ -f "$1" ]; then
+        case "$1" in
+            *.tar.gz)  tar -xzf "$1" ;;
+            *.zip)     unzip "$1" ;;
+            *.rar)     unrar x "$1" ;;
+            *)         echo "Formato no soportado" ;;
+        esac
+    fi
+}
+
+# --- Seguridad: no guardar comandos duplicados en el historial ---
+export HISTCONTROL=ignoredups:erasedups</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Atención:</strong> Si editas <code>.bashrc</code> y algo sale mal (el prompt se rompe o no puedes escribir), puedes arreglarlo ejecutando <code>/bin/bash --norc</code> para iniciar Bash sin configuraciones, o editar el archivo directamente con <code>vim ~/.bashrc</code> desde una terminal sin carga.
+      </div>
+
+      <p>Después de modificar <code>.bashrc</code>, aplica los cambios con <code>source ~/.bashrc</code> o abre una nueva terminal. Cada usuario en el sistema tiene su propio <code>.bashrc</code> en su <code>$HOME</code>, lo que permite personalizaciones individuales.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-20.html">← Anterior: Estructura de directorios del sistema</a>
+        <a href="clase-22.html">Siguiente: Actualización y Upgradeo del sistema →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

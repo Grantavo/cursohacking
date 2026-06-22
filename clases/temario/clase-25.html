@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>25. Creación de scripts en Bash | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 25</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Creación de scripts en Bash</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 9:09 · Sección 2: Temario</div>
+
+      <p>
+        Bash no es solo un shell para ejecutar comandos; es un lenguaje de programación completo. Automatizar tareas con scripts es una de las habilidades más valiosas en ciberseguridad: desde escaneos automatizados hasta parsing de logs o despliegue de herramientas. Vamos a construir desde cero.
+      </p>
+
+      <h2>Estructura básica de un script</h2>
+
+      <p>Todo script en Bash comienza con el shebang <code>#!/bin/bash</code>, que le indica al sistema qué intérprete usar:</p>
+
+      <pre><code>#!/bin/bash
+# mi-primer-script.sh — Esto es un comentario
+
+echo "¡Hola, mundo!"</code></pre>
+
+      <p>Para ejecutarlo, primero debes darle permisos de ejecución:</p>
+
+      <pre><code>chmod +x mi-primer-script.sh
+./mi-primer-script.sh</code></pre>
+
+      <h3>Variables</h3>
+
+      <p>Las variables almacenan datos. No llevan <code>$</code> al asignarse, pero sí al usarse:</p>
+
+      <pre><code>#!/bin/bash
+nombre="Hack4u"
+curso="Introducción a Linux"
+echo "Bienvenido a $nombre — $curso"
+
+# Variables numéricas
+a=5
+b=3
+suma=$((a + b))
+echo "La suma es $suma"</code></pre>
+
+      <h3>Leer entrada del usuario</h3>
+
+      <pre><code>#!/bin/bash
+echo "¿Cómo te llamas?"
+read nombre
+echo "Hola, $nombre. Bienvenido al curso."</code></pre>
+
+      <h3>Condicionales if/else</h3>
+
+      <pre><code>#!/bin/bash
+echo "Introduce tu edad:"
+read edad
+
+if [ "$edad" -ge 18 ]; then
+    echo "Eres mayor de edad"
+else
+    echo "Eres menor de edad"
+fi
+
+# Operadores: -eq (igual), -ne (no igual), -gt (mayor que)
+#             -ge (mayor o igual), -lt (menor que), -le (menor o igual)
+
+# Comprobar si existe un archivo
+if [ -f "/etc/passwd" ]; then
+    echo "El archivo passwd existe"
+fi</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Tip:</strong> En las condiciones <code>[ ]</code>, los espacios alrededor de los corchetes y del operador son obligatorios. <code>[ "$edad" -ge 18 ]</code> funciona; <code>["$edad"-ge 18]</code> no.
+      </div>
+
+      <h3>Bucles: for y while</h3>
+
+      <pre><code>#!/bin/bash
+# Bucle for: recorrer una lista
+for i in 1 2 3 4 5; do
+    echo "Número: $i"
+done
+
+# Bucle for con rango (bash 4+)
+for i in {1..10}; do
+    echo "Iteración $i"
+done
+
+# Bucle while: repetir mientras se cumpla una condición
+contador=1
+while [ $contador -le 5 ]; do
+    echo "Contador: $contador"
+    contador=$((contador + 1))
+done</code></pre>
+
+      <h3>Argumentos del script</h3>
+
+      <p>Los argumentos se pasan al script después del nombre y se accede a ellos con <code>$1</code>, <code>$2</code>, <code>$3</code>... <code>$@</code> contiene todos los argumentos:</p>
+
+      <pre><code>#!/bin/bash
+# Ejemplo: ./saludo.sh Juan Pérez
+echo "Primer argumento: $1"
+echo "Segundo argumento: $2"
+echo "Todos los argumentos: $@"
+echo "Número de argumentos: $#"</code></pre>
+
+      <h3>Script completo paso a paso: escáner de puertos simple</h3>
+
+      <p>Vamos a crear un script que escanee puertos abiertos en una IP dada. No es nmap, pero te enseña cómo estructurar un script real:</p>
+
+      <pre><code>#!/bin/bash
+
+# escaner.sh — Escáner de puertos básico
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 &lt;dirección-ip&gt;"
+    exit 1
+fi
+
+ip="$1"
+echo "Escaneando $ip..."
+echo "Puertos abiertos:"
+
+for puerto in 22 80 443 8080 3306 8443; do
+    timeout 1 bash -c "echo >/dev/tcp/$ip/$puerto" 2>/dev/null
+    if [ $? -eq 0 ]; then
+        echo "  [+] Puerto $puerto — ABIERTO"
+    fi
+done
+
+echo "Escaneo completado."</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Uso responsable:</strong> Este script abre conexiones TCP a los puertos especificados. Solo escanea sistemas sobre los que tengas autorización. Escanear sin permiso puede ser ilegal.
+      </div>
+
+      <p>Los scripts en Bash son tu primera línea de automatización. Domínalos antes de pasar a Python o Go, porque Bash es omnipresente en cualquier sistema Linux y no necesitas instalar nada adicional.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-24.html">← Anterior: Búsquedas a nivel de sistema</a>
+        <a href="clase-26.html">Siguiente: Uso y configuración de la Kitty →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

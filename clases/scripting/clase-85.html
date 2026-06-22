@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>85. Scripting en Bash [15-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 85</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [15-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 11:28 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Última clase del módulo de scripting. Resumimos todo lo aprendido, exploramos ideas para extender los proyectos, cómo compartir tus scripts y cerramos la sección con una reflexión final.
+      </p>
+
+      <h2>Resumen de todo lo aprendido</h2>
+      <p>En estas 23 clases (63-85) has aprendido:</p>
+
+      <table>
+        <tr>
+          <th>Concepto</th>
+          <th>Clases</th>
+        </tr>
+        <tr>
+          <td>Shebang, variables, tput</td>
+          <td>63-64</td>
+        </tr>
+        <tr>
+          <td>Funciones, getopts, argumentos</td>
+          <td>64-65</td>
+        </tr>
+        <tr>
+          <td>curl, jq, APIs REST</td>
+          <td>65-66</td>
+        </tr>
+        <tr>
+          <td>Arrays asociativos, bucles</td>
+          <td>66-67</td>
+        </tr>
+        <tr>
+          <td>Formateo de salida, tablas</td>
+          <td>67-68</td>
+        </tr>
+        <tr>
+          <td>Caché, manejo de errores</td>
+          <td>68-69</td>
+        </tr>
+        <tr>
+          <td>$RANDOM, números aleatorios</td>
+          <td>72</td>
+        </tr>
+        <tr>
+          <td>Lógica de negocio (apuestas)</td>
+          <td>73-74</td>
+        </tr>
+        <tr>
+          <td>Persistencia con JSON</td>
+          <td>76</td>
+        </tr>
+        <tr>
+          <td>Animaciones y sonidos</td>
+          <td>79-80</td>
+        </tr>
+        <tr>
+          <td>Multijugador y rankings</td>
+          <td>81</td>
+        </tr>
+        <tr>
+          <td>Logros y gamificación</td>
+          <td>82</td>
+        </tr>
+        <tr>
+          <td>Refactorización modular</td>
+          <td>83</td>
+        </tr>
+        <tr>
+          <td>Pruebas, depuración, trap</td>
+          <td>84</td>
+        </tr>
+      </table>
+
+      <h2>Ideas para extensiones</h2>
+      <div class="highlight">
+        <strong>🚀 Posibles mejoras:</strong>
+        <ul style="margin-top: 0.4rem;">
+          <li><strong>Modo gráfico:</strong> Usar <code>whiptail</code> o <code>dialog</code> para interfaces TUI</li>
+          <li><strong>Base de datos:</strong> En lugar de JSON, usar SQLite con <code>sqlite3</code></li>
+          <li><strong>API en tiempo real:</strong> Conectar a una API de criptomonedas en lugar de HTB</li>
+          <li><strong>Web scraping:</strong> Extraer datos de sitios web con <code>curl</code> + <code>grep</code></li>
+          <li><strong>Notificaciones push:</strong> Integrar con <code>curl</code> para enviar alertas a Telegram</li>
+          <li><strong>Docker:</strong> Empaquetar el script en un contenedor</li>
+          <li><strong>Modo online:</strong> Partidas multijugador a través de red con <code>nc</code> o <code>socat</code></li>
+        </ul>
+      </div>
+
+      <h2>Cómo compartir el script</h2>
+      <pre><code># 1. Hacerlo ejecutable
+chmod +x roulette.sh
+
+# 2. Crear un archivo .tar.gz para distribución
+tar -czf roulette.tar.gz roulette.sh lib/
+
+# 3. Subir a GitHub
+git init
+git add .
+git commit -m "Ruleta de casino en Bash"
+gh repo create roulette-bash --public --source=. --push
+
+# 4. Compartir como script autónomo (una sola línea)
+# Usar cat y sed para combinar todos los módulos en un solo archivo
+cat roulette.sh lib/*.sh > roulette_complete.sh
+chmod +x roulette_complete.sh</code></pre>
+
+      <h2>Comprobación final del script</h2>
+      <pre><code># Verificar sintaxis
+bash -n roulette.sh
+
+# Verificar con ShellCheck (si está instalado)
+shellcheck roulette.sh
+
+# Ejecutar tests
+bash tests/test_roulette.sh
+
+# Ejecutar el juego
+./roulette.sh -s 5000</code></pre>
+
+      <div class="warning">
+        <strong>📌 ShellCheck:</strong> Es una herramienta de análisis estático para Bash. Instálala con <code>sudo apt install shellcheck</code>. Te ayudará a detectar errores y malas prácticas en tus scripts.
+      </div>
+
+      <h2>Cierre del módulo</h2>
+      <p>
+        Has completado el módulo de <strong>Scripting en Bash — Principiante a Avanzado</strong>. Empezaste con variables y funciones, y has terminado construyendo dos proyectos completos: un buscador de máquinas HTB con API REST y una ruleta de casino con animaciones, sonidos, multijugador y persistencia.
+      </p>
+
+      <p>
+        Bash es una herramienta increíblemente potente. Con lo que has aprendido puedes automatizar cualquier tarea en Linux, desde backups hasta despliegues, pasando por herramientas de hacking ético y juegos completos. La terminal es tu límite.
+      </p>
+
+      <p>El próximo módulo del curso cubre temas avanzados de administración de Linux. ¡Nos vemos allí!</p>
+
+      <div class="lesson-nav">
+        <a href="clase-84.html">← Anterior: Scripting en Bash [14-15]</a>
+        <a href="../examen/clase-86.html">Siguiente: Examen del módulo →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

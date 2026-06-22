@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>83. Scripting en Bash [13-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 83</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [13-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 30:52 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Refactorizamos todo el código del proyecto: dividimos el script monolítico en funciones modulares, creamos archivos separados con <code>source</code> y aplicamos buenas prácticas de código limpio.
+      </p>
+
+      <h2>Estructura modular del proyecto</h2>
+      <pre><code># ~/roulette/
+# ├── roulette.sh          # Entry point
+# ├── lib/
+# │   ├── config.sh        # Variables globales y configuración
+# │   ├── colors.sh        # Colores y temas
+# │   ├── roulette_core.sh # Lógica de la ruleta (números, colores)
+# │   ├── bets.sh          # Tipos de apuesta y pagos
+# │   ├── players.sh       # Gestión de jugadores y multijugador
+# │   ├── stats.sh         # Historial y estadísticas
+# │   ├── save.sh          # Persistencia (guardar/cargar)
+# │   ├── strategies.sh    # Estrategias de apuesta
+# │   ├── ui.sh            # Interfaz, animaciones, tablero
+# │   ├── sound.sh         # Sonidos y notificaciones
+# │   ├── achievements.sh  # Logros y niveles
+# │   └── debug.sh         # Modo trampa y depuración</code></pre>
+
+      <p>Archivo principal <code>roulette.sh</code>:</p>
+      <pre><code>#!/bin/bash
+# roulette.sh - Ruleta de casino en Bash
+# Versión: 2.0 (modular)
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Cargar módulos en orden de dependencia
+source "${SCRIPT_DIR}/lib/config.sh"
+source "${SCRIPT_DIR}/lib/colors.sh"
+source "${SCRIPT_DIR}/lib/roulette_core.sh"
+source "${SCRIPT_DIR}/lib/bets.sh"
+source "${SCRIPT_DIR}/lib/players.sh"
+source "${SCRIPT_DIR}/lib/stats.sh"
+source "${SCRIPT_DIR}/lib/save.sh"
+source "${SCRIPT_DIR}/lib/strategies.sh"
+source "${SCRIPT_DIR}/lib/ui.sh"
+source "${SCRIPT_DIR}/lib/sound.sh"
+source "${SCRIPT_DIR}/lib/achievements.sh"
+source "${SCRIPT_DIR}/lib/debug.sh"
+
+main() {
+  parse_args "$@"
+  cargar_configuracion_colores
+  iniciar_juego
+
+  while [[ "$SALDO" -gt 0 ]]; do
+    mostrar_menu
+  done
+
+  game_over
+}
+
+main "$@"</code></pre>
+
+      <h2>Código limpio y comentado</h2>
+      <p>Ejemplo de función bien documentada:</p>
+      <pre><code># === roulette_core.sh ===
+
+# generar_numero()
+# Genera un número aleatorio entre 0 y 36.
+# Usa $RANDOM por defecto, o /dev/urandom si está disponible.
+# Argumentos: ninguno
+# Retorna: número entre 0 y 36 (stdout)
+generar_numero() {
+  if [[ -r /dev/urandom ]]; then
+    local byte
+    byte=$(od -An -N1 -tu1 /dev/urandom | tr -d ' ')
+    echo $(( byte % 37 ))
+  else
+    echo $(( RANDOM % 37 ))
+  fi
+}
+
+# determinar_color(numero)
+# Determina el color de un número de la ruleta europea.
+# Argumentos:
+#   $1 - Número (0-36)
+# Retorna: "rojo", "negro" o "verde" (stdout)
+determinar_color() {
+  local -r num=$1
+  local -ra ROJOS=(1 3 5 7 9 12 14 16 18 19 21 23 25 27 30 32 34 36)
+
+  [[ "$num" -eq 0 ]] && { echo "verde"; return 0; }
+
+  for n in "${ROJOS[@]}"; do
+    [[ "$n" -eq "$num" ]] && { echo "rojo"; return 0; }
+  done
+
+  echo "negro"
+}</code></pre>
+
+      <h2>Variables locales con readonly</h2>
+      <pre><code># Usar declare y readonly para claridad y seguridad
+procesar_apuesta_refactor() {
+  local -r tipo=$1
+  local -r eleccion=$2
+  local -r cantidad=$3
+  local -r resultado=$4
+  local ganancia=0
+
+  case $tipo in
+    pleno)
+      if [[ "$eleccion" -eq "$resultado" ]]; then
+        ganancia=$(( cantidad * 35 ))
+      fi
+      ;;
+    docena)
+      local -r min=$(( (eleccion - 1) * 12 + 1 ))
+      local -r max=$(( eleccion * 12 ))
+      if (( resultado >= min && resultado <= max )); then
+        ganancia=$(( cantidad * 2 ))
+      fi
+      ;;
+    color|mitad|par_impar)
+      # Delegar a funciones específicas
+      ganancia=$(procesar_apuesta_simple "$tipo" "$eleccion" "$cantidad" "$resultado")
+      ;;
+  esac
+
+  echo "$ganancia"
+}</code></pre>
+
+      <h2>Principios aplicados</h2>
+      <pre><code># 1. DRY (Don't Repeat Yourself)
+# Antes: código duplicado en cada tipo de apuesta
+# Después: función genérica con parámetros
+
+# 2. SRP (Single Responsibility Principle)
+# Cada archivo tiene UNA responsabilidad clara
+# ui.sh -> solo interfaz
+# bets.sh -> solo lógica de apuestas
+
+# 3. KISS (Keep It Simple, Stupid)
+# Funciones pequeñas (< 20 líneas)
+# Nombres descriptivos en inglés o español consistente
+
+# 4. Separación de configuración y lógica
+# config.sh contiene solo variables
+# El resto del código solo las referencia</code></pre>
+
+      <div class="highlight">
+        <strong>📐 Refactorización:</strong> Dividir el código en módulos no solo lo hace más mantenible, sino que permite trabajar en equipo (cada persona en un archivo) y reutilizar funciones en otros proyectos.
+      </div>
+
+      <p>El código refactorizado es más limpio y profesional. En la siguiente clase veremos pruebas y depuración.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-82.html">← Anterior: Scripting en Bash [12-15]</a>
+        <a href="clase-84.html">Siguiente: Scripting en Bash [14-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

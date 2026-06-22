@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>76. Scripting en Bash [6-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 76</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [6-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 15:24 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Añadimos persistencia al juego: guardar la partida en un archivo, cargarla al iniciar, usar formato JSON con <code>jq</code> y mantener el saldo y las estadísticas entre sesiones.
+      </p>
+
+      <h2>Guardar partida</h2>
+      <p>Exportamos el estado del juego a un archivo JSON:</p>
+      <pre><code>GUARDAR_DIR="${HOME}/.roulette"
+GUARDAR_FILE="${GUARDAR_DIR}/save.json"
+
+guardar_partida() {
+  mkdir -p "$GUARDAR_DIR"
+
+  # Construir JSON manualmente (o con jq si está disponible)
+  local json="{"
+
+  json+="\"nombre\": \"${NOMBRE}\","
+  json+="\"saldo\": ${SALDO},"
+  json+="\"max_saldo\": ${MAX_SALDO},"
+  json+="\"total_jugadas\": ${TOTAL_JUGADAS},"
+  json+="\"total_ganadas\": ${TOTAL_GANADAS},"
+  json+="\"total_perdidas\": ${TOTAL_PERDIDAS},"
+  json+="\"historial\": ["
+
+  local first=true
+  for jugada in "${HISTORIAL[@]}"; do
+    IFS=: read -r num color paridad apuesta ganancia resultado <<< "$jugada"
+    [[ "$first" == false ]] && json+=","
+    first=false
+    json+="{"
+    json+="\"numero\": ${num},"
+    json+="\"color\": \"${color}\","
+    json+="\"paridad\": \"${paridad}\","
+    json+="\"apuesta\": ${apuesta},"
+    json+="\"ganancia\": ${ganancia},"
+    json+="\"resultado\": \"${resultado}\""
+    json+="}"
+  done
+
+  json+="]}"
+
+  echo "$json" > "$GUARDAR_FILE"
+  print_success "Partida guardada en ${GUARDAR_FILE}"
+}</code></pre>
+
+      <h2>Cargar partida guardada</h2>
+      <p>Usamos <code>jq</code> para parsear el JSON si está disponible:</p>
+      <pre><code>cargar_partida() {
+  if [[ ! -f "$GUARDAR_FILE" ]]; then
+    print_info "No hay partida guardada"
+    return 1
+  fi
+
+  print_info "Cargando partida guardada..."
+
+  if command -v jq &> /dev/null; then
+    NOMBRE=$(jq -r '.nombre' "$GUARDAR_FILE")
+    SALDO=$(jq -r '.saldo' "$GUARDAR_FILE")
+    MAX_SALDO=$(jq -r '.max_saldo' "$GUARDAR_FILE")
+    TOTAL_JUGADAS=$(jq -r '.total_jugadas' "$GUARDAR_FILE")
+    TOTAL_GANADAS=$(jq -r '.total_ganadas' "$GUARDAR_FILE")
+    TOTAL_PERDIDAS=$(jq -r '.total_perdidas' "$GUARDAR_FILE")
+
+    HISTORIAL=()
+    while read -r jugada; do
+      local num color paridad apuesta ganancia resultado
+      num=$(echo "$jugada" | jq -r '.numero')
+      color=$(echo "$jugada" | jq -r '.color')
+      paridad=$(echo "$jugada" | jq -r '.paridad')
+      apuesta=$(echo "$jugada" | jq -r '.apuesta')
+      ganancia=$(echo "$jugada" | jq -r '.ganancia')
+      resultado=$(echo "$jugada" | jq -r '.resultado')
+      HISTORIAL+=("${num}:${color}:${paridad}:${apuesta}:${ganancia}:${resultado}")
+    done <<< "$(jq -c '.historial[]' "$GUARDAR_FILE")"
+  else
+    # Fallback: leer línea por línea (formato simple)
+    cargar_partida_simple
+  fi
+
+  print_success "Partida cargada. Bienvenido de nuevo, ${NOMBRE}!"
+}</code></pre>
+
+      <h2>Formato JSON con jq</h2>
+      <p>Si <code>jq</code> está instalado, también podemos usarlo para construir el JSON de forma más limpia:</p>
+      <pre><code>guardar_partida_jq() {
+  mkdir -p "$GUARDAR_DIR"
+
+  # Construir array de historial
+  local historial_json="[]"
+  for jugada in "${HISTORIAL[@]}"; do
+    IFS=: read -r num color paridad apuesta ganancia resultado <<< "$jugada"
+    local item
+    item=$(jq -n \
+      --argjson n "$num" \
+      --arg c "$color" \
+      --arg p "$paridad" \
+      --argjson a "$apuesta" \
+      --argjson g "$ganancia" \
+      --arg r "$resultado" \
+      '{numero: $n, color: $c, paridad: $p, apuesta: $a, ganancia: $g, resultado: $r}')
+    historial_json=$(echo "$historial_json" | jq --argjson item "$item" '. + [$item]')
+  done
+
+  jq -n \
+    --arg nombre "$NOMBRE" \
+    --argjson saldo "$SALDO" \
+    --argjson max_saldo "$MAX_SALDO" \
+    --argjson total "$TOTAL_JUGADAS" \
+    --argjson ganadas "$TOTAL_GANADAS" \
+    --argjson perdidas "$TOTAL_PERDIDAS" \
+    --argjson historial "$historial_json" \
+    '{nombre: $nombre, saldo: $saldo, max_saldo: $max_saldo,
+      total_jugadas: $total, total_ganadas: $ganadas,
+      total_perdidas: $perdidas, historial: $historial}' > "$GUARDAR_FILE"
+
+  print_success "Partida guardada con formato JSON"
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 jq -n para construir JSON desde cero:</strong> La opción <code>-n</code> (null input) permite crear objetos JSON sin necesidad de pipear datos de entrada. Combinado con <code>--arg</code> y <code>--argjson</code> es muy potente.
+      </div>
+
+      <h2>Persistencia de saldo y estadísticas</h2>
+      <p>Integramos la carga al inicio del juego:</p>
+      <pre><code>iniciar_juego() {
+  # Preguntar si cargar partida
+  if [[ -f "$GUARDAR_FILE" ]]; then
+    read -r -p "¿Cargar partida guardada? (s/N): " respuesta
+    if [[ "${respuesta,,}" == "s" ]]; then
+      cargar_partida && return 0
+    fi
+  fi
+
+  # Si no se carga, empezar de nuevo
+  bienvenida
+  read -r -p "Introduce tu nombre: " NOMBRE
+  NOMBRE="${NOMBRE:-Jugador}"
+  read -r -p "Saldo inicial [1000]: " saldo_in
+  SALDO="${saldo_in:-1000}"
+  MAX_SALDO=$SALDO
+  TOTAL_JUGADAS=0
+  TOTAL_GANADAS=0
+  TOTAL_PERDIDAS=0
+  HISTORIAL=()
+}</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ jq como dependencia:</strong> El script funciona sin jq usando fallbacks. Pero para una experiencia completa, recomendamos instalarlo: <code>sudo apt install jq</code>.
+      </div>
+
+      <p>La partida ya es persistente. En la siguiente clase añadiremos un modo trampa para pruebas y demostraciones.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-75.html">← Anterior: Scripting en Bash [5-15]</a>
+        <a href="clase-77.html">Siguiente: Scripting en Bash [7-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>87. Clase final y certificado | Introducción a Linux</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 87</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Clase final y <em>certificado</em></h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:17 · Sección 5: Despedida</div>
+
+      <div class="highlight">
+        <strong>🎉 ¡Felicidades!</strong> Has llegado al final del curso <strong>Introducción a Linux</strong>. Has completado 87 clases y has adquirido una base sólida en uno de los sistemas operativos más importantes en ciberseguridad. Tómate un momento para celebrar este logro.
+      </div>
+
+      <h2>Resumen de lo aprendido</h2>
+
+      <p>A lo largo de este curso has adquirido las siguientes habilidades:</p>
+
+      <ul>
+        <li>Instalación y configuración de Ubuntu</li>
+        <li>Navegación del sistema de archivos con <code>ls</code>, <code>cd</code>, <code>pwd</code>, <code>find</code></li>
+        <li>Gestión de archivos y directorios: <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>mkdir</code>, <code>touch</code></li>
+        <li>Visualización de archivos con <code>cat</code>, <code>less</code>, <code>head</code>, <code>tail</code></li>
+        <li>Sistema de permisos Linux: <code>rwx</code>, <code>chmod</code>, <code>chown</code>, SUID, SGID, Sticky Bit, Capabilities</li>
+        <li>Redirecciones y tuberías: <code>></code>, <code>>></code>, <code>2></code>, <code>|</code>, <code>&&</code>, <code>||</code></li>
+        <li>Scripting en Bash: variables, condicionales, bucles, funciones</li>
+        <li>SSH y Netcat para comunicaciones remotas</li>
+        <li>Cron y tareas programadas</li>
+        <li>Git y GitHub para control de versiones</li>
+        <li>Filtrado avanzado con <code>grep</code>, <code>sed</code>, <code>awk</code></li>
+        <li>Codificación con base64 y hexdump</li>
+        <li>Enumeración con Nmap y resolución de máquinas CTF en Hack The Box</li>
+        <li>Creación del proyecto <strong>Ruleta Rusa</strong> en Bash</li>
+      </ul>
+
+      <h2>Cómo obtener tu certificado</h2>
+
+      <p>Para obtener el certificado de finalización del curso <strong>Introducción a Linux</strong>:</p>
+
+      <ol>
+        <li><strong>Completa el examen final</strong> de la clase 86 con al menos un 70% de aciertos.</li>
+        <li><strong>Envía tu proyecto final</strong> (Ruleta Rusa o el script que hayas desarrollado) a través del formulario de la plataforma.</li>
+        <li><strong>Espera la revisión</strong> — en un plazo de 48 horas hábiles recibirás la notificación.</li>
+        <li><strong>Descarga tu certificado</strong> desde tu perfil en formato PDF, con código de verificación único.</li>
+      </ol>
+
+      <div class="warning">
+        <strong>⚠️ Importante:</strong> El certificado es gratuito y tiene validez como constancia de finalización del curso. No es un título oficial, pero demuestra tu dedicación y conocimientos en Linux para ciberseguridad.
+      </div>
+
+      <h2>Próximos pasos: ¿qué curso seguir?</h2>
+
+      <p>Ahora que dominas Linux, tienes varias rutas de especialización:</p>
+
+      <ul>
+        <li><strong>Introducción al Hacking</strong> — Primeros pasos en hacking ético: reconocimiento, explotación básica y reportes.</li>
+        <li><strong>Python Ofensivo</strong> — Automatiza tareas de hacking con Python: scripts de fuerza bruta, escáneres de red, herramientas personalizadas.</li>
+        <li><strong>Hacking Web</strong> — Vulnerabilidades web: SQL injection, XSS, LFI, SSRF y más. Ideal si te interesa la seguridad de aplicaciones.</li>
+      </ul>
+
+      <h2>Recursos adicionales</h2>
+
+      <p>Para seguir aprendiendo por tu cuenta, te recomendamos:</p>
+
+      <h3>📚 Libros</h3>
+      <ul>
+        <li><em>The Linux Command Line</em> — William Shotts (gratuito online)</li>
+        <li><em>Linux Basics for Hackers</em> — OccupyTheWeb</li>
+        <li><em>How Linux Works</em> — Brian Ward</li>
+      </ul>
+
+      <h3>🎥 Canales de YouTube</h3>
+      <ul>
+        <li>Hack4u — El canal oficial de la comunidad</li>
+        <li>NetworkChuck — Linux y hacking para principiantes</li>
+        <li>IppSec — Resolución de máquinas HTB (nivel avanzado)</li>
+        <li>s4vitar — Contenido en español sobre hacking y Linux</li>
+      </ul>
+
+      <h3>🌐 Comunidades</h3>
+      <ul>
+        <li>Hack The Box — Plataforma de CTF y laboratorios</li>
+        <li>TryHackMe — Ideal para practicar con guías paso a paso</li>
+        <li>r/linux4noobs — Reddit en inglés para resolver dudas</li>
+        <li>Discord de Hack4u — Comunidad en español para resolver dudas</li>
+      </ul>
+
+      <h2>Palabras de cierre</h2>
+
+      <p>Llegaste hasta aquí porque tuviste la curiosidad y la disciplina para hacerlo. Linux no es solo un sistema operativo: es la puerta de entrada al mundo de la ciberseguridad, la administración de servidores y la tecnología en general. Cada comando que aprendiste, cada script que escribiste, cada error que resolviste te ha hecho mejor profesional.</p>
+
+      <p>Recuerda que en este campo <strong>nunca se deja de aprender</strong>. Cada día aparece una nueva herramienta, una nueva vulnerabilidad, una nueva técnica. La clave está en mantener la curiosidad, practicar constantemente y compartir lo que sabes con los demás.</p>
+
+      <div class="highlight" style="text-align: center; font-size: 1.1rem; border-left-color: var(--accent);">
+        <strong>🚀 Nunca pares de aprender.<br/>Nos vemos en el próximo curso.</strong>
+      </div>
+
+      <div class="lesson-nav">
+        <a href="../examen/clase-86.html">← Anterior: Examen final</a>
+        <span></span>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

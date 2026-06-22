@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>68. Scripting en Bash [5-6] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 68</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [5-6]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 22:12 · Proyecto 1: Buscador HTB</div>
+
+      <p>
+        Mejoramos el script con sistema de caché para evitar llamadas repetidas a la API, medición de tiempo de respuesta, manejo robusto de errores de red, integración con VPN y un modo interactivo con <code>read</code> y <code>select</code>.
+      </p>
+
+      <h2>Sistema de caché</h2>
+      <p>Guardamos las respuestas de la API en archivos temporales con TTL configurable:</p>
+      <pre><code>get_cache_path() {
+  mkdir -p "$CACHE_DIR"
+  echo "${CACHE_DIR}/machines.json"
+}
+
+is_cache_valid() {
+  local cache_file; cache_file=$(get_cache_path)
+  [[ -f "$cache_file" ]] || return 1
+  local now ttl_age
+  now=$(date +%s)
+  ttl_age=$((now - CACHE_TTL))
+  [[ $(stat -c %Y "$cache_file") -gt $ttl_age ]]
+}
+
+fetch_with_cache() {
+  local cache_file; cache_file=$(get_cache_path)
+
+  if is_cache_valid; then
+    print_info "Usando caché (TTL: ${CACHE_TTL}s)"
+    cat "$cache_file"
+    return 0
+  fi
+
+  print_info "Consultando API..."
+  local json
+  json=$(fetch_machines) || return 1
+  echo "$json" > "$cache_file"
+  print_success "Caché actualizada"
+  echo "$json"
+}</code></pre>
+
+      <h2>Tiempo de respuesta</h2>
+      <p>Medimos cuánto tarda la petición con <code>time</code> interno:</p>
+      <pre><code>fetch_with_timing() {
+  local start end duration
+  start=$(date +%s%N)
+
+  local json
+  json=$(fetch_with_cache) || return 1
+
+  end=$(date +%s%N)
+  duration=$(( (end - start) / 1000000 ))
+
+  if [[ $duration -gt 1000 ]]; then
+    print_info "Tiempo de respuesta: ${YELLOW}${duration}ms${RESET}"
+  else
+    print_info "Tiempo de respuesta: ${GREEN}${duration}ms${RESET}"
+  fi
+
+  echo "$json"
+}</code></pre>
+
+      <h2>Manejo de errores de red</h2>
+      <p>Detectamos y reportamos errores de conexión específicos:</p>
+      <pre><code>check_connectivity() {
+  local test_url="https://www.hackthebox.com"
+  print_info "Verificando conexión a ${test_url}..."
+
+  if ! curl -s --connect-timeout 5 "$test_url" > /dev/null 2>&1; then
+    print_error "Sin conexión a internet o HTB está caído"
+    echo "  Posibles causas:"
+    echo "  • No tienes conexión a internet"
+    echo "  • HTB está temporalmente caído"
+    echo "  • Tu VPN está interfiriendo"
+    return 1
+  fi
+
+  print_success "Conexión OK"
+  return 0
+}</code></pre>
+
+      <h2>Conexión VPN</h2>
+      <p>Detectamos si estamos conectados a la VPN de HTB:</p>
+      <pre><code>check_vpn() {
+  local vpn_ip
+  vpn_ip=$(ip a show tun0 2>/dev/null | grep -oP 'inet \K[\d.]+')
+
+  if [[ -n "$vpn_ip" ]]; then
+    print_success "VPN conectada: ${vpn_ip}"
+    return 0
+  else
+    print_info "VPN no detectada (interfaz tun0)"
+    echo "  Algunas máquinas solo son accesibles vía VPN."
+    echo "  Conéctate con: sudo openvpn ~/Downloads/your_file.ovpn"
+    return 1
+  fi
+}</code></pre>
+
+      <h2>Modo interactivo</h2>
+      <p>Usamos <code>select</code> para crear un menú de opciones:</p>
+      <pre><code>interactive_mode() {
+  print_banner
+  echo "${BOLD}Modo interactivo${RESET}"
+  echo
+
+  # Verificar conexión primero
+  check_connectivity || return 1
+
+  # Verificar VPN
+  check_vpn
+
+  while true; do
+    echo -e "\n${BOLD}¿Qué deseas hacer?${RESET}"
+    select opt in "Buscar por nombre" "Filtrar por SO" "Filtrar por dificultad" "Ver todas" "Salir"; do
+      case $opt in
+        "Buscar por nombre")
+          read -r -p "Nombre de la máquina: " NAME
+          do_search
+          break
+          ;;
+        "Filtrar por SO")
+          select OS in "Linux" "Windows" "FreeBSD"; do
+            [[ -n "$OS" ]] && break
+          done
+          do_search
+          break
+          ;;
+        "Filtrar por dificultad")
+          select DIFFICULTY in "easy" "medium" "hard" "insane"; do
+            [[ -n "$DIFFICULTY" ]] && break
+          done
+          do_search
+          break
+          ;;
+        "Ver todas")
+          do_search
+          break
+          ;;
+        "Salir")
+          print_info "¡Hasta luego!"
+          exit 0
+          ;;
+        *) echo "Opción inválida" ;;
+      esac
+    done
+  done
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 read -r vs select:</strong> <code>read</code> captura texto libre; <code>select</code> presenta un menú numerado y captura la selección automáticamente. Ambos son esenciales para scripts interactivos.
+      </div>
+
+      <p>Con esto el script es completamente funcional. En la clase final del proyecto haremos limpieza, organización y empaquetado.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-67.html">← Anterior: Scripting en Bash [4-6]</a>
+        <a href="clase-69.html">Siguiente: Scripting en Bash [6-6] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7. Control del flujo stderr-stdout, operadores y procesos en segundo plano | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 7</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Control del flujo stderr-stdout, operadores y procesos en segundo plano</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 11:03 · Sección 2: Temario</div>
+
+      <p>
+        En Linux todo son archivos, y los flujos de entrada/salida no son la excepción. Entender cómo controlar stdout, stderr y los operadores te dará un control total sobre la terminal.
+      </p>
+
+      <h2>Los tres flujos estándar</h2>
+
+      <table>
+        <tr><th>Descriptor</th><th>Nombre</th><th>Propósito</th></tr>
+        <tr><td>0</td><td>stdin</td><td>Entrada estándar (teclado)</td></tr>
+        <tr><td>1</td><td>stdout</td><td>Salida estándar (pantalla)</td></tr>
+        <tr><td>2</td><td>stderr</td><td>Salida de error (pantalla)</td></tr>
+      </table>
+
+      <h2>Redirección de errores</h2>
+
+      <pre><code>comando 2> error.log          # Redirige solo los errores a un archivo
+comando > salida.log 2>&1     # Redirige stdout y stderr al mismo archivo (forma clásica)
+comando &> salida.log         # Redirige stdout y stderr (forma abreviada, Bash 4+)
+comando 2> /dev/null          # Descarta los errores</code></pre>
+
+      <div class="highlight">
+        <strong>💡</strong> El orden importa: <code>2>&1</code> debe ir después de <code>&gt; archivo</code> para que ambos flujos vayan al archivo.
+      </div>
+
+      <h2>Operadores de control</h2>
+
+      <p><code>&&</code> — ejecuta el segundo comando solo si el primero tuvo éxito:</p>
+      <pre><code>mkdir nuevo && cd nuevo       # Si mkdir falla, no ejecuta cd</code></pre>
+
+      <p><code>||</code> — ejecuta el segundo comando solo si el primero falló:</p>
+      <pre><code>ping -c1 google.com || echo "No hay conexión"</code></pre>
+
+      <p><code>;</code> — ejecuta comandos de forma secuencial, sin importar el resultado:</p>
+      <pre><code>echo "uno"; echo "dos"; echo "tres"</code></pre>
+
+      <div class="warning">
+        <strong>⚠️</strong> No confundas <code>&&</code> con <code>&amp;</code>. Un solo <code>&amp;</code> al final envía el proceso a segundo plano.
+      </div>
+
+      <h2>Procesos en segundo plano</h2>
+
+      <p>El operador <code>&amp;</code> al final de un comando lo ejecuta en background:</p>
+      <pre><code>sleep 30 &                    # El comando se ejecuta en segundo plano
+[1] 12345                     # El shell muestra el número de job y el PID</code></pre>
+
+      <p>Comandos para gestionar procesos en segundo plano:</p>
+      <pre><code>jobs                          # Lista los trabajos en segundo plano
+fg %1                         # Trae el job 1 al primer plano
+bg %1                         # Reanuda el job 1 en segundo plano (tras Ctrl+Z)
+Ctrl+Z                        # Detiene (pausa) el proceso actual</code></pre>
+
+      <div class="highlight">
+        <strong>🔧 Ejemplo típico:</strong> Abres un editor <code>nano archivo.txt</code>, pulsas <code>Ctrl+Z</code> para pausarlo, ejecutas otros comandos, y luego <code>fg</code> para volver al editor.
+      </div>
+
+      <h2>Ejercicio práctico</h2>
+      <pre><code># Lanza un ping en segundo plano
+ping google.com > ping.log 2>&1 &
+jobs
+tail -f ping.log &
+
+# Simula un error y captúralo
+ls /directorio_inexistente 2> error.txt
+cat error.txt
+
+# Encadena comandos con operadores
+ping -c1 8.8.8.8 && echo "Internet OK" || echo "Sin conexión"</code></pre>
+
+      <div class="lesson-nav">
+        <a href="clase-6.html">← Anterior: Comandos básicos [2-2]</a>
+        <a href="clase-8.html">Siguiente: Descriptores de archivo →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>78. Scripting en Bash [8-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 78</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [8-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 20:09 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Implementamos estrategias de apuesta matemáticas famosas: Martingala, Paroli y D'Alembert. El jugador puede elegir una estrategia y el script la ejecutará automáticamente.
+      </p>
+
+      <h2>Estrategia Martingala</h2>
+      <p>Doblar la apuesta después de cada pérdida. Recuperas todo con una sola victoria:</p>
+      <pre><code>estrategia_martingala() {
+  local apuesta_base=$1
+  local racha_perdidas=$2
+
+  # Martingala: apuesta = base * 2^racha
+  local apuesta=$(( apuesta_base * (2 ** racha_perdidas) ))
+
+  # Limitar al saldo disponible
+  if [[ "$apuesta" -gt "$SALDO" ]]; then
+    apuesta=$SALDO
+  fi
+
+  echo "$apuesta"
+}
+
+# Variable de estado para Martingala
+RACHA_PERDIDAS=0
+APUESTA_BASE_MARTINGALA=10
+
+actualizar_martingala() {
+  local resultado=$1  # "ganada" o "perdida"
+
+  if [[ "$resultado" == "perdida" ]]; then
+    (( RACHA_PERDIDAS++ ))
+  else
+    RACHA_PERDIDAS=0
+  fi
+}</code></pre>
+
+      <h2>Estrategia Paroli</h2>
+      <p>Doblar la apuesta después de cada victoria (hasta 3 veces consecutivas):</p>
+      <pre><code>RACHA_VICTORIAS=0
+APUESTA_BASE_PAROLI=10
+
+estrategia_paroli() {
+  local apuesta_base=$1
+  local racha_ganadas=$2
+
+  # Paroli: doblar hasta 3 veces seguidas
+  local multiplicador=$(( 2 ** racha_ganadas ))
+  [[ "$multiplicador" -gt 8 ]] && multiplicador=8  # Máximo 3 dobladas
+
+  local apuesta=$(( apuesta_base * multiplicador ))
+
+  if [[ "$apuesta" -gt "$SALDO" ]]; then
+    apuesta=$SALDO
+  fi
+
+  echo "$apuesta"
+}
+
+actualizar_paroli() {
+  local resultado=$1
+
+  if [[ "$resultado" == "ganada" ]]; then
+    (( RACHA_VICTORIAS++ ))
+    [[ "$RACHA_VICTORIAS" -gt 3 ]] && RACHA_VICTORIAS=0
+  else
+    RACHA_VICTORIAS=0
+  fi
+}</code></pre>
+
+      <h2>Estrategia D'Alembert</h2>
+      <p>Aumentar la apuesta en 1 unidad tras perder, disminuir en 1 unidad tras ganar:</p>
+      <pre><code>APUESTA_ACTUAL_DALEMBERT=10
+UNIDAD_DALEMBERT=5
+
+estrategia_dalembert() {
+  # D'Alembert: ajustar según resultado anterior
+  local apuesta=$APUESTA_ACTUAL_DALEMBERT
+
+  # No exceder saldo
+  if [[ "$apuesta" -gt "$SALDO" ]]; then
+    apuesta=$SALDO
+  fi
+
+  echo "$apuesta"
+}
+
+actualizar_dalembert() {
+  local resultado=$1
+
+  if [[ "$resultado" == "perdida" ]]; then
+    APUESTA_ACTUAL_DALEMBERT=$(( APUESTA_ACTUAL_DALEMBERT + UNIDAD_DALEMBERT ))
+  else
+    APUESTA_ACTUAL_DALEMBERT=$(( APUESTA_ACTUAL_DALEMBERT - UNIDAD_DALEMBERT ))
+    [[ "$APUESTA_ACTUAL_DALEMBERT" -lt "$UNIDAD_DALEMBERT" ]] && APUESTA_ACTUAL_DALEMBERT=$UNIDAD_DALEMBERT
+  fi
+}</code></pre>
+
+      <h2>Automatización de estrategias</h2>
+      <p>El jugador puede elegir una estrategia y dejar que el script juegue automáticamente:</p>
+      <pre><code>ejecutar_estrategia_auto() {
+  local rondas=$1
+  local estrategia=$2
+
+  echo "${BOLD}Ejecutando estrategia ${estrategia} por ${rondas} rondas...${RESET}"
+  echo "Saldo inicial: ${VERDE}\$${SALDO}${RESET}"
+  echo
+
+  for (( i = 1; i <= rondas; i++ )); do
+    # Calcular apuesta según estrategia
+    case $estrategia in
+      martingala)
+        APUESTA=$(estrategia_martingala "$APUESTA_BASE_MARTINGALA" "$RACHA_PERDIDAS")
+        TIPO_APUESTA="color"
+        # Martingala clásica: apostar a un color fijo
+        ELECCION="rojo"
+        ;;
+      paroli)
+        APUESTA=$(estrategia_paroli "$APUESTA_BASE_PAROLI" "$RACHA_VICTORIAS")
+        TIPO_APUESTA="color"
+        ELECCION="negro"
+        ;;
+      dalembert)
+        APUESTA=$(estrategia_dalembert)
+        TIPO_APUESTA="mitad"
+        ELECCION="baja"
+        ;;
+      *) print_error "Estrategia desconocida"; return ;;
+    esac
+
+    [[ "$APUESTA" -gt "$SALDO" ]] && break
+    [[ "$SALDO" -le 0 ]] && { echo "${ROJO}¡Bancarrota!${RESET}"; break; }
+
+    (( SALDO -= APUESTA ))
+    local resultado
+    resultado=$(girar_ruleta)
+    IFS='|' read -r numero color paridad <<< "$resultado"
+
+    local ganancia
+    ganancia=$(procesar_apuesta "$TIPO_APUESTA" "$ELECCION" "$APUESTA" "$numero")
+
+    if [[ "$ganancia" -gt 0 ]]; then
+      (( SALDO += ganancia ))
+      registrar_jugada "$numero" "$color" "$paridad" "$ganancia" "$APUESTA"
+      actualizar_${estrategia} "ganada"
+      printf "Ronda %3d: ✓ Ganaste +%d (Saldo: %d)\n" "$i" "$((ganancia - APUESTA))" "$SALDO"
+    else
+      registrar_jugada "$numero" "$color" "$paridad" "0" "$APUESTA"
+      actualizar_${estrategia} "perdida"
+      printf "Ronda %3d: ✗ Perdiste -%d (Saldo: %d)\n" "$i" "$APUESTA" "$SALDO"
+    fi
+
+    sleep 0.1
+  done
+
+  echo
+  echo "Saldo final: ${VERDE}\$${SALDO}${RESET}"
+  echo "Rondas jugadas: $rondas"
+}</code></pre>
+
+      <div class="highlight">
+        <strong>📈 Las estrategias no garantizan ganancias:</strong> Martingala, Paroli y D'Alembert son sistemas de gestión de bankroll, no formas de vencer la ventaja de la casa. A largo plazo, la ruleta siempre favorece al casino debido al 0.
+      </div>
+
+      <p>Las estrategias añaden una capa interesante de automatización. En la siguiente clase mejoraremos la interfaz visual con animaciones ASCII.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-77.html">← Anterior: Scripting en Bash [7-15]</a>
+        <a href="clase-79.html">Siguiente: Scripting en Bash [9-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

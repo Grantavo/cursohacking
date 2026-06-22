@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>35. Métodos de filtrado de datos [1-2] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 35</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Métodos de filtrado de datos [1-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 8:29 · Sección 2: Temario</div>
+
+      <p>
+        Filtrar y transformar datos desde la terminal es una habilidad transversal. Tres herramientas forman el trío sagrado del filtrado en Linux: <code>grep</code> (búsqueda de patrones), <code>sed</code> (sustitución y edición de flujos) y <code>awk</code> (procesamiento de columnas). Con estos tres comandos puedes resolver prácticamente cualquier tarea de manipulación de texto.
+      </p>
+
+      <h2>grep: el buscador de patrones</h2>
+      <p><code>grep</code> busca líneas que coincidan con un patrón (texto literal o expresión regular):</p>
+
+      <pre><code># Búsqueda básica
+grep "root" /etc/passwd
+
+# Ignorar mayúsculas/minúsculas
+grep -i "error" /var/log/syslog
+
+# Mostrar líneas que NO coinciden
+grep -v "#" /etc/ssh/sshd_config
+
+# Búsqueda recursiva en directorios
+grep -r "PasswordAuthentication" /etc/ssh/
+
+# Mostrar número de línea
+grep -n "Listen" /etc/apache2/ports.conf
+
+# Contar coincidencias
+grep -c "failed" /var/log/auth.log
+
+# Expresiones regulares extendidas (-E)
+grep -E "^[0-9]{3}\." /etc/hosts
+
+# Mostrar contexto (líneas antes y después)
+grep -B 2 -A 2 "WARNING" /var/log/syslog</code></pre>
+
+      <h3>sed: el editor de flujos</h3>
+      <p><code>sed</code> aplica transformaciones línea por línea. El comando más común es <code>s/patrón/reemplazo/</code> (sustituir):</p>
+
+      <pre><code># Sustituir la primera ocurrencia de "foo" por "bar" en cada línea
+sed 's/foo/bar/' archivo.txt
+
+# Sustituir TODAS las ocurrencias (flag g)
+sed 's/foo/bar/g' archivo.txt
+
+# Sustituir solo en la línea 5
+sed '5s/foo/bar/' archivo.txt
+
+# Eliminar líneas que contengan "comentario"
+sed '/comentario/d' archivo.txt
+
+# Eliminar líneas vacías
+sed '/^$/d' archivo.txt
+
+# Imprimir solo las líneas 10-20
+sed -n '10,20p' archivo.txt
+
+# Editar in-place (modificar el archivo directamente)
+sed -i 's/old/new/g' config.txt</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Tip:</strong> En <code>sed</code>, el separador <code>/</code> puede cambiarse por cualquier otro carácter (ej: <code>:</code> o <code>|</code>) cuando el patrón contiene barras: <code>sed 's|/usr/local|/opt|g'</code>.
+      </div>
+
+      <h3>awk: procesamiento por columnas</h3>
+      <p><code>awk</code> trata cada línea como un registro y cada palabra separada por espacios como una columna (<code>$1</code>, <code>$2</code>, ...):</p>
+
+      <pre><code># Imprimir la primera columna
+awk '{print $1}' archivo.txt
+
+# Imprimir columnas 1, 3 y 5
+awk '{print $1, $3, $5}' archivo.txt
+
+# Usar otro separador (ej: dos puntos)
+awk -F: '{print $1, $6}' /etc/passwd
+
+# Filtrar por patrón
+awk '/error/ {print $0}' /var/log/syslog
+
+# Condiciones
+awk '$3 > 100 {print $1, $3}' datos.txt
+
+# Contar líneas
+awk 'END {print NR}' archivo.txt
+
+# Formatear salida
+awk -F: '{printf "Usuario: %-10s Shell: %s\n", $1, $7}' /etc/passwd</code></pre>
+
+      <h3>Combinando grep, sed y awk</h3>
+      <p>Estos comandos se pueden encadenar con pipes para hacer procesamiento complejo:</p>
+
+      <pre><code># Extraer todas las IPs de un archivo de log
+grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' /var/log/apache2/access.log | sort -u
+
+# Usuarios con shell válido (/bin/bash o /bin/zsh)
+grep -E '(/bin/bash|/bin/zsh)$' /etc/passwd | awk -F: '{print $1}'
+
+# Limpiar un archivo de configuración: eliminar comentarios y líneas vacías
+sed -e 's/#.*$//' -e '/^$/d' /etc/ssh/sshd_config
+
+# Los 10 directorios que más espacio ocupan
+du -h /* 2>/dev/null | sort -rh | head -10</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Precaución con sed -i:</strong> La opción <code>-i</code> modifica el archivo original. Siempre haz una copia de seguridad primero o usa <code>-i.bak</code> para crear un backup: <code>sed -i.bak 's/foo/bar/g' archivo</code>.
+      </div>
+
+      <p>Estas tres herramientas son la navaja suiza del terminal. Cuando necesites procesar logs, extraer información de archivos o transformar datos sobre la marcha, <code>grep</code>, <code>sed</code> y <code>awk</code> son todo lo que necesitas.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-34.html">← Anterior: Búsquedas precisas de archivos [2-2]</a>
+        <a href="clase-36.html">Siguiente: Clase 36 →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>44. Creando nuestros propios escáneres en Bash | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 44</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Creando nuestros propios escáneres en Bash</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 21:29 · Sección 2: Temario</div>
+
+      <p>En esta clase construimos un escáner de puertos en Bash puro usando el pseudo-sistema de archivos <code>/dev/tcp</code>. Es una técnica que funciona en cualquier sistema con Bash y no requiere herramientas externas como nmap o netcat.</p>
+
+      <h2>El pseudo-fichero /dev/tcp</h2>
+      <p>Bash permite abrir conexiones TCP a través de <code>/dev/tcp/IP/PORT</code>. Si la conexión tiene éxito, el puerto está abierto.</p>
+
+      <pre><code># Probar un puerto específico
+bash -c "echo > /dev/tcp/192.168.1.1/80" 2>/dev/null && echo "Puerto 80 abierto" || echo "Puerto 80 cerrado"
+
+# Con timeout para evitar esperas largas
+timeout 1 bash -c "echo > /dev/tcp/192.168.1.1/22" 2>/dev/null && echo "Abierto" || echo "Cerrado"</code></pre>
+
+      <div class="highlight">
+        <strong>🧠 ¿Cómo funciona?</strong> Bash interpreta <code>/dev/tcp/host/puerto</code> como una redirección especial. Si la conexión TCP se establece, la redirección tiene éxito. No requiere permisos especiales ni netcat. No funciona en shells como <code>sh</code> o <code>dash</code>; necesita Bash compilado con <code>--enable-net-redirections</code>.
+      </div>
+
+      <h2>Escáner con bucle for</h2>
+      <p>Iteramos sobre un rango de puertos con un bucle <code>for</code> y probamos cada uno:</p>
+
+      <pre><code>#!/bin/bash
+ip="$1"
+echo "Escaneando $ip..."
+for port in {1..1024}; do
+  timeout 1 bash -c "echo > /dev/tcp/$ip/$port" 2>/dev/null && echo "Puerto $port -> ABIERTO"
+done
+echo "Escaneo completado."</code></pre>
+
+      <h2>Mejoras: colores y paralelización</h2>
+      <p>El escáner secuencial es lento. Podemos paralelizar con <code>&</code> (background) y añadir colores para mejor legibilidad:</p>
+
+      <pre><code>#!/bin/bash
+ip="$1"
+verde="\e[32m"
+rojo="\e[31m"
+reset="\e[0m"
+
+echo -e "${verde}[+] Escaneando $ip...${reset}"
+
+for port in {1..5000}; do
+  (
+    timeout 1 bash -c "echo > /dev/tcp/$ip/$port" 2>/dev/null && \
+    echo -e "${verde}[ABIERTO]${reset} $port"
+  ) &
+done
+
+wait
+echo -e "${verde}[+] Escaneo completado.${reset}"</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Control de procesos:</strong> Lanzar todos los puertos en paralelo (5000 procesos) puede saturar el sistema. Es mejor usar un control de concurrencia con <code>jobs</code> y <code>wait</code> limitando a, por ejemplo, 100 procesos simultáneos:
+        <pre><code>max_jobs=100
+for port in {1..5000}; do
+  ( ... ) &
+  while [ $(jobs -r | wc -l) -ge $max_jobs ]; do
+    sleep 0.1
+  done
+done</code></pre>
+      </div>
+
+      <p>El proyecto completo incluye detección de servicios (banner grabbing), exportación a CSV, y modo sigiloso con retardos aleatorios. Disponible en el repositorio del curso.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-43.html">← Anterior: Uso de conexiones encriptadas</a>
+        <a href="clase-45.html">Siguiente: Detección de diferencias entre archivos →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

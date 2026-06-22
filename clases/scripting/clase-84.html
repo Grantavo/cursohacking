@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>84. Scripting en Bash [14-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 84</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [14-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 33:20 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Cubrimos pruebas y depuración: <code>set -x</code> y <code>set -e</code> para tracing, <code>trap</code> para limpieza, pruebas unitarias básicas con <code>assert</code> casero y manejo de casos borde.
+      </p>
+
+      <h2>Modo debug con set -x y set -e</h2>
+      <pre><code># Activar desde CLI: ./roulette.sh -d
+
+debug_mode() {
+  echo "${AMARILLO}Modo debug activado${RESET}"
+  set -x  # Muestra cada comando antes de ejecutarlo
+  set -e  # Sale si algún comando falla (exit code != 0)
+  set -u  # Error si se usa variable no definida
+  set -o pipefail  # Error si algún comando en pipe falla
+}
+
+# Fragmento de depuración selectiva
+depurar_funcion() {
+  set -x  # Activar trace solo para esta función
+  # ... código a depurar ...
+  set +x  # Desactivar trace
+}
+
+# Ejemplo de depuración de getopts
+depurar_args() {
+  echo "ARGV: $@"
+  echo "ARGC: $#"
+  for (( i = 0; i < $#; i++ )); do
+    echo "  ARG[$i] = ${!i}"
+  done
+}</code></pre>
+
+      <h2>Trap para limpieza</h2>
+      <p>Garantizamos que los recursos temporales se limpien incluso si el script falla:</p>
+      <pre><code>cleanup() {
+  local exit_code=$?
+  echo
+  echo "${CIAN}Limpiando recursos...${RESET}"
+
+  # Eliminar archivos temporales
+  [[ -f /tmp/roulette_historial.tmp ]] && rm -f /tmp/roulette_historial.tmp
+  [[ -f /tmp/roulette_debug.log ]] && rm -f /tmp/roulette_debug.log
+
+  # Restaurar configuración de terminal
+  stty echo 2>/dev/null || true
+  tput cnorm 2>/dev/null || true  # Mostrar cursor
+
+  if [[ "$exit_code" -ne 0 ]]; then
+    echo "${ROJO}El script terminó con error (código: $exit_code)${RESET}"
+  else
+    echo "${VERDE}Script finalizado correctamente${RESET}"
+  fi
+
+  exit "$exit_code"
+}
+
+# Registrar trap para señales comunes
+trap cleanup EXIT INT TERM HUP
+
+# Handler para Ctrl+C específico
+ctrl_c() {
+  echo
+  echo "${AMARILLO}${BOLD}⏹ Juego interrumpido por el usuario${RESET}"
+  guardar_partida  # Guardar antes de salir
+  exit 130
+}
+trap ctrl_c SIGINT</code></pre>
+
+      <h2>Pruebas unitarias básicas</h2>
+      <p>Creamos un framework de pruebas minimalista:</p>
+      <pre><code># === tests/test_roulette.sh ===
+
+PASADAS=0
+FALLADAS=0
+
+assert() {
+  local descripcion=$1
+  local esperado=$2
+  local resultado=$3
+
+  if [[ "$resultado" == "$esperado" ]]; then
+    echo "${VERDE}[✓]${RESET} $descripcion"
+    (( PASADAS++ ))
+  else
+    echo "${ROJO}[✗]${RESET} $descripcion"
+    echo "  Esperado: '$esperado'"
+    echo "  Obtenido: '$resultado'"
+    (( FALLADAS++ ))
+  fi
+}
+
+test_determinar_color() {
+  echo "${BOLD}Test: determinar_color${RESET}"
+
+  assert "0 es verde" "verde" "$(determinar_color 0)"
+  assert "1 es rojo" "rojo" "$(determinar_color 1)"
+  assert "2 es negro" "negro" "$(determinar_color 2)"
+  assert "15 es negro" "negro" "$(determinar_color 15)"
+  assert "19 es rojo" "rojo" "$(determinar_color 19)"
+}
+
+test_determinar_paridad() {
+  echo "${BOLD}Test: determinar_paridad${RESET}"
+
+  assert "0 es ninguno" "ninguno" "$(determinar_paridad 0)"
+  assert "2 es par" "par" "$(determinar_paridad 2)"
+  assert "3 es impar" "impar" "$(determinar_paridad 3)"
+}
+
+test_apuesta_pleno() {
+  echo "${BOLD}Test: apuesta pleno${RESET}"
+
+  local ganancia
+  ganancia=$(procesar_apuesta "pleno" "17" "10" "17")
+  assert "Pleno acertado paga 35:1" 350 "$ganancia"
+
+  ganancia=$(procesar_apuesta "pleno" "17" "10" "5")
+  assert "Pleno fallado paga 0" 0 "$ganancia"
+}
+
+test_apuesta_docena() {
+  echo "${BOLD}Test: apuesta docena${RESET}"
+
+  local ganancia
+  ganancia=$(procesar_apuesta "docena" "1" "10" "5")
+  assert "Docena 1 acertada paga 2:1" 20 "$ganancia"
+
+  ganancia=$(procesar_apuesta "docena" "1" "10" "20")
+  assert "Docena 1 fallada paga 0" 0 "$ganancia"
+}
+
+# Ejecutar todas las pruebas
+run_tests() {
+  echo "${BOLD}${AZUL}══════ PRUEBAS UNITARIAS ══════${RESET}"
+  echo
+
+  test_determinar_color
+  echo
+  test_determinar_paridad
+  echo
+  test_apuesta_pleno
+  echo
+  test_apuesta_docena
+  echo
+  test_apuesta_color
+
+  echo
+  echo "${BOLD}Resumen:${RESET} ${VERDE}$PASADAS pasadas${RESET}, ${ROJO}$FALLADAS falladas${RESET}"
+  [[ "$FALLADAS" -eq 0 ]] && echo "${VERDE}${BOLD}¡Todas las pruebas pasaron!${RESET}"
+}</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ set -e con cuidado:</strong> <code>set -e</code> puede ser demasiado agresivo. Comandos que devuelven código de salida distinto de 0 en situaciones normales (como <code>grep</code> sin coincidencias) pueden detener el script inesperadamente.
+      </div>
+
+      <h2>Casos borde</h2>
+      <pre><code>test_casos_borde() {
+  echo "${BOLD}Test: casos borde${RESET}"
+
+  # Saldo cero
+  SALDO=0
+  assert "Apuesta con saldo cero no debería ocurrir" 0 \
+    "$(validar_cantidad 10 2>/dev/null; echo $?)"
+
+  # Número fuera de rango
+  assert "Número 37 es inválido" 1 \
+    "$(validar_numero_ruleta 37 2>/dev/null; echo $?)"
+
+  # Número negativo
+  assert "Número -1 es inválido" 1 \
+    "$(validar_numero_ruleta -1 2>/dev/null; echo $?)"
+
+  # String vacío
+  assert "String vacío es inválido" 1 \
+    "$(validar_cantidad '' 2>/dev/null; echo $?)"
+
+  # Caracteres no numéricos
+  assert "Texto no es válido" 1 \
+    "$(validar_cantidad 'abc' 2>/dev/null; echo $?)"
+
+  # Apuesta mayor que saldo
+  SALDO=100
+  assert "Apuesta > saldo es inválida" 1 \
+    "$(validar_cantidad 200 2>/dev/null; echo $?)"
+
+  # Resultado del 0 en apuesta de color
+  local ganancia
+  ganancia=$(procesar_apuesta "color" "rojo" "10" "0")
+  assert "Color con 0 paga 0" 0 "$ganancia"
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Pruebas en Bash:</strong> No necesitas un framework complejo. Con funciones <code>assert</code> simples y <code>test_*</code> puedes cubrir la mayoría de casos. Para proyectos más grandes, considera <code>bats</code> (Bash Automated Testing System).
+      </div>
+
+      <p>El script está probado y depurado. En la clase final haremos un resumen de todo el módulo.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-83.html">← Anterior: Scripting en Bash [13-15]</a>
+        <a href="clase-85.html">Siguiente: Scripting en Bash [15-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

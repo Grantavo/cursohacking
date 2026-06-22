@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>27. Uso del editor Vim | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 27</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso del editor Vim</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 13:20 · Sección 2: Temario</div>
+
+      <p>
+        Vim es el editor de texto por excelencia en el mundo Linux. Está presente en prácticamente todos los sistemas Unix y es una herramienta obligatoria para cualquier persona que trabaje en ciberseguridad. Configurar un servidor, editar archivos de configuración remotos por SSH, modificar scripts sobre la marcha — todo se hace con Vim (o su predecesor Vi). La curva de aprendizaje es empinada, pero una vez que lo dominas, editar texto se vuelve intuitivo y rapidísimo.
+      </p>
+
+      <h2>Los cuatro modos de Vim</h2>
+      <p>Vim no funciona como un editor normal. Tiene modos, y cada modo tiene un propósito:</p>
+      <table>
+        <tr><th>Modo</th><th>Uso</th><th>Cómo entrar</th></tr>
+        <tr><td><strong>Normal</strong></td><td>Navegar, copiar, pegar, eliminar</td><td><code>Esc</code></td></tr>
+        <tr><td><strong>Inserción</strong></td><td>Escribir texto</td><td><code>i</code>, <code>a</code>, <code>o</code></td></tr>
+        <tr><td><strong>Visual</strong></td><td>Seleccionar texto</td><td><code>v</code>, <code>V</code>, <code>Ctrl+v</code></td></tr>
+        <tr><td><strong>Comando</strong></td><td>Guardar, salir, buscar, reemplazar</td><td><code>:</code></td></tr>
+      </table>
+
+      <h3>Navegación: h, j, k, l</h3>
+      <p>En modo normal, las teclas <code>h</code>, <code>j</code>, <code>k</code>, <code>l</code> mueven el cursor. Así evitas tener que mover la mano al teclado de flechas:</p>
+      <pre><code>h       ← izquierda
+j       ↓ abajo
+k       ↑ arriba
+l       → derecha
+w       siguiente palabra
+b       palabra anterior
+0       inicio de línea
+$       final de línea
+gg      inicio del archivo
+G       final del archivo
+:42     ir a la línea 42</code></pre>
+
+      <h3>Guardar y salir</h3>
+      <pre><code>:w      guardar (write)
+:q      salir (quit)
+:wq     guardar y salir
+:q!     salir sin guardar (forzar)
+:wq!    guardar y salir forzado
+:x      guardar y salir (igual que :wq)
+ZZ      guardar y salir (sin escribir :)</code></pre>
+
+      <h3>Edición básica</h3>
+      <pre><code>dd      eliminar línea completa
+yy      copiar línea (yank)
+p       pegar debajo del cursor
+P       pegar encima del cursor
+u       deshacer (undo)
+Ctrl+r  rehacer (redo)
+x       eliminar carácter bajo el cursor
+dw      eliminar palabra
+r       reemplazar un carácter</code></pre>
+
+      <h3>Búsqueda y reemplazo</h3>
+      <pre><code>/patrón     buscar "patrón" hacia adelante
+?patrón     buscar "patrón" hacia atrás
+n           siguiente coincidencia
+N           coincidencia anterior
+
+:s/foo/bar/          reemplazar primera ocurrencia en la línea actual
+:s/foo/bar/g         reemplazar todas en la línea actual
+:%s/foo/bar/g        reemplazar en todo el archivo
+:%s/foo/bar/gc       reemplazar en todo pidiendo confirmación</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Tip:</strong> Para guardar un archivo que requiere permisos de root y olvidaste usar <code>sudo vim</code>, ejecuta <code>:w !sudo tee %</code> y luego <code>:q!</code>. Vim ejecutará el comando externo <code>tee</code> para escribir el archivo con privilegios elevados.
+      </div>
+
+      <h3>Configuración .vimrc</h3>
+      <p>El archivo <code>~/.vimrc</code> personaliza Vim. Aquí tienes una configuración mínima pero potente:</p>
+
+      <pre><code>" ~/.vimrc — Configuración esencial
+
+" Números de línea
+set number
+set relativenumber
+
+" Sintaxis y colores
+syntax on
+colorscheme desert
+
+" Indentación
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+
+" Búsqueda
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" Ratón habilitado
+set mouse=a
+
+" Clipboard del sistema
+set clipboard=unnamedplus
+
+" Atajo: ; equivale a : (ahorras un Shift)
+nnoremap ; :
+
+" Atajo: jk como Escape en modo inserción
+inoremap jk &lt;Esc&gt;</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Vim no es opcional:</strong> En muchos sistemas comprometidos o servidores de producción, Vim es el único editor disponible. No saber usar Vim te dejará sin poder editar archivos en situaciones críticas. Si solo aprendes una herramienta de edición, que sea Vim.
+      </div>
+
+      <p>Practica 10-15 minutos al día con <code>vimtutor</code> (el tutorial interactivo que viene con Vim). En una semana tendrás suficiente soltura para editar archivos sin pensar en los comandos.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-26.html">← Anterior: Uso y configuración de la Kitty</a>
+        <a href="clase-28.html">Siguiente: Conexiones SSH →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>41. Manejo de pares de claves y conexiones SSH | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      .lesson-content th, .lesson-content td {
+        border: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      .lesson-content th {
+        background: var(--bg-card);
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 41</span>
+      </div>
+    </div>
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Manejo de pares de claves y conexiones SSH</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 8:30 · Sección 2: Temario</div>
+
+      <p>SSH (Secure Shell) es el protocolo estándar para administrar servidores remotos de forma segura. En lugar de usar contraseñas, lo más seguro y conveniente es usar un par de claves pública-privada.</p>
+
+      <h2>Generación de claves con ssh-keygen</h2>
+      <p>El primer paso es generar un par de claves RSA de 4096 bits en tu máquina local.</p>
+
+      <pre><code># Generar par de claves RSA
+ssh-keygen -t rsa -b 4096 -C "mi_correo@ejemplo.com"
+
+# Los archivos se guardan por defecto en:
+# ~/.ssh/id_rsa       (clave privada - NUNCA compartir)
+# ~/.ssh/id_rsa.pub   (clave pública - se copia al servidor)
+
+# Verificar la huella digital
+ssh-keygen -lf ~/.ssh/id_rsa.pub</code></pre>
+
+      <div class="highlight">
+        <strong>🔑 Anatomía de una clave pública:</strong> <code>ssh-rsa AAAAB3NzaC1yc2E... usuario@host</code>. El primer campo es el tipo de clave, el segundo es la clave en base64, y el tercero es un comentario (normalmente usuario@hostname).
+      </div>
+
+      <h2>Copiar la clave al servidor</h2>
+      <p>El comando <code>ssh-copy-id</code> hace todo el trabajo: crea el directorio <code>~/.ssh</code> en el servidor, añade tu clave a <code>~/.ssh/authorized_keys</code> y establece los permisos correctos.</p>
+
+      <pre><code># Copiar clave pública al servidor remoto
+ssh-copy-id -i ~/.ssh/id_rsa.pub usuario@192.168.1.100
+
+# Manualmente (si no tienes ssh-copy-id)
+cat ~/.ssh/id_rsa.pub | ssh usuario@192.168.1.100 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+
+# Conectar sin contraseña
+ssh usuario@192.168.1.100</code></pre>
+
+      <h2>ssh-agent y ssh-add</h2>
+      <p>Si tu clave privada tiene passphrase (recomendado), <code>ssh-agent</code> la almacena en memoria para no tener que escribirla cada vez.</p>
+
+      <pre><code># Iniciar el agente
+eval "$(ssh-agent -s)"
+
+# Añadir la clave privada
+ssh-add ~/.ssh/id_rsa
+
+# Listar claves cargadas
+ssh-add -l
+
+# Eliminar todas las claves
+ssh-add -D</code></pre>
+
+      <h2>Configuración avanzada con ~/.ssh/config</h2>
+      <p>El archivo de configuración permite definir alias y opciones por host, ahorrando mucho tiempo en el día a día.</p>
+
+      <pre><code># ~/.ssh/config
+Host servidor-prod
+    HostName 192.168.1.100
+    Port 2222
+    User admin
+    IdentityFile ~/.ssh/id_rsa_prod
+
+Host github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_github
+
+# Ahora conectas con:
+ssh servidor-prod</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Seguridad:</strong> La clave privada (<code>id_rsa</code>) debe tener permisos <code>600</code> (solo lectura para el propietario). El directorio <code>~/.ssh/</code> debe tener permisos <code>700</code>. Si los permisos son incorrectos, SSH se negará a usar las claves.
+      </div>
+
+      <div class="lesson-nav">
+        <a href="clase-40.html">← Anterior: Descompresor recursivo automático</a>
+        <a href="clase-42.html">Siguiente: Uso de netcat para realizar conexiones →</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

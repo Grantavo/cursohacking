@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>67. Scripting en Bash [4-6] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 67</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [4-6]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 20:05 · Proyecto 1: Buscador HTB</div>
+
+      <p>
+        Mejoramos la salida del script: tablas con columnas perfectamente alineadas, colores asignados por dificultad y paginación de resultados para no saturar la terminal.
+      </p>
+
+      <h2>Colores por dificultad</h2>
+      <p>Cada nivel de dificultad tiene un color distintivo:</p>
+      <pre><code>get_difficulty_color() {
+  local diff="$1"
+  case "${diff,,}" in
+    easy)   echo "$GREEN" ;;
+    medium) echo "$YELLOW" ;;
+    hard)   echo "$RED" ;;
+    insane) echo "$MAGENTA" ;;
+    *)      echo "$RESET" ;;
+  esac
+}
+
+format_difficulty() {
+  local diff="$1"
+  local color; color=$(get_difficulty_color "$diff")
+  local icon
+  case "${diff,,}" in
+    easy)   icon="●" ;;
+    medium) icon="●" ;;
+    hard)   icon="●" ;;
+    insane) icon="●" ;;
+    *)      icon="○" ;;
+  esac
+  echo "${color}${icon} ${diff^}${RESET}"
+}</code></pre>
+
+      <h2>Tabla con columnas alineadas</h2>
+      <p>Usamos <code>printf</code> con ancho fijo para alinear perfectamente:</p>
+      <pre><code>print_table_header() {
+  local cols=("Nombre" "IP" "SO" "Dificultad" "Puntos")
+  local widths=(24 16 10 14 8)
+
+  # Línea superior
+  echo -n "┌"
+  for w in "${widths[@]}"; do echo -n "$(printf '─%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "┬"; done
+  echo "┐"
+
+  # Cabeceras
+  echo -n "│"
+  for i in "${!cols[@]}"; do
+    printf " %-${widths[$i]}s │" "${cols[$i]}"
+  done
+  echo
+
+  # Separador
+  echo -n "├"
+  for w in "${widths[@]}"; do echo -n "$(printf '─%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "┼"; done
+  echo "┤"
+}
+
+print_table_footer() {
+  local widths=(24 16 10 14 8)
+  echo -n "└"
+  for w in "${widths[@]}"; do echo -n "$(printf '─%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "┴"; done
+  echo "┘"
+}</code></pre>
+
+      <h2>Paginación de resultados</h2>
+      <p>Cuando hay muchos resultados, mostramos de 10 en 10:</p>
+      <pre><code>paginate_results() {
+  local results=("$@")
+  local page=0
+  local page_size=10
+  local total=${#results[@]}
+  local pages=$(( (total + page_size - 1) / page_size ))
+
+  while true; do
+    clear
+    print_banner
+    print_table_header
+
+    local start=$((page * page_size))
+    local end=$((start + page_size))
+    [[ $end -gt $total ]] && end=$total
+
+    for ((i = start; i < end; i++)); do
+      IFS='|' read -r name ip os diff points <<< "${results[$i]}"
+      local color; color=$(get_difficulty_color "$diff")
+      printf "│ %-24s │ %-16s │ %-10s │ ${color}%-14s${RESET} │ %-8s │\n" "$name" "$ip" "$os" "${diff^}" "$points"
+    done
+
+    print_table_footer
+    echo -e "\n${BLUE}Página $((page+1))/$pages${RESET} | Mostrando $((end-start)) de $total resultados"
+
+    if [[ $pages -gt 1 ]]; then
+      echo -e "\n${YELLOW}[N] Siguiente  [P] Anterior  [Q] Salir${RESET}"
+      read -r -n 1 key
+      case "$key" in
+        n|N) [[ $page -lt $((pages-1)) ]] && ((page++)) ;;
+        p|P) [[ $page -gt 0 ]] && ((page--)) ;;
+        q|Q) break ;;
+      esac
+    else
+      break
+    fi
+  done
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 Paginación interactiva:</strong> <code>read -n 1</code> captura una sola tecla sin necesidad de pulsar Enter. Es la forma estándar de hacer menús interactivos en Bash.
+      </div>
+
+      <h2>Actualización de render_results</h2>
+      <p>Integramos paginación en el flujo principal:</p>
+      <pre><code>render_results() {
+  local results="$1"
+  local lines=()
+
+  while read -r machine; do
+    [[ -z "$machine" ]] && continue
+    local name ip os diff points
+    name=$(echo "$machine" | jq -r '.name')
+    ip=$(echo "$machine" | jq -r '.ip // "N/A"')
+    os=$(echo "$machine" | jq -r '.os')
+    diff=$(echo "$machine" | jq -r '.difficulty_text // "unknown"')
+    points=$(echo "$machine" | jq -r '.points // 0')
+    lines+=("${name}|${ip}|${os}|${diff}|${points}")
+  done <<< "$results"
+
+  if [[ ${#lines[@]} -eq 0 ]]; then
+    print_error "No se encontraron resultados"
+    return
+  fi
+
+  paginate_results "${lines[@]}"
+}</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ Compatibilidad:</strong> Los caracteres de línea de caja (┌┬┐├┼┤└┴┘) requieren UTF-8. Asegúrate de que tu terminal lo soporte con <code>echo $LANG</code>.
+      </div>
+
+      <p>La salida ahora es profesional: colores, tablas y paginación. En la siguiente clase añadiremos caché, modo interactivo y manejo de errores.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-66.html">← Anterior: Scripting en Bash [3-6]</a>
+        <a href="clase-68.html">Siguiente: Scripting en Bash [5-6] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

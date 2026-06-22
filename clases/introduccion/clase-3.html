@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Preparando Ubuntu para el curso | Introducción a Linux</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem 4rem;
+      }
+      .lesson-content h2 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--accent);
+      }
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        color: var(--text-1);
+      }
+      .lesson-content p {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .lesson-content ul, .lesson-content ol {
+        color: var(--text-2);
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content .warning {
+        background: var(--bg-card);
+        border-left: 3px solid var(--red);
+        padding: 1rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .lesson-content code {
+        font-family: var(--mono);
+        background: var(--bg-hover);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+      .lesson-content pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+      }
+      .lesson-content pre code {
+        background: none;
+        padding: 0;
+        color: var(--text-1);
+      }
+      .lesson-content .step {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        margin: 0.8rem 0;
+      }
+      .lesson-content .step-num {
+        display: inline-block;
+        background: var(--accent);
+        color: #0a0c10;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        font-family: var(--mono);
+      }
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .lesson-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-3);
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 3</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Linux · Ubuntu · Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Preparando Ubuntu para el <em>curso</em></h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: — · Sección 1: Introducción</div>
+
+      <p>
+        Ya tienes Ubuntu instalado y sabemos por qué es una gran elección. Ahora vamos a prepararlo con todo lo necesario para el curso. Sigue estos pasos en tu terminal y tendrás un entorno listo para aprender.
+      </p>
+
+      <h2>1. Actualizar el sistema</h2>
+      <p>Lo primero es asegurarte de que tu Ubuntu está al día. Abre una terminal y ejecuta:</p>
+      <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
+      <p><code>apt update</code> refresca la lista de paquetes disponibles y <code>apt upgrade</code> instala las actualizaciones. Dependiendo de cuándo actualizases por última vez, puede tardar unos minutos.</p>
+
+      <h2>2. Habilitar repositorios Universe y Multiverse</h2>
+      <p>Ubuntu incluye varios repositorios. Los que nos interesan son:</p>
+      <ul>
+        <li><strong>Main</strong> — paquetes oficiales mantenidos por Canonical (ya activo).</li>
+        <li><strong>Universe</strong> — paquetes mantenidos por la comunidad (muchas herramientas útiles).</li>
+        <li><strong>Multiverse</strong> — paquetes con licencias no libres (códecs, drivers, etc.).</li>
+      </ul>
+      <p>Actívalos con:</p>
+      <pre><code>sudo add-apt-repository universe
+sudo add-apt-repository multiverse
+sudo apt update</code></pre>
+
+      <h2>3. Instalar herramientas esenciales</h2>
+      <p>Vamos a instalar las herramientas que usaremos a lo largo del curso. Ejecuta este comando completo:</p>
+      <pre><code>sudo apt install -y curl wget git vim netcat-openbsd nmap openssh-server tmux htop tree</code></pre>
+      <p>Te explico cada una:</p>
+      <ul>
+        <li><strong>curl / wget</strong> — descargar archivos y hacer peticiones web desde terminal.</li>
+        <li><strong>git</strong> — control de versiones y clonar repositorios.</li>
+        <li><strong>vim</strong> — editor de texto potente para la terminal.</li>
+        <li><strong>netcat-openbsd</strong> — conexiones TCP/UDP, escaneo de puertos, transferencia de archivos.</li>
+        <li><strong>nmap</strong> — escaneo de redes y puertos.</li>
+        <li><strong>openssh-server</strong> — servidor SSH para conexiones remotas.</li>
+        <li><strong>tmux</strong> — multiplexor de terminal (varias sesiones en una ventana).</li>
+        <li><strong>htop</strong> — monitor de procesos interactivo y más visual que top.</li>
+        <li><strong>tree</strong> — muestra la estructura de directorios en árbol.</li>
+      </ul>
+
+      <div class="highlight">
+        <strong>📦 Más adelante</strong> instalaremos otras herramientas según las necesitemos (como hydra, john, metasploit, etc.). Por ahora con estas es suficiente para empezar.
+      </div>
+
+      <h2>4. Configurar el firewall (opcional)</h2>
+      <p>Ubuntu incluye <strong>ufw</strong> (Uncomplicated Firewall). Si quieres mantenerlo activo mientras aprendes, permite SSH si lo necesitas:</p>
+      <pre><code>sudo ufw allow OpenSSH
+sudo ufw enable
+sudo ufw status</code></pre>
+
+      <h2>5. Crear estructura de directorios</h2>
+      <p>Te recomiendo crear una carpeta para organizar los proyectos del curso:</p>
+      <pre><code>mkdir -p ~/cursos/linux/{scripts,proyectos,notas,recursos}</code></pre>
+      <p>Esto crea una estructura como:</p>
+      <pre><code>~/cursos/linux/
+├── scripts/     → Aquí irán tus scripts en Bash
+├── proyectos/   → Proyectos del curso
+├── notas/       → Tus apuntes y resúmenes
+└── recursos/    → Archivos de apoyo</code></pre>
+
+      <h2>6. Hacer una copia de seguridad</h2>
+      <p>Antes de empezar a hacer cambios en el sistema, es recomendable tener un respaldo por si algo sale mal:</p>
+      <ul>
+        <li><strong>Timeshift</strong> — herramienta similar a los snapshots de VirtualBox pero para tu sistema real. Instálala con <code>sudo apt install timeshift</code> y crea un snapshot inicial.</li>
+        <li>Si no quieres instalar nada adicional, al menos asegúrate de tener tus archivos importantes respaldados.</li>
+      </ul>
+
+      <div class="warning">
+        <strong>⚠️ Nota importante:</strong> Con 4 GB de RAM tienes suficiente para todo el curso. Ubuntu con GNOME consume ~1-1.5 GB en reposo, y las herramientas que usaremos son ligeras. Si notas el sistema lento, puedes cerrar navegadores y otras aplicaciones mientras practicas.
+      </div>
+
+      <p>Con todo esto listo, ya tenemos Ubuntu preparado. En la siguiente clase daremos los primeros pasos en el entorno.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-2.html">← Anterior: Ubuntu como sistema para el curso</a>
+        <a href="clase-4.html">Siguiente: Primeros pasos en Ubuntu →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>

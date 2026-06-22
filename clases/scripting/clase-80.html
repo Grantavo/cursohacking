@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>80. Scripting en Bash [10-15] | Introducción a Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content { max-width: 800px; margin: 2rem auto; padding: 0 2rem 4rem; }
+      .lesson-content h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--accent); }
+      .lesson-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--text-1); }
+      .lesson-content p { color: var(--text-2); margin-bottom: 1rem; line-height: 1.8; }
+      .lesson-content ul, .lesson-content ol { color: var(--text-2); margin-bottom: 1rem; padding-left: 1.5rem; }
+      .lesson-content li { margin-bottom: 0.4rem; }
+      .lesson-content .highlight { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content .warning { background: var(--bg-card); border-left: 3px solid var(--red); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+      .lesson-content code { font-family: var(--mono); background: var(--bg-hover); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--accent); }
+      .lesson-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; overflow-x: auto; }
+      .lesson-content pre code { background: none; padding: 0; color: var(--text-1); }
+      .lesson-content .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 0.8rem 0; }
+      .lesson-content .step-num { display: inline-block; background: var(--accent); color: #0a0c10; font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem; font-family: var(--mono); }
+      .lesson-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+      .lesson-content th, .lesson-content td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; }
+      .lesson-content th { background: var(--bg-card); color: var(--text-1); font-weight: 600; }
+      .lesson-content td { color: var(--text-2); }
+      .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .lesson-nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .lesson-nav a:hover { text-decoration: underline; }
+      .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-3); text-decoration: none; font-size: 0.85rem; margin-bottom: 1rem; }
+      .back-link:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <ul class="nav-links">
+        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="#">Roadmap</a></li>
+        <li><a href="#">Conócenos</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-accent">Registrarse</button>
+      </div>
+    </nav>
+
+    <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
+      <div class="breadcrumb">
+        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
+        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <span style="color: var(--text-2);">Clase 80</span>
+      </div>
+    </div>
+
+    <div class="lesson-content">
+      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+
+      <span class="course-tag">🐧 Bash · Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [10-15]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 22:43 · Proyecto 2: Ruleta de casino</div>
+
+      <p>
+        Añadimos sonidos con el altavoz del sistema (beep), notificaciones visuales, un modo silencioso (<code>-s</code>) y la capacidad de personalizar colores.
+      </p>
+
+      <h2>Sonidos con beep</h2>
+      <p>Usamos el <code>bell</code> de la terminal y <code>speaker-test</code> para efectos de sonido básicos:</p>
+      <pre><code>SONIDO_ACTIVADO=true
+
+beep() {
+  if [[ "$SONIDO_ACTIVADO" == false ]]; then
+    return
+  fi
+  echo -ne "\a"  # Bell character
+}
+
+sonido_ganar() {
+  if [[ "$SONIDO_ACTIVADO" == false ]]; then
+    return
+  fi
+  # Tonos ascendentes
+  for freq in 500 600 700 800 900 1000; do
+    ( speaker-test -t sine -f "$freq" -l 1 2>/dev/null & )
+    sleep 0.05
+  done
+}
+
+sonido_perder() {
+  if [[ "$SONIDO_ACTIVADO" == false ]]; then
+    return
+  fi
+  # Tonos descendentes
+  for freq in 400 300 200 150; do
+    ( speaker-test -t sine -f "$freq" -l 1 2>/dev/null & )
+    sleep 0.1
+  done
+}
+
+sonido_giro() {
+  if [[ "$SONIDO_ACTIVADO" == false ]]; then
+    return
+  fi
+  # Sonido de clic rápido simulado
+  for (( i = 0; i < 10; i++ )); do
+    beep
+    sleep 0.05
+  done
+}</code></pre>
+
+      <div class="warning">
+        <strong>⚠️ speaker-test:</strong> Requiere el módulo de sonido del sistema. En entornos sin altavoz o en SSH, no producirá sonido. Úsalo solo en tu máquina local con escritorio.
+      </div>
+
+      <h2>Notificaciones visuales</h2>
+      <pre><code>notificar() {
+  local mensaje=$1
+  local tipo=$2  # "info", "exito", "error"
+
+  case $tipo in
+    exito)
+      echo "${VERDE}${BOLD}[✓]${RESET} ${VERDE}${mensaje}${RESET}"
+      sonido_ganar
+      ;;
+    error)
+      echo "${ROJO}${BOLD}[✗]${RESET} ${ROJO}${mensaje}${RESET}"
+      sonido_perder
+      ;;
+    info)
+      echo "${AZUL}${BOLD}[i]${RESET} ${AZUL}${mensaje}${RESET}"
+      beep
+      ;;
+    warning)
+      echo "${AMARILLO}${BOLD}[⚠]${RESET} ${AMARILLO}${mensaje}${RESET}"
+      beep
+      ;;
+  esac
+}
+
+notificacion_ganancia() {
+  local cantidad=$1
+  local tipo=$2
+
+  if [[ "$cantidad" -gt 1000 ]]; then
+    notificar "🔥 ¡GANANCIA ÉPICA! +\$${cantidad}" "exito"
+  elif [[ "$cantidad" -gt 500 ]]; then
+    notificar "⭐ ¡Gran ganada! +\$${cantidad}" "exito"
+  elif [[ "$cantidad" -gt 0 ]]; then
+    notificar "✓ Ganaste +\$${cantidad}" "exito"
+  fi
+}</code></pre>
+
+      <h2>Modo silencioso (-s)</h2>
+      <p>Opción para desactivar todos los sonidos:</p>
+      <pre><code># En el procesamiento de argumentos
+SILENT_MODE=false
+
+while getopts "s:t:d:h" opt; do
+  case $opt in
+    s) SILENT_MODE=true ;;
+    # ... otros casos
+  esac
+done
+
+# Al inicio del juego
+if [[ "$SILENT_MODE" == true ]]; then
+  SONIDO_ACTIVADO=false
+  notificar "Modo silencioso activado" "info"
+fi</code></pre>
+
+      <h2>Colores personalizables</h2>
+      <p>Permitimos al usuario definir sus propios colores mediante variables de entorno o archivo de configuración:</p>
+      <pre><code># Configuración de colores personalizables
+COLOR_PRINCIPAL="${COLOR_PRINCIPAL:-$AMARILLO}"
+COLOR_SALDO="${COLOR_SALDO:-$VERDE}"
+COLOR_ALERTA="${COLOR_ALERTA:-$ROJO}"
+COLOR_INFO="${COLOR_INFO:-$AZUL}"
+COLOR_EXITO="${COLOR_EXITO:-$VERDE}"
+
+cargar_configuracion_colores() {
+  local config_file="${HOME}/.roulette/colors.conf"
+
+  if [[ -f "$config_file" ]]; then
+    source "$config_file"
+    notificar "Colores personalizados cargados" "info"
+  fi
+}
+
+# Ejemplo de archivo ~/.roulette/colors.conf:
+# COLOR_PRINCIPAL=$(tput setaf 5)  # Magenta
+# COLOR_SALDO=$(tput setaf 2)       # Verde
+# COLOR_ALERTA=$(tput setaf 1)      # Rojo</code></pre>
+
+      <h2>Uso de tput para temas</h2>
+      <p>También podemos ofrecer temas predefinidos:</p>
+      <pre><code>aplicar_tema() {
+  local tema=$1
+
+  case $tema in
+    oscuro)
+      COLOR_PRINCIPAL=$CIAN
+      COLOR_SALDO=$VERDE
+      COLOR_ALERTA=$ROJO
+      ;;
+    claro)
+      COLOR_PRINCIPAL=$MAGENTA
+      COLOR_SALDO=$AZUL
+      COLOR_ALERTA=$AMARILLO
+      ;;
+    hacker)
+      COLOR_PRINCIPAL=$VERDE
+      COLOR_SALDO=$VERDE
+      COLOR_ALERTA=$ROJO
+      ;;
+    *)
+      print_error "Tema desconocido: $tema"
+      return 1
+      ;;
+  esac
+
+  print_success "Tema '${tema}' aplicado"
+}</code></pre>
+
+      <div class="highlight">
+        <strong>💡 tput vs códigos ANSI:</strong> <code>tput</code> es más portable que escribir códigos ANSI directamente (<code>\e[31m</code>). Funciona en cualquier terminal que soporte terminfo.
+      </div>
+
+      <p>El juego ahora tiene sonido, notificaciones y colores personalizables. En la siguiente clase añadiremos modo multijugador local.</p>
+
+      <div class="lesson-nav">
+        <a href="clase-79.html">← Anterior: Scripting en Bash [9-15]</a>
+        <a href="clase-81.html">Siguiente: Scripting en Bash [11-15] →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">hack4u</div>
+      <div class="footer-links">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+    </footer>
+  </body>
+</html>
