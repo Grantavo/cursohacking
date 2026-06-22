@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>22. Actualización y Upgradeo del sistema | Introducción a Linux</title>
+    <title>22. ActualizaciÃ³n y Upgradeo del sistema | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,36 +134,36 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 22</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Actualización y Upgradeo del sistema</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:41 · Sección 2: Temario</div>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">ActualizaciÃ³n y Upgradeo del sistema</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 3:41 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        Mantener el sistema actualizado no solo te da las últimas funciones, sino que parchea vulnerabilidades de seguridad.         En distribuciones basadas en Debian (como Ubuntu), el gestor de paquetes principal es <code>apt</code>. Entender la diferencia entre update, upgrade y cómo gestionar repositorios es esencial.
+        Mantener el sistema actualizado no solo te da las Ãºltimas funciones, sino que parchea vulnerabilidades de seguridad.         En distribuciones basadas en Debian (como Ubuntu), el gestor de paquetes principal es <code>apt</code>. Entender la diferencia entre update, upgrade y cÃ³mo gestionar repositorios es esencial.
       </p>
 
       <h2>apt update vs apt upgrade vs apt full-upgrade</h2>
@@ -171,20 +171,20 @@
       <p>Estos tres comandos hacen cosas distintas y es importante no confundirlos:</p>
 
       <table>
-        <tr><th>Comando</th><th>Qué hace</th></tr>
+        <tr><th>Comando</th><th>QuÃ© hace</th></tr>
         <tr><td><code>apt update</code></td><td>Actualiza la lista de paquetes disponibles desde los repositorios</td></tr>
-        <tr><td><code>apt upgrade</code></td><td>Actualiza los paquetes instalados a la última versión (sin eliminar ni instalar nuevos)</td></tr>
+        <tr><td><code>apt upgrade</code></td><td>Actualiza los paquetes instalados a la Ãºltima versiÃ³n (sin eliminar ni instalar nuevos)</td></tr>
         <tr><td><code>apt full-upgrade</code></td><td>Actualiza todo, pudiendo instalar o eliminar dependencias si es necesario</td></tr>
       </table>
 
-      <pre><code># Flujo normal de actualización
+      <pre><code># Flujo normal de actualizaciÃ³n
 sudo apt update
 sudo apt upgrade -y
 
-# Para una actualización completa
+# Para una actualizaciÃ³n completa
 sudo apt update && sudo apt full-upgrade -y</code></pre>
 
-      <h3>Gestión de repositorios: /etc/apt/sources.list</h3>
+      <h3>GestiÃ³n de repositorios: /etc/apt/sources.list</h3>
 
       <p>Los repositorios son servidores desde donde apt descarga los paquetes. Se definen en <code>/etc/apt/sources.list</code> y en archivos dentro de <code>/etc/apt/sources.list.d/</code>:</p>
 
@@ -194,16 +194,16 @@ cat /etc/apt/sources.list
 # Ejemplo de entrada en Ubuntu
 deb http://archive.ubuntu.com/ubuntu noble main restricted universe multiverse
 
-# Añadir un repositorio (ej: Google Chrome)
+# AÃ±adir un repositorio (ej: Google Chrome)
 echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list</code></pre>
 
       <div class="highlight">
-        <strong>💡 Tip:</strong> Después de añadir un repositorio nuevo, siempre ejecuta <code>sudo apt update</code> para que apt reconozca los paquetes del nuevo repositorio.
+        <strong>ðŸ’¡ Tip:</strong> DespuÃ©s de aÃ±adir un repositorio nuevo, siempre ejecuta <code>sudo apt update</code> para que apt reconozca los paquetes del nuevo repositorio.
       </div>
 
       <h3>dpkg: el gestor de paquetes de bajo nivel</h3>
 
-      <p>Mientras que apt resuelve dependencias automáticamente, <code>dpkg</code> instala paquetes <code>.deb</code> de forma manual. Útil cuando descargas un archivo <code>.deb</code> directamente:</p>
+      <p>Mientras que apt resuelve dependencias automÃ¡ticamente, <code>dpkg</code> instala paquetes <code>.deb</code> de forma manual. Ãštil cuando descargas un archivo <code>.deb</code> directamente:</p>
 
       <pre><code># Instalar un paquete .deb
 sudo dpkg -i paquete.deb
@@ -214,7 +214,7 @@ sudo apt install -f
 # Listar paquetes instalados
 dpkg -l
 
-# Saber a qué paquete pertenece un archivo
+# Saber a quÃ© paquete pertenece un archivo
 dpkg -S /bin/ls</code></pre>
 
       <h3>Buscar paquetes con apt-cache</h3>
@@ -224,21 +224,21 @@ dpkg -S /bin/ls</code></pre>
       <pre><code># Buscar paquetes que contengan "nmap"
 apt-cache search nmap
 
-# Mostrar información detallada de un paquete
+# Mostrar informaciÃ³n detallada de un paquete
 apt-cache show nmap
 
 # Ver dependencias de un paquete
 apt-cache depends nmap</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Precaución:</strong> No hagas <code>apt full-upgrade</code> a mitad de un proyecto importante. A veces las actualizaciones rompen dependencias o cambian configuraciones. Siempre es buena práctica hacer una copia de seguridad antes de actualizar.
+        <strong>âš ï¸ PrecauciÃ³n:</strong> No hagas <code>apt full-upgrade</code> a mitad de un proyecto importante. A veces las actualizaciones rompen dependencias o cambian configuraciones. Siempre es buena prÃ¡ctica hacer una copia de seguridad antes de actualizar.
       </div>
 
-      <p>Dominar apt y dpkg es fundamental no solo para mantener tu sistema, sino también para instalar herramientas de hacking que muchas veces vienen en formato <code>.deb</code> o desde repositorios externos (como los de herramientas ofensivas).</p>
+      <p>Dominar apt y dpkg es fundamental no solo para mantener tu sistema, sino tambiÃ©n para instalar herramientas de hacking que muchas veces vienen en formato <code>.deb</code> o desde repositorios externos (como los de herramientas ofensivas).</p>
 
       <div class="lesson-nav">
-        <a href="clase-21.html">← Anterior: Uso de bashrc y zshrc</a>
-        <a href="clase-23.html">Siguiente: Uso y manejo con Tmux →</a>
+        <a href="clase-21.html">â† Anterior: Uso de bashrc y zshrc</a>
+        <a href="clase-23.html">Siguiente: Uso y manejo con Tmux â†’</a>
       </div>
     </div>
 
@@ -246,11 +246,11 @@ apt-cache depends nmap</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

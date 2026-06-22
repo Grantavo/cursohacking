@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>82. Scripting en Bash [12-15] | Introducción a Linux</title>
+    <title>82. Scripting en Bash [12-15] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,40 +33,40 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 82</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [12-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 18:36 · Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 18:36 Â· Proyecto 2: Ruleta de casino</div>
 
       <p>
         Implementamos un sistema de logros y desbloqueables: el jugador gana logros al completar hitos, sube de nivel, recibe bonus por rachas y puede personalizar su perfil.
       </p>
 
       <h2>Sistema de logros</h2>
-      <p>Cada logro tiene un nombre, descripción y condición de desbloqueo:</p>
+      <p>Cada logro tiene un nombre, descripciÃ³n y condiciÃ³n de desbloqueo:</p>
       <pre><code>declare -a LOGROS_DESBLOQUEADOS=()
 
 declare -A LOGRO_NOMBRE
@@ -87,7 +87,7 @@ LOGRO_DESC[racha_3]="Gana 3 veces seguidas"
 LOGRO_DESC[racha_5]="Gana 5 veces seguidas"
 LOGRO_DESC[bankroll_5000]="Alcanza $5000 de saldo"
 LOGRO_DESC[bankroll_10000]="Alcanza $10000 de saldo"
-LOGRO_DESC[pleno_acertado]="Acierta un número pleno"
+LOGRO_DESC[pleno_acertado]="Acierta un nÃºmero pleno"
 LOGRO_DESC[bancarrota]="Pierde todo tu saldo"
 LOGRO_DESC[100_jugadas]="Completa 100 jugadas"
 
@@ -121,9 +121,9 @@ desbloquear_logro() {
   LOGROS_DESBLOQUEADOS+=("$logro_id")
 
   echo
-  echo "${AMARILLO}${BOLD}═══════════════════════════════${RESET}"
-  echo "${BOLD}🏆 ¡LOGO DESBLOQUEADO!${RESET}"
-  echo "${AMARILLO}${BOLD}═══════════════════════════════${RESET}"
+  echo "${AMARILLO}${BOLD}â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
+  echo "${BOLD}ðŸ† Â¡LOGO DESBLOQUEADO!${RESET}"
+  echo "${AMARILLO}${BOLD}â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
   echo "${BOLD}${LOGRO_NOMBRE[$logro_id]}${RESET}"
   echo "${LOGRO_DESC[$logro_id]}"
   sonido_ganar
@@ -151,7 +151,7 @@ sumar_experiencia() {
     (( NIVEL++ ))
     EXPERIENCIA=$(( EXPERIENCIA - SIGUIENTE_NIVEL ))
     SIGUIENTE_NIVEL=$(( SIGUIENTE_NIVEL + 50 ))
-    echo "${AMARILLO}${BOLD}⬆ ¡Has subido al nivel ${NIVEL}!${RESET}"
+    echo "${AMARILLO}${BOLD}â¬† Â¡Has subido al nivel ${NIVEL}!${RESET}"
     sonido_ganar
 
     # Bonus por subir de nivel
@@ -170,9 +170,9 @@ barra_experiencia() {
   echo -n "Nv.${NIVEL} ["
   for (( i = 0; i < ancho; i++ )); do
     if [[ "$i" -lt "$lleno" ]]; then
-      echo -n "${CIAN}■${RESET}"
+      echo -n "${CIAN}â– ${RESET}"
     else
-      echo -n "·"
+      echo -n "Â·"
     fi
   done
   echo "] ${porcentaje}%"
@@ -202,23 +202,23 @@ verificar_racha() {
       echo "${VERDE}Bonus racha 5: +\$300${RESET}"
     fi
 
-    # Bonificación progresiva por racha
+    # BonificaciÃ³n progresiva por racha
     if [[ "$RACHA_VICTORIAS_ACTUAL" -gt 5 ]]; then
       local extra=$(( RACHA_VICTORIAS_ACTUAL * 20 ))
       SALDO=$(( SALDO + extra ))
-      echo "${CIAN}🔥 Racha de ${RACHA_VICTORIAS_ACTUAL}: +\$${extra} bonus${RESET}"
+      echo "${CIAN}ðŸ”¥ Racha de ${RACHA_VICTORIAS_ACTUAL}: +\$${extra} bonus${RESET}"
     fi
   else
     RACHA_VICTORIAS_ACTUAL=0
   fi
 }</code></pre>
 
-      <h2>Personalización del perfil</h2>
+      <h2>PersonalizaciÃ³n del perfil</h2>
       <pre><code>mostrar_perfil() {
   clear
-  echo "${BOLD}${AZUL}═══════════════════════════════════${RESET}"
-  echo "${BOLD}         👤 PERFIL DE JUGADOR${RESET}"
-  echo "${BOLD}${AZUL}═══════════════════════════════════${RESET}"
+  echo "${BOLD}${AZUL}â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
+  echo "${BOLD}         ðŸ‘¤ PERFIL DE JUGADOR${RESET}"
+  echo "${BOLD}${AZUL}â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
   echo
   echo "Nombre:     ${BOLD}${NOMBRE}${RESET}"
   echo "Nivel:      ${BOLD}${NIVEL}${RESET}"
@@ -229,12 +229,12 @@ verificar_racha() {
   echo "Perdidas:   ${ROJO}$TOTAL_PERDIDAS${RESET}"
   echo "Max racha:  $MAX_RACHA_VICTORIAS"
   echo
-  echo "${BOLD}🏆 Logros (${#LOGROS_DESBLOQUEADOS[@]}):${RESET}"
+  echo "${BOLD}ðŸ† Logros (${#LOGROS_DESBLOQUEADOS[@]}):${RESET}"
   if [[ "${#LOGROS_DESBLOQUEADOS[@]}" -eq 0 ]]; then
-    echo "  Aún no tienes logros. ¡Sigue jugando!"
+    echo "  AÃºn no tienes logros. Â¡Sigue jugando!"
   else
     for logro_id in "${LOGROS_DESBLOQUEADOS[@]}"; do
-      echo "  ${AMARILLO}★${RESET} ${LOGRO_NOMBRE[$logro_id]}"
+      echo "  ${AMARILLO}â˜…${RESET} ${LOGRO_NOMBRE[$logro_id]}"
     done
   fi
   echo
@@ -242,14 +242,14 @@ verificar_racha() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>💡 Gamificación:</strong> Los logros y niveles hacen el juego más adictivo al dar recompensas frecuentes. Es el mismo principio que usan los casinos reales con sus tarjetas de fidelidad.
+        <strong>ðŸ’¡ GamificaciÃ³n:</strong> Los logros y niveles hacen el juego mÃ¡s adictivo al dar recompensas frecuentes. Es el mismo principio que usan los casinos reales con sus tarjetas de fidelidad.
       </div>
 
-      <p>La gamificación motiva al jugador a seguir jugando. En la siguiente clase refactorizaremos todo el código para hacerlo modular y mantenible.</p>
+      <p>La gamificaciÃ³n motiva al jugador a seguir jugando. En la siguiente clase refactorizaremos todo el cÃ³digo para hacerlo modular y mantenible.</p>
 
       <div class="lesson-nav">
-        <a href="clase-81.html">← Anterior: Scripting en Bash [11-15]</a>
-        <a href="clase-83.html">Siguiente: Scripting en Bash [13-15] →</a>
+        <a href="clase-81.html">â† Anterior: Scripting en Bash [11-15]</a>
+        <a href="clase-83.html">Siguiente: Scripting en Bash [13-15] â†’</a>
       </div>
     </div>
 
@@ -257,11 +257,11 @@ verificar_racha() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>20. Estructura de directorios del sistema | Introducción a Linux</title>
+    <title>20. Estructura de directorios del sistema | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,77 +134,77 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 20</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Estructura de directorios del sistema</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 7:14 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 7:14 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        Linux organiza todo su sistema de archivos bajo una jerarquía estándar llamada <strong>FHS (Filesystem Hierarchy Standard)</strong>. A diferencia de Windows, donde cada unidad tiene su propio árbol (C:\, D:\, etc.), en Linux todo parte desde la raíz <code>/</code>. Conocer esta estructura es fundamental para entender dónde encontrar archivos de configuración, programas, logs y dispositivos.
+        Linux organiza todo su sistema de archivos bajo una jerarquÃ­a estÃ¡ndar llamada <strong>FHS (Filesystem Hierarchy Standard)</strong>. A diferencia de Windows, donde cada unidad tiene su propio Ã¡rbol (C:\, D:\, etc.), en Linux todo parte desde la raÃ­z <code>/</code>. Conocer esta estructura es fundamental para entender dÃ³nde encontrar archivos de configuraciÃ³n, programas, logs y dispositivos.
       </p>
 
-      <h2>El árbol de directorios: de la raíz a las ramas</h2>
+      <h2>El Ã¡rbol de directorios: de la raÃ­z a las ramas</h2>
 
-      <p>El directorio raíz <code>/</code> es el punto de partida. Dentro de él encontrarás estos directorios principales:</p>
+      <p>El directorio raÃ­z <code>/</code> es el punto de partida. Dentro de Ã©l encontrarÃ¡s estos directorios principales:</p>
 
       <table>
         <tr><th>Directorio</th><th>Contenido</th></tr>
         <tr><td><code>/bin</code></td><td>Binarios esenciales del usuario (ls, cp, mv, cat)</td></tr>
         <tr><td><code>/sbin</code></td><td>Binarios del sistema (fdisk, mkfs, iptables)</td></tr>
-        <tr><td><code>/etc</code></td><td>Archivos de configuración del sistema</td></tr>
+        <tr><td><code>/etc</code></td><td>Archivos de configuraciÃ³n del sistema</td></tr>
         <tr><td><code>/home</code></td><td>Directorios personales de los usuarios</td></tr>
-        <tr><td><code>/var</code></td><td>Datos variables: logs, bases de datos, colas de impresión</td></tr>
+        <tr><td><code>/var</code></td><td>Datos variables: logs, bases de datos, colas de impresiÃ³n</td></tr>
         <tr><td><code>/tmp</code></td><td>Archivos temporales (se borran al reiniciar)</td></tr>
-        <tr><td><code>/usr</code></td><td>Programas y librerías de usuario (binarios no esenciales)</td></tr>
+        <tr><td><code>/usr</code></td><td>Programas y librerÃ­as de usuario (binarios no esenciales)</td></tr>
         <tr><td><code>/opt</code></td><td>Software opcional de terceros</td></tr>
-        <tr><td><code>/proc</code></td><td>Sistema de archivos virtual con información de procesos</td></tr>
+        <tr><td><code>/proc</code></td><td>Sistema de archivos virtual con informaciÃ³n de procesos</td></tr>
         <tr><td><code>/dev</code></td><td>Archivos de dispositivo (discos, terminales, USB)</td></tr>
       </table>
 
       <h3>Inspeccionando directorios con ls -la</h3>
 
-      <p>Ejecuta estos comandos para ver qué hay realmente dentro de cada directorio:</p>
+      <p>Ejecuta estos comandos para ver quÃ© hay realmente dentro de cada directorio:</p>
 
-      <pre><code>ls -la /            # Contenido de la raíz
-ls -la /etc         # Archivos de configuración
+      <pre><code>ls -la /            # Contenido de la raÃ­z
+ls -la /etc         # Archivos de configuraciÃ³n
 ls -la /var/log     # Logs del sistema
 ls -la /dev         # Dispositivos</code></pre>
 
       <div class="highlight">
-        <strong>💡 Tip:</strong> Fíjate en <code>/etc/passwd</code> (usuarios), <code>/etc/shadow</code> (contraseñas cifradas), <code>/etc/apt/sources.list</code> (repositorios de paquetes). Son archivos que revisarás constantemente en ciberseguridad.
+        <strong>ðŸ’¡ Tip:</strong> FÃ­jate en <code>/etc/passwd</code> (usuarios), <code>/etc/shadow</code> (contraseÃ±as cifradas), <code>/etc/apt/sources.list</code> (repositorios de paquetes). Son archivos que revisarÃ¡s constantemente en ciberseguridad.
       </div>
 
       <h3>Explorando /proc: el sistema de archivos virtual</h3>
 
-      <p><code>/proc</code> no existe realmente en el disco duro; el kernel lo crea en memoria para exponer información de procesos y hardware:</p>
+      <p><code>/proc</code> no existe realmente en el disco duro; el kernel lo crea en memoria para exponer informaciÃ³n de procesos y hardware:</p>
 
-      <pre><code>cat /proc/cpuinfo   # Información del procesador
+      <pre><code>cat /proc/cpuinfo   # InformaciÃ³n del procesador
 cat /proc/meminfo   # Memoria RAM disponible y usada
-cat /proc/version   # Versión del kernel
-ls /proc/1/         # Información del proceso init (PID 1)</code></pre>
+cat /proc/version   # VersiÃ³n del kernel
+ls /proc/1/         # InformaciÃ³n del proceso init (PID 1)</code></pre>
 
       <h3>Dispositivos en /dev</h3>
 
@@ -213,17 +213,17 @@ ls /proc/1/         # Información del proceso init (PID 1)</code></pre>
       <pre><code>ls -la /dev/sda*    # Primer disco duro y sus particiones
 ls -la /dev/tty*    # Terminales
 ls -la /dev/null    # El agujero negro de Linux
-ls -la /dev/random  # Generador de números aleatorios</code></pre>
+ls -la /dev/random  # Generador de nÃºmeros aleatorios</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Cuidado:</strong> Los archivos en <code>/dev</code> representan dispositivos físicos. Escribir directamente en <code>/dev/sda</code> puede destruir datos del disco. No juegues con estos archivos sin saber lo que haces.
+        <strong>âš ï¸ Cuidado:</strong> Los archivos en <code>/dev</code> representan dispositivos fÃ­sicos. Escribir directamente en <code>/dev/sda</code> puede destruir datos del disco. No juegues con estos archivos sin saber lo que haces.
       </div>
 
-      <p>Entender esta jerarquía te permitirá navegar el sistema con confianza. Cuando un atacante compromete un servidor, lo primero que hace es inspeccionar <code>/etc</code>, <code>/var/log</code> y <code>/home</code> — saber qué esperar en cada directorio es clave tanto para ataque como para defensa.</p>
+      <p>Entender esta jerarquÃ­a te permitirÃ¡ navegar el sistema con confianza. Cuando un atacante compromete un servidor, lo primero que hace es inspeccionar <code>/etc</code>, <code>/var/log</code> y <code>/home</code> â€” saber quÃ© esperar en cada directorio es clave tanto para ataque como para defensa.</p>
 
       <div class="lesson-nav">
-        <a href="clase-19.html">← Anterior: Clase 19</a>
-        <a href="clase-21.html">Siguiente: Uso de bashrc y zshrc →</a>
+        <a href="clase-19.html">â† Anterior: Clase 19</a>
+        <a href="clase-21.html">Siguiente: Uso de bashrc y zshrc â†’</a>
       </div>
     </div>
 
@@ -231,11 +231,11 @@ ls -la /dev/random  # Generador de números aleatorios</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>67. Scripting en Bash [4-6] | Introducción a Linux</title>
+    <title>67. Scripting en Bash [4-6] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,36 +33,36 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 67</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [4-6]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 20:05 · Proyecto 1: Buscador HTB</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 20:05 Â· Proyecto 1: Buscador HTB</div>
 
       <p>
-        Mejoramos la salida del script: tablas con columnas perfectamente alineadas, colores asignados por dificultad y paginación de resultados para no saturar la terminal.
+        Mejoramos la salida del script: tablas con columnas perfectamente alineadas, colores asignados por dificultad y paginaciÃ³n de resultados para no saturar la terminal.
       </p>
 
       <h2>Colores por dificultad</h2>
@@ -83,11 +83,11 @@ format_difficulty() {
   local color; color=$(get_difficulty_color "$diff")
   local icon
   case "${diff,,}" in
-    easy)   icon="●" ;;
-    medium) icon="●" ;;
-    hard)   icon="●" ;;
-    insane) icon="●" ;;
-    *)      icon="○" ;;
+    easy)   icon="â—" ;;
+    medium) icon="â—" ;;
+    hard)   icon="â—" ;;
+    insane) icon="â—" ;;
+    *)      icon="â—‹" ;;
   esac
   echo "${color}${icon} ${diff^}${RESET}"
 }</code></pre>
@@ -98,32 +98,32 @@ format_difficulty() {
   local cols=("Nombre" "IP" "SO" "Dificultad" "Puntos")
   local widths=(24 16 10 14 8)
 
-  # Línea superior
-  echo -n "┌"
-  for w in "${widths[@]}"; do echo -n "$(printf '─%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "┬"; done
-  echo "┐"
+  # LÃ­nea superior
+  echo -n "â”Œ"
+  for w in "${widths[@]}"; do echo -n "$(printf 'â”€%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "â”¬"; done
+  echo "â”"
 
   # Cabeceras
-  echo -n "│"
+  echo -n "â”‚"
   for i in "${!cols[@]}"; do
-    printf " %-${widths[$i]}s │" "${cols[$i]}"
+    printf " %-${widths[$i]}s â”‚" "${cols[$i]}"
   done
   echo
 
   # Separador
-  echo -n "├"
-  for w in "${widths[@]}"; do echo -n "$(printf '─%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "┼"; done
-  echo "┤"
+  echo -n "â”œ"
+  for w in "${widths[@]}"; do echo -n "$(printf 'â”€%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "â”¼"; done
+  echo "â”¤"
 }
 
 print_table_footer() {
   local widths=(24 16 10 14 8)
-  echo -n "└"
-  for w in "${widths[@]}"; do echo -n "$(printf '─%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "┴"; done
-  echo "┘"
+  echo -n "â””"
+  for w in "${widths[@]}"; do echo -n "$(printf 'â”€%.0s' $(seq 1 $((w+2))))"; [[ $w != "${widths[-1]}" ]] && echo -n "â”´"; done
+  echo "â”˜"
 }</code></pre>
 
-      <h2>Paginación de resultados</h2>
+      <h2>PaginaciÃ³n de resultados</h2>
       <p>Cuando hay muchos resultados, mostramos de 10 en 10:</p>
       <pre><code>paginate_results() {
   local results=("$@")
@@ -144,11 +144,11 @@ print_table_footer() {
     for ((i = start; i < end; i++)); do
       IFS='|' read -r name ip os diff points <<< "${results[$i]}"
       local color; color=$(get_difficulty_color "$diff")
-      printf "│ %-24s │ %-16s │ %-10s │ ${color}%-14s${RESET} │ %-8s │\n" "$name" "$ip" "$os" "${diff^}" "$points"
+      printf "â”‚ %-24s â”‚ %-16s â”‚ %-10s â”‚ ${color}%-14s${RESET} â”‚ %-8s â”‚\n" "$name" "$ip" "$os" "${diff^}" "$points"
     done
 
     print_table_footer
-    echo -e "\n${BLUE}Página $((page+1))/$pages${RESET} | Mostrando $((end-start)) de $total resultados"
+    echo -e "\n${BLUE}PÃ¡gina $((page+1))/$pages${RESET} | Mostrando $((end-start)) de $total resultados"
 
     if [[ $pages -gt 1 ]]; then
       echo -e "\n${YELLOW}[N] Siguiente  [P] Anterior  [Q] Salir${RESET}"
@@ -165,11 +165,11 @@ print_table_footer() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>💡 Paginación interactiva:</strong> <code>read -n 1</code> captura una sola tecla sin necesidad de pulsar Enter. Es la forma estándar de hacer menús interactivos en Bash.
+        <strong>ðŸ’¡ PaginaciÃ³n interactiva:</strong> <code>read -n 1</code> captura una sola tecla sin necesidad de pulsar Enter. Es la forma estÃ¡ndar de hacer menÃºs interactivos en Bash.
       </div>
 
-      <h2>Actualización de render_results</h2>
-      <p>Integramos paginación en el flujo principal:</p>
+      <h2>ActualizaciÃ³n de render_results</h2>
+      <p>Integramos paginaciÃ³n en el flujo principal:</p>
       <pre><code>render_results() {
   local results="$1"
   local lines=()
@@ -194,14 +194,14 @@ print_table_footer() {
 }</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Compatibilidad:</strong> Los caracteres de línea de caja (┌┬┐├┼┤└┴┘) requieren UTF-8. Asegúrate de que tu terminal lo soporte con <code>echo $LANG</code>.
+        <strong>âš ï¸ Compatibilidad:</strong> Los caracteres de lÃ­nea de caja (â”Œâ”¬â”â”œâ”¼â”¤â””â”´â”˜) requieren UTF-8. AsegÃºrate de que tu terminal lo soporte con <code>echo $LANG</code>.
       </div>
 
-      <p>La salida ahora es profesional: colores, tablas y paginación. En la siguiente clase añadiremos caché, modo interactivo y manejo de errores.</p>
+      <p>La salida ahora es profesional: colores, tablas y paginaciÃ³n. En la siguiente clase aÃ±adiremos cachÃ©, modo interactivo y manejo de errores.</p>
 
       <div class="lesson-nav">
-        <a href="clase-66.html">← Anterior: Scripting en Bash [3-6]</a>
-        <a href="clase-68.html">Siguiente: Scripting en Bash [5-6] →</a>
+        <a href="clase-66.html">â† Anterior: Scripting en Bash [3-6]</a>
+        <a href="clase-68.html">Siguiente: Scripting en Bash [5-6] â†’</a>
       </div>
     </div>
 
@@ -209,11 +209,11 @@ print_table_footer() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

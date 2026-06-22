@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>68. Scripting en Bash [5-6] | Introducción a Linux</title>
+    <title>68. Scripting en Bash [5-6] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,39 +33,39 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 68</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [5-6]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 22:12 · Proyecto 1: Buscador HTB</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 22:12 Â· Proyecto 1: Buscador HTB</div>
 
       <p>
-        Mejoramos el script con sistema de caché para evitar llamadas repetidas a la API, medición de tiempo de respuesta, manejo robusto de errores de red, integración con VPN y un modo interactivo con <code>read</code> y <code>select</code>.
+        Mejoramos el script con sistema de cachÃ© para evitar llamadas repetidas a la API, mediciÃ³n de tiempo de respuesta, manejo robusto de errores de red, integraciÃ³n con VPN y un modo interactivo con <code>read</code> y <code>select</code>.
       </p>
 
-      <h2>Sistema de caché</h2>
+      <h2>Sistema de cachÃ©</h2>
       <p>Guardamos las respuestas de la API en archivos temporales con TTL configurable:</p>
       <pre><code>get_cache_path() {
   mkdir -p "$CACHE_DIR"
@@ -85,7 +85,7 @@ fetch_with_cache() {
   local cache_file; cache_file=$(get_cache_path)
 
   if is_cache_valid; then
-    print_info "Usando caché (TTL: ${CACHE_TTL}s)"
+    print_info "Usando cachÃ© (TTL: ${CACHE_TTL}s)"
     cat "$cache_file"
     return 0
   fi
@@ -94,12 +94,12 @@ fetch_with_cache() {
   local json
   json=$(fetch_machines) || return 1
   echo "$json" > "$cache_file"
-  print_success "Caché actualizada"
+  print_success "CachÃ© actualizada"
   echo "$json"
 }</code></pre>
 
       <h2>Tiempo de respuesta</h2>
-      <p>Medimos cuánto tarda la petición con <code>time</code> interno:</p>
+      <p>Medimos cuÃ¡nto tarda la peticiÃ³n con <code>time</code> interno:</p>
       <pre><code>fetch_with_timing() {
   local start end duration
   start=$(date +%s%N)
@@ -120,25 +120,25 @@ fetch_with_cache() {
 }</code></pre>
 
       <h2>Manejo de errores de red</h2>
-      <p>Detectamos y reportamos errores de conexión específicos:</p>
+      <p>Detectamos y reportamos errores de conexiÃ³n especÃ­ficos:</p>
       <pre><code>check_connectivity() {
   local test_url="https://www.hackthebox.com"
-  print_info "Verificando conexión a ${test_url}..."
+  print_info "Verificando conexiÃ³n a ${test_url}..."
 
   if ! curl -s --connect-timeout 5 "$test_url" > /dev/null 2>&1; then
-    print_error "Sin conexión a internet o HTB está caído"
+    print_error "Sin conexiÃ³n a internet o HTB estÃ¡ caÃ­do"
     echo "  Posibles causas:"
-    echo "  • No tienes conexión a internet"
-    echo "  • HTB está temporalmente caído"
-    echo "  • Tu VPN está interfiriendo"
+    echo "  â€¢ No tienes conexiÃ³n a internet"
+    echo "  â€¢ HTB estÃ¡ temporalmente caÃ­do"
+    echo "  â€¢ Tu VPN estÃ¡ interfiriendo"
     return 1
   fi
 
-  print_success "Conexión OK"
+  print_success "ConexiÃ³n OK"
   return 0
 }</code></pre>
 
-      <h2>Conexión VPN</h2>
+      <h2>ConexiÃ³n VPN</h2>
       <p>Detectamos si estamos conectados a la VPN de HTB:</p>
       <pre><code>check_vpn() {
   local vpn_ip
@@ -149,31 +149,31 @@ fetch_with_cache() {
     return 0
   else
     print_info "VPN no detectada (interfaz tun0)"
-    echo "  Algunas máquinas solo son accesibles vía VPN."
-    echo "  Conéctate con: sudo openvpn ~/Downloads/your_file.ovpn"
+    echo "  Algunas mÃ¡quinas solo son accesibles vÃ­a VPN."
+    echo "  ConÃ©ctate con: sudo openvpn ~/Downloads/your_file.ovpn"
     return 1
   fi
 }</code></pre>
 
       <h2>Modo interactivo</h2>
-      <p>Usamos <code>select</code> para crear un menú de opciones:</p>
+      <p>Usamos <code>select</code> para crear un menÃº de opciones:</p>
       <pre><code>interactive_mode() {
   print_banner
   echo "${BOLD}Modo interactivo${RESET}"
   echo
 
-  # Verificar conexión primero
+  # Verificar conexiÃ³n primero
   check_connectivity || return 1
 
   # Verificar VPN
   check_vpn
 
   while true; do
-    echo -e "\n${BOLD}¿Qué deseas hacer?${RESET}"
+    echo -e "\n${BOLD}Â¿QuÃ© deseas hacer?${RESET}"
     select opt in "Buscar por nombre" "Filtrar por SO" "Filtrar por dificultad" "Ver todas" "Salir"; do
       case $opt in
         "Buscar por nombre")
-          read -r -p "Nombre de la máquina: " NAME
+          read -r -p "Nombre de la mÃ¡quina: " NAME
           do_search
           break
           ;;
@@ -196,24 +196,24 @@ fetch_with_cache() {
           break
           ;;
         "Salir")
-          print_info "¡Hasta luego!"
+          print_info "Â¡Hasta luego!"
           exit 0
           ;;
-        *) echo "Opción inválida" ;;
+        *) echo "OpciÃ³n invÃ¡lida" ;;
       esac
     done
   done
 }</code></pre>
 
       <div class="highlight">
-        <strong>💡 read -r vs select:</strong> <code>read</code> captura texto libre; <code>select</code> presenta un menú numerado y captura la selección automáticamente. Ambos son esenciales para scripts interactivos.
+        <strong>ðŸ’¡ read -r vs select:</strong> <code>read</code> captura texto libre; <code>select</code> presenta un menÃº numerado y captura la selecciÃ³n automÃ¡ticamente. Ambos son esenciales para scripts interactivos.
       </div>
 
-      <p>Con esto el script es completamente funcional. En la clase final del proyecto haremos limpieza, organización y empaquetado.</p>
+      <p>Con esto el script es completamente funcional. En la clase final del proyecto haremos limpieza, organizaciÃ³n y empaquetado.</p>
 
       <div class="lesson-nav">
-        <a href="clase-67.html">← Anterior: Scripting en Bash [4-6]</a>
-        <a href="clase-69.html">Siguiente: Scripting en Bash [6-6] →</a>
+        <a href="clase-67.html">â† Anterior: Scripting en Bash [4-6]</a>
+        <a href="clase-69.html">Siguiente: Scripting en Bash [6-6] â†’</a>
       </div>
     </div>
 
@@ -221,11 +221,11 @@ fetch_with_cache() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

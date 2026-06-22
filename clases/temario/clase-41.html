@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>41. Manejo de pares de claves y conexiones SSH | Introducción a Linux</title>
+    <title>41. Manejo de pares de claves y conexiones SSH | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,60 +134,60 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 41</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Manejo de pares de claves y conexiones SSH</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 8:30 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 8:30 Â· SecciÃ³n 2: Temario</div>
 
-      <p>SSH (Secure Shell) es el protocolo estándar para administrar servidores remotos de forma segura. En lugar de usar contraseñas, lo más seguro y conveniente es usar un par de claves pública-privada.</p>
+      <p>SSH (Secure Shell) es el protocolo estÃ¡ndar para administrar servidores remotos de forma segura. En lugar de usar contraseÃ±as, lo mÃ¡s seguro y conveniente es usar un par de claves pÃºblica-privada.</p>
 
-      <h2>Generación de claves con ssh-keygen</h2>
-      <p>El primer paso es generar un par de claves RSA de 4096 bits en tu máquina local.</p>
+      <h2>GeneraciÃ³n de claves con ssh-keygen</h2>
+      <p>El primer paso es generar un par de claves RSA de 4096 bits en tu mÃ¡quina local.</p>
 
       <pre><code># Generar par de claves RSA
 ssh-keygen -t rsa -b 4096 -C "mi_correo@ejemplo.com"
 
 # Los archivos se guardan por defecto en:
 # ~/.ssh/id_rsa       (clave privada - NUNCA compartir)
-# ~/.ssh/id_rsa.pub   (clave pública - se copia al servidor)
+# ~/.ssh/id_rsa.pub   (clave pÃºblica - se copia al servidor)
 
 # Verificar la huella digital
 ssh-keygen -lf ~/.ssh/id_rsa.pub</code></pre>
 
       <div class="highlight">
-        <strong>🔑 Anatomía de una clave pública:</strong> <code>ssh-rsa AAAAB3NzaC1yc2E... usuario@host</code>. El primer campo es el tipo de clave, el segundo es la clave en base64, y el tercero es un comentario (normalmente usuario@hostname).
+        <strong>ðŸ”‘ AnatomÃ­a de una clave pÃºblica:</strong> <code>ssh-rsa AAAAB3NzaC1yc2E... usuario@host</code>. El primer campo es el tipo de clave, el segundo es la clave en base64, y el tercero es un comentario (normalmente usuario@hostname).
       </div>
 
       <h2>Copiar la clave al servidor</h2>
-      <p>El comando <code>ssh-copy-id</code> hace todo el trabajo: crea el directorio <code>~/.ssh</code> en el servidor, añade tu clave a <code>~/.ssh/authorized_keys</code> y establece los permisos correctos.</p>
+      <p>El comando <code>ssh-copy-id</code> hace todo el trabajo: crea el directorio <code>~/.ssh</code> en el servidor, aÃ±ade tu clave a <code>~/.ssh/authorized_keys</code> y establece los permisos correctos.</p>
 
-      <pre><code># Copiar clave pública al servidor remoto
+      <pre><code># Copiar clave pÃºblica al servidor remoto
 ssh-copy-id -i ~/.ssh/id_rsa.pub usuario@192.168.1.100
 
 # Manualmente (si no tienes ssh-copy-id)
 cat ~/.ssh/id_rsa.pub | ssh usuario@192.168.1.100 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 
-# Conectar sin contraseña
+# Conectar sin contraseÃ±a
 ssh usuario@192.168.1.100</code></pre>
 
       <h2>ssh-agent y ssh-add</h2>
@@ -196,7 +196,7 @@ ssh usuario@192.168.1.100</code></pre>
       <pre><code># Iniciar el agente
 eval "$(ssh-agent -s)"
 
-# Añadir la clave privada
+# AÃ±adir la clave privada
 ssh-add ~/.ssh/id_rsa
 
 # Listar claves cargadas
@@ -205,8 +205,8 @@ ssh-add -l
 # Eliminar todas las claves
 ssh-add -D</code></pre>
 
-      <h2>Configuración avanzada con ~/.ssh/config</h2>
-      <p>El archivo de configuración permite definir alias y opciones por host, ahorrando mucho tiempo en el día a día.</p>
+      <h2>ConfiguraciÃ³n avanzada con ~/.ssh/config</h2>
+      <p>El archivo de configuraciÃ³n permite definir alias y opciones por host, ahorrando mucho tiempo en el dÃ­a a dÃ­a.</p>
 
       <pre><code># ~/.ssh/config
 Host servidor-prod
@@ -223,23 +223,23 @@ Host github.com
 ssh servidor-prod</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Seguridad:</strong> La clave privada (<code>id_rsa</code>) debe tener permisos <code>600</code> (solo lectura para el propietario). El directorio <code>~/.ssh/</code> debe tener permisos <code>700</code>. Si los permisos son incorrectos, SSH se negará a usar las claves.
+        <strong>âš ï¸ Seguridad:</strong> La clave privada (<code>id_rsa</code>) debe tener permisos <code>600</code> (solo lectura para el propietario). El directorio <code>~/.ssh/</code> debe tener permisos <code>700</code>. Si los permisos son incorrectos, SSH se negarÃ¡ a usar las claves.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-40.html">← Anterior: Descompresor recursivo automático</a>
-        <a href="clase-42.html">Siguiente: Uso de netcat para realizar conexiones →</a>
+        <a href="clase-40.html">â† Anterior: Descompresor recursivo automÃ¡tico</a>
+        <a href="clase-42.html">Siguiente: Uso de netcat para realizar conexiones â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

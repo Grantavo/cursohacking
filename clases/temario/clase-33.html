@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>33. Búsquedas precisas de archivos [1-2] | Introducción a Linux</title>
+    <title>33. BÃºsquedas precisas de archivos [1-2] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,56 +33,56 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 33</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Búsquedas precisas de archivos [1-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:05 · Sección 2: Temario</div>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">BÃºsquedas precisas de archivos [1-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 3:05 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        Ya vimos <code>find</code> en la clase 24, pero ahora vamos a profundizar en los criterios de búsqueda y cómo combinarlos con operadores lógicos. Hacer búsquedas precisas te permite encontrar exactamente lo que necesitas sin tener que revisar cientos de resultados.
+        Ya vimos <code>find</code> en la clase 24, pero ahora vamos a profundizar en los criterios de bÃºsqueda y cÃ³mo combinarlos con operadores lÃ³gicos. Hacer bÃºsquedas precisas te permite encontrar exactamente lo que necesitas sin tener que revisar cientos de resultados.
       </p>
 
-      <h2>Criterios de búsqueda en find</h2>
+      <h2>Criterios de bÃºsqueda en find</h2>
 
       <table>
-        <tr><th>Criterio</th><th>Descripción</th><th>Ejemplo</th></tr>
+        <tr><th>Criterio</th><th>DescripciÃ³n</th><th>Ejemplo</th></tr>
         <tr><td><code>-name</code></td><td>Busca por nombre exacto</td><td><code>find / -name "passwd"</code></td></tr>
-        <tr><td><code>-iname</code></td><td>Busca por nombre (ignora mayúsculas)</td><td><code>find / -iname "PassWd"</code></td></tr>
+        <tr><td><code>-iname</code></td><td>Busca por nombre (ignora mayÃºsculas)</td><td><code>find / -iname "PassWd"</code></td></tr>
         <tr><td><code>-type f</code></td><td>Solo archivos regulares</td><td><code>find / -type f -name "*.txt"</code></td></tr>
         <tr><td><code>-type d</code></td><td>Solo directorios</td><td><code>find / -type d -name "log"</code></td></tr>
-        <tr><td><code>-size</code></td><td>Por tamaño (+100M, -1k, 1024c)</td><td><code>find / -size +1G</code></td></tr>
-        <tr><td><code>-mtime</code></td><td>Por fecha de modificación (días)</td><td><code>find / -mtime -7</code></td></tr>
+        <tr><td><code>-size</code></td><td>Por tamaÃ±o (+100M, -1k, 1024c)</td><td><code>find / -size +1G</code></td></tr>
+        <tr><td><code>-mtime</code></td><td>Por fecha de modificaciÃ³n (dÃ­as)</td><td><code>find / -mtime -7</code></td></tr>
         <tr><td><code>-perm</code></td><td>Por permisos</td><td><code>find / -perm 644</code></td></tr>
         <tr><td><code>-user</code></td><td>Por propietario</td><td><code>find / -user root</code></td></tr>
         <tr><td><code>-group</code></td><td>Por grupo</td><td><code>find / -group www-data</code></td></tr>
       </table>
 
-      <h3>Operadores lógicos: -a (and), -o (or), -not</h3>
+      <h3>Operadores lÃ³gicos: -a (and), -o (or), -not</h3>
 
-      <pre><code># AND implícito: todos los criterios se cumplen
+      <pre><code># AND implÃ­cito: todos los criterios se cumplen
 find / -type f -name "*.log" -size +50M
 
-# AND explícito
+# AND explÃ­cito
 find / -type f -a -name "*.conf"
 
 # OR: archivos que se llamen access.log O error.log
@@ -95,7 +95,7 @@ find /home -type f -not -name "*.txt"
 find / \( -name "*.py" -o -name "*.sh" \) -type f -size -1M</code></pre>
 
       <div class="highlight">
-        <strong>💡 Los paréntesis:</strong> En <code>find</code>, los paréntesis se escapan con <code>\(</code> y <code>\)</code> porque tienen significado especial para el shell. Sirven para agrupar condiciones lógicas.
+        <strong>ðŸ’¡ Los parÃ©ntesis:</strong> En <code>find</code>, los parÃ©ntesis se escapan con <code>\(</code> y <code>\)</code> porque tienen significado especial para el shell. Sirven para agrupar condiciones lÃ³gicas.
       </div>
 
       <h3>Ejemplos avanzados</h3>
@@ -103,34 +103,34 @@ find / \( -name "*.py" -o -name "*.sh" \) -type f -size -1M</code></pre>
       <pre><code># Archivos con permisos SUID (riesgo de escalada de privilegios)
 find / -type f -perm -4000 2>/dev/null
 
-# Archivos modificados en la última hora (para detectar actividad reciente)
+# Archivos modificados en la Ãºltima hora (para detectar actividad reciente)
 find /home -type f -mmin -60 2>/dev/null
 
 # Directorios con permisos 777 (cualquiera puede escribir)
 find / -type d -perm 777 2>/dev/null
 
-# Archivos de más de 100MB que no sean .iso
+# Archivos de mÃ¡s de 100MB que no sean .iso
 find / -type f -size +100M -not -name "*.iso" 2>/dev/null
 
-# Buscar archivos de un usuario específico en /tmp
+# Buscar archivos de un usuario especÃ­fico en /tmp
 find /tmp -user nobody -type f 2>/dev/null</code></pre>
 
-      <p>Dominar estos criterios y operadores te permite construir búsquedas quirúrgicas. En un pentest, usar <code>find</code> con <code>-perm -4000</code> es una de las primeras cosas que haces para buscar vectores de escalada de privilegios.</p>
+      <p>Dominar estos criterios y operadores te permite construir bÃºsquedas quirÃºrgicas. En un pentest, usar <code>find</code> con <code>-perm -4000</code> es una de las primeras cosas que haces para buscar vectores de escalada de privilegios.</p>
 
       <div class="lesson-nav">
-        <a href="clase-32.html">← Anterior: Detección del tipo y formato de archivos</a>
-        <a href="clase-34.html">Siguiente: Búsquedas precisas de archivos [2-2] →</a>
+        <a href="clase-32.html">â† Anterior: DetecciÃ³n del tipo y formato de archivos</a>
+        <a href="clase-34.html">Siguiente: BÃºsquedas precisas de archivos [2-2] â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>74. Scripting en Bash [4-15] | Introducción a Linux</title>
+    <title>74. Scripting en Bash [4-15] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,81 +33,81 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 74</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [4-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 18:33 · Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 18:33 Â· Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Creamos el bucle principal del juego con un menú interactivo, validación de entrada (números, rangos) y control de flujo con <code>case</code>.
+        Creamos el bucle principal del juego con un menÃº interactivo, validaciÃ³n de entrada (nÃºmeros, rangos) y control de flujo con <code>case</code>.
       </p>
 
-      <h2>Menú interactivo</h2>
+      <h2>MenÃº interactivo</h2>
       <p>Usamos <code>select</code> para presentar las opciones al jugador:</p>
       <pre><code>mostrar_menu() {
   echo
-  echo "${BOLD}${NOMBRE} — Saldo: ${VERDE}\$${SALDO}${RESET}"
+  echo "${BOLD}${NOMBRE} â€” Saldo: ${VERDE}\$${SALDO}${RESET}"
   echo
-  select opt in "🎯 Apostar" "📊 Estadísticas" "💾 Guardar partida" "🔧 Debug" "🚪 Salir"; do
+  select opt in "ðŸŽ¯ Apostar" "ðŸ“Š EstadÃ­sticas" "ðŸ’¾ Guardar partida" "ðŸ”§ Debug" "ðŸšª Salir"; do
     case $opt in
-      "🎯 Apostar")
+      "ðŸŽ¯ Apostar")
         realizar_apuesta
         break
         ;;
-      "📊 Estadísticas")
+      "ðŸ“Š EstadÃ­sticas")
         mostrar_estadisticas
         break
         ;;
-      "💾 Guardar partida")
+      "ðŸ’¾ Guardar partida")
         guardar_partida
         break
         ;;
-      "🔧 Debug")
+      "ðŸ”§ Debug")
         menu_debug
         break
         ;;
-      "🚪 Salir")
-        echo "${AMARILLO}¡Gracias por jugar, ${NOMBRE}!${RESET}"
+      "ðŸšª Salir")
+        echo "${AMARILLO}Â¡Gracias por jugar, ${NOMBRE}!${RESET}"
         exit 0
         ;;
       *)
-        echo "${ROJO}Opción inválida${RESET}"
+        echo "${ROJO}OpciÃ³n invÃ¡lida${RESET}"
         ;;
     esac
   done
 }</code></pre>
 
-      <h2>Validación de entrada</h2>
-      <p>Verificamos que el usuario introduzca valores válidos:</p>
+      <h2>ValidaciÃ³n de entrada</h2>
+      <p>Verificamos que el usuario introduzca valores vÃ¡lidos:</p>
       <pre><code>validar_cantidad() {
   local cantidad=$1
 
-  # Debe ser un número
+  # Debe ser un nÃºmero
   if ! [[ "$cantidad" =~ ^[0-9]+$ ]]; then
-    print_error "Debes introducir un número válido"
+    print_error "Debes introducir un nÃºmero vÃ¡lido"
     return 1
   fi
 
@@ -130,12 +130,12 @@ validar_numero_ruleta() {
   local num=$1
 
   if ! [[ "$num" =~ ^[0-9]+$ ]]; then
-    print_error "Debes introducir un número"
+    print_error "Debes introducir un nÃºmero"
     return 1
   fi
 
   if [[ "$num" -lt 0 ]] || [[ "$num" -gt 36 ]]; then
-    print_error "El número debe estar entre 0 y 36"
+    print_error "El nÃºmero debe estar entre 0 y 36"
     return 1
   fi
 
@@ -143,14 +143,14 @@ validar_numero_ruleta() {
 }</code></pre>
 
       <h2>Flujo de apostar</h2>
-      <p>Coordinamos la entrada del usuario con la lógica de apuesta:</p>
+      <p>Coordinamos la entrada del usuario con la lÃ³gica de apuesta:</p>
       <pre><code>realizar_apuesta() {
   # 1. Elegir tipo de apuesta
   echo "${BOLD}Tipo de apuesta:${RESET}"
   select tipo in "Pleno" "Docena" "Mitad" "Color" "Par/Impar" "Cancelar"; do
     case $tipo in
       "Pleno")
-        read -r -p "Número (0-36): " NUMERO_ELEGIDO
+        read -r -p "NÃºmero (0-36): " NUMERO_ELEGIDO
         validar_numero_ruleta "$NUMERO_ELEGIDO" || continue
         TIPO_APUESTA="pleno"
         break
@@ -231,7 +231,7 @@ validar_numero_ruleta() {
   if [[ "$ganancia" -gt 0 ]]; then
     (( SALDO += ganancia ))
     local beneficio=$(( ganancia - APUESTA ))
-    echo "${VERDE}${BOLD}¡Has ganado!${RESET} +${beneficio}"
+    echo "${VERDE}${BOLD}Â¡Has ganado!${RESET} +${beneficio}"
   else
     echo "${ROJO}${BOLD}Has perdido${RESET} -${APUESTA}"
   fi
@@ -247,14 +247,14 @@ validar_numero_ruleta() {
 }</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Validación defensiva:</strong> Siempre valida la entrada del usuario antes de procesarla. Nunca confíes en que el usuario introducirá datos correctos. Esto evita bugs y comportamientos inesperados.
+        <strong>âš ï¸ ValidaciÃ³n defensiva:</strong> Siempre valida la entrada del usuario antes de procesarla. Nunca confÃ­es en que el usuario introducirÃ¡ datos correctos. Esto evita bugs y comportamientos inesperados.
       </div>
 
-      <p>El juego ya tiene un ciclo completo. En la siguiente clase añadiremos el historial y las estadísticas.</p>
+      <p>El juego ya tiene un ciclo completo. En la siguiente clase aÃ±adiremos el historial y las estadÃ­sticas.</p>
 
       <div class="lesson-nav">
-        <a href="clase-73.html">← Anterior: Scripting en Bash [3-15]</a>
-        <a href="clase-75.html">Siguiente: Scripting en Bash [5-15] →</a>
+        <a href="clase-73.html">â† Anterior: Scripting en Bash [3-15]</a>
+        <a href="clase-75.html">Siguiente: Scripting en Bash [5-15] â†’</a>
       </div>
     </div>
 
@@ -262,11 +262,11 @@ validar_numero_ruleta() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

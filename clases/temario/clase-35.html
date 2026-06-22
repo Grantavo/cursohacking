@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>35. Métodos de filtrado de datos [1-2] | Introducción a Linux</title>
+    <title>35. MÃ©todos de filtrado de datos [1-2] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,51 +33,51 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 35</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Métodos de filtrado de datos [1-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 8:29 · Sección 2: Temario</div>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">MÃ©todos de filtrado de datos [1-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 8:29 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        Filtrar y transformar datos desde la terminal es una habilidad transversal. Tres herramientas forman el trío sagrado del filtrado en Linux: <code>grep</code> (búsqueda de patrones), <code>sed</code> (sustitución y edición de flujos) y <code>awk</code> (procesamiento de columnas). Con estos tres comandos puedes resolver prácticamente cualquier tarea de manipulación de texto.
+        Filtrar y transformar datos desde la terminal es una habilidad transversal. Tres herramientas forman el trÃ­o sagrado del filtrado en Linux: <code>grep</code> (bÃºsqueda de patrones), <code>sed</code> (sustituciÃ³n y ediciÃ³n de flujos) y <code>awk</code> (procesamiento de columnas). Con estos tres comandos puedes resolver prÃ¡cticamente cualquier tarea de manipulaciÃ³n de texto.
       </p>
 
       <h2>grep: el buscador de patrones</h2>
-      <p><code>grep</code> busca líneas que coincidan con un patrón (texto literal o expresión regular):</p>
+      <p><code>grep</code> busca lÃ­neas que coincidan con un patrÃ³n (texto literal o expresiÃ³n regular):</p>
 
-      <pre><code># Búsqueda básica
+      <pre><code># BÃºsqueda bÃ¡sica
 grep "root" /etc/passwd
 
-# Ignorar mayúsculas/minúsculas
+# Ignorar mayÃºsculas/minÃºsculas
 grep -i "error" /var/log/syslog
 
-# Mostrar líneas que NO coinciden
+# Mostrar lÃ­neas que NO coinciden
 grep -v "#" /etc/ssh/sshd_config
 
-# Búsqueda recursiva en directorios
+# BÃºsqueda recursiva en directorios
 grep -r "PasswordAuthentication" /etc/ssh/
 
-# Mostrar número de línea
+# Mostrar nÃºmero de lÃ­nea
 grep -n "Listen" /etc/apache2/ports.conf
 
 # Contar coincidencias
@@ -86,39 +86,39 @@ grep -c "failed" /var/log/auth.log
 # Expresiones regulares extendidas (-E)
 grep -E "^[0-9]{3}\." /etc/hosts
 
-# Mostrar contexto (líneas antes y después)
+# Mostrar contexto (lÃ­neas antes y despuÃ©s)
 grep -B 2 -A 2 "WARNING" /var/log/syslog</code></pre>
 
       <h3>sed: el editor de flujos</h3>
-      <p><code>sed</code> aplica transformaciones línea por línea. El comando más común es <code>s/patrón/reemplazo/</code> (sustituir):</p>
+      <p><code>sed</code> aplica transformaciones lÃ­nea por lÃ­nea. El comando mÃ¡s comÃºn es <code>s/patrÃ³n/reemplazo/</code> (sustituir):</p>
 
-      <pre><code># Sustituir la primera ocurrencia de "foo" por "bar" en cada línea
+      <pre><code># Sustituir la primera ocurrencia de "foo" por "bar" en cada lÃ­nea
 sed 's/foo/bar/' archivo.txt
 
 # Sustituir TODAS las ocurrencias (flag g)
 sed 's/foo/bar/g' archivo.txt
 
-# Sustituir solo en la línea 5
+# Sustituir solo en la lÃ­nea 5
 sed '5s/foo/bar/' archivo.txt
 
-# Eliminar líneas que contengan "comentario"
+# Eliminar lÃ­neas que contengan "comentario"
 sed '/comentario/d' archivo.txt
 
-# Eliminar líneas vacías
+# Eliminar lÃ­neas vacÃ­as
 sed '/^$/d' archivo.txt
 
-# Imprimir solo las líneas 10-20
+# Imprimir solo las lÃ­neas 10-20
 sed -n '10,20p' archivo.txt
 
 # Editar in-place (modificar el archivo directamente)
 sed -i 's/old/new/g' config.txt</code></pre>
 
       <div class="highlight">
-        <strong>💡 Tip:</strong> En <code>sed</code>, el separador <code>/</code> puede cambiarse por cualquier otro carácter (ej: <code>:</code> o <code>|</code>) cuando el patrón contiene barras: <code>sed 's|/usr/local|/opt|g'</code>.
+        <strong>ðŸ’¡ Tip:</strong> En <code>sed</code>, el separador <code>/</code> puede cambiarse por cualquier otro carÃ¡cter (ej: <code>:</code> o <code>|</code>) cuando el patrÃ³n contiene barras: <code>sed 's|/usr/local|/opt|g'</code>.
       </div>
 
       <h3>awk: procesamiento por columnas</h3>
-      <p><code>awk</code> trata cada línea como un registro y cada palabra separada por espacios como una columna (<code>$1</code>, <code>$2</code>, ...):</p>
+      <p><code>awk</code> trata cada lÃ­nea como un registro y cada palabra separada por espacios como una columna (<code>$1</code>, <code>$2</code>, ...):</p>
 
       <pre><code># Imprimir la primera columna
 awk '{print $1}' archivo.txt
@@ -129,13 +129,13 @@ awk '{print $1, $3, $5}' archivo.txt
 # Usar otro separador (ej: dos puntos)
 awk -F: '{print $1, $6}' /etc/passwd
 
-# Filtrar por patrón
+# Filtrar por patrÃ³n
 awk '/error/ {print $0}' /var/log/syslog
 
 # Condiciones
 awk '$3 > 100 {print $1, $3}' datos.txt
 
-# Contar líneas
+# Contar lÃ­neas
 awk 'END {print NR}' archivo.txt
 
 # Formatear salida
@@ -147,35 +147,35 @@ awk -F: '{printf "Usuario: %-10s Shell: %s\n", $1, $7}' /etc/passwd</code></pre>
       <pre><code># Extraer todas las IPs de un archivo de log
 grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' /var/log/apache2/access.log | sort -u
 
-# Usuarios con shell válido (/bin/bash o /bin/zsh)
+# Usuarios con shell vÃ¡lido (/bin/bash o /bin/zsh)
 grep -E '(/bin/bash|/bin/zsh)$' /etc/passwd | awk -F: '{print $1}'
 
-# Limpiar un archivo de configuración: eliminar comentarios y líneas vacías
+# Limpiar un archivo de configuraciÃ³n: eliminar comentarios y lÃ­neas vacÃ­as
 sed -e 's/#.*$//' -e '/^$/d' /etc/ssh/sshd_config
 
-# Los 10 directorios que más espacio ocupan
+# Los 10 directorios que mÃ¡s espacio ocupan
 du -h /* 2>/dev/null | sort -rh | head -10</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Precaución con sed -i:</strong> La opción <code>-i</code> modifica el archivo original. Siempre haz una copia de seguridad primero o usa <code>-i.bak</code> para crear un backup: <code>sed -i.bak 's/foo/bar/g' archivo</code>.
+        <strong>âš ï¸ PrecauciÃ³n con sed -i:</strong> La opciÃ³n <code>-i</code> modifica el archivo original. Siempre haz una copia de seguridad primero o usa <code>-i.bak</code> para crear un backup: <code>sed -i.bak 's/foo/bar/g' archivo</code>.
       </div>
 
-      <p>Estas tres herramientas son la navaja suiza del terminal. Cuando necesites procesar logs, extraer información de archivos o transformar datos sobre la marcha, <code>grep</code>, <code>sed</code> y <code>awk</code> son todo lo que necesitas.</p>
+      <p>Estas tres herramientas son la navaja suiza del terminal. Cuando necesites procesar logs, extraer informaciÃ³n de archivos o transformar datos sobre la marcha, <code>grep</code>, <code>sed</code> y <code>awk</code> son todo lo que necesitas.</p>
 
       <div class="lesson-nav">
-        <a href="clase-34.html">← Anterior: Búsquedas precisas de archivos [2-2]</a>
-        <a href="clase-36.html">Siguiente: Clase 36 →</a>
+        <a href="clase-34.html">â† Anterior: BÃºsquedas precisas de archivos [2-2]</a>
+        <a href="clase-36.html">Siguiente: Clase 36 â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

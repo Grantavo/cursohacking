@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>66. Scripting en Bash [3-6] | Introducción a Linux</title>
+    <title>66. Scripting en Bash [3-6] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,36 +33,36 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 66</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [3-6]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 19:58 · Proyecto 1: Buscador HTB</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 19:58 Â· Proyecto 1: Buscador HTB</div>
 
       <p>
-        Implementamos la lógica de búsqueda: filtrar máquinas por nombre, IP, sistema operativo y dificultad. Usaremos arrays asociativos en Bash para organizar los datos y bucles para procesar los resultados.
+        Implementamos la lÃ³gica de bÃºsqueda: filtrar mÃ¡quinas por nombre, IP, sistema operativo y dificultad. Usaremos arrays asociativos en Bash para organizar los datos y bucles para procesar los resultados.
       </p>
 
       <h2>Arrays asociativos en Bash</h2>
@@ -74,26 +74,26 @@ DIFFICULTY_MAP[3]="hard"
 DIFFICULTY_MAP[4]="insane"
 
 declare -A DIFF_ICON
-DIFF_ICON[easy]="🟢"
-DIFF_ICON[medium]="🟡"
-DIFF_ICON[hard]="🔴"
-DIFF_ICON[insane]="🟣"</code></pre>
+DIFF_ICON[easy]="ðŸŸ¢"
+DIFF_ICON[medium]="ðŸŸ¡"
+DIFF_ICON[hard]="ðŸ”´"
+DIFF_ICON[insane]="ðŸŸ£"</code></pre>
 
       <h2>Filtrado por nombre</h2>
-      <p>Búsqueda con <code>grep -i</code> para coincidencia insensible a mayúsculas:</p>
+      <p>BÃºsqueda con <code>grep -i</code> para coincidencia insensible a mayÃºsculas:</p>
       <pre><code>filter_by_name() {
   local results="$1"
   local search_term="$2"
   echo "$results" | grep -i "$search_term"
 }</code></pre>
 
-      <h2>Lógica de búsqueda completa</h2>
-      <p>Combinamos todos los filtros usando tuberías:</p>
+      <h2>LÃ³gica de bÃºsqueda completa</h2>
+      <p>Combinamos todos los filtros usando tuberÃ­as:</p>
       <pre><code>search_machines() {
   local json="$1"
   local results
 
-  # Convertir JSON a líneas delimitadas
+  # Convertir JSON a lÃ­neas delimitadas
   results=$(echo "$json" | jq -c '.results[]' 2>/dev/null)
 
   # Aplicar filtros secuencialmente
@@ -148,15 +148,15 @@ DIFF_ICON[insane]="🟣"</code></pre>
     ((count++))
   done <<< "$results"
 
-  echo "└──────────────────────────────────────────────────────┘"
-  echo "${BOLD}Total:${RESET} $count máquinas encontradas"
+  echo "â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜"
+  echo "${BOLD}Total:${RESET} $count mÃ¡quinas encontradas"
 }</code></pre>
 
       <div class="highlight">
-        <strong>💡 Buenas prácticas:</strong> Usar tuberías (<code>|</code>) y <code>while read</code> evita cargar todo el resultado en memoria. Es eficiente incluso con cientos de máquinas.
+        <strong>ðŸ’¡ Buenas prÃ¡cticas:</strong> Usar tuberÃ­as (<code>|</code>) y <code>while read</code> evita cargar todo el resultado en memoria. Es eficiente incluso con cientos de mÃ¡quinas.
       </div>
 
-      <h2>Función de búsqueda unificada</h2>
+      <h2>FunciÃ³n de bÃºsqueda unificada</h2>
       <pre><code>do_search() {
   local json
   json=$(fetch_machines) || return 1
@@ -165,18 +165,18 @@ DIFF_ICON[insane]="🟣"</code></pre>
   filtered=$(search_machines "$json")
 
   if [[ -z "$filtered" ]]; then
-    print_error "No se encontraron máquinas con esos criterios"
+    print_error "No se encontraron mÃ¡quinas con esos criterios"
     return 1
   fi
 
   render_results "$filtered"
 }</code></pre>
 
-      <p>El buscador ya puede filtrar por nombre, SO y dificultad. En la siguiente clase mejoraremos la presentación con colores y paginación.</p>
+      <p>El buscador ya puede filtrar por nombre, SO y dificultad. En la siguiente clase mejoraremos la presentaciÃ³n con colores y paginaciÃ³n.</p>
 
       <div class="lesson-nav">
-        <a href="clase-65.html">← Anterior: Scripting en Bash [2-6]</a>
-        <a href="clase-67.html">Siguiente: Scripting en Bash [4-6] →</a>
+        <a href="clase-65.html">â† Anterior: Scripting en Bash [2-6]</a>
+        <a href="clase-67.html">Siguiente: Scripting en Bash [4-6] â†’</a>
       </div>
     </div>
 
@@ -184,11 +184,11 @@ DIFF_ICON[insane]="🟣"</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

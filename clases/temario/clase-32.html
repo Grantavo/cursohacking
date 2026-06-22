@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>32. Detección del tipo y formato de archivos | Introducción a Linux</title>
+    <title>32. DetecciÃ³n del tipo y formato de archivos | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,38 +33,38 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 32</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Detección del tipo y formato de archivos</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:49 · Sección 2: Temario</div>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">DetecciÃ³n del tipo y formato de archivos</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:49 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        En Linux, la extensión de un archivo (<code>.txt</code>, <code>.pdf</code>, <code>.exe</code>) no determina su tipo real. Para saber qué contiene realmente un archivo se usa el comando <code>file</code>, que analiza los bytes mágicos (magic numbers) al inicio del archivo. Esto es esencial en ciberseguridad: un atacante puede renombrar un ejecutable malicioso como <code>documento.pdf</code>, pero <code>file</code> revelará su verdadera naturaleza.
+        En Linux, la extensiÃ³n de un archivo (<code>.txt</code>, <code>.pdf</code>, <code>.exe</code>) no determina su tipo real. Para saber quÃ© contiene realmente un archivo se usa el comando <code>file</code>, que analiza los bytes mÃ¡gicos (magic numbers) al inicio del archivo. Esto es esencial en ciberseguridad: un atacante puede renombrar un ejecutable malicioso como <code>documento.pdf</code>, pero <code>file</code> revelarÃ¡ su verdadera naturaleza.
       </p>
 
       <h2>El comando file</h2>
 
-      <pre><code># Uso básico
+      <pre><code># Uso bÃ¡sico
 file archivo
 
 # Ejemplo con varios tipos
@@ -73,13 +73,13 @@ file /etc/passwd
 file imagen.png
 file documento.pdf
 
-# Ver todos los tipos MIME (más detallado)
+# Ver todos los tipos MIME (mÃ¡s detallado)
 file -i /bin/ls
 file -i imagen.png</code></pre>
 
-      <h3>Ejemplos prácticos</h3>
+      <h3>Ejemplos prÃ¡cticos</h3>
 
-      <pre><code># file detecta el formato real sin importar la extensión
+      <pre><code># file detecta el formato real sin importar la extensiÃ³n
 mv /bin/ls /tmp/falso.txt
 file /tmp/falso.txt
 # Output: falso.txt: ELF 64-bit LSB executable, x86-64, version 1 (SYSV)
@@ -94,11 +94,11 @@ file script.renombrado
 
       <pre><code># Ver los primeros bytes (magic number) de un archivo
 xxd -l 16 /bin/ls | head -1
-# Output: 00000000: 7f45 4c46 02...  → ELF
+# Output: 00000000: 7f45 4c46 02...  â†’ ELF
 
 # Comparar con un PNG
 xxd -l 16 imagen.png | head -1
-# Output: 00000000: 8950 4e47 0d0a 1a0a  → PNG</code></pre>
+# Output: 00000000: 8950 4e47 0d0a 1a0a  â†’ PNG</code></pre>
 
       <table>
         <tr><th>Formato</th><th>Magic Number (hex)</th></tr>
@@ -110,25 +110,25 @@ xxd -l 16 imagen.png | head -1
       </table>
 
       <div class="highlight">
-        <strong>💡 Aplicación en hacking:</strong> Durante un análisis de malware o un CTF, usa <code>file</code> para identificar rápidamente el tipo de archivos sospechosos. Un archivo que parece un .txt pero resulta ser un ELF o un ZIP puede ser la pista que necesitas.
+        <strong>ðŸ’¡ AplicaciÃ³n en hacking:</strong> Durante un anÃ¡lisis de malware o un CTF, usa <code>file</code> para identificar rÃ¡pidamente el tipo de archivos sospechosos. Un archivo que parece un .txt pero resulta ser un ELF o un ZIP puede ser la pista que necesitas.
       </div>
 
-      <p>La base de datos de tipos que usa <code>file</code> está en <code>/usr/share/misc/magic</code> o <code>/usr/share/file/magic/</code>. Puedes consultarla para entender cómo se identifican los formatos.</p>
+      <p>La base de datos de tipos que usa <code>file</code> estÃ¡ en <code>/usr/share/misc/magic</code> o <code>/usr/share/file/magic/</code>. Puedes consultarla para entender cÃ³mo se identifican los formatos.</p>
 
       <div class="lesson-nav">
-        <a href="clase-31.html">← Anterior: Directorios y archivos ocultos</a>
-        <a href="clase-33.html">Siguiente: Búsquedas precisas de archivos [1-2] →</a>
+        <a href="clase-31.html">â† Anterior: Directorios y archivos ocultos</a>
+        <a href="clase-33.html">Siguiente: BÃºsquedas precisas de archivos [1-2] â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

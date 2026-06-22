@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>56. Operando con proyectos de Github [1-5] | Introducción a Linux</title>
+    <title>56. Operando con proyectos de Github [1-5] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,45 +134,45 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 56</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Operando con proyectos de Github [1-5]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:31 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:31 Â· SecciÃ³n 2: Temario</div>
 
-      <p>Git es un sistema de control de versiones distribuido. GitHub es la plataforma más grande donde se alojan repositorios Git. En esta primera parte aprenderás a clonar y explorar repositorios.</p>
+      <p>Git es un sistema de control de versiones distribuido. GitHub es la plataforma mÃ¡s grande donde se alojan repositorios Git. En esta primera parte aprenderÃ¡s a clonar y explorar repositorios.</p>
 
       <h2>Clonar un repositorio</h2>
-      <p>Con <code>git clone</code> descargas una copia completa del repositorio remoto a tu máquina local:</p>
+      <p>Con <code>git clone</code> descargas una copia completa del repositorio remoto a tu mÃ¡quina local:</p>
       <pre><code># Clonar con HTTPS (recomendado para principiantes)
 git clone https://github.com/usuario/repositorio.git
 
 # Clonar con SSH (requiere clave SSH configurada)
 git clone git@github.com:usuario/repositorio.git
 
-# Clonar una rama específica
+# Clonar una rama especÃ­fica
 git clone -b nombre-rama https://github.com/usuario/repositorio.git</code></pre>
 
       <h2>Navegar por el repositorio</h2>
@@ -182,28 +182,28 @@ git status
 
 # Ver el historial de commits
 git log
-git log --oneline --graph --all  # Vista compacta con gráfico de ramas
+git log --oneline --graph --all  # Vista compacta con grÃ¡fico de ramas
 
-# Ver cambios de un commit específico
+# Ver cambios de un commit especÃ­fico
 git show &lt;commit-hash&gt;</code></pre>
 
       <h2>Explorar issues y releases</h2>
-      <p>En GitHub, las issues son reportes de bugs o solicitudes de características. Las releases son versiones publicadas del proyecto. Puedes encontrarlas directamente en la interfaz web del repositorio, en las pestañas <strong>Issues</strong> y <strong>Releases</strong>.</p>
+      <p>En GitHub, las issues son reportes de bugs o solicitudes de caracterÃ­sticas. Las releases son versiones publicadas del proyecto. Puedes encontrarlas directamente en la interfaz web del repositorio, en las pestaÃ±as <strong>Issues</strong> y <strong>Releases</strong>.</p>
 
       <div class="highlight">
-        <strong>💡</strong> Para buscar issues etiquetadas como "good first issue" (ideal para contribuyentes nuevos): abre GitHub, ve a la pestaña Issues y filtra por la etiqueta correspondiente. Muchos proyectos usan esta etiqueta para facilitar la incorporación de nuevos contribuyentes.
+        <strong>ðŸ’¡</strong> Para buscar issues etiquetadas como "good first issue" (ideal para contribuyentes nuevos): abre GitHub, ve a la pestaÃ±a Issues y filtra por la etiqueta correspondiente. Muchos proyectos usan esta etiqueta para facilitar la incorporaciÃ³n de nuevos contribuyentes.
       </div>
 
       <pre><code># Ver los tags (versiones) del repositorio local
 git tag
 git tag -l "v2.*"  # Filtrar tags que empiezan con v2
 
-# Ver información de un tag
+# Ver informaciÃ³n de un tag
 git show v1.0.0</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-55.html">← Anterior: Escapando del contexto de un comando</a>
-        <a href="clase-57.html">Siguiente: Operando con proyectos de Github [2-5] →</a>
+        <a href="clase-55.html">â† Anterior: Escapando del contexto de un comando</a>
+        <a href="clase-57.html">Siguiente: Operando con proyectos de Github [2-5] â†’</a>
       </div>
     </div>
 
@@ -211,11 +211,11 @@ git show v1.0.0</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>15. Permisos especiales - Sticky Bit | Introducción a Linux</title>
+    <title>15. Permisos especiales - Sticky Bit | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,68 +134,68 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 15</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Permisos especiales - Sticky Bit</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 5:09 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 5:09 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        El Sticky Bit es un permiso especial que se aplica a directorios. Su función es evitar que un usuario borre archivos de otros usuarios aunque tenga permisos de escritura en el directorio.
+        El Sticky Bit es un permiso especial que se aplica a directorios. Su funciÃ³n es evitar que un usuario borre archivos de otros usuarios aunque tenga permisos de escritura en el directorio.
       </p>
 
-      <h2>¿Qué es el Sticky Bit?</h2>
+      <h2>Â¿QuÃ© es el Sticky Bit?</h2>
       <p>
-        Normalmente, si tienes permiso de escritura en un directorio, puedes eliminar cualquier archivo dentro de él, incluso si no eres el dueño. El Sticky Bit cambia este comportamiento: <strong>solo el dueño del archivo, el dueño del directorio o root pueden eliminar o renombrar archivos</strong>.
+        Normalmente, si tienes permiso de escritura en un directorio, puedes eliminar cualquier archivo dentro de Ã©l, incluso si no eres el dueÃ±o. El Sticky Bit cambia este comportamiento: <strong>solo el dueÃ±o del archivo, el dueÃ±o del directorio o root pueden eliminar o renombrar archivos</strong>.
       </p>
 
-      <h2>Ejemplo clásico: <code>/tmp</code></h2>
+      <h2>Ejemplo clÃ¡sico: <code>/tmp</code></h2>
 
       <pre><code>$ ls -ld /tmp
 drwxrwxrwt 1 root root 4096 May 10 12:00 /tmp</code></pre>
 
-      <p>La letra <code>t</code> al final de los permisos indica que el Sticky Bit está activo. <code>/tmp</code> permite a todos escribir, pero gracias al Sticky Bit nadie puede borrar los archivos de otros.</p>
+      <p>La letra <code>t</code> al final de los permisos indica que el Sticky Bit estÃ¡ activo. <code>/tmp</code> permite a todos escribir, pero gracias al Sticky Bit nadie puede borrar los archivos de otros.</p>
 
       <div class="highlight">
-        <strong>💡</strong> En la notación simbólica, el Sticky Bit se muestra como <code>t</code> en la posición de ejecución de "otros". Si también hay permiso de ejecución, aparece <code>t</code> en minúscula; si no hay ejecución, aparece <code>T</code> mayúscula.
+        <strong>ðŸ’¡</strong> En la notaciÃ³n simbÃ³lica, el Sticky Bit se muestra como <code>t</code> en la posiciÃ³n de ejecuciÃ³n de "otros". Si tambiÃ©n hay permiso de ejecuciÃ³n, aparece <code>t</code> en minÃºscula; si no hay ejecuciÃ³n, aparece <code>T</code> mayÃºscula.
       </div>
 
-      <h2>Cómo se asigna</h2>
+      <h2>CÃ³mo se asigna</h2>
 
-      <pre><code>chmod +t directorio/               # Modo simbólico
+      <pre><code>chmod +t directorio/               # Modo simbÃ³lico
 chmod 1777 directorio/             # Modo octal (1 = Sticky Bit)
-chmod o+t directorio/              # Alternativa simbólica</code></pre>
+chmod o+t directorio/              # Alternativa simbÃ³lica</code></pre>
 
-      <p>El Sticky Bit se representa con el dígito <strong>1</strong> al inicio del número octal:</p>
+      <p>El Sticky Bit se representa con el dÃ­gito <strong>1</strong> al inicio del nÃºmero octal:</p>
       <pre><code>chmod 1777 /tmp           # Permisos 777 + Sticky Bit
                           # 1 = Sticky Bit
-                          # 7 = dueño rwx
+                          # 7 = dueÃ±o rwx
                           # 7 = grupo rwx  
                           # 7 = otros rwx</code></pre>
 
-      <h2>Ejemplo práctico</h2>
+      <h2>Ejemplo prÃ¡ctico</h2>
 
       <pre><code># Crea un directorio compartido con Sticky Bit
 sudo mkdir /home/compartido
@@ -208,19 +208,19 @@ su bob -c 'rm /home/compartido/alice.txt'   # Error: permiso denegado
 # Solo alice o root pueden borrar alice.txt</code></pre>
 
       <div class="warning">
-        <strong>⚠️</strong> El Sticky Bit no afecta a root. root siempre puede borrar cualquier archivo, independientemente del Sticky Bit.
+        <strong>âš ï¸</strong> El Sticky Bit no afecta a root. root siempre puede borrar cualquier archivo, independientemente del Sticky Bit.
       </div>
 
-      <h2>¿Cuándo usar Sticky Bit?</h2>
+      <h2>Â¿CuÃ¡ndo usar Sticky Bit?</h2>
       <ul>
         <li>Directorios compartidos (<code>/tmp</code>, <code>/var/tmp</code>)</li>
         <li>Directorios de subida de archivos en servidores</li>
-        <li>Cualquier directorio donde múltiples usuarios tengan permiso de escritura</li>
+        <li>Cualquier directorio donde mÃºltiples usuarios tengan permiso de escritura</li>
       </ul>
 
       <div class="lesson-nav">
-        <a href="clase-14.html">← Anterior: Notación octal de permisos</a>
-        <a href="clase-16.html">Siguiente: Chattr y Lsattr →</a>
+        <a href="clase-14.html">â† Anterior: NotaciÃ³n octal de permisos</a>
+        <a href="clase-16.html">Siguiente: Chattr y Lsattr â†’</a>
       </div>
     </div>
 
@@ -228,11 +228,11 @@ su bob -c 'rm /home/compartido/alice.txt'   # Error: permiso denegado
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

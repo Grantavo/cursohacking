@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>14. Notación octal de permisos | Introducción a Linux</title>
+    <title>14. NotaciÃ³n octal de permisos | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,36 +134,36 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 14</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Notación octal de permisos</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 7:21 · Sección 2: Temario</div>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">NotaciÃ³n octal de permisos</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 7:21 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        La notación octal es la forma numérica de representar permisos en Linux. Se llama "octal" porque cada dígito puede tomar valores del 0 al 7 (8 valores posibles, base 8).
+        La notaciÃ³n octal es la forma numÃ©rica de representar permisos en Linux. Se llama "octal" porque cada dÃ­gito puede tomar valores del 0 al 7 (8 valores posibles, base 8).
       </p>
 
       <h2>El sistema octal explicado paso a paso</h2>
@@ -183,66 +183,66 @@
       </table>
 
       <div class="highlight">
-        <strong>💡</strong> Piensa en cada trío de permisos como un número binario de 3 bits: r=4 (2²), w=2 (2¹), x=1 (2⁰). Activado = 1, desactivado = 0. El número octal es simplemente la suma.
+        <strong>ðŸ’¡</strong> Piensa en cada trÃ­o de permisos como un nÃºmero binario de 3 bits: r=4 (2Â²), w=2 (2Â¹), x=1 (2â°). Activado = 1, desactivado = 0. El nÃºmero octal es simplemente la suma.
       </div>
 
-      <h2>Cálculos paso a paso</h2>
+      <h2>CÃ¡lculos paso a paso</h2>
 
       <pre><code># Queremos: rwxr--r--
-dueño: r(4)+w(2)+x(1) = 7
+dueÃ±o: r(4)+w(2)+x(1) = 7
 grupo: r(4)+0+0       = 4
 otros: r(4)+0+0       = 4
-→ chmod 744 archivo
+â†’ chmod 744 archivo
 
 # Queremos: rwxr-x---
-dueño: r(4)+w(2)+x(1) = 7
+dueÃ±o: r(4)+w(2)+x(1) = 7
 grupo: r(4)+0+x(1)    = 5
 otros: 0+0+0          = 0
-→ chmod 750 archivo
+â†’ chmod 750 archivo
 
 # Queremos: rwx------
-dueño: 4+2+1 = 7
+dueÃ±o: 4+2+1 = 7
 grupo: 0
 otros: 0
-→ chmod 700 archivo</code></pre>
+â†’ chmod 700 archivo</code></pre>
 
-      <h2><code>umask</code> — Permisos por defecto</h2>
+      <h2><code>umask</code> â€” Permisos por defecto</h2>
 
-      <p><code>umask</code> determina los permisos que se asignan por defecto al crear archivos y directorios. Funciona restando la máscara de los permisos base:</p>
+      <p><code>umask</code> determina los permisos que se asignan por defecto al crear archivos y directorios. Funciona restando la mÃ¡scara de los permisos base:</p>
 
       <ul>
         <li>Archivos base: 666 (rw-rw-rw-)</li>
         <li>Directorios base: 777 (rwxrwxrwx)</li>
       </ul>
 
-      <pre><code>umask                     # Muestra la máscara actual (022 típicamente)
+      <pre><code>umask                     # Muestra la mÃ¡scara actual (022 tÃ­picamente)
 umask 022                 # Archivos: 666-022=644, Directorios: 777-022=755
 umask 077                 # Archivos: 666-077=600, Directorios: 777-077=700
 
-# Ejemplo práctico:
+# Ejemplo prÃ¡ctico:
 umask 077
 touch secreto.txt
 ls -l secreto.txt         # -rw-------  (600)</code></pre>
 
       <div class="warning">
-        <strong>⚠️</strong> <code>umask</code> afecta a la sesión actual. Para hacerlo permanente, añádelo a <code>~/.bashrc</code> o <code>~/.profile</code>.
+        <strong>âš ï¸</strong> <code>umask</code> afecta a la sesiÃ³n actual. Para hacerlo permanente, aÃ±Ã¡delo a <code>~/.bashrc</code> o <code>~/.profile</code>.
       </div>
 
       <h2>Tabla de umask comunes</h2>
 
       <table>
-        <tr><th>umask</th><th>Archivos</th><th>Directorios</th><th>Uso típico</th></tr>
-        <tr><td>022</td><td>644</td><td>755</td><td>Por defecto en la mayoría de sistemas</td></tr>
+        <tr><th>umask</th><th>Archivos</th><th>Directorios</th><th>Uso tÃ­pico</th></tr>
+        <tr><td>022</td><td>644</td><td>755</td><td>Por defecto en la mayorÃ­a de sistemas</td></tr>
         <tr><td>027</td><td>640</td><td>750</td><td>Grupo puede leer, otros nada</td></tr>
-        <tr><td>077</td><td>600</td><td>700</td><td>Máxima privacidad (solo dueño)</td></tr>
+        <tr><td>077</td><td>600</td><td>700</td><td>MÃ¡xima privacidad (solo dueÃ±o)</td></tr>
         <tr><td>002</td><td>664</td><td>775</td><td>Entornos colaborativos</td></tr>
       </table>
 
-      <h2>Ejercicio práctico</h2>
+      <h2>Ejercicio prÃ¡ctico</h2>
       <pre><code># Calcula mentalmente estos permisos:
-# rwxr-xr-x  → ?
-# r--r-----  → ?
-# -wx--x--x  → ?
+# rwxr-xr-x  â†’ ?
+# r--r-----  â†’ ?
+# -wx--x--x  â†’ ?
 
 # Verifica con chmod:
 touch test
@@ -251,8 +251,8 @@ chmod 440 test; ls -l test
 chmod 311 test; ls -l test</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-13.html">← Anterior: Asignación de permisos [2-2]</a>
-        <a href="clase-15.html">Siguiente: Sticky Bit →</a>
+        <a href="clase-13.html">â† Anterior: AsignaciÃ³n de permisos [2-2]</a>
+        <a href="clase-15.html">Siguiente: Sticky Bit â†’</a>
       </div>
     </div>
 
@@ -260,11 +260,11 @@ chmod 311 test; ls -l test</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

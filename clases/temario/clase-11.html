@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>11. Lectura e interpretación de permisos [2-2] | Introducción a Linux</title>
+    <title>11. Lectura e interpretaciÃ³n de permisos [2-2] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,62 +134,62 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 11</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Lectura e interpretación de permisos [2-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 3:43 · Sección 2: Temario</div>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Lectura e interpretaciÃ³n de permisos [2-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 3:43 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        Ahora que sabes leer los permisos, toca aprender a cambiarlos. El comando <code>chmod</code> en modo simbólico te permite modificar permisos de forma intuitiva.
+        Ahora que sabes leer los permisos, toca aprender a cambiarlos. El comando <code>chmod</code> en modo simbÃ³lico te permite modificar permisos de forma intuitiva.
       </p>
 
-      <h2>Modo simbólico: estructura</h2>
-      <p>La sintaxis es: <code>chmod [categoría][operador][permiso] archivo</code></p>
+      <h2>Modo simbÃ³lico: estructura</h2>
+      <p>La sintaxis es: <code>chmod [categorÃ­a][operador][permiso] archivo</code></p>
 
       <table>
-        <tr><th>Categoría</th><th>Operador</th><th>Permiso</th></tr>
-        <tr><td>u (user)</td><td>+ (añadir)</td><td>r (read)</td></tr>
+        <tr><th>CategorÃ­a</th><th>Operador</th><th>Permiso</th></tr>
+        <tr><td>u (user)</td><td>+ (aÃ±adir)</td><td>r (read)</td></tr>
         <tr><td>g (group)</td><td>- (quitar)</td><td>w (write)</td></tr>
         <tr><td>o (others)</td><td>= (asignar exacto)</td><td>x (execute)</td></tr>
         <tr><td>a (all)</td><td></td><td></td></tr>
       </table>
 
-      <h2>Ejemplos prácticos</h2>
+      <h2>Ejemplos prÃ¡cticos</h2>
 
-      <pre><code>chmod u+x script.sh          # Añade ejecución al dueño
+      <pre><code>chmod u+x script.sh          # AÃ±ade ejecuciÃ³n al dueÃ±o
 chmod g-w archivo.txt        # Quita escritura al grupo
-chmod o+r documento.pdf      # Añade lectura a otros
-chmod a+x programa           # Añade ejecución a todos (dueño, grupo, otros)
-chmod u=rw,go=r archivo      # Dueño: rw, grupo y otros: solo r</code></pre>
+chmod o+r documento.pdf      # AÃ±ade lectura a otros
+chmod a+x programa           # AÃ±ade ejecuciÃ³n a todos (dueÃ±o, grupo, otros)
+chmod u=rw,go=r archivo      # DueÃ±o: rw, grupo y otros: solo r</code></pre>
 
       <div class="highlight">
-        <strong>💡</strong> Puedes combinar múltiples cambios separándolos con comas: <code>chmod u+w,go-x archivo</code> añade escritura al dueño y quita ejecución a grupo y otros.
+        <strong>ðŸ’¡</strong> Puedes combinar mÃºltiples cambios separÃ¡ndolos con comas: <code>chmod u+w,go-x archivo</code> aÃ±ade escritura al dueÃ±o y quita ejecuciÃ³n a grupo y otros.
       </div>
 
-      <h2>Progresión de ejemplos</h2>
+      <h2>ProgresiÃ³n de ejemplos</h2>
 
       <div class="step">
         <span class="step-num">1</span>
@@ -202,7 +202,7 @@ chmod u+x saludo.sh
       <div class="step">
         <span class="step-num">2</span>
         <strong>Proteger un archivo contra modificaciones</strong>
-        <pre><code>chmod u-w notas.txt          # Quita escritura al dueño (solo lectura)
+        <pre><code>chmod u-w notas.txt          # Quita escritura al dueÃ±o (solo lectura)
 echo "nuevo" >> notas.txt    # Error: permiso denegado</code></pre>
       </div>
 
@@ -214,11 +214,11 @@ chmod g+w /home/user/proyecto.txt   # Grupo puede editarlo</code></pre>
       </div>
 
       <div class="warning">
-        <strong>⚠️</strong> Recuerda: para acceder a un directorio necesitas permiso x. Si le das permisos a un archivo dentro de un directorio sin x, los usuarios no podrán atravesar el directorio para llegar al archivo.
+        <strong>âš ï¸</strong> Recuerda: para acceder a un directorio necesitas permiso x. Si le das permisos a un archivo dentro de un directorio sin x, los usuarios no podrÃ¡n atravesar el directorio para llegar al archivo.
       </div>
 
       <h2>Ejercicio final</h2>
-      <pre><code># Crea un archivo, ajústale permisos progresivamente
+      <pre><code># Crea un archivo, ajÃºstale permisos progresivamente
 touch ejercicio.txt
 ls -l ejercicio.txt
 chmod u=rw,g=r,o= ejercicio.txt
@@ -228,8 +228,8 @@ chmod g+w,o+r ejercicio.txt
 ls -l ejercicio.txt</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-10.html">← Anterior: Lectura de permisos [1-2]</a>
-        <a href="clase-12.html">Siguiente: Asignación de permisos [1-2] →</a>
+        <a href="clase-10.html">â† Anterior: Lectura de permisos [1-2]</a>
+        <a href="clase-12.html">Siguiente: AsignaciÃ³n de permisos [1-2] â†’</a>
       </div>
     </div>
 
@@ -237,11 +237,11 @@ ls -l ejercicio.txt</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

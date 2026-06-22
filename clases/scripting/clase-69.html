@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>69. Scripting en Bash [6-6] | Introducción a Linux</title>
+    <title>69. Scripting en Bash [6-6] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,52 +33,52 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 69</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [6-6]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 12:36 · Proyecto 1: Buscador HTB</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 12:36 Â· Proyecto 1: Buscador HTB</div>
 
       <p>
-        Clase final del Proyecto 1. Organizamos el código en archivos separados con <code>source</code>, instalamos el script como comando del sistema y hacemos una demostración completa del buscador funcionando.
+        Clase final del Proyecto 1. Organizamos el cÃ³digo en archivos separados con <code>source</code>, instalamos el script como comando del sistema y hacemos una demostraciÃ³n completa del buscador funcionando.
       </p>
 
-      <h2>Organización del código en archivos separados</h2>
-      <p>Dividimos el script monolítico en módulos usando <code>source</code>:</p>
+      <h2>OrganizaciÃ³n del cÃ³digo en archivos separados</h2>
+      <p>Dividimos el script monolÃ­tico en mÃ³dulos usando <code>source</code>:</p>
       <pre><code># Estructura del proyecto
 # ~/htb_search/
-# ├── htb_search.sh        # Entry point
-# ├── lib/
-# │   ├── config.sh        # Variables y configuración
-# │   ├── ui.sh            # Funciones de interfaz (banner, tablas)
-# │   ├── api.sh           # Conexión a la API y caché
-# │   └── search.sh        # Lógica de búsqueda y filtros</code></pre>
+# â”œâ”€â”€ htb_search.sh        # Entry point
+# â”œâ”€â”€ lib/
+# â”‚   â”œâ”€â”€ config.sh        # Variables y configuraciÃ³n
+# â”‚   â”œâ”€â”€ ui.sh            # Funciones de interfaz (banner, tablas)
+# â”‚   â”œâ”€â”€ api.sh           # ConexiÃ³n a la API y cachÃ©
+# â”‚   â””â”€â”€ search.sh        # LÃ³gica de bÃºsqueda y filtros</code></pre>
 
       <p>Archivo principal <code>htb_search.sh</code>:</p>
       <pre><code>#!/bin/bash
-# htb_search.sh - Buscador de máquinas HackTheBox
+# htb_search.sh - Buscador de mÃ¡quinas HackTheBox
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -100,7 +100,7 @@ main() {
 
 main "$@"</code></pre>
 
-      <h2>Instalación como comando del sistema</h2>
+      <h2>InstalaciÃ³n como comando del sistema</h2>
       <p>Hacemos que el script sea ejecutable desde cualquier lugar:</p>
       <pre><code>#!/bin/bash
 # install.sh - Instala htb_search como comando del sistema
@@ -118,15 +118,15 @@ EOF
 
 chmod +x "${INSTALL_DIR}/htb-search"
 
-# Añadir al PATH si no está
+# AÃ±adir al PATH si no estÃ¡
 if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
   echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> ~/.bashrc
-  echo "${YELLOW}Añadido $INSTALL_DIR al PATH. Recarga con: source ~/.bashrc${RESET}"
+  echo "${YELLOW}AÃ±adido $INSTALL_DIR al PATH. Recarga con: source ~/.bashrc${RESET}"
 fi
 
 print_success "htb-search instalado. Usa: htb-search -i"</code></pre>
 
-      <h2>Demostración completa</h2>
+      <h2>DemostraciÃ³n completa</h2>
       <p>Ejemplo de uso del script final:</p>
       <pre><code># 1. Exportar token
 export HTB_TOKEN="tu_token_aqui"
@@ -134,7 +134,7 @@ export HTB_TOKEN="tu_token_aqui"
 # 2. Modo interactivo
 htb-search -i
 
-# 3. Búsqueda directa
+# 3. BÃºsqueda directa
 htb-search -n "Bank"
 
 # 4. Filtros combinados
@@ -144,18 +144,18 @@ htb-search -o Linux -d easy
 htb-search -h</code></pre>
 
       <div class="highlight">
-        <strong>🏁 Proyecto 1 completado:</strong> Has construido un buscador de máquinas HTB completamente funcional en Bash. Has aplicado: variables, arrays, funciones, getopts, curl, jq, caché, paginación, modo interactivo y empaquetado. Todo desde la terminal.
+        <strong>ðŸ Proyecto 1 completado:</strong> Has construido un buscador de mÃ¡quinas HTB completamente funcional en Bash. Has aplicado: variables, arrays, funciones, getopts, curl, jq, cachÃ©, paginaciÃ³n, modo interactivo y empaquetado. Todo desde la terminal.
       </div>
 
       <div class="warning">
-        <strong>📌 Recuerda:</strong> No compartas tu token de API. Si subes el proyecto a GitHub, usa un archivo <code>.env</code> y añádelo a <code>.gitignore</code>.
+        <strong>ðŸ“Œ Recuerda:</strong> No compartas tu token de API. Si subes el proyecto a GitHub, usa un archivo <code>.env</code> y aÃ±Ã¡delo a <code>.gitignore</code>.
       </div>
 
-      <p>En la siguiente clase empezamos el <strong>Proyecto 2: Ruleta de casino en Bash</strong>. ¡A por todas!</p>
+      <p>En la siguiente clase empezamos el <strong>Proyecto 2: Ruleta de casino en Bash</strong>. Â¡A por todas!</p>
 
       <div class="lesson-nav">
-        <a href="clase-68.html">← Anterior: Scripting en Bash [5-6]</a>
-        <a href="clase-70.html">Siguiente: Introducción al Proyecto 2 →</a>
+        <a href="clase-68.html">â† Anterior: Scripting en Bash [5-6]</a>
+        <a href="clase-70.html">Siguiente: IntroducciÃ³n al Proyecto 2 â†’</a>
       </div>
     </div>
 
@@ -163,11 +163,11 @@ htb-search -h</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

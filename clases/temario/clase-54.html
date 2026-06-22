@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>54. Fuerza bruta aplicada a conexiones | Introducción a Linux</title>
+    <title>54. Fuerza bruta aplicada a conexiones | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,58 +134,58 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 54</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Fuerza bruta aplicada a conexiones</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 5:09 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 5:09 Â· SecciÃ³n 2: Temario</div>
 
-      <p>La fuerza bruta es una técnica de ataque que consiste en probar todas las combinaciones posibles de contraseñas hasta encontrar la correcta. En el contexto de conexiones remotas (SSH, RDP, FTP), esta técnica se automatiza con herramientas especializadas.</p>
+      <p>La fuerza bruta es una tÃ©cnica de ataque que consiste en probar todas las combinaciones posibles de contraseÃ±as hasta encontrar la correcta. En el contexto de conexiones remotas (SSH, RDP, FTP), esta tÃ©cnica se automatiza con herramientas especializadas.</p>
 
       <h2>Hydra</h2>
-      <p>Hydra es la herramienta más popular para ataques de fuerza bruta en línea. Soporta múltiples protocolos y es extremadamente rápida. En Ubuntu se instala con <code>sudo apt install hydra</code>.</p>
+      <p>Hydra es la herramienta mÃ¡s popular para ataques de fuerza bruta en lÃ­nea. Soporta mÃºltiples protocolos y es extremadamente rÃ¡pida. En Ubuntu se instala con <code>sudo apt install hydra</code>.</p>
 
       <pre><code>hydra -l usuario -P wordlist.txt ssh://192.168.1.100
 
 # Especificar un puerto distinto
 hydra -l admin -P rockyou.txt ssh://192.168.1.100 -s 2222
 
-# Probar múltiples usuarios con -L
+# Probar mÃºltiples usuarios con -L
 hydra -L users.txt -P passwords.txt ssh://target</code></pre>
 
       <div class="highlight">
-        <strong>💡</strong> La opción <code>-l</code> es para un solo usuario, <code>-L</code> para un archivo de usuarios. Lo mismo aplica para <code>-p</code> (una contraseña) y <code>-P</code> (wordlist).
+        <strong>ðŸ’¡</strong> La opciÃ³n <code>-l</code> es para un solo usuario, <code>-L</code> para un archivo de usuarios. Lo mismo aplica para <code>-p</code> (una contraseÃ±a) y <code>-P</code> (wordlist).
       </div>
 
-      <p>Hydra también funciona con otros protocolos:</p>
+      <p>Hydra tambiÃ©n funciona con otros protocolos:</p>
       <pre><code>hydra -l admin -P wordlist.txt ftp://192.168.1.100
 hydra -l admin -P wordlist.txt rdp://192.168.1.100
 hydra -l user -P wordlist.txt http-post-form "/login:user=^USER^&pass=^PASS^:F=incorrect"</code></pre>
 
       <h2>Medusa y Ncrack</h2>
-      <p>Alternativas a Hydra con características similares:</p>
+      <p>Alternativas a Hydra con caracterÃ­sticas similares:</p>
       <pre><code># Medusa
 medusa -h 192.168.1.100 -u admin -P wordlist.txt -M ssh
 
@@ -197,30 +197,30 @@ ncrack -u admin -P wordlist.txt rdp://192.168.1.100</code></pre>
           <tr><th>Herramienta</th><th>Ventaja principal</th><th>Protocolos</th></tr>
         </thead>
         <tbody>
-          <tr><td>Hydra</td><td>Más rápida y soporta más protocolos</td><td>SSH, FTP, HTTP, RDP, MySQL, etc.</td></tr>
-          <tr><td>Medusa</td><td>Paralelización masiva</td><td>SSH, FTP, HTTP, POP3, etc.</td></tr>
-          <tr><td>Ncrack</td><td>Alta eficiencia en RDP y autenticación de red</td><td>RDP, SSH, HTTP, SMB</td></tr>
+          <tr><td>Hydra</td><td>MÃ¡s rÃ¡pida y soporta mÃ¡s protocolos</td><td>SSH, FTP, HTTP, RDP, MySQL, etc.</td></tr>
+          <tr><td>Medusa</td><td>ParalelizaciÃ³n masiva</td><td>SSH, FTP, HTTP, POP3, etc.</td></tr>
+          <tr><td>Ncrack</td><td>Alta eficiencia en RDP y autenticaciÃ³n de red</td><td>RDP, SSH, HTTP, SMB</td></tr>
         </tbody>
       </table>
 
       <h2>Wordlists comunes</h2>
-      <p>Las wordlists son archivos que contienen contraseñas probables. La más famosa es <code>rockyou.txt</code>:</p>
-      <pre><code># Ubicación típica en Ubuntu (instalar con: sudo apt install wordlists)
+      <p>Las wordlists son archivos que contienen contraseÃ±as probables. La mÃ¡s famosa es <code>rockyou.txt</code>:</p>
+      <pre><code># UbicaciÃ³n tÃ­pica en Ubuntu (instalar con: sudo apt install wordlists)
 ls -lh /usr/share/wordlists/
 sudo gunzip /usr/share/wordlists/rockyou.txt.gz
 wc -l /usr/share/wordlists/rockyou.txt
-# Salida: 14344392 líneas (~14 millones de contraseñas)</code></pre>
+# Salida: 14344392 lÃ­neas (~14 millones de contraseÃ±as)</code></pre>
 
       <h2>Defensa: fail2ban y rate limiting</h2>
       <p>Para proteger un servidor SSH contra fuerza bruta:</p>
       <pre><code># Instalar fail2ban
 sudo apt install fail2ban -y
 
-# Configurar protección SSH
+# Configurar protecciÃ³n SSH
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo nano /etc/fail2ban/jail.local
 
-# Configuración básica para SSH
+# ConfiguraciÃ³n bÃ¡sica para SSH
 [sshd]
 enabled = true
 port = ssh
@@ -230,12 +230,12 @@ bantime = 3600
 findtime = 600</code></pre>
 
       <div class="warning">
-        <strong>⚠️</strong> La fuerza bruta es ilegal sin autorización explícita. Solo debe practicarse en entornos controlados como laboratorios propios, máquinas HackTheBox o plataformas similares con consentimiento.
+        <strong>âš ï¸</strong> La fuerza bruta es ilegal sin autorizaciÃ³n explÃ­cita. Solo debe practicarse en entornos controlados como laboratorios propios, mÃ¡quinas HackTheBox o plataformas similares con consentimiento.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-53.html">← Anterior: Cuestionario de tareas Cron</a>
-        <a href="clase-55.html">Siguiente: Escapando del contexto de un comando →</a>
+        <a href="clase-53.html">â† Anterior: Cuestionario de tareas Cron</a>
+        <a href="clase-55.html">Siguiente: Escapando del contexto de un comando â†’</a>
       </div>
     </div>
 
@@ -243,11 +243,11 @@ findtime = 600</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

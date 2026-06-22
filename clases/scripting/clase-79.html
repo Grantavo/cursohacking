@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>79. Scripting en Bash [9-15] | Introducción a Linux</title>
+    <title>79. Scripting en Bash [9-15] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,36 +33,36 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 79</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [9-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 16:05 · Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 16:05 Â· Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Mejoramos la experiencia visual del juego: tablero de ruleta en ASCII, animaciones con <code>sleep</code> y <code>printf</code>, barras de progreso y una interfaz más pulida.
+        Mejoramos la experiencia visual del juego: tablero de ruleta en ASCII, animaciones con <code>sleep</code> y <code>printf</code>, barras de progreso y una interfaz mÃ¡s pulida.
       </p>
 
       <h2>Tablero de ruleta en ASCII</h2>
@@ -72,37 +72,37 @@
   local color=$2
 
   clear
-  echo "${BOLD}${AMARILLO}╔══════════════════════════════╗${RESET}"
-  echo "${BOLD}${AMARILLO}║       🎰 RULETA EUROPEA       ║${RESET}"
-  echo "${BOLD}${AMARILLO}╚══════════════════════════════╝${RESET}"
+  echo "${BOLD}${AMARILLO}â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—${RESET}"
+  echo "${BOLD}${AMARILLO}â•‘       ðŸŽ° RULETA EUROPEA       â•‘${RESET}"
+  echo "${BOLD}${AMARILLO}â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
   echo
 
-  # Números en formato tablero (simplificado)
-  echo "┌────┬────┬────┬────┬────┬────┐"
-  echo "│  3 │  6 │  9 │ 12 │ 15 │ 18 │"
-  echo "├────┼────┼────┼────┼────┼────┤"
-  echo "│  2 │  5 │  8 │ 11 │ 14 │ 17 │"
-  echo "├────┼────┼────┼────┼────┼────┤"
-  echo "│  1 │  4 │  7 │ 10 │ 13 │ 16 │"
-  echo "└────┴────┴────┴────┴────┴────┘"
+  # NÃºmeros en formato tablero (simplificado)
+  echo "â”Œâ”€â”€â”€â”€â”¬â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”"
+  echo "â”‚  3 â”‚  6 â”‚  9 â”‚ 12 â”‚ 15 â”‚ 18 â”‚"
+  echo "â”œâ”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¤"
+  echo "â”‚  2 â”‚  5 â”‚  8 â”‚ 11 â”‚ 14 â”‚ 17 â”‚"
+  echo "â”œâ”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”¤"
+  echo "â”‚  1 â”‚  4 â”‚  7 â”‚ 10 â”‚ 13 â”‚ 16 â”‚"
+  echo "â””â”€â”€â”€â”€â”´â”€â”€â”€â”€â”´â”€â”€â”€â”€â”´â”€â”€â”€â”€â”´â”€â”€â”€â”€â”´â”€â”€â”€â”€â”˜"
   echo
 
   # Resultado destacado
   local color_display
   case "$color" in
-    rojo)  color_display="${ROJO}${BOLD}● ROJO${RESET}" ;;
-    negro) color_display="${BLANCO}${BOLD}● NEGRO${RESET}" ;;
-    verde) color_display="${VERDE}${BOLD}● VERDE${RESET}" ;;
+    rojo)  color_display="${ROJO}${BOLD}â— ROJO${RESET}" ;;
+    negro) color_display="${BLANCO}${BOLD}â— NEGRO${RESET}" ;;
+    verde) color_display="${VERDE}${BOLD}â— VERDE${RESET}" ;;
   esac
 
   echo "${BOLD}Resultado:${RESET} ${color_display} ${BOLD}${numero}${RESET}"
   echo
 }</code></pre>
 
-      <h2>Animación del giro</h2>
+      <h2>AnimaciÃ³n del giro</h2>
       <p>Simulamos la bola girando con <code>printf</code> y caracteres de spinner:</p>
       <pre><code>animar_giro() {
-  local frames=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")
+  local frames=("â ‹" "â ™" "â ¹" "â ¸" "â ¼" "â ´" "â ¦" "â §" "â ‡" "â ")
   local numeros=(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36)
 
   echo -n "${AMARILLO}Girando... ${RESET}"
@@ -110,32 +110,32 @@
   for (( i = 0; i < 30; i++ )); do
     local frame_idx=$(( i % ${#frames[@]} ))
     local num_idx=$(( RANDOM % 37 ))
-    printf "\r${AMARILLO}%s${RESET} %s %2d" "${frames[$frame_idx]}" "●" "${numeros[$num_idx]}"
+    printf "\r${AMARILLO}%s${RESET} %s %2d" "${frames[$frame_idx]}" "â—" "${numeros[$num_idx]}"
     sleep 0.08
   done
 
-  # Mostrar el número final
-  printf "\r${VERDE}✓${RESET} Resultado: ${BOLD}%2d${RESET}  \n" "$1"
+  # Mostrar el nÃºmero final
+  printf "\r${VERDE}âœ“${RESET} Resultado: ${BOLD}%2d${RESET}  \n" "$1"
   sleep 0.5
 }
 
 animar_bola() {
   local resultado=$1
-  echo "${CIAN}La bola está rodando...${RESET}"
+  echo "${CIAN}La bola estÃ¡ rodando...${RESET}"
   sleep 0.3
 
   for (( i = 0; i < 5; i++ )); do
-    echo -n "◜"
+    echo -n "â—œ"
     sleep 0.1
-    echo -ne "\b\b◝"
+    echo -ne "\b\bâ—"
     sleep 0.1
-    echo -ne "\b\b◞"
+    echo -ne "\b\bâ—ž"
     sleep 0.1
-    echo -ne "\b\b◟"
+    echo -ne "\b\bâ—Ÿ"
     sleep 0.1
   done
 
-  echo -e "\b\b${VERDE}${BOLD} ¡${resultado}! ${RESET}"
+  echo -e "\b\b${VERDE}${BOLD} Â¡${resultado}! ${RESET}"
 }</code></pre>
 
       <h2>Barras de progreso</h2>
@@ -145,7 +145,7 @@ animar_bola() {
   local max_saldo=$2
   local ancho=40
 
-  # Evitar división por cero
+  # Evitar divisiÃ³n por cero
   [[ "$max_saldo" -eq 0 ]] && max_saldo=1
 
   local proporcion=$(( saldo * ancho / max_saldo ))
@@ -164,16 +164,16 @@ animar_bola() {
   echo -n "${BOLD}Saldo:${RESET} ["
   for (( i = 0; i < ancho; i++ )); do
     if [[ "$i" -lt "$proporcion" ]]; then
-      echo -n "${lleno}■${RESET}"
+      echo -n "${lleno}â– ${RESET}"
     else
-      echo -n "${vacio}·${RESET}"
+      echo -n "${vacio}Â·${RESET}"
     fi
   done
   echo "] \$${saldo}/${max_saldo}"
 }</code></pre>
 
-      <h2>Integración visual</h2>
-      <p>Unificamos los elementos visuales en la función principal del turno:</p>
+      <h2>IntegraciÃ³n visual</h2>
+      <p>Unificamos los elementos visuales en la funciÃ³n principal del turno:</p>
       <pre><code>ejecutar_turno_visual() {
   echo
   barra_saldo "$SALDO" "$MAX_SALDO"
@@ -194,9 +194,9 @@ animar_bola() {
   if [[ "$ganancia" -gt 0 ]]; then
     local beneficio=$(( ganancia - APUESTA ))
     (( SALDO += ganancia ))
-    echo "${VERDE}${BOLD}🎉 ¡Has ganado \$${beneficio}!${RESET}"
+    echo "${VERDE}${BOLD}ðŸŽ‰ Â¡Has ganado \$${beneficio}!${RESET}"
   else
-    echo "${ROJO}${BOLD}😞 Has perdido \$${APUESTA}${RESET}"
+    echo "${ROJO}${BOLD}ðŸ˜ž Has perdido \$${APUESTA}${RESET}"
   fi
 
   registrar_jugada "$numero" "$color" "$paridad" "$ganancia" "$APUESTA"
@@ -205,14 +205,14 @@ animar_bola() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>💡 printf \r para animaciones:</strong> El carriage return (<code>\r</code>) permite sobrescribir la misma línea, creando la ilusión de movimiento sin llenar la terminal de líneas nuevas.
+        <strong>ðŸ’¡ printf \r para animaciones:</strong> El carriage return (<code>\r</code>) permite sobrescribir la misma lÃ­nea, creando la ilusiÃ³n de movimiento sin llenar la terminal de lÃ­neas nuevas.
       </div>
 
-      <p>Las animaciones mejoran drásticamente la experiencia de usuario. En la siguiente clase añadiremos sonidos y notificaciones.</p>
+      <p>Las animaciones mejoran drÃ¡sticamente la experiencia de usuario. En la siguiente clase aÃ±adiremos sonidos y notificaciones.</p>
 
       <div class="lesson-nav">
-        <a href="clase-78.html">← Anterior: Scripting en Bash [8-15]</a>
-        <a href="clase-80.html">Siguiente: Scripting en Bash [10-15] →</a>
+        <a href="clase-78.html">â† Anterior: Scripting en Bash [8-15]</a>
+        <a href="clase-80.html">Siguiente: Scripting en Bash [10-15] â†’</a>
       </div>
     </div>
 
@@ -220,11 +220,11 @@ animar_bola() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

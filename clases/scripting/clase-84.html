@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>84. Scripting en Bash [14-15] | Introducción a Linux</title>
+    <title>84. Scripting en Bash [14-15] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,36 +33,36 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 84</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [14-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 33:20 · Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 33:20 Â· Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Cubrimos pruebas y depuración: <code>set -x</code> y <code>set -e</code> para tracing, <code>trap</code> para limpieza, pruebas unitarias básicas con <code>assert</code> casero y manejo de casos borde.
+        Cubrimos pruebas y depuraciÃ³n: <code>set -x</code> y <code>set -e</code> para tracing, <code>trap</code> para limpieza, pruebas unitarias bÃ¡sicas con <code>assert</code> casero y manejo de casos borde.
       </p>
 
       <h2>Modo debug con set -x y set -e</h2>
@@ -71,19 +71,19 @@
 debug_mode() {
   echo "${AMARILLO}Modo debug activado${RESET}"
   set -x  # Muestra cada comando antes de ejecutarlo
-  set -e  # Sale si algún comando falla (exit code != 0)
+  set -e  # Sale si algÃºn comando falla (exit code != 0)
   set -u  # Error si se usa variable no definida
-  set -o pipefail  # Error si algún comando en pipe falla
+  set -o pipefail  # Error si algÃºn comando en pipe falla
 }
 
-# Fragmento de depuración selectiva
+# Fragmento de depuraciÃ³n selectiva
 depurar_funcion() {
-  set -x  # Activar trace solo para esta función
-  # ... código a depurar ...
+  set -x  # Activar trace solo para esta funciÃ³n
+  # ... cÃ³digo a depurar ...
   set +x  # Desactivar trace
 }
 
-# Ejemplo de depuración de getopts
+# Ejemplo de depuraciÃ³n de getopts
 depurar_args() {
   echo "ARGV: $@"
   echo "ARGC: $#"
@@ -103,12 +103,12 @@ depurar_args() {
   [[ -f /tmp/roulette_historial.tmp ]] && rm -f /tmp/roulette_historial.tmp
   [[ -f /tmp/roulette_debug.log ]] && rm -f /tmp/roulette_debug.log
 
-  # Restaurar configuración de terminal
+  # Restaurar configuraciÃ³n de terminal
   stty echo 2>/dev/null || true
   tput cnorm 2>/dev/null || true  # Mostrar cursor
 
   if [[ "$exit_code" -ne 0 ]]; then
-    echo "${ROJO}El script terminó con error (código: $exit_code)${RESET}"
+    echo "${ROJO}El script terminÃ³ con error (cÃ³digo: $exit_code)${RESET}"
   else
     echo "${VERDE}Script finalizado correctamente${RESET}"
   fi
@@ -116,19 +116,19 @@ depurar_args() {
   exit "$exit_code"
 }
 
-# Registrar trap para señales comunes
+# Registrar trap para seÃ±ales comunes
 trap cleanup EXIT INT TERM HUP
 
-# Handler para Ctrl+C específico
+# Handler para Ctrl+C especÃ­fico
 ctrl_c() {
   echo
-  echo "${AMARILLO}${BOLD}⏹ Juego interrumpido por el usuario${RESET}"
+  echo "${AMARILLO}${BOLD}â¹ Juego interrumpido por el usuario${RESET}"
   guardar_partida  # Guardar antes de salir
   exit 130
 }
 trap ctrl_c SIGINT</code></pre>
 
-      <h2>Pruebas unitarias básicas</h2>
+      <h2>Pruebas unitarias bÃ¡sicas</h2>
       <p>Creamos un framework de pruebas minimalista:</p>
       <pre><code># === tests/test_roulette.sh ===
 
@@ -141,10 +141,10 @@ assert() {
   local resultado=$3
 
   if [[ "$resultado" == "$esperado" ]]; then
-    echo "${VERDE}[✓]${RESET} $descripcion"
+    echo "${VERDE}[âœ“]${RESET} $descripcion"
     (( PASADAS++ ))
   else
-    echo "${ROJO}[✗]${RESET} $descripcion"
+    echo "${ROJO}[âœ—]${RESET} $descripcion"
     echo "  Esperado: '$esperado'"
     echo "  Obtenido: '$resultado'"
     (( FALLADAS++ ))
@@ -193,7 +193,7 @@ test_apuesta_docena() {
 
 # Ejecutar todas las pruebas
 run_tests() {
-  echo "${BOLD}${AZUL}══════ PRUEBAS UNITARIAS ══════${RESET}"
+  echo "${BOLD}${AZUL}â•â•â•â•â•â• PRUEBAS UNITARIAS â•â•â•â•â•â•${RESET}"
   echo
 
   test_determinar_color
@@ -208,11 +208,11 @@ run_tests() {
 
   echo
   echo "${BOLD}Resumen:${RESET} ${VERDE}$PASADAS pasadas${RESET}, ${ROJO}$FALLADAS falladas${RESET}"
-  [[ "$FALLADAS" -eq 0 ]] && echo "${VERDE}${BOLD}¡Todas las pruebas pasaron!${RESET}"
+  [[ "$FALLADAS" -eq 0 ]] && echo "${VERDE}${BOLD}Â¡Todas las pruebas pasaron!${RESET}"
 }</code></pre>
 
       <div class="warning">
-        <strong>⚠️ set -e con cuidado:</strong> <code>set -e</code> puede ser demasiado agresivo. Comandos que devuelven código de salida distinto de 0 en situaciones normales (como <code>grep</code> sin coincidencias) pueden detener el script inesperadamente.
+        <strong>âš ï¸ set -e con cuidado:</strong> <code>set -e</code> puede ser demasiado agresivo. Comandos que devuelven cÃ³digo de salida distinto de 0 en situaciones normales (como <code>grep</code> sin coincidencias) pueden detener el script inesperadamente.
       </div>
 
       <h2>Casos borde</h2>
@@ -221,28 +221,28 @@ run_tests() {
 
   # Saldo cero
   SALDO=0
-  assert "Apuesta con saldo cero no debería ocurrir" 0 \
+  assert "Apuesta con saldo cero no deberÃ­a ocurrir" 0 \
     "$(validar_cantidad 10 2>/dev/null; echo $?)"
 
-  # Número fuera de rango
-  assert "Número 37 es inválido" 1 \
+  # NÃºmero fuera de rango
+  assert "NÃºmero 37 es invÃ¡lido" 1 \
     "$(validar_numero_ruleta 37 2>/dev/null; echo $?)"
 
-  # Número negativo
-  assert "Número -1 es inválido" 1 \
+  # NÃºmero negativo
+  assert "NÃºmero -1 es invÃ¡lido" 1 \
     "$(validar_numero_ruleta -1 2>/dev/null; echo $?)"
 
-  # String vacío
-  assert "String vacío es inválido" 1 \
+  # String vacÃ­o
+  assert "String vacÃ­o es invÃ¡lido" 1 \
     "$(validar_cantidad '' 2>/dev/null; echo $?)"
 
-  # Caracteres no numéricos
-  assert "Texto no es válido" 1 \
+  # Caracteres no numÃ©ricos
+  assert "Texto no es vÃ¡lido" 1 \
     "$(validar_cantidad 'abc' 2>/dev/null; echo $?)"
 
   # Apuesta mayor que saldo
   SALDO=100
-  assert "Apuesta > saldo es inválida" 1 \
+  assert "Apuesta > saldo es invÃ¡lida" 1 \
     "$(validar_cantidad 200 2>/dev/null; echo $?)"
 
   # Resultado del 0 en apuesta de color
@@ -252,14 +252,14 @@ run_tests() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>💡 Pruebas en Bash:</strong> No necesitas un framework complejo. Con funciones <code>assert</code> simples y <code>test_*</code> puedes cubrir la mayoría de casos. Para proyectos más grandes, considera <code>bats</code> (Bash Automated Testing System).
+        <strong>ðŸ’¡ Pruebas en Bash:</strong> No necesitas un framework complejo. Con funciones <code>assert</code> simples y <code>test_*</code> puedes cubrir la mayorÃ­a de casos. Para proyectos mÃ¡s grandes, considera <code>bats</code> (Bash Automated Testing System).
       </div>
 
-      <p>El script está probado y depurado. En la clase final haremos un resumen de todo el módulo.</p>
+      <p>El script estÃ¡ probado y depurado. En la clase final haremos un resumen de todo el mÃ³dulo.</p>
 
       <div class="lesson-nav">
-        <a href="clase-83.html">← Anterior: Scripting en Bash [13-15]</a>
-        <a href="clase-85.html">Siguiente: Scripting en Bash [15-15] →</a>
+        <a href="clase-83.html">â† Anterior: Scripting en Bash [13-15]</a>
+        <a href="clase-85.html">Siguiente: Scripting en Bash [15-15] â†’</a>
       </div>
     </div>
 
@@ -267,11 +267,11 @@ run_tests() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

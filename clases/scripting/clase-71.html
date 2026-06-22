@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>71. Scripting en Bash [1-15] | Introducción a Linux</title>
+    <title>71. Scripting en Bash [1-15] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,42 +33,42 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 71</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [1-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 8:24 · Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 8:24 Â· Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Damos los primeros pasos con la ruleta. Creamos el script con las variables globales (saldo, apuesta, número elegido), la función de bienvenida y la entrada del usuario.
+        Damos los primeros pasos con la ruleta. Creamos el script con las variables globales (saldo, apuesta, nÃºmero elegido), la funciÃ³n de bienvenida y la entrada del usuario.
       </p>
 
       <h2>Variables globales</h2>
       <pre><code>#!/bin/bash
 
-# === CONFIGURACIÓN GLOBAL ===
+# === CONFIGURACIÃ“N GLOBAL ===
 SALDO=1000
 APUESTA=0
 NUMERO_ELEGIDO=-1
@@ -95,25 +95,25 @@ FONDO_NEGRO=$(tput setab 0)
 BOLD=$(tput bold)
 RESET=$(tput sgr0)</code></pre>
 
-      <h2>Función de bienvenida</h2>
-      <p>Mostramos un mensaje de bienvenida con las instrucciones básicas:</p>
+      <h2>FunciÃ³n de bienvenida</h2>
+      <p>Mostramos un mensaje de bienvenida con las instrucciones bÃ¡sicas:</p>
       <pre><code>bienvenida() {
   clear
   echo "${BOLD}${AMARILLO}"
-  echo '  ╔══════════════════════════════════╗'
-  echo '  ║     🎰 CASINO ROULETTE v1.0      ║'
-  echo '  ║     Bash Edition — Terminal       ║'
-  echo '  ╚══════════════════════════════════╝'
+  echo '  â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—'
+  echo '  â•‘     ðŸŽ° CASINO ROULETTE v1.0      â•‘'
+  echo '  â•‘     Bash Edition â€” Terminal       â•‘'
+  echo '  â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•'
   echo "${RESET}"
   echo "${CIAN}Bienvenido a la ruleta de casino en Bash${RESET}"
   echo "Saldo inicial: ${VERDE}\$${SALDO}${RESET}"
   echo
   echo "${AMARILLO}Reglas:${RESET}"
-  echo "  • Elige un tipo de apuesta y una cantidad"
-  echo "  • La ruleta genera un número aleatorio (0-36)"
-  echo "  • Si aciertas, ganas según la tabla de pagos"
-  echo "  • Si pierdes, pierdes tu apuesta"
-  echo "  • ¡No apuestes lo que no puedas perder!"
+  echo "  â€¢ Elige un tipo de apuesta y una cantidad"
+  echo "  â€¢ La ruleta genera un nÃºmero aleatorio (0-36)"
+  echo "  â€¢ Si aciertas, ganas segÃºn la tabla de pagos"
+  echo "  â€¢ Si pierdes, pierdes tu apuesta"
+  echo "  â€¢ Â¡No apuestes lo que no puedas perder!"
   echo
 }</code></pre>
 
@@ -130,25 +130,25 @@ RESET=$(tput sgr0)</code></pre>
   read -r -p "Saldo inicial [1000]: " saldo_in
   SALDO="${saldo_in:-1000}"
 
-  # Validar que el saldo sea un número positivo
+  # Validar que el saldo sea un nÃºmero positivo
   if ! [[ "$SALDO" =~ ^[0-9]+$ ]] || [[ "$SALDO" -eq 0 ]]; then
-    print_error "El saldo debe ser un número positivo"
+    print_error "El saldo debe ser un nÃºmero positivo"
     SALDO=1000
   fi
 
-  print_success "¡Bienvenido, ${NOMBRE}! Saldo: \$${SALDO}"
+  print_success "Â¡Bienvenido, ${NOMBRE}! Saldo: \$${SALDO}"
   sleep 1
 }</code></pre>
 
       <div class="highlight">
-        <strong>💡 Expansión de variables con valores por defecto:</strong> <code>NOMBRE="${NOMBRE:-Jugador}"</code> asigna "Jugador" si la variable está vacía. Es una forma limpia de establecer defaults en Bash.
+        <strong>ðŸ’¡ ExpansiÃ³n de variables con valores por defecto:</strong> <code>NOMBRE="${NOMBRE:-Jugador}"</code> asigna "Jugador" si la variable estÃ¡ vacÃ­a. Es una forma limpia de establecer defaults en Bash.
       </div>
 
-      <p>Con la base del juego lista, en la siguiente clase implementaremos el generador de números aleatorios y la lógica de la ruleta.</p>
+      <p>Con la base del juego lista, en la siguiente clase implementaremos el generador de nÃºmeros aleatorios y la lÃ³gica de la ruleta.</p>
 
       <div class="lesson-nav">
-        <a href="clase-70.html">← Anterior: Introducción al Proyecto 2</a>
-        <a href="clase-72.html">Siguiente: Scripting en Bash [2-15] →</a>
+        <a href="clase-70.html">â† Anterior: IntroducciÃ³n al Proyecto 2</a>
+        <a href="clase-72.html">Siguiente: Scripting en Bash [2-15] â†’</a>
       </div>
     </div>
 
@@ -156,11 +156,11 @@ RESET=$(tput sgr0)</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

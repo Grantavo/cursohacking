@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>34. Búsquedas precisas de archivos [2-2] | Introducción a Linux</title>
+    <title>34. BÃºsquedas precisas de archivos [2-2] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,39 +33,39 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 34</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Búsquedas precisas de archivos [2-2]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 1:53 · Sección 2: Temario</div>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">BÃºsquedas precisas de archivos [2-2]</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 1:53 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        Cerramos el tema de búsquedas comparando <code>find</code> y <code>locate</code>, y viendo cómo ejecutar acciones sobre los archivos encontrados con <code>-exec</code> y <code>xargs</code>. Saber cuándo usar cada herramienta te ahorrará tiempo y recursos.
+        Cerramos el tema de bÃºsquedas comparando <code>find</code> y <code>locate</code>, y viendo cÃ³mo ejecutar acciones sobre los archivos encontrados con <code>-exec</code> y <code>xargs</code>. Saber cuÃ¡ndo usar cada herramienta te ahorrarÃ¡ tiempo y recursos.
       </p>
 
-      <h2>locate: búsqueda instantánea (pero no siempre actualizada)</h2>
-      <p><code>locate</code> busca en una base de datos preconstruida (<code>/var/lib/mlocate/mlocate.db</code>), actualizada periódicamente por <code>updatedb</code> (normalmente cada noche via cron).</p>
+      <h2>locate: bÃºsqueda instantÃ¡nea (pero no siempre actualizada)</h2>
+      <p><code>locate</code> busca en una base de datos preconstruida (<code>/var/lib/mlocate/mlocate.db</code>), actualizada periÃ³dicamente por <code>updatedb</code> (normalmente cada noche via cron).</p>
 
-      <pre><code># Buscar instantáneamente
+      <pre><code># Buscar instantÃ¡neamente
 locate shadow
 locate "*.conf"
 locate -i "readme"     # ignore-case
@@ -73,14 +73,14 @@ locate -i "readme"     # ignore-case
 # Contar resultados
 locate -c "*.log"
 
-# Limitar número de resultados
+# Limitar nÃºmero de resultados
 locate -l 10 "*.log"
 
-# Forzar actualización de la base de datos
+# Forzar actualizaciÃ³n de la base de datos
 sudo updatedb</code></pre>
 
       <div class="highlight">
-        <strong>💡 updatedb manual:</strong> Ejecuta <code>sudo updatedb</code> después de instalar o crear archivos si quieres que <code>locate</code> los encuentre de inmediato. En servidores de pentesting, puede ser útil actualizar la base antes de buscar.
+        <strong>ðŸ’¡ updatedb manual:</strong> Ejecuta <code>sudo updatedb</code> despuÃ©s de instalar o crear archivos si quieres que <code>locate</code> los encuentre de inmediato. En servidores de pentesting, puede ser Ãºtil actualizar la base antes de buscar.
       </div>
 
       <h3>find con -exec y xargs</h3>
@@ -89,13 +89,13 @@ sudo updatedb</code></pre>
       <pre><code># -exec: ejecuta un comando por cada archivo
 find /tmp -type f -name "*.tmp" -exec rm {} \;
 
-# xargs: pasa los archivos como argumentos a un comando (más eficiente)
+# xargs: pasa los archivos como argumentos a un comando (mÃ¡s eficiente)
 find /tmp -type f -name "*.tmp" | xargs rm -f
 
 # Diferencia clave: -exec ejecuta el comando una vez por archivo
-# mientras que xargs agrupa varios archivos en una sola ejecución</code></pre>
+# mientras que xargs agrupa varios archivos en una sola ejecuciÃ³n</code></pre>
 
-      <h3>Ejemplos prácticos con -exec y xargs</h3>
+      <h3>Ejemplos prÃ¡cticos con -exec y xargs</h3>
 
       <pre><code># Cambiar permisos recursivamente
 find /var/www -type f -exec chmod 644 {} \;
@@ -116,33 +116,33 @@ find /var -type f -name "*.php" -exec grep -l "password" {} \;</code></pre>
       <h3>Diferencias clave entre find y locate</h3>
       <table>
         <tr><th>Aspecto</th><th>find</th><th>locate</th></tr>
-        <tr><td>Velocidad</td><td>Lenta (recorre el sistema)</td><td>Instantánea (base de datos)</td></tr>
-        <tr><td>Actualización</td><td>Tiempo real</td><td>Depende de updatedb</td></tr>
-        <tr><td>Filtros</td><td>Muy flexibles (nombre, tamaño, fecha, permisos...)</td><td>Solo por nombre/patrón</td></tr>
-        <tr><td>-exec/xargs</td><td>Sí, integrado</td><td>No directamente</td></tr>
+        <tr><td>Velocidad</td><td>Lenta (recorre el sistema)</td><td>InstantÃ¡nea (base de datos)</td></tr>
+        <tr><td>ActualizaciÃ³n</td><td>Tiempo real</td><td>Depende de updatedb</td></tr>
+        <tr><td>Filtros</td><td>Muy flexibles (nombre, tamaÃ±o, fecha, permisos...)</td><td>Solo por nombre/patrÃ³n</td></tr>
+        <tr><td>-exec/xargs</td><td>SÃ­, integrado</td><td>No directamente</td></tr>
         <tr><td>Permisos</td><td>Solo ve lo que el usuario puede leer</td><td>Puede listar archivos que el usuario no puede leer si la DB es global</td></tr>
       </table>
 
       <div class="warning">
-        <strong>⚠️ Seguridad con locate:</strong> La base de datos de locate puede contener rutas de archivos que el usuario no debería conocer (porque no tiene permisos de lectura). Por eso, en sistemas multiusuario, la DB de locate suele actualizarse con privilegios limitados.
+        <strong>âš ï¸ Seguridad con locate:</strong> La base de datos de locate puede contener rutas de archivos que el usuario no deberÃ­a conocer (porque no tiene permisos de lectura). Por eso, en sistemas multiusuario, la DB de locate suele actualizarse con privilegios limitados.
       </div>
 
-      <p>En la práctica: usa <code>locate</code> para búsquedas rápidas de archivos que sabes que existen (configuraciones, binarios comunes). Usa <code>find</code> cuando necesites criterios precisos (tamaño, fecha, permisos) o cuando el archivo pueda ser muy reciente.</p>
+      <p>En la prÃ¡ctica: usa <code>locate</code> para bÃºsquedas rÃ¡pidas de archivos que sabes que existen (configuraciones, binarios comunes). Usa <code>find</code> cuando necesites criterios precisos (tamaÃ±o, fecha, permisos) o cuando el archivo pueda ser muy reciente.</p>
 
       <div class="lesson-nav">
-        <a href="clase-33.html">← Anterior: Búsquedas precisas de archivos [1-2]</a>
-        <a href="clase-35.html">Siguiente: Métodos de filtrado de datos [1-2] →</a>
+        <a href="clase-33.html">â† Anterior: BÃºsquedas precisas de archivos [1-2]</a>
+        <a href="clase-35.html">Siguiente: MÃ©todos de filtrado de datos [1-2] â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

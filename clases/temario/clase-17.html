@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>17. Permisos especiales - SUID y SGID | Introducción a Linux</title>
+    <title>17. Permisos especiales - SUID y SGID | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,58 +134,58 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 17</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Permisos especiales - SUID y SGID</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 7:09 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 7:09 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        SUID (Set User ID) y SGID (Set Group ID) son permisos especiales que permiten ejecutar un programa con los privilegios del dueño o del grupo del archivo, en lugar de con los privilegios del usuario que lo ejecuta.
+        SUID (Set User ID) y SGID (Set Group ID) son permisos especiales que permiten ejecutar un programa con los privilegios del dueÃ±o o del grupo del archivo, en lugar de con los privilegios del usuario que lo ejecuta.
       </p>
 
-      <h2>SUID — Set User ID</h2>
-      <p>Cuando un archivo tiene SUID, se ejecuta con los permisos del <strong>dueño del archivo</strong>, no del usuario que lo ejecuta. En <code>ls -l</code> se ve como una <code>s</code> en la posición de ejecución del dueño.</p>
+      <h2>SUID â€” Set User ID</h2>
+      <p>Cuando un archivo tiene SUID, se ejecuta con los permisos del <strong>dueÃ±o del archivo</strong>, no del usuario que lo ejecuta. En <code>ls -l</code> se ve como una <code>s</code> en la posiciÃ³n de ejecuciÃ³n del dueÃ±o.</p>
 
       <pre><code>$ ls -l /usr/bin/passwd
 -rwsr-xr-x 1 root root 68208 May 10 12:00 /usr/bin/passwd
 #       ^
-#       s = SUID activo (dueño = root)</code></pre>
+#       s = SUID activo (dueÃ±o = root)</code></pre>
 
       <div class="highlight">
-        <strong>🔑 Ejemplo clásico:</strong> <code>/usr/bin/passwd</code> necesita modificar <code>/etc/shadow</code>, que solo root puede escribir. Gracias al SUID, cualquier usuario puede cambiar su propia contraseña ejecutando passwd con privilegios de root temporalmente.
+        <strong>ðŸ”‘ Ejemplo clÃ¡sico:</strong> <code>/usr/bin/passwd</code> necesita modificar <code>/etc/shadow</code>, que solo root puede escribir. Gracias al SUID, cualquier usuario puede cambiar su propia contraseÃ±a ejecutando passwd con privilegios de root temporalmente.
       </div>
 
-      <h2>SGID — Set Group ID</h2>
+      <h2>SGID â€” Set Group ID</h2>
       <p>SGID tiene dos comportamientos:</p>
       <ul>
         <li>En <strong>archivos</strong>: el programa se ejecuta con los permisos del grupo del archivo</li>
         <li>En <strong>directorios</strong>: los nuevos archivos creados dentro heredan el grupo del directorio, no del usuario</li>
       </ul>
 
-      <pre><code># SGID en archivo (se ve como s en la posición de grupo)
+      <pre><code># SGID en archivo (se ve como s en la posiciÃ³n de grupo)
 ls -l /usr/bin/write
 -rwxr-sr-x 1 root tty 18768 May 10 12:00 /usr/bin/write
 
@@ -196,18 +196,18 @@ drwxrws--- 2 alice developers 4096 May 10 12:00 directorio/
 #       ^
 #       s = SGID activo</code></pre>
 
-      <h2>Cómo se asigna</h2>
+      <h2>CÃ³mo se asigna</h2>
 
       <pre><code># SUID
-chmod u+s programa           # Simbólico
+chmod u+s programa           # SimbÃ³lico
 chmod 4755 programa          # Octal (4 = SUID)
 
 # SGID
-chmod g+s directorio/        # Simbólico
+chmod g+s directorio/        # SimbÃ³lico
 chmod 2755 directorio/       # Octal (2 = SGID)</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Riesgos de seguridad:</strong> Un binario con SUID root es un objetivo para escalada de privilegios. Herramientas de enumeración como <code>find / -perm -4000 2>/dev/null</code> buscan estos binarios. Nunca pongas SUID en scripts o binarios que no sean absolutamente confiables.
+        <strong>âš ï¸ Riesgos de seguridad:</strong> Un binario con SUID root es un objetivo para escalada de privilegios. Herramientas de enumeraciÃ³n como <code>find / -perm -4000 2>/dev/null</code> buscan estos binarios. Nunca pongas SUID en scripts o binarios que no sean absolutamente confiables.
       </div>
 
       <h2>Encontrar binarios con SUID/SGID</h2>
@@ -221,8 +221,8 @@ find / -perm -2000 -type f 2>/dev/null
 # Buscar ambos
 find / \( -perm -4000 -o -perm -2000 \) -type f 2>/dev/null</code></pre>
 
-      <h2>Ejercicio práctico</h2>
-      <pre><code># Consulta qué SUID tiene tu sistema
+      <h2>Ejercicio prÃ¡ctico</h2>
+      <pre><code># Consulta quÃ© SUID tiene tu sistema
 find / -perm -4000 -type f 2>/dev/null
 
 # Observa los permisos de passwd
@@ -234,8 +234,8 @@ sudo chown root:developers /home/grupo
 sudo chmod 2775 /home/grupo    # rwxrwsr-x (SGID activo)</code></pre>
 
       <div class="lesson-nav">
-        <a href="clase-16.html">← Anterior: Chattr y Lsattr</a>
-        <a href="clase-18.html">Siguiente: Cuestionario de permisos →</a>
+        <a href="clase-16.html">â† Anterior: Chattr y Lsattr</a>
+        <a href="clase-18.html">Siguiente: Cuestionario de permisos â†’</a>
       </div>
     </div>
 
@@ -243,11 +243,11 @@ sudo chmod 2775 /home/grupo    # rwxrwsr-x (SGID activo)</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

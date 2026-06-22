@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>45. Detección de diferencias entre archivos | Introducción a Linux</title>
+    <title>45. DetecciÃ³n de diferencias entre archivos | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,65 +134,65 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 45</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Detección de diferencias entre archivos</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:49 · Sección 2: Temario</div>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">DetecciÃ³n de diferencias entre archivos</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:49 Â· SecciÃ³n 2: Temario</div>
 
-      <p>Comparar archivos es una tarea frecuente en administración y hacking: detectar cambios en configuraciones, verificar integridad de backups, o analizar diferencias entre versiones de un binario. Linux ofrece varias herramientas para ello.</p>
+      <p>Comparar archivos es una tarea frecuente en administraciÃ³n y hacking: detectar cambios en configuraciones, verificar integridad de backups, o analizar diferencias entre versiones de un binario. Linux ofrece varias herramientas para ello.</p>
 
-      <h2>diff: el estándar</h2>
-      <p><code>diff</code> compara archivos línea por línea y muestra las diferencias en varios formatos.</p>
+      <h2>diff: el estÃ¡ndar</h2>
+      <p><code>diff</code> compara archivos lÃ­nea por lÃ­nea y muestra las diferencias en varios formatos.</p>
 
-      <pre><code># Comparación básica
+      <pre><code># ComparaciÃ³n bÃ¡sica
 diff archivo1.txt archivo2.txt
 
-# Formato unificado (más legible)
+# Formato unificado (mÃ¡s legible)
 diff -u archivo1.txt archivo2.txt
 
 # Formato contextual
 diff -c archivo1.txt archivo2.txt
 
-# Ignorar espacios y mayúsculas
+# Ignorar espacios y mayÃºsculas
 diff -bi archivo1.txt archivo2.txt
 
 # Comparar recursivamente directorios
 diff -rq dir1/ dir2/</code></pre>
 
       <div class="highlight">
-        <strong>📖 Formato unificado (-u):</strong> Muestra 3 líneas de contexto antes y después de cada cambio. Las líneas eliminadas empiezan con <code>-</code>, las añadidas con <code>+</code>, y el contexto con espacio. Es el formato estándar para parches y la mayoría de herramientas modernas.
+        <strong>ðŸ“– Formato unificado (-u):</strong> Muestra 3 lÃ­neas de contexto antes y despuÃ©s de cada cambio. Las lÃ­neas eliminadas empiezan con <code>-</code>, las aÃ±adidas con <code>+</code>, y el contexto con espacio. Es el formato estÃ¡ndar para parches y la mayorÃ­a de herramientas modernas.
       </div>
 
       <h2>sdiff y cmp</h2>
       <p><code>sdiff</code> muestra las diferencias lado a lado, mientras que <code>cmp</code> compara byte a byte (ideal para binarios).</p>
 
-      <pre><code># Comparación lado a lado
+      <pre><code># ComparaciÃ³n lado a lado
 sdiff archivo1.txt archivo2.txt
 
-# Comparación byte a byte (binarios)
+# ComparaciÃ³n byte a byte (binarios)
 cmp -l binario1.bin binario2.bin
 
-# Saber si dos archivos son idénticos (solo éxito/fallo)
+# Saber si dos archivos son idÃ©nticos (solo Ã©xito/fallo)
 cmp -s archivo1 archivo2 && echo "Iguales" || echo "Diferentes"</code></pre>
 
       <h2>Parches con diff y patch</h2>
@@ -207,27 +207,27 @@ patch < cambios.patch
 # Revertir el parche
 patch -R < cambios.patch
 
-# Aplicar a un archivo específico
+# Aplicar a un archivo especÃ­fico
 patch archivo.txt < cambios.patch</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Aplicación en hacking:</strong> En un CTF, puedes usar <code>diff</code> para comparar configuraciones originales con las del sistema comprometido y detectar backdoors. Por ejemplo, comparar <code>/etc/passwd</code> original con el actual para encontrar usuarios añadidos: <code>diff -u passwd_original passwd_actual</code>.
+        <strong>âš ï¸ AplicaciÃ³n en hacking:</strong> En un CTF, puedes usar <code>diff</code> para comparar configuraciones originales con las del sistema comprometido y detectar backdoors. Por ejemplo, comparar <code>/etc/passwd</code> original con el actual para encontrar usuarios aÃ±adidos: <code>diff -u passwd_original passwd_actual</code>.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-44.html">← Anterior: Creando nuestros propios escáneres en Bash</a>
-        <a href="clase-46.html">Siguiente: Ejecución de comandos por SSH →</a>
+        <a href="clase-44.html">â† Anterior: Creando nuestros propios escÃ¡neres en Bash</a>
+        <a href="clase-46.html">Siguiente: EjecuciÃ³n de comandos por SSH â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

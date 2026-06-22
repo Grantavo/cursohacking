@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>81. Scripting en Bash [11-15] | Introducción a Linux</title>
+    <title>81. Scripting en Bash [11-15] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,36 +33,36 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 81</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [11-15]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 17:41 · Proyecto 2: Ruleta de casino</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 17:41 Â· Proyecto 2: Ruleta de casino</div>
 
       <p>
-        Implementamos modo multijugador local con turnos alternados, rankings, archivo de puntuaciones y funciones de ordenación.
+        Implementamos modo multijugador local con turnos alternados, rankings, archivo de puntuaciones y funciones de ordenaciÃ³n.
       </p>
 
       <h2>Estructura multijugador</h2>
@@ -72,7 +72,7 @@ JUGADOR_ACTUAL=""
 RONDAS_MULTI=5
 
 inicializar_multijugador() {
-  read -r -p "Número de jugadores (2-4): " num_jugadores
+  read -r -p "NÃºmero de jugadores (2-4): " num_jugadores
   num_jugadores="${num_jugadores:-2}"
 
   if ! [[ "$num_jugadores" =~ ^[2-4]$ ]]; then
@@ -89,7 +89,7 @@ inicializar_multijugador() {
   echo
   echo "${BOLD}Jugadores:${RESET}"
   for nombre in "${!JUGADORES[@]}"; do
-    echo "  • ${nombre}: ${VERDE}\$${JUGADORES[$nombre]}${RESET}"
+    echo "  â€¢ ${nombre}: ${VERDE}\$${JUGADORES[$nombre]}${RESET}"
   done
 
   JUGADOR_ACTUAL="${!JUGADORES[@]}"  # Primer jugador
@@ -111,12 +111,12 @@ inicializar_multijugador() {
     local saldo=${JUGADORES[$jugador]}
 
     clear
-    echo "${BOLD}${AZUL}═══ Ronda $((ronda+1))/${RONDAS_MULTI} — Turno de: ${jugador} ═══${RESET}"
+    echo "${BOLD}${AZUL}â•â•â• Ronda $((ronda+1))/${RONDAS_MULTI} â€” Turno de: ${jugador} â•â•â•${RESET}"
     echo "Saldo: ${VERDE}\$${saldo}${RESET}"
     echo
 
     if [[ "$saldo" -le 0 ]]; then
-      echo "${ROJO}${jugador} está en bancarrota y se salta el turno${RESET}"
+      echo "${ROJO}${jugador} estÃ¡ en bancarrota y se salta el turno${RESET}"
       sleep 1
     else
       # Copiar saldo al jugador global
@@ -141,7 +141,7 @@ inicializar_multijugador() {
 }</code></pre>
 
       <h2>Archivo de puntuaciones</h2>
-      <p>Guardamos las puntuaciones máximas históricas:</p>
+      <p>Guardamos las puntuaciones mÃ¡ximas histÃ³ricas:</p>
       <pre><code>SCORE_FILE="${GUARDAR_DIR}/scores.txt"
 
 guardar_puntuacion() {
@@ -153,7 +153,7 @@ guardar_puntuacion() {
   mkdir -p "$GUARDAR_DIR"
   echo "${fecha}|${nombre}|${saldo}" >> "$SCORE_FILE"
 
-  notificar "Puntuación guardada: ${nombre} - \$${saldo}" "info"
+  notificar "PuntuaciÃ³n guardada: ${nombre} - \$${saldo}" "info"
 }
 
 cargar_puntuaciones() {
@@ -165,7 +165,7 @@ cargar_puntuaciones() {
   sort -t'|' -k3 -rn "$SCORE_FILE" | head -10
 }</code></pre>
 
-      <h2>Funciones de ordenación</h2>
+      <h2>Funciones de ordenaciÃ³n</h2>
       <p>Ordenamos jugadores por saldo para mostrar el ranking:</p>
       <pre><code>ordenar_jugadores() {
   # Usar sort externo para ordenar arrays asociativos
@@ -176,18 +176,18 @@ cargar_puntuaciones() {
 
 mostrar_ranking() {
   clear
-  echo "${BOLD}${AMARILLO}═══════════════════════════════════${RESET}"
-  echo "${BOLD}          🏆 RANKING FINAL${RESET}"
-  echo "${BOLD}${AMARILLO}═══════════════════════════════════${RESET}"
+  echo "${BOLD}${AMARILLO}â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
+  echo "${BOLD}          ðŸ† RANKING FINAL${RESET}"
+  echo "${BOLD}${AMARILLO}â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${RESET}"
   echo
 
   local pos=1
   ordenar_jugadores | while IFS='|' read -r saldo nombre; do
     local medalla
     case $pos in
-      1) medalla="${AMARILLO}🥇${RESET}" ;;
-      2) medalla="${BLANCO}🥈${RESET}" ;;
-      3) medalla="${ROJO}🥉${RESET}" ;;
+      1) medalla="${AMARILLO}ðŸ¥‡${RESET}" ;;
+      2) medalla="${BLANCO}ðŸ¥ˆ${RESET}" ;;
+      3) medalla="${ROJO}ðŸ¥‰${RESET}" ;;
       *) medalla="   " ;;
     esac
 
@@ -196,7 +196,7 @@ mostrar_ranking() {
   done
 
   echo
-  echo "${BOLD}Mejores puntuaciones históricas:${RESET}"
+  echo "${BOLD}Mejores puntuaciones histÃ³ricas:${RESET}"
   cargar_puntuaciones | while IFS='|' read -r fecha nombre saldo; do
     printf "  [%s] %-20s \$${saldo}\n" "$fecha" "$nombre"
   done
@@ -217,14 +217,14 @@ mostrar_ranking() {
 }</code></pre>
 
       <div class="highlight">
-        <strong>💡 sort con delimitadores:</strong> <code>sort -t'|' -k3 -rn</code> ordena usando <code>|</code> como separador de campos (<code>-t</code>), por el tercer campo (<code>-k3</code>), en orden numérico inverso (<code>-rn</code>). Muy útil para ordenar datos en Bash.
+        <strong>ðŸ’¡ sort con delimitadores:</strong> <code>sort -t'|' -k3 -rn</code> ordena usando <code>|</code> como separador de campos (<code>-t</code>), por el tercer campo (<code>-k3</code>), en orden numÃ©rico inverso (<code>-rn</code>). Muy Ãºtil para ordenar datos en Bash.
       </div>
 
-      <p>El multijugador permite partidas locales de 2 a 4 jugadores. En la siguiente clase añadiremos logros y desbloqueables.</p>
+      <p>El multijugador permite partidas locales de 2 a 4 jugadores. En la siguiente clase aÃ±adiremos logros y desbloqueables.</p>
 
       <div class="lesson-nav">
-        <a href="clase-80.html">← Anterior: Scripting en Bash [10-15]</a>
-        <a href="clase-82.html">Siguiente: Scripting en Bash [12-15] →</a>
+        <a href="clase-80.html">â† Anterior: Scripting en Bash [10-15]</a>
+        <a href="clase-82.html">Siguiente: Scripting en Bash [12-15] â†’</a>
       </div>
     </div>
 
@@ -232,11 +232,11 @@ mostrar_ranking() {
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

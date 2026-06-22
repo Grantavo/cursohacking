@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>27. Uso del editor Vim | Introducción a Linux</title>
+    <title>27. Uso del editor Vim | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,58 +33,58 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 27</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso del editor Vim</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 13:20 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 13:20 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        Vim es el editor de texto por excelencia en el mundo Linux. Está presente en prácticamente todos los sistemas Unix y es una herramienta obligatoria para cualquier persona que trabaje en ciberseguridad. Configurar un servidor, editar archivos de configuración remotos por SSH, modificar scripts sobre la marcha — todo se hace con Vim (o su predecesor Vi). La curva de aprendizaje es empinada, pero una vez que lo dominas, editar texto se vuelve intuitivo y rapidísimo.
+        Vim es el editor de texto por excelencia en el mundo Linux. EstÃ¡ presente en prÃ¡cticamente todos los sistemas Unix y es una herramienta obligatoria para cualquier persona que trabaje en ciberseguridad. Configurar un servidor, editar archivos de configuraciÃ³n remotos por SSH, modificar scripts sobre la marcha â€” todo se hace con Vim (o su predecesor Vi). La curva de aprendizaje es empinada, pero una vez que lo dominas, editar texto se vuelve intuitivo y rapidÃ­simo.
       </p>
 
       <h2>Los cuatro modos de Vim</h2>
-      <p>Vim no funciona como un editor normal. Tiene modos, y cada modo tiene un propósito:</p>
+      <p>Vim no funciona como un editor normal. Tiene modos, y cada modo tiene un propÃ³sito:</p>
       <table>
-        <tr><th>Modo</th><th>Uso</th><th>Cómo entrar</th></tr>
+        <tr><th>Modo</th><th>Uso</th><th>CÃ³mo entrar</th></tr>
         <tr><td><strong>Normal</strong></td><td>Navegar, copiar, pegar, eliminar</td><td><code>Esc</code></td></tr>
-        <tr><td><strong>Inserción</strong></td><td>Escribir texto</td><td><code>i</code>, <code>a</code>, <code>o</code></td></tr>
+        <tr><td><strong>InserciÃ³n</strong></td><td>Escribir texto</td><td><code>i</code>, <code>a</code>, <code>o</code></td></tr>
         <tr><td><strong>Visual</strong></td><td>Seleccionar texto</td><td><code>v</code>, <code>V</code>, <code>Ctrl+v</code></td></tr>
         <tr><td><strong>Comando</strong></td><td>Guardar, salir, buscar, reemplazar</td><td><code>:</code></td></tr>
       </table>
 
-      <h3>Navegación: h, j, k, l</h3>
-      <p>En modo normal, las teclas <code>h</code>, <code>j</code>, <code>k</code>, <code>l</code> mueven el cursor. Así evitas tener que mover la mano al teclado de flechas:</p>
-      <pre><code>h       ← izquierda
-j       ↓ abajo
-k       ↑ arriba
-l       → derecha
+      <h3>NavegaciÃ³n: h, j, k, l</h3>
+      <p>En modo normal, las teclas <code>h</code>, <code>j</code>, <code>k</code>, <code>l</code> mueven el cursor. AsÃ­ evitas tener que mover la mano al teclado de flechas:</p>
+      <pre><code>h       â† izquierda
+j       â†“ abajo
+k       â†‘ arriba
+l       â†’ derecha
 w       siguiente palabra
 b       palabra anterior
-0       inicio de línea
-$       final de línea
+0       inicio de lÃ­nea
+$       final de lÃ­nea
 gg      inicio del archivo
 G       final del archivo
-:42     ir a la línea 42</code></pre>
+:42     ir a la lÃ­nea 42</code></pre>
 
       <h3>Guardar y salir</h3>
       <pre><code>:w      guardar (write)
@@ -95,38 +95,38 @@ G       final del archivo
 :x      guardar y salir (igual que :wq)
 ZZ      guardar y salir (sin escribir :)</code></pre>
 
-      <h3>Edición básica</h3>
-      <pre><code>dd      eliminar línea completa
-yy      copiar línea (yank)
+      <h3>EdiciÃ³n bÃ¡sica</h3>
+      <pre><code>dd      eliminar lÃ­nea completa
+yy      copiar lÃ­nea (yank)
 p       pegar debajo del cursor
 P       pegar encima del cursor
 u       deshacer (undo)
 Ctrl+r  rehacer (redo)
-x       eliminar carácter bajo el cursor
+x       eliminar carÃ¡cter bajo el cursor
 dw      eliminar palabra
-r       reemplazar un carácter</code></pre>
+r       reemplazar un carÃ¡cter</code></pre>
 
-      <h3>Búsqueda y reemplazo</h3>
-      <pre><code>/patrón     buscar "patrón" hacia adelante
-?patrón     buscar "patrón" hacia atrás
+      <h3>BÃºsqueda y reemplazo</h3>
+      <pre><code>/patrÃ³n     buscar "patrÃ³n" hacia adelante
+?patrÃ³n     buscar "patrÃ³n" hacia atrÃ¡s
 n           siguiente coincidencia
 N           coincidencia anterior
 
-:s/foo/bar/          reemplazar primera ocurrencia en la línea actual
-:s/foo/bar/g         reemplazar todas en la línea actual
+:s/foo/bar/          reemplazar primera ocurrencia en la lÃ­nea actual
+:s/foo/bar/g         reemplazar todas en la lÃ­nea actual
 :%s/foo/bar/g        reemplazar en todo el archivo
-:%s/foo/bar/gc       reemplazar en todo pidiendo confirmación</code></pre>
+:%s/foo/bar/gc       reemplazar en todo pidiendo confirmaciÃ³n</code></pre>
 
       <div class="highlight">
-        <strong>💡 Tip:</strong> Para guardar un archivo que requiere permisos de root y olvidaste usar <code>sudo vim</code>, ejecuta <code>:w !sudo tee %</code> y luego <code>:q!</code>. Vim ejecutará el comando externo <code>tee</code> para escribir el archivo con privilegios elevados.
+        <strong>ðŸ’¡ Tip:</strong> Para guardar un archivo que requiere permisos de root y olvidaste usar <code>sudo vim</code>, ejecuta <code>:w !sudo tee %</code> y luego <code>:q!</code>. Vim ejecutarÃ¡ el comando externo <code>tee</code> para escribir el archivo con privilegios elevados.
       </div>
 
-      <h3>Configuración .vimrc</h3>
-      <p>El archivo <code>~/.vimrc</code> personaliza Vim. Aquí tienes una configuración mínima pero potente:</p>
+      <h3>ConfiguraciÃ³n .vimrc</h3>
+      <p>El archivo <code>~/.vimrc</code> personaliza Vim. AquÃ­ tienes una configuraciÃ³n mÃ­nima pero potente:</p>
 
-      <pre><code>" ~/.vimrc — Configuración esencial
+      <pre><code>" ~/.vimrc â€” ConfiguraciÃ³n esencial
 
-" Números de línea
+" NÃºmeros de lÃ­nea
 set number
 set relativenumber
 
@@ -134,19 +134,19 @@ set relativenumber
 syntax on
 colorscheme desert
 
-" Indentación
+" IndentaciÃ³n
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
 
-" Búsqueda
+" BÃºsqueda
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 
-" Ratón habilitado
+" RatÃ³n habilitado
 set mouse=a
 
 " Clipboard del sistema
@@ -155,29 +155,29 @@ set clipboard=unnamedplus
 " Atajo: ; equivale a : (ahorras un Shift)
 nnoremap ; :
 
-" Atajo: jk como Escape en modo inserción
+" Atajo: jk como Escape en modo inserciÃ³n
 inoremap jk &lt;Esc&gt;</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Vim no es opcional:</strong> En muchos sistemas comprometidos o servidores de producción, Vim es el único editor disponible. No saber usar Vim te dejará sin poder editar archivos en situaciones críticas. Si solo aprendes una herramienta de edición, que sea Vim.
+        <strong>âš ï¸ Vim no es opcional:</strong> En muchos sistemas comprometidos o servidores de producciÃ³n, Vim es el Ãºnico editor disponible. No saber usar Vim te dejarÃ¡ sin poder editar archivos en situaciones crÃ­ticas. Si solo aprendes una herramienta de ediciÃ³n, que sea Vim.
       </div>
 
-      <p>Practica 10-15 minutos al día con <code>vimtutor</code> (el tutorial interactivo que viene con Vim). En una semana tendrás suficiente soltura para editar archivos sin pensar en los comandos.</p>
+      <p>Practica 10-15 minutos al dÃ­a con <code>vimtutor</code> (el tutorial interactivo que viene con Vim). En una semana tendrÃ¡s suficiente soltura para editar archivos sin pensar en los comandos.</p>
 
       <div class="lesson-nav">
-        <a href="clase-26.html">← Anterior: Uso y configuración de la Kitty</a>
-        <a href="clase-28.html">Siguiente: Conexiones SSH →</a>
+        <a href="clase-26.html">â† Anterior: Uso y configuraciÃ³n de la Kitty</a>
+        <a href="clase-28.html">Siguiente: Conexiones SSH â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

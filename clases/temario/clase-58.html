@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>58. Operando con proyectos de Github [3-5] | Introducción a Linux</title>
+    <title>58. Operando con proyectos de Github [3-5] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,37 +134,37 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 58</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Operando con proyectos de Github [3-5]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:40 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:40 Â· SecciÃ³n 2: Temario</div>
 
-      <p>Las ramas (branches) permiten trabajar en diferentes versiones del código simultáneamente. Son la base del flujo de trabajo colaborativo en Git.</p>
+      <p>Las ramas (branches) permiten trabajar en diferentes versiones del cÃ³digo simultÃ¡neamente. Son la base del flujo de trabajo colaborativo en Git.</p>
 
-      <h2>Gestión de ramas</h2>
+      <h2>GestiÃ³n de ramas</h2>
       <p>Con <code>git branch</code> puedes listar, crear y eliminar ramas:</p>
       <pre><code># Listar ramas locales (la actual aparece con *)
 git branch
@@ -193,16 +193,16 @@ git checkout main
 git merge feature/nueva-funcion</code></pre>
 
       <h2>Resolver conflictos</h2>
-      <p>Si dos ramas modifican la misma parte de un archivo, Git no puede fusionar automáticamente y tendrás que resolver el conflicto manualmente:</p>
+      <p>Si dos ramas modifican la misma parte de un archivo, Git no puede fusionar automÃ¡ticamente y tendrÃ¡s que resolver el conflicto manualmente:</p>
       <pre><code># Git marca los conflictos en los archivos afectados
-# El contenido conflictivo se muestra así:
+# El contenido conflictivo se muestra asÃ­:
 # &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-# versión de la rama actual
+# versiÃ³n de la rama actual
 # =======
-# versión de la rama que se fusiona
+# versiÃ³n de la rama que se fusiona
 # &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/nueva-funcion
 
-# Después de editar manualmente el archivo, marca como resuelto
+# DespuÃ©s de editar manualmente el archivo, marca como resuelto
 git add archivo-en-conflicto.txt
 git commit -m "Resuelve conflicto en archivo-en-conflicto.txt"</code></pre>
 
@@ -217,22 +217,22 @@ git stash push -m "WIP: refactor pendiente"
 # Listar los stashes guardados
 git stash list
 
-# Recuperar el último stash y eliminarlo de la lista
+# Recuperar el Ãºltimo stash y eliminarlo de la lista
 git stash pop
 
-# Recuperar un stash específico sin eliminarlo
+# Recuperar un stash especÃ­fico sin eliminarlo
 git stash apply stash@{0}
 
 # Eliminar un stash concreto
 git stash drop stash@{0}</code></pre>
 
       <div class="highlight">
-        <strong>💡</strong> El stash es muy útil cuando estás trabajando en una rama y de repente necesitas arreglar un bug urgente en main. Guardas tu progreso, arreglas el bug, y luego recuperas tu trabajo.
+        <strong>ðŸ’¡</strong> El stash es muy Ãºtil cuando estÃ¡s trabajando en una rama y de repente necesitas arreglar un bug urgente en main. Guardas tu progreso, arreglas el bug, y luego recuperas tu trabajo.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-57.html">← Anterior: Operando con proyectos de Github [2-5]</a>
-        <a href="clase-59.html">Siguiente: Operando con proyectos de Github [4-5] →</a>
+        <a href="clase-57.html">â† Anterior: Operando con proyectos de Github [2-5]</a>
+        <a href="clase-59.html">Siguiente: Operando con proyectos de Github [4-5] â†’</a>
       </div>
     </div>
 
@@ -240,11 +240,11 @@ git stash drop stash@{0}</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

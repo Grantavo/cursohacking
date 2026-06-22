@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>46. Ejecución de comandos por SSH | Introducción a Linux</title>
+    <title>46. EjecuciÃ³n de comandos por SSH | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,40 +134,40 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 46</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Ejecución de comandos por SSH</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:17 · Sección 2: Temario</div>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">EjecuciÃ³n de comandos por SSH</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:17 Â· SecciÃ³n 2: Temario</div>
 
-      <p>Una de las capacidades más potentes de SSH es ejecutar comandos remotos sin abrir una sesión interactiva. Esto permite automatizar tareas de administración y auditoría de forma sencilla y segura.</p>
+      <p>Una de las capacidades mÃ¡s potentes de SSH es ejecutar comandos remotos sin abrir una sesiÃ³n interactiva. Esto permite automatizar tareas de administraciÃ³n y auditorÃ­a de forma sencilla y segura.</p>
 
-      <h2>Ejecución remota directa</h2>
+      <h2>EjecuciÃ³n remota directa</h2>
       <p>Basta con pasar el comando como argumento a SSH. Se ejecuta en el servidor remoto y la salida se muestra en tu terminal local.</p>
 
       <pre><code># Ejecutar un comando simple
 ssh usuario@192.168.1.100 "whoami"
 
-# Ejecutar múltiples comandos
+# Ejecutar mÃºltiples comandos
 ssh usuario@192.168.1.100 "uptime && free -h && df -h"
 
 # Comando con pipes
@@ -177,11 +177,11 @@ ssh usuario@192.168.1.100 "ps aux | grep apache | wc -l"
 ssh usuario@192.168.1.100 "cat /etc/passwd" > passwd_remoto.txt</code></pre>
 
       <div class="highlight">
-        <strong>🧠 Comillas simples vs dobles:</strong> Con <strong>comillas dobles</strong> (<code>"</code>), las variables (<code>$HOME</code>) se expanden localmente antes de enviarse. Con <strong>comillas simples</strong> (<code>'</code>), las variables se expanden en el servidor remoto. Ejemplo: <code>ssh host "echo $HOSTNAME"</code> muestra el hostname local; <code>ssh host 'echo $HOSTNAME'</code> muestra el remoto.
+        <strong>ðŸ§  Comillas simples vs dobles:</strong> Con <strong>comillas dobles</strong> (<code>"</code>), las variables (<code>$HOME</code>) se expanden localmente antes de enviarse. Con <strong>comillas simples</strong> (<code>'</code>), las variables se expanden en el servidor remoto. Ejemplo: <code>ssh host "echo $HOSTNAME"</code> muestra el hostname local; <code>ssh host 'echo $HOSTNAME'</code> muestra el remoto.
       </div>
 
-      <h2>Transferencia y ejecución de scripts</h2>
-      <p>Podemos ejecutar scripts locales en el servidor remoto sin copiarlos explícitamente, usando redirección de entrada.</p>
+      <h2>Transferencia y ejecuciÃ³n de scripts</h2>
+      <p>Podemos ejecutar scripts locales en el servidor remoto sin copiarlos explÃ­citamente, usando redirecciÃ³n de entrada.</p>
 
       <pre><code># Ejecutar un script local en remoto
 ssh usuario@192.168.1.100 < mi_script.sh
@@ -193,7 +193,7 @@ ssh usuario@192.168.1.100 'bash -s' < mi_script.sh --arg1 --arg2
 scp mi_script.sh usuario@192.168.1.100:/tmp/ && ssh usuario@192.168.1.100 "/tmp/mi_script.sh"</code></pre>
 
       <h2>Pseudo-terminal con -t</h2>
-      <p>A veces necesitas una pseudo-terminal (PTY) incluso para comandos individuales, por ejemplo para comandos que requieren interacción o que verifican <code>isatty()</code>.</p>
+      <p>A veces necesitas una pseudo-terminal (PTY) incluso para comandos individuales, por ejemplo para comandos que requieren interacciÃ³n o que verifican <code>isatty()</code>.</p>
 
       <pre><code># Forzar pseudo-terminal
 ssh -t usuario@192.168.1.100 "sudo systemctl restart nginx"
@@ -201,30 +201,30 @@ ssh -t usuario@192.168.1.100 "sudo systemctl restart nginx"
 # Comandos interactivos (htop, nano...)
 ssh -t usuario@192.168.1.100 "sudo htop"
 
-# Múltiples -t para forzar incluso sin TTY local
+# MÃºltiples -t para forzar incluso sin TTY local
 ssh -tt usuario@192.168.1.100 "comando"
 
-# Ejecutar y mantener sesión
+# Ejecutar y mantener sesiÃ³n
 ssh -t usuario@192.168.1.100 "comando; exec bash -l"</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Automatización segura:</strong> Para automatizar tareas por SSH, usa siempre <strong>claves SSH sin passphrase</strong> (o con <code>ssh-agent</code>). Nunca incrustes contraseñas en scripts. Restringe los comandos que la clave puede ejecutar desde <code>~/.ssh/authorized_keys</code> usando <code>command="..."</code> al inicio de la línea de la clave pública.
+        <strong>âš ï¸ AutomatizaciÃ³n segura:</strong> Para automatizar tareas por SSH, usa siempre <strong>claves SSH sin passphrase</strong> (o con <code>ssh-agent</code>). Nunca incrustes contraseÃ±as en scripts. Restringe los comandos que la clave puede ejecutar desde <code>~/.ssh/authorized_keys</code> usando <code>command="..."</code> al inicio de la lÃ­nea de la clave pÃºblica.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-45.html">← Anterior: Detección de diferencias entre archivos</a>
-        <a href="clase-47.html">Siguiente: Abusando de privilegio SUID para migrar de usuario →</a>
+        <a href="clase-45.html">â† Anterior: DetecciÃ³n de diferencias entre archivos</a>
+        <a href="clase-47.html">Siguiente: Abusando de privilegio SUID para migrar de usuario â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

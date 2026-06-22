@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>64. Scripting en Bash [1-6] | Introducción a Linux</title>
+    <title>64. Scripting en Bash [1-6] | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,43 +33,43 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 64</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Scripting en Bash [1-6]</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 23:52 · Proyecto 1: Buscador HTB</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 23:52 Â· Proyecto 1: Buscador HTB</div>
 
       <p>
-        Empezamos a escribir el script del buscador de HTB. En esta clase configuraremos la base: shebang, variables de configuración, colores con <code>tput</code>, la función <code>print_banner</code> y el análisis de argumentos con <code>getopts</code>.
+        Empezamos a escribir el script del buscador de HTB. En esta clase configuraremos la base: shebang, variables de configuraciÃ³n, colores con <code>tput</code>, la funciÃ³n <code>print_banner</code> y el anÃ¡lisis de argumentos con <code>getopts</code>.
       </p>
 
-      <h2>Configuración inicial</h2>
-      <p>Creamos el archivo <code>htb_search.sh</code> con el shebang y las variables de configuración:</p>
+      <h2>ConfiguraciÃ³n inicial</h2>
+      <p>Creamos el archivo <code>htb_search.sh</code> con el shebang y las variables de configuraciÃ³n:</p>
       <pre><code>#!/bin/bash
 
-# === CONFIGURACIÓN ===
+# === CONFIGURACIÃ“N ===
 HTB_TOKEN="${HTB_TOKEN:-}"
 API_URL="https://www.hackthebox.com/api/machines"
 CACHE_DIR="${HOME}/.cache/htb_search"
@@ -85,25 +85,25 @@ MAGENTA=$(tput setaf 5)
 CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)</code></pre>
 
-      <h2>Función print_banner</h2>
+      <h2>FunciÃ³n print_banner</h2>
       <p>Mostramos un banner ASCII al iniciar el script:</p>
       <pre><code>print_banner() {
   clear
   echo "${CYAN}${BOLD}"
-  echo '  ██╗  ██╗████████╗██████╗      ███████╗██╗  ██╗'
-  echo '  ██║  ██║╚══██╔══╝██╔══██╗    ██╔════╝██║  ██║'
-  echo '  ███████║   ██║   ██████╔╝    █████╗  ███████║'
-  echo '  ██╔══██║   ██║   ██╔══██╗    ██╔══╝  ██╔══██║'
-  echo '  ██║  ██║   ██║   ██████╔╝    ███████╗██║  ██║'
-  echo '  ╚═╝  ╚═╝   ╚═╝   ╚═════╝     ╚══════╝╚═╝  ╚═╝'
+  echo '  â–ˆâ–ˆâ•—  â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—      â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—  â–ˆâ–ˆâ•—'
+  echo '  â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â•šâ•â•â–ˆâ–ˆâ•”â•â•â•â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—    â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘'
+  echo '  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘'
+  echo '  â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—    â–ˆâ–ˆâ•”â•â•â•  â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•‘'
+  echo '  â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘'
+  echo '  â•šâ•â•  â•šâ•â•   â•šâ•â•   â•šâ•â•â•â•â•â•     â•šâ•â•â•â•â•â•â•â•šâ•â•  â•šâ•â•'
   echo "${RESET}"
-  echo "${YELLOW}   Buscador de máquinas HackTheBox${RESET}"
+  echo "${YELLOW}   Buscador de mÃ¡quinas HackTheBox${RESET}"
   echo
 }</code></pre>
 
-      <h2>Análisis de argumentos con getopts</h2>
-      <p>Procesamos las opciones de línea de comandos:</p>
-      <pre><code># === ANÁLISIS DE ARGUMENTOS ===
+      <h2>AnÃ¡lisis de argumentos con getopts</h2>
+      <p>Procesamos las opciones de lÃ­nea de comandos:</p>
+      <pre><code># === ANÃLISIS DE ARGUMENTOS ===
 MODE="search"
 OS=""
 DIFFICULTY=""
@@ -134,25 +134,25 @@ while getopts "n:o:d:iDh" opt; do
   esac
 done</code></pre>
 
-      <h2>Validación del token</h2>
+      <h2>ValidaciÃ³n del token</h2>
       <div class="highlight">
-        <strong>🔐 Token de API:</strong> Establece tu token como variable de entorno antes de ejecutar:<br/>
+        <strong>ðŸ” Token de API:</strong> Establece tu token como variable de entorno antes de ejecutar:<br/>
         <code>export HTB_TOKEN="tu_token_aqui"</code><br/>
-        O créalo en un archivo <code>.env</code> y cárgalo con <code>source .env</code>.
+        O crÃ©alo en un archivo <code>.env</code> y cÃ¡rgalo con <code>source .env</code>.
       </div>
 
       <pre><code># Validar token
 if [[ -z "$HTB_TOKEN" ]]; then
-  echo "${RED}${BOLD}Error:${RESET} HTB_TOKEN no está configurado."
+  echo "${RED}${BOLD}Error:${RESET} HTB_TOKEN no estÃ¡ configurado."
   echo "Ejecuta: export HTB_TOKEN='tu_token'"
   exit 1
 fi</code></pre>
 
-      <p>Con esto tenemos la base del script. En la siguiente clase añadiremos las funciones auxiliares y la conexión a la API.</p>
+      <p>Con esto tenemos la base del script. En la siguiente clase aÃ±adiremos las funciones auxiliares y la conexiÃ³n a la API.</p>
 
       <div class="lesson-nav">
-        <a href="clase-63.html">← Anterior: Introducción al Proyecto 1</a>
-        <a href="clase-65.html">Siguiente: Scripting en Bash [2-6] →</a>
+        <a href="clase-63.html">â† Anterior: IntroducciÃ³n al Proyecto 1</a>
+        <a href="clase-65.html">Siguiente: Scripting en Bash [2-6] â†’</a>
       </div>
     </div>
 
@@ -160,11 +160,11 @@ fi</code></pre>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

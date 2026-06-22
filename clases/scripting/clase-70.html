@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>70. Introducción al Proyecto 2 — Ruleta de casino en Bash | Introducción a Linux</title>
+    <title>70. IntroducciÃ³n al Proyecto 2 â€” Ruleta de casino en Bash | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,58 +33,58 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
 
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 70</span>
       </div>
     </div>
 
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
 
-      <span class="course-tag">🐧 Bash · Scripting</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Introducción al Proyecto 2 — Ruleta de casino en Bash</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Sección 6: Scripting en Bash — Principiante a Avanzado</div>
+      <span class="course-tag">ðŸ§ Bash Â· Scripting</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">IntroducciÃ³n al Proyecto 2 â€” Ruleta de casino en Bash</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">SecciÃ³n 6: Scripting en Bash â€” Principiante a Avanzado</div>
 
       <p>
-        Segundo proyecto práctico de la sección: construiremos una <strong>ruleta de casino</strong> completamente funcional en Bash. Este proyecto es más grande que el anterior (15 clases) y cubre casi todos los aspectos del scripting avanzado: números aleatorios, lógica de apuestas, persistencia, estrategias, animaciones, multijugador y más.
+        Segundo proyecto prÃ¡ctico de la secciÃ³n: construiremos una <strong>ruleta de casino</strong> completamente funcional en Bash. Este proyecto es mÃ¡s grande que el anterior (15 clases) y cubre casi todos los aspectos del scripting avanzado: nÃºmeros aleatorios, lÃ³gica de apuestas, persistencia, estrategias, animaciones, multijugador y mÃ¡s.
       </p>
 
       <h2>Reglas de la ruleta</h2>
-      <p>La ruleta europea tiene 37 números (0-36):</p>
+      <p>La ruleta europea tiene 37 nÃºmeros (0-36):</p>
       <ul>
-        <li><strong>0</strong> — Verde (no paga apuestas externas)</li>
-        <li><strong>1-10</strong> — Rojos y negros alternados</li>
-        <li><strong>11-18</strong> — Rojos y negros alternados</li>
-        <li><strong>19-28</strong> — Rojos y negros alternados</li>
-        <li><strong>29-36</strong> — Rojos y negros alternados</li>
+        <li><strong>0</strong> â€” Verde (no paga apuestas externas)</li>
+        <li><strong>1-10</strong> â€” Rojos y negros alternados</li>
+        <li><strong>11-18</strong> â€” Rojos y negros alternados</li>
+        <li><strong>19-28</strong> â€” Rojos y negros alternados</li>
+        <li><strong>29-36</strong> â€” Rojos y negros alternados</li>
       </ul>
 
       <h2>Tipos de apuesta</h2>
       <table>
         <tr>
           <th>Tipo</th>
-          <th>Descripción</th>
+          <th>DescripciÃ³n</th>
           <th>Pago</th>
         </tr>
         <tr>
           <td>Pleno</td>
-          <td>Un número específico (1-36)</td>
+          <td>Un nÃºmero especÃ­fico (1-36)</td>
           <td>35:1</td>
         </tr>
         <tr>
@@ -104,7 +104,7 @@
         </tr>
         <tr>
           <td>Par/Impar</td>
-          <td>Número par o impar</td>
+          <td>NÃºmero par o impar</td>
           <td>1:1</td>
         </tr>
       </table>
@@ -113,10 +113,10 @@
       <pre><code>#!/bin/bash
 # roulette.sh - Ruleta de casino en Bash
 
-# === CONFIGURACIÓN GLOBAL ===
+# === CONFIGURACIÃ“N GLOBAL ===
 # === FUNCIONES DEL JUEGO ===
-# === LÓGICA DE APUESTAS ===
-# === HISTORIAL Y ESTADÍSTICAS ===
+# === LÃ“GICA DE APUESTAS ===
+# === HISTORIAL Y ESTADÃSTICAS ===
 # === SISTEMA DE ARCHIVOS ===
 # === ESTRATEGIAS ===
 # === INTERFAZ Y ANIMACIONES ===
@@ -126,26 +126,26 @@
 # === MAIN LOOP ===</code></pre>
 
       <div class="highlight">
-        <strong>🎯 Objetivo:</strong> Al final del proyecto tendrás un casino funcional en tu terminal con sonidos, animaciones, estrategias automáticas, multijugador local y persistencia de datos. Todo en Bash puro.
+        <strong>ðŸŽ¯ Objetivo:</strong> Al final del proyecto tendrÃ¡s un casino funcional en tu terminal con sonidos, animaciones, estrategias automÃ¡ticas, multijugador local y persistencia de datos. Todo en Bash puro.
       </div>
 
-      <h2>Lo que aprenderás</h2>
+      <h2>Lo que aprenderÃ¡s</h2>
       <ul>
-        <li>Números aleatorios con <code>$RANDOM</code> y <code>shuf</code></li>
-        <li>Lógica condicional compleja con <code>case</code></li>
+        <li>NÃºmeros aleatorios con <code>$RANDOM</code> y <code>shuf</code></li>
+        <li>LÃ³gica condicional compleja con <code>case</code></li>
         <li>Arrays y arrays asociativos</li>
         <li>Persistencia con archivos JSON y <code>jq</code></li>
         <li>Animaciones con <code>printf</code> y <code>sleep</code></li>
-        <li>Estrategias matemáticas (Martingala, Paroli, D'Alembert)</li>
+        <li>Estrategias matemÃ¡ticas (Martingala, Paroli, D'Alembert)</li>
         <li>Multijugador y rankings</li>
-        <li>Depuración con <code>set -x</code> y <code>trap</code></li>
+        <li>DepuraciÃ³n con <code>set -x</code> y <code>trap</code></li>
       </ul>
 
-      <p>¡Empezamos en la siguiente clase!</p>
+      <p>Â¡Empezamos en la siguiente clase!</p>
 
       <div class="lesson-nav">
-        <a href="clase-69.html">← Anterior: Scripting en Bash [6-6]</a>
-        <a href="clase-71.html">Siguiente: Scripting en Bash [1-15] →</a>
+        <a href="clase-69.html">â† Anterior: Scripting en Bash [6-6]</a>
+        <a href="clase-71.html">Siguiente: Scripting en Bash [1-15] â†’</a>
       </div>
     </div>
 
@@ -153,11 +153,11 @@
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>

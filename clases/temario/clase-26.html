@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>26. Uso y configuración de la Kitty | Introducción a Linux</title>
+    <title>26. Uso y configuraciÃ³n de la Kitty | IntroducciÃ³n a Linux</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
@@ -33,36 +33,36 @@
   </head>
   <body>
     <nav>
-      <a href="../../introduccion-a-linux.html" class="nav-logo">hack<span>4u</span></a>
+      <a href="../../index.html" class="nav-logo">hack<span>4u</span></a>
       <ul class="nav-links">
-        <li><a href="../../introduccion-a-linux.html">Cursos</a></li>
+        <li><a href="../../index.html">Cursos</a></li>
         <li><a href="#">Roadmap</a></li>
-        <li><a href="#">Conócenos</a></li>
+        <li><a href="#">ConÃ³cenos</a></li>
       </ul>
       <div class="nav-cta">
-        <button class="btn-ghost">Iniciar sesión</button>
+        <button class="btn-ghost">Iniciar sesiÃ³n</button>
         <button class="btn-accent">Registrarse</button>
       </div>
     </nav>
     <div style="background: var(--bg-deep); border-bottom: 1px solid var(--border);">
       <div class="breadcrumb">
-        <a href="../../introduccion-a-linux.html">Inicio</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Cursos</a><span>›</span>
-        <a href="../../introduccion-a-linux.html">Introducción a Linux</a><span>›</span>
+        <a href="../../index.html">Inicio</a><span>â€º</span>
+        <a href="../../index.html">Cursos</a><span>â€º</span>
+        <a href="../../index.html">IntroducciÃ³n a Linux</a><span>â€º</span>
         <span style="color: var(--text-2);">Clase 26</span>
       </div>
     </div>
     <div class="lesson-content">
-      <a href="../../introduccion-a-linux.html" class="back-link">← Volver al curso</a>
-      <span class="course-tag">🐧 Linux · Ciberseguridad</span>
-      <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso y configuración de la Kitty</h1>
-      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">Duración: 10:03 · Sección 2: Temario</div>
+      <a href="../../index.html" class="back-link">â† Volver al curso</a>
+      <span class="course-tag">ðŸ§ Linux Â· Ciberseguridad</span>
+      <h1 class="course-title" style="margin-bottom: 0.5rem;">Uso y configuraciÃ³n de la Kitty</h1>
+      <div style="color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem;">DuraciÃ³n: 10:03 Â· SecciÃ³n 2: Temario</div>
 
       <p>
-        Kitty es un emulador de terminal moderno que aprovecha la GPU para renderizar texto de forma ultrarrápida. Es ligero, altamente configurable y se ha convertido en el favorito de muchos hackers y desarrolladores. A diferencia de terminales tradicionales como GNOME Terminal o Konsole, Kitty está pensado para ser manejado casi por completo desde el teclado.
+        Kitty es un emulador de terminal moderno que aprovecha la GPU para renderizar texto de forma ultrarrÃ¡pida. Es ligero, altamente configurable y se ha convertido en el favorito de muchos hackers y desarrolladores. A diferencia de terminales tradicionales como GNOME Terminal o Konsole, Kitty estÃ¡ pensado para ser manejado casi por completo desde el teclado.
       </p>
 
-      <h2>Instalación</h2>
+      <h2>InstalaciÃ³n</h2>
       <pre><code># En Debian/Ubuntu
 sudo apt install kitty
 
@@ -72,8 +72,8 @@ sudo pacman -S kitty
 # En macOS
 brew install --cask kitty</code></pre>
 
-      <h3>Configuración básica: kitty.conf</h3>
-      <p>Kitty se configura desde <code>~/.config/kitty/kitty.conf</code>. No tiene interfaz gráfica de ajustes; todo se hace editando este archivo:</p>
+      <h3>ConfiguraciÃ³n bÃ¡sica: kitty.conf</h3>
+      <p>Kitty se configura desde <code>~/.config/kitty/kitty.conf</code>. No tiene interfaz grÃ¡fica de ajustes; todo se hace editando este archivo:</p>
 
       <pre><code># ~/.config/kitty/kitty.conf
 
@@ -93,7 +93,7 @@ background #111111
 selection_foreground #000000
 selection_background #fffacd
 
-# Atajos útiles
+# Atajos Ãºtiles
 map ctrl+shift+c copy_to_clipboard
 map ctrl+shift+v paste_from_clipboard
 map ctrl+shift+t new_tab
@@ -101,58 +101,58 @@ map ctrl+shift+q close_window</code></pre>
 
       <h3>Atajos de teclado esenciales</h3>
       <table>
-        <tr><th>Atajo</th><th>Acción</th></tr>
+        <tr><th>Atajo</th><th>AcciÃ³n</th></tr>
         <tr><td><code>Ctrl+Shift+Enter</code></td><td>Abrir nueva ventana (panel)</td></tr>
-        <tr><td><code>Ctrl+Shift+t</code></td><td>Nueva pestaña</td></tr>
-        <tr><td><code>Ctrl+Shift+Tab</code></td><td>Siguiente pestaña</td></tr>
+        <tr><td><code>Ctrl+Shift+t</code></td><td>Nueva pestaÃ±a</td></tr>
+        <tr><td><code>Ctrl+Shift+Tab</code></td><td>Siguiente pestaÃ±a</td></tr>
         <tr><td><code>Ctrl+Shift+flechas</code></td><td>Redimensionar paneles</td></tr>
-        <tr><td><code>Ctrl+Shift+l</code></td><td>Abrir launcher de Kitty (abreventanas rápido)</td></tr>
+        <tr><td><code>Ctrl+Shift+l</code></td><td>Abrir launcher de Kitty (abreventanas rÃ¡pido)</td></tr>
         <tr><td><code>Ctrl+Shift+.</code></td><td>Buscar en la ventana</td></tr>
       </table>
 
       <div class="highlight">
-        <strong>💡 Ventaja sobre otras terminales:</strong> Kitty renderiza con OpenGL usando la GPU, lo que significa que incluso con mucha salida de texto (logs, nmap -v, grep masivos) no se ralentiza. Además, soporta imágenes inline: puedes ver imágenes directamente en la terminal con <code>kitty +kitten icat imagen.png</code>.
+        <strong>ðŸ’¡ Ventaja sobre otras terminales:</strong> Kitty renderiza con OpenGL usando la GPU, lo que significa que incluso con mucha salida de texto (logs, nmap -v, grep masivos) no se ralentiza. AdemÃ¡s, soporta imÃ¡genes inline: puedes ver imÃ¡genes directamente en la terminal con <code>kitty +kitten icat imagen.png</code>.
       </div>
 
       <h3>Comparativa con otras terminales</h3>
       <table>
         <tr><th>Terminal</th><th>GPU</th><th>Config</th><th>Peso</th></tr>
-        <tr><td>Kitty</td><td>Sí</td><td>Archivo de texto</td><td>Muy ligero</td></tr>
-        <tr><td>Alacritty</td><td>Sí</td><td>YAML/TOML</td><td>Ligero</td></tr>
+        <tr><td>Kitty</td><td>SÃ­</td><td>Archivo de texto</td><td>Muy ligero</td></tr>
+        <tr><td>Alacritty</td><td>SÃ­</td><td>YAML/TOML</td><td>Ligero</td></tr>
         <tr><td>GNOME Terminal</td><td>No</td><td>GUI</td><td>Moderado</td></tr>
         <tr><td>Konsole</td><td>No</td><td>GUI</td><td>Moderado</td></tr>
         <tr><td>Terminator</td><td>No</td><td>GUI + archivo</td><td>Moderado</td></tr>
       </table>
 
-      <pre><code># Ver imágenes inline en Kitty
+      <pre><code># Ver imÃ¡genes inline en Kitty
 kitty +kitten icat ruta/a/imagen.png
 
 # Abrir un programa en una ventana flotante
 kitty --class floating nvim
 
-# Sesión remota SSH dentro de Kitty
+# SesiÃ³n remota SSH dentro de Kitty
 kitty +kitten ssh usuario@host</code></pre>
 
       <div class="warning">
-        <strong>⚠️ Compatibilidad:</strong> Si usas Kitty en un entorno virtualizado, la aceleración GPU puede no estar disponible. En ese caso, funcionará igual, pero sin la ventaja de rendimiento.
+        <strong>âš ï¸ Compatibilidad:</strong> Si usas Kitty en un entorno virtualizado, la aceleraciÃ³n GPU puede no estar disponible. En ese caso, funcionarÃ¡ igual, pero sin la ventaja de rendimiento.
       </div>
 
-      <p>Kitty no es solo una terminal bonita; es una herramienta de productividad. Una vez que configures tu <code>kitty.conf</code> con tus colores, fuentes y atajos, notarás que trabajar en la terminal es más fluido y rápido.</p>
+      <p>Kitty no es solo una terminal bonita; es una herramienta de productividad. Una vez que configures tu <code>kitty.conf</code> con tus colores, fuentes y atajos, notarÃ¡s que trabajar en la terminal es mÃ¡s fluido y rÃ¡pido.</p>
 
       <div class="lesson-nav">
-        <a href="clase-25.html">← Anterior: Creación de scripts en Bash</a>
-        <a href="clase-27.html">Siguiente: Uso del editor Vim →</a>
+        <a href="clase-25.html">â† Anterior: CreaciÃ³n de scripts en Bash</a>
+        <a href="clase-27.html">Siguiente: Uso del editor Vim â†’</a>
       </div>
     </div>
     <footer>
       <div class="footer-logo">hack4u</div>
       <div class="footer-links">
         <a href="#">Aviso Legal</a>
-        <a href="#">Política de Cookies</a>
+        <a href="#">PolÃ­tica de Cookies</a>
         <a href="#">Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
+        <a href="#">TÃ©rminos y Condiciones</a>
       </div>
-      <div>© 2026 hack4u.io — Todos los derechos reservados.</div>
+      <div>Â© 2026 hack4u.io â€” Todos los derechos reservados.</div>
     </footer>
   </body>
 </html>
